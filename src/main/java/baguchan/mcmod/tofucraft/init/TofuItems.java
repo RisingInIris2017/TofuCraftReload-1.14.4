@@ -1,7 +1,6 @@
 package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
-import com.google.common.base.Preconditions;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -51,11 +50,8 @@ public class TofuItems {
         register(registry, TOFUISHI, "tofuishi");
         register(registry, TOFUMETAL, "tofumetal");
         register(registry, TOFUGRILD, "tofugrilled");
-
         register(registry, TOFUCOOKIE, "tofucookie");
-
         register(registry, SEEDS_SOYBEAN, "seeds_soybeans");
-
         register(registry, SOYMILK_BUCKET, "bucketsoymilk");
     }
 }
