@@ -1,0 +1,24 @@
+{
+  "display": {
+    "icon": {
+      "item": "tofucraft:zundaarrow"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.caringshooting.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.caringshooting.description"
+    }
+  },
+  "parent": "tofucraft:tofucraft/zunda",
+  "criteria": {
+    "done": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "done"
+    ]
+  ]
+}
