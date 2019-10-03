@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S S",
+    " C "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:stone_slab"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "tofucraft:blocksaltpan"
+  }
+}

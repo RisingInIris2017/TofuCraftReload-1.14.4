@@ -1,6 +1,6 @@
 {
-    "parent": "tofucraft:block/saltPan_contentModel",
+  "parent": "tofucraft:block/saltpan_contentmodel",
     "textures": {
-        "texture": "tofucraft:blocks/blockSalt"
+      "texture": "tofucraft:blocks/blocksalt"
     }
 }

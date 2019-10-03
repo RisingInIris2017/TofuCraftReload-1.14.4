@@ -2,12 +2,14 @@ package baguchan.mcmod.tofucraft.init;
 
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
+import baguchan.mcmod.tofucraft.block.SaltPanBlock;
 import baguchan.mcmod.tofucraft.block.SoyBeanCropsBlock;
 import baguchan.mcmod.tofucraft.block.TofuBlock;
 import baguchan.mcmod.tofucraft.block.TofuFluidBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.ToolType;
@@ -25,6 +27,7 @@ public class TofuBlocks {
     public static final Block ISHITOFU = new TofuBlock(Block.Properties.create(Material.ROCK).tickRandomly().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
     public static final Block METALTOFU = new Block(Block.Properties.create(Material.IRON).tickRandomly().harvestTool(ToolType.PICKAXE).hardnessAndResistance(4.0F, 6.0F).sound(SoundType.METAL));
     public static final Block GRILLEDTOFU = new Block(Block.Properties.create(TofuMaterial.TOFU).tickRandomly().harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.25F, 0.5F).sound(SoundType.SNOW));
+    public static final Block SALTPAN = new SaltPanBlock(Block.Properties.create(Material.ROCK, MaterialColor.STONE).tickRandomly().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).sound(SoundType.STONE));
 
 
     @SubscribeEvent
@@ -37,6 +40,8 @@ public class TofuBlocks {
         registry.getRegistry().register(ISHITOFU.setRegistryName("blocktofuishi"));
         registry.getRegistry().register(METALTOFU.setRegistryName("blocktofumetal"));
         registry.getRegistry().register(GRILLEDTOFU.setRegistryName("blocktofugrilled"));
+
+        registry.getRegistry().register(SALTPAN.setRegistryName("blocksaltpan"));
     }
 
     @SubscribeEvent
@@ -47,6 +52,7 @@ public class TofuBlocks {
         TofuItems.register(registry, new BlockItem(ISHITOFU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(METALTOFU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(GRILLEDTOFU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        TofuItems.register(registry, new BlockItem(SALTPAN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
     }
 
 }

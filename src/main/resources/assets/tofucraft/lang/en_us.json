@@ -4,6 +4,15 @@
   "item.tofucraft.tofuishi": "Ishi Tofu",
   "item.tofucraft.tofumetal": "Metal Tofu",
   "item.tofucraft.tofugrilled": "Grilled Tofu",
-
-  "item.tofucraft.tofucookie": "Tofu Cookie"
+  "item.tofucraft.tofucookie": "Tofu Cookie",
+  "item.tofucraft.bucketsoymilk": "Soymilk Bucket",
+  "item.tofucraft.seeds_soybeans": "Seeds Soybeans",
+  "item.tofucraft.salt": "Salt",
+  "item.tofucraft.bittern_bottle": "Bittern Bottle",
+  "block.tofucraft.blocktofukinu": "KinuTofu Block",
+  "block.tofucraft.blockmomenkinu": "MomenTofu Block",
+  "block.tofucraft.blocktofuishi": "IshiTofu Block",
+  "block.tofucraft.blocktofumetal": "MetalTofu Block",
+  "block.tofucraft.blocktofugrilled": "GrilledTofu Block",
+  "block.tofucraft.blocksaltpan": "SaltPan"
 }

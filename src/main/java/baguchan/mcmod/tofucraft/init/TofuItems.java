@@ -1,6 +1,7 @@
 package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
+import baguchan.mcmod.tofucraft.item.BitternItem;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -18,8 +19,10 @@ public class TofuItems {
     public static final Item TOFUCOOKIE = new Item(new Item.Properties().food(TofuFoods.TOFUCOOKIE).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item SEEDS_SOYBEAN = new BlockNamedItem(TofuBlocks.SOYBEAN,new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_BUCKET = new BucketItem(TofuFluids.SOYMILK, (new Item.Properties()).containerItem(Items.BUCKET).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
 
-    public static final Item SOYMILK_BUCKET = new BucketItem(TofuFluids.SOYMILK, (new Item.Properties()).containerItem(Items.BUCKET).maxStackSize(1).group(ItemGroup.MISC));
+    public static final Item SALT = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item BITTERN = new BitternItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
     public static void register(RegistryEvent.Register<Item> registry, Item item, String id) {
         if (item instanceof BlockItem){
@@ -53,5 +56,7 @@ public class TofuItems {
         register(registry, TOFUCOOKIE, "tofucookie");
         register(registry, SEEDS_SOYBEAN, "seeds_soybeans");
         register(registry, SOYMILK_BUCKET, "bucketsoymilk");
+        register(registry, SALT, "salt");
+        register(registry, BITTERN, "bittern_bottle");
     }
 }
