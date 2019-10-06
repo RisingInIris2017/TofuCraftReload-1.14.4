@@ -9,10 +9,19 @@
   "item.tofucraft.seeds_soybeans": "Seeds Soybeans",
   "item.tofucraft.salt": "Salt",
   "item.tofucraft.bittern_bottle": "Bittern Bottle",
+  "item.tofucraft.zundaruby": "Zunda Ruby",
+  "item.tofucraft.tofunian_spawnegg": "Tofunian SpawnEgg",
+
   "block.tofucraft.blocktofukinu": "KinuTofu Block",
   "block.tofucraft.blockmomenkinu": "MomenTofu Block",
   "block.tofucraft.blocktofuishi": "IshiTofu Block",
   "block.tofucraft.blocktofumetal": "MetalTofu Block",
   "block.tofucraft.blocktofugrilled": "GrilledTofu Block",
-  "block.tofucraft.blocksaltpan": "SaltPan"
+  "block.tofucraft.blocksaltpan": "SaltPan",
+  "block.tofucraft.tofu_terrain": "Tofu Terrain",
+  "block.tofucraft.tofubedrock": "Tofu Bedrock",
+  "block.tofucraft.tofuflower": "TofuFlower",
+  "entity.tofucraft.tofunian.guard.name": "Guard Tofunian",
+  "entity.tofucraft.tofunian.tofucock.name": "TofuCock Tofunian",
+  "entity.tofucraft.tofunian": "Tofunian"
 }

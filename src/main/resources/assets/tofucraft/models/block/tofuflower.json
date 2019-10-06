@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:cross",
+  "textures": {
+    "cross": "tofucraft:blocks/tofuflower"
+  }
+}

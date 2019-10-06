@@ -1,10 +1,7 @@
 {
   "variants": {
-    "axis=z": {
-      "model": "tofucraft:portal_ew"
-    },
-    "axis=x": {
-      "model": "tofucraft:portal_ns"
+    "": {
+      "model": "tofucraft:block/tofuportal"
     }
   }
 }
