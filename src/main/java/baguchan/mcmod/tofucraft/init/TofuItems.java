@@ -26,6 +26,7 @@ public class TofuItems {
 
     public static final Item SALT = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item BITTERN = new BitternItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUSTICK = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item ZUNDARUBY = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUNIAN_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUNIAN, 0xEBE8E8, 0xCACFA1, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
@@ -89,6 +90,7 @@ public class TofuItems {
         register(registry, SOYMILK_BUCKET, "bucketsoymilk");
         register(registry, SALT, "salt");
         register(registry, BITTERN, "bittern_bottle");
+        register(registry, TOFUSTICK, "tofustick");
         register(registry, ZUNDARUBY, "zundaruby");
         register(registry, TOFUNIAN_SPAWNEGG, "tofunian_spawnegg");
 

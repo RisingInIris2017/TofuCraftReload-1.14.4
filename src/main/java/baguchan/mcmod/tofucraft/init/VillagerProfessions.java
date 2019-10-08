@@ -33,14 +33,14 @@ public class VillagerProfessions {
     public static final VillagerProfession TOFUCRAFTSMAN_PROFESSION = registerProfession("tofu_craftsman", TOFUCRAFTSMAN);
 
     @SubscribeEvent
-    public static void registerProfession(RegistryEvent.Register<VillagerProfession> event) {
-        VillagerTrades.field_221239_a.put(TOFUCRAFTSMAN_PROFESSION, func_221238_a(ImmutableMap.of(1, new VillagerTrades.ITrade[]{new EmeraldForItemsTrade(TofuItems.SEEDS_SOYBEAN, 14, 20, 2), new EmeraldForItemsTrade(TofuItems.SALT, 14, 22, 2), new ItemsForEmeraldsTrade(TofuItems.TOFUMOMEN, 1, 12, 2)}, 2, new VillagerTrades.ITrade[]{new EmeraldForItemsTrade(Items.GLASS_BOTTLE, 4, 8, 2)})));
-        event.getRegistry().register(TOFUCRAFTSMAN_PROFESSION.setRegistryName("tofu_craftsman"));
+    public static void registerInterestType(RegistryEvent.Register<PointOfInterestType> event) {
+        event.getRegistry().register(TOFUCRAFTSMAN.setRegistryName("tofu_craftsman"));
     }
 
     @SubscribeEvent
-    public static void registerInterestType(RegistryEvent.Register<PointOfInterestType> event) {
-        event.getRegistry().register(TOFUCRAFTSMAN.setRegistryName("tofu_craftsman"));
+    public static void registerProfession(RegistryEvent.Register<VillagerProfession> event) {
+        VillagerTrades.field_221239_a.put(TOFUCRAFTSMAN_PROFESSION, func_221238_a(ImmutableMap.of(1, new VillagerTrades.ITrade[]{new EmeraldForItemsTrade(TofuItems.SEEDS_SOYBEAN, 14, 20, 2), new EmeraldForItemsTrade(TofuItems.SALT, 14, 22, 2), new ItemsForEmeraldsTrade(TofuItems.TOFUMOMEN, 1, 12, 2)}, 2, new VillagerTrades.ITrade[]{new EmeraldForItemsTrade(Items.GLASS_BOTTLE, 4, 8, 2)})));
+        event.getRegistry().register(TOFUCRAFTSMAN_PROFESSION.setRegistryName("tofu_craftsman"));
     }
 
     private static Int2ObjectMap<VillagerTrades.ITrade[]> func_221238_a(ImmutableMap<Integer, VillagerTrades.ITrade[]> p_221238_0_) {

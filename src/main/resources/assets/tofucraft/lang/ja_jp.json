@@ -11,8 +11,9 @@
   "item.tofucraft.edamame_boild": "茹でた枝豆",
   "item.tofucraft.salt": "塩",
   "item.tofucraft.bittern_bottle": "にがりが入った瓶",
+  "item.tofucraft.tofustick": "トーフステッキ",
   "item.tofucraft.zundaruby": "ずんだルビー",
-  "item.tofucraft.tofunian_spawnegg": "トウフニアンスポーンエッグ",
+  "item.tofucraft.tofunian_spawnegg": "トーフニアンスポーンエッグ",
   "item.tofucraft.armorkinuhelmet": "絹豆腐のヘルメット",
   "item.tofucraft.armorkinuchestplate": "絹豆腐のチェストプレート",
   "item.tofucraft.armorkinuleggins": "絹豆腐のレギンス",
@@ -39,7 +40,7 @@
   "block.tofucraft.tofu_terrain": "自然の豆腐",
   "block.tofucraft.tofubedrock": "豆腐岩盤",
   "block.tofucraft.tofuflower": "豆腐の花",
-  "entity.tofucraft.tofunian.guard.name": "守備のトウフニアン",
-  "entity.tofucraft.tofunian.tofucock.name": "豆腐コック トウフニアン",
-  "entity.tofucraft.tofunian": "トウフニアン"
+  "entity.tofucraft.tofunian.guard.name": "守備のトーフニアン",
+  "entity.tofucraft.tofunian.tofucock.name": "豆腐コック トーフニアン",
+  "entity.tofucraft.tofunian": "トーフニアン"
 }

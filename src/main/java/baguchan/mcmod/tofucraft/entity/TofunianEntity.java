@@ -53,16 +53,14 @@ public class TofunianEntity extends AbstractVillagerEntity {
 
     public Int2ObjectMap<VillagerTrades.ITrade[]> getOfferMap() {
         Int2ObjectMap<VillagerTrades.ITrade[]> offers = null;
-        if (getRole() == Roles.GUARD) {
-            offers = func_221238_a(ImmutableMap.of(1,
-                    new VillagerTrades.ITrade[]{
-                            new TradeForZundaRuby(TofuItems.TOFUKINU, 20, 8, 2)
-                    }));
-        } else if (getRole() == Roles.TOFUCOCK) {
+        if (getRole() == Roles.TOFUCOCK) {
             offers = func_221238_a(ImmutableMap.of(1,
                     new VillagerTrades.ITrade[]{
                             new TradeForZundaRuby(TofuItems.TOFUKINU, 20, 8, 2),
                             new TradeForZundaRuby(TofuItems.TOFUMOMEN, 26, 6, 2)
+                    }, 2,
+                    new VillagerTrades.ITrade[]{
+                            new TradeForItem(TofuItems.TOFUCOOKIE, 9, 6, 2)
                     }));
         }
 
@@ -132,6 +130,28 @@ public class TofunianEntity extends AbstractVillagerEntity {
         public MerchantOffer getOffer(Entity entity, Random random) {
             ItemStack itemstack = new ItemStack(this.item, this.count);
             return new MerchantOffer(itemstack, new ItemStack(TofuItems.ZUNDARUBY), this.maxUses, this.givenXP, this.priceMultiplier);
+        }
+    }
+
+    static class TradeForItem implements VillagerTrades.ITrade {
+        private final Item item;
+        private final int count;
+        private final int maxUses;
+        private final int givenXP;
+        private final float priceMultiplier;
+
+        public TradeForItem(IItemProvider item, int count, int maxUses, int givenXP) {
+            this.item = item.asItem();
+            this.count = count;
+            this.maxUses = maxUses;
+            this.givenXP = givenXP;
+            this.priceMultiplier = 0.05F;
+        }
+
+        @Override
+        public MerchantOffer getOffer(Entity entity, Random random) {
+            ItemStack itemstack = new ItemStack(this.item, this.count);
+            return new MerchantOffer(new ItemStack(TofuItems.ZUNDARUBY), itemstack, this.maxUses, this.givenXP, this.priceMultiplier);
         }
     }
 
