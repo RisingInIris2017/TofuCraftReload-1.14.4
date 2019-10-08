@@ -63,6 +63,7 @@ public class TofuCraftCore {
                     event.getWorld().addEntity(new ItemEntity((World) event.getWorld(), event.getPos().getX(),
                             event.getPos().getY(), event.getPos().getZ(), new ItemStack(TofuItems.SEEDS_SOYBEAN)));
                 }
+
             }
         }
     }

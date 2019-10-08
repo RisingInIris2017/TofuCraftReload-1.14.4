@@ -1,6 +1,6 @@
 {
   "variants": {
-    "normal": [
+    "": [
       {
         "model": "tofucraft:block/tofuflower"
       }
