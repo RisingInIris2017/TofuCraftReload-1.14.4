@@ -10,6 +10,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
+import net.minecraft.entity.merchant.villager.VillagerData;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.AbstractIllagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -42,6 +43,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
     private static final DataParameter<Integer> ROLE = EntityDataManager.createKey(TofunianEntity.class, DataSerializers.VARINT);
     private boolean customer;
     private int tofunianCareerLevel = 1;
+    private int xp;
     @Nullable
     private PlayerEntity field_213778_bG;
 
@@ -61,6 +63,12 @@ public class TofunianEntity extends AbstractVillagerEntity {
                     }, 2,
                     new VillagerTrades.ITrade[]{
                             new TradeForItem(TofuItems.TOFUCOOKIE, 9, 6, 2)
+                    }));
+        } else if (getRole() == Roles.TOFUSMITH) {
+            offers = func_221238_a(ImmutableMap.of(1,
+                    new VillagerTrades.ITrade[]{
+                            new TradeForZundaRuby(TofuItems.TOFUISHI, 26, 7, 2),
+                            new TradeForItem(TofuItems.ARMOR_SOLIDHELMET, 1, 3, 3)
                     }));
         }
 
@@ -99,11 +107,14 @@ public class TofunianEntity extends AbstractVillagerEntity {
 
     protected void func_213713_b(MerchantOffer p_213713_1_) {
         int i = 3 + this.rand.nextInt(4);
+        this.xp += p_213713_1_.func_222210_n();
         this.field_213778_bG = this.getCustomer();
 
-        this.timeUntilReset = 40;
-        this.customer = true;
-        i += 5;
+        if (this.func_213741_eu()) {
+            this.timeUntilReset = 40;
+            this.customer = true;
+            i += 5;
+        }
 
 
         if (p_213713_1_.func_222221_q()) {
@@ -165,6 +176,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
         super.writeAdditional(compound);
 
         compound.putInt("Level", getLevel());
+        compound.putInt("Xp", this.xp);
     }
 
     @Override
@@ -172,8 +184,24 @@ public class TofunianEntity extends AbstractVillagerEntity {
         super.readAdditional(compound);
 
         this.setLevel(compound.getInt("Level"));
+        if (compound.contains("Xp", 3)) {
+            this.xp = compound.getInt("Xp");
+        }
 
         updateUniqueEntityAI();
+    }
+
+    private boolean func_213741_eu() {
+        int i = this.getLevel();
+        return VillagerData.func_221128_d(i) && this.xp >= VillagerData.func_221127_c(i);
+    }
+
+    public int getXp() {
+        return this.xp;
+    }
+
+    public void setXp(int p_213761_1_) {
+        this.xp = p_213761_1_;
     }
 
     @Override
@@ -370,7 +398,8 @@ public class TofunianEntity extends AbstractVillagerEntity {
 
     public enum Roles {
         GUARD,
-        TOFUCOCK;
+        TOFUCOCK,
+        TOFUSMITH;
 
         private static final Map<Integer, Roles> lookup = new HashMap<>();
 
