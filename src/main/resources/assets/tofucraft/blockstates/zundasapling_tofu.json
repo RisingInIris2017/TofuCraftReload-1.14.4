@@ -8,7 +8,7 @@
       {
         "model": "block/cross",
         "textures": {
-          "cross": "tofucraft:blocks/sapling_tofu"
+          "cross": "tofucraft:blocks/zundasapling_tofu"
         }
       }
     ]

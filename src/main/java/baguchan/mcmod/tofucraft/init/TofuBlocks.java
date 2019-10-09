@@ -3,6 +3,8 @@ package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.block.*;
+import baguchan.mcmod.tofucraft.world.tree.TofuTree;
+import baguchan.mcmod.tofucraft.world.tree.ZundaTofuTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -30,11 +32,12 @@ public class TofuBlocks {
     public static final Block TOFUTERRAIN = new Block(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.45F, 0.85F).sound(SoundType.SNOW));
     public static final Block TOFUBEDROCK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(-1.0F, 2000000.0F).sound(SoundType.STONE));
     public static final Block TOFUFLOWER = new TofuFlowerBlock(Effects.ABSORPTION, 20, Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT));
-
-
-    public static final Block TOFUPORTAL = new TofuPortalBlock(Block.Properties.create(Material.PORTAL).harvestTool(ToolType.PICKAXE).hardnessAndResistance(-1.0F, 3000000.0F).sound(SoundType.GLASS));
-
+    public static final Block TOFULEAVES = new TofuLeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.PLANT));
+    public static final Block TOFUZUNDALEAVES = new TofuLeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.PLANT));
+    public static final Block TOFUSAPLING = new TofuSaplingBlock(new TofuTree(), Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.0F).tickRandomly().doesNotBlockMovement().sound(SoundType.PLANT));
+    public static final Block ZUNDATOFUSAPLING = new TofuSaplingBlock(new ZundaTofuTree(), Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.0F).tickRandomly().doesNotBlockMovement().sound(SoundType.PLANT));
     //Util block
+    public static final Block TOFUPORTAL = new TofuPortalBlock(Block.Properties.create(Material.PORTAL).harvestTool(ToolType.PICKAXE).hardnessAndResistance(-1.0F, 3000000.0F).sound(SoundType.GLASS));
     public static final Block SALTPAN = new SaltPanBlock(Block.Properties.create(Material.WOOD).tickRandomly().harvestTool(ToolType.AXE).hardnessAndResistance(1.0F).sound(SoundType.WOOD));
 
 
@@ -54,8 +57,12 @@ public class TofuBlocks {
         registry.getRegistry().register(TOFUTERRAIN.setRegistryName("tofu_terrain"));
         registry.getRegistry().register(TOFUBEDROCK.setRegistryName("tofubedrock"));
         registry.getRegistry().register(TOFUFLOWER.setRegistryName("tofuflower"));
+        registry.getRegistry().register(TOFULEAVES.setRegistryName("leaves_tofu"));
+        registry.getRegistry().register(TOFUZUNDALEAVES.setRegistryName("leaves_zundatofu"));
+        registry.getRegistry().register(TOFUSAPLING.setRegistryName("sapling_tofu"));
+        registry.getRegistry().register(ZUNDATOFUSAPLING.setRegistryName("zundasapling_tofu"));
+        //Util block
         registry.getRegistry().register(TOFUPORTAL.setRegistryName("tofuportal"));
-
         registry.getRegistry().register(SALTPAN.setRegistryName("blocksaltpan"));
     }
 
@@ -73,6 +80,10 @@ public class TofuBlocks {
         TofuItems.register(registry, new BlockItem(TOFUTERRAIN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFUBEDROCK, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFUFLOWER, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        TofuItems.register(registry, new BlockItem(TOFULEAVES, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        TofuItems.register(registry, new BlockItem(TOFUZUNDALEAVES, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        TofuItems.register(registry, new BlockItem(TOFUSAPLING, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        TofuItems.register(registry, new BlockItem(ZUNDATOFUSAPLING, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
 
         TofuItems.register(registry, new BlockItem(SALTPAN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
     }
