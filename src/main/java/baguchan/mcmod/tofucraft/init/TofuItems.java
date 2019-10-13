@@ -2,6 +2,7 @@ package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.item.BitternItem;
+import baguchan.mcmod.tofucraft.item.TofuStickItem;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
@@ -26,7 +27,7 @@ public class TofuItems {
 
     public static final Item SALT = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item BITTERN = new BitternItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item TOFUSTICK = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUSTICK = new TofuStickItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item ZUNDARUBY = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUNIAN_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUNIAN, 0xEBE8E8, 0xCACFA1, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
