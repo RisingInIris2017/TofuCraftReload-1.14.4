@@ -15,7 +15,7 @@ apply plugin: 'maven-publish'
 
 version = '1.14.4-0.0.1.2'
 group = 'baguchan.mcmod.tofucraft' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'tofucraft'
+archivesBaseName = 'TofuCraftReload'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
