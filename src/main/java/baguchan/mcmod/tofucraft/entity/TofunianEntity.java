@@ -1,5 +1,6 @@
 package baguchan.mcmod.tofucraft.entity;
 
+import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.init.TofuEntitys;
 import baguchan.mcmod.tofucraft.init.TofuItems;
 import baguchan.mcmod.tofucraft.init.TofuSounds;
@@ -62,6 +63,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
                             new TradeForZundaRuby(TofuItems.TOFUMOMEN, 26, 6, 2)
                     }, 2,
                     new VillagerTrades.ITrade[]{
+                            new TradeForZundaRuby(TofuBlocks.ISHITOFU_BRICK, 12, 6, 3),
                             new TradeForItem(TofuItems.TOFUCOOKIE, 9, 6, 2)
                     }));
         } else if (getRole() == Roles.TOFUSMITH) {
@@ -69,6 +71,10 @@ public class TofunianEntity extends AbstractVillagerEntity {
                     new VillagerTrades.ITrade[]{
                             new TradeForZundaRuby(TofuItems.TOFUISHI, 26, 7, 2),
                             new TradeForItem(TofuItems.ARMOR_SOLIDHELMET, 1, 3, 3)
+                    }, 2,
+                    new VillagerTrades.ITrade[]{
+                            new TradeForHicostItem(TofuItems.ARMOR_METALCHESTPLATE, 6, 2, 4),
+                            new TradeForHicostItem(TofuItems.ARMOR_METALBOOTS, 4, 3, 3)
                     }));
         }
 
@@ -163,6 +169,28 @@ public class TofunianEntity extends AbstractVillagerEntity {
         public MerchantOffer getOffer(Entity entity, Random random) {
             ItemStack itemstack = new ItemStack(this.item, this.count);
             return new MerchantOffer(new ItemStack(TofuItems.ZUNDARUBY), itemstack, this.maxUses, this.givenXP, this.priceMultiplier);
+        }
+    }
+
+    static class TradeForHicostItem implements VillagerTrades.ITrade {
+        private final Item item;
+        private final int count;
+        private final int maxUses;
+        private final int givenXP;
+        private final float priceMultiplier;
+
+        public TradeForHicostItem(IItemProvider item, int count, int maxUses, int givenXP) {
+            this.item = item.asItem();
+            this.count = count;
+            this.maxUses = maxUses;
+            this.givenXP = givenXP;
+            this.priceMultiplier = 0.05F;
+        }
+
+        @Override
+        public MerchantOffer getOffer(Entity entity, Random random) {
+            ItemStack itemstack = new ItemStack(this.item);
+            return new MerchantOffer(new ItemStack(TofuItems.ZUNDARUBY, this.count), itemstack, this.maxUses, this.givenXP, this.priceMultiplier);
         }
     }
 
