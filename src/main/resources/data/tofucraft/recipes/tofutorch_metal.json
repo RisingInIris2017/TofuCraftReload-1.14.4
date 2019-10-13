@@ -8,21 +8,18 @@
   "key": {
     "C": [
       {
-        "item": "minecraft:coal",
-        "data": 0
+        "item": "minecraft:coal"
       },
       {
-        "item": "minecraft:coal",
-        "data": 1
+        "item": "minecraft:charcoal"
       }
     ],
     "#": {
-      "item": "tofucraft:tofu_material",
-      "data": 0
+      "item": "tofucraft:tofumetal"
     }
   },
   "result": {
-    "item": "tofucraft:tofutorch_momen",
+    "item": "tofucraft:tofutorch_metal",
     "count": 4
   }
 }

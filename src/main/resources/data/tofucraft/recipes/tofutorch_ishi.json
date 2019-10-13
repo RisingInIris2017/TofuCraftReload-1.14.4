@@ -8,17 +8,14 @@
   "key": {
     "C": [
       {
-        "item": "minecraft:coal",
-        "data": 0
+        "item": "minecraft:coal"
       },
       {
-        "item": "minecraft:coal",
-        "data": 1
+        "item": "minecraft:charcoal"
       }
     ],
     "#": {
-      "item": "tofucraft:tofu_food",
-      "data": 2
+      "item": "tofucraft:tofuishi"
     }
   },
   "result": {
