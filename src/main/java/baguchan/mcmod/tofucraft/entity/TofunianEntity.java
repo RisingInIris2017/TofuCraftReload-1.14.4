@@ -177,6 +177,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
 
         compound.putInt("Level", getLevel());
         compound.putInt("Xp", this.xp);
+        compound.putInt("Role", getRole().ordinal());
     }
 
     @Override
@@ -187,6 +188,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
         if (compound.contains("Xp", 3)) {
             this.xp = compound.getInt("Xp");
         }
+        this.setRole(Roles.get(compound.getInt("Role")));
 
         updateUniqueEntityAI();
     }

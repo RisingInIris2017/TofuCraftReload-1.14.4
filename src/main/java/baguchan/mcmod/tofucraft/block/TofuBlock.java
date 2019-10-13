@@ -3,6 +3,7 @@ package baguchan.mcmod.tofucraft.block;
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.IntegerProperty;
@@ -52,12 +53,11 @@ public class TofuBlock extends Block {
     @Override
     public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
         super.tick(state, worldIn, pos, random);
-        int i = state.get(AGE);
         if (isUnderWeight(worldIn, pos)) {
-            if (this.getBlock() == TofuBlocks.KINUTOFU) {
+            if (this.getBlock() == TofuBlocks.KINUTOFU || this.getBlock() == TofuBlocks.TOFUSTAIR_KINU) {
                 worldIn.destroyBlock(pos, true);
-            } else {
-
+            } else if (!(this.getBlock() instanceof StairsBlock)) {
+                int i = state.get(AGE);
                 if (random.nextInt(5) == 0) {
                     if (i < 7) {
                         worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(i + 1)), 2);
