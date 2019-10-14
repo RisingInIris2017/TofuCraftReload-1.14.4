@@ -1,6 +1,8 @@
 package baguchan.mcmod.tofucraft.block;
 
+import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.init.TofuItems;
+import baguchan.mcmod.tofucraft.utils.TileScanner;
 import net.minecraft.block.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -108,6 +110,18 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
                     }
 
                     worldIn.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
+                    TileScanner tileScanner = new TileScanner(worldIn, pos);
+                    tileScanner.scan(1, TileScanner.Method.fullSimply, new TileScanner.Impl<Object>() {
+                        @Override
+                        public void apply(World world, BlockPos pos) {
+
+                            if (SaltPanBlock.this.getStat(world.getBlockState(pos)) == Stat.EMPTY) {
+                                world.setBlockState(pos, TofuBlocks.SALTPAN.getDefaultState().with(STAT, Stat.WATER), 3);
+                            }
+                        }
+                    });
+
                     worldIn.setBlockState(pos, state.with(STAT, Stat.WATER), 3);
 
                     return true;
