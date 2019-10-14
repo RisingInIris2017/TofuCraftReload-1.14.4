@@ -11,6 +11,7 @@ import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
+import net.minecraft.item.Items;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -63,6 +64,8 @@ public class BitternItem extends Item {
 
                     if (!playerIn.abilities.isCreativeMode) {
                         itemstack.shrink(1);
+
+                        playerIn.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
                     }
 
                     playerIn.addStat(Stats.ITEM_USED.get(this));
