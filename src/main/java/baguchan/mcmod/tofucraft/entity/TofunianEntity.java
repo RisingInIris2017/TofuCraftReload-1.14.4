@@ -63,6 +63,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
 
     public static Predicate<Entity> ENEMY_PREDICATE =
             input -> (input instanceof ZombieEntity || input instanceof AbstractIllagerEntity || input instanceof VexEntity);
+    private boolean isAISetupFinished;
 
 
     public Int2ObjectMap<VillagerTrades.ITrade[]> getOfferMap() {
@@ -84,8 +85,15 @@ public class TofunianEntity extends AbstractVillagerEntity {
                             new TradeForItem(TofuItems.ARMOR_SOLIDHELMET, 1, 3, 3)
                     }, 2,
                     new VillagerTrades.ITrade[]{
-                            new TradeForHicostItem(TofuItems.ARMOR_METALCHESTPLATE, 6, 2, 4),
+                            new TradeForZundaRuby(TofuItems.TOFUMETAL, 4, 7, 2),
                             new TradeForHicostItem(TofuItems.ARMOR_METALBOOTS, 4, 3, 3)
+                    }, 3,
+                    new VillagerTrades.ITrade[]{
+                            new TradeForHicostItem(TofuItems.METALSWORD, 5, 3, 3),
+                            new TradeForHicostItem(TofuItems.METALSHOVEL, 4, 3, 3)
+                    }, 4,
+                    new VillagerTrades.ITrade[]{
+                            new TradeForHicostItem(TofuItems.TOFUSTICK, 4, 2, 2)
                     }));
         }
 
@@ -377,9 +385,12 @@ public class TofunianEntity extends AbstractVillagerEntity {
     }
 
     private void updateUniqueEntityAI() {
-        if (canGuard()) {
-            this.targetSelector.addGoal(1, new MeleeAttackGoal(this, 1.0F, true));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, MonsterEntity.class, 10, true, false, ENEMY_PREDICATE));
+        if (this.isAISetupFinished) {
+            if (canGuard()) {
+                this.targetSelector.addGoal(1, new MeleeAttackGoal(this, 1.0F, true));
+                this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, MonsterEntity.class, 10, true, false, ENEMY_PREDICATE));
+                this.isAISetupFinished = false;
+            }
         }
     }
 
@@ -460,12 +471,22 @@ public class TofunianEntity extends AbstractVillagerEntity {
         if (flag) {
             itemstack.interactWithEntity(player, this, hand);
             return true;
-        } else if (itemstack.getItem() != Items.VILLAGER_SPAWN_EGG && this.isAlive() && !this.func_213716_dX() && !this.isChild()) {
+        } else if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG && this.isAlive() && !this.func_213716_dX() && !this.isChild()) {
             if (hand == Hand.MAIN_HAND) {
                 player.addStat(Stats.TALKED_TO_VILLAGER);
             }
 
             if (this.getOffers().isEmpty()) {
+                if (!this.isNitwit()) {
+                    //remaking trade
+                    this.populateTradeData();
+
+                    if (!this.world.isRemote) {
+                        this.setCustomer(player);
+                        this.func_213707_a(player, this.getDisplayName(), getLevel());
+                    }
+                    return true;
+                }
                 return super.processInteract(player, hand);
             } else {
                 if (!this.world.isRemote) {

@@ -25,13 +25,13 @@ public class TofuVillagePools {
                 ImmutableList.of(
                         new Pair<>(
                                 new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/house/tofu_smith", buildingProcessors),
-                                2),
+                                3),
                         new Pair<>(
                                 new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/house/tofunian_towerhouse", buildingProcessors),
-                                4),
+                                5),
                         new Pair<>(
                                 new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/house/hut_1", buildingProcessors),
-                                6)),
+                                9)),
                 JigsawPattern.PlacementBehaviour.RIGID));
 
         JigsawManager.REGISTRY.register(new JigsawPattern(new ResourceLocation(TofuCraftCore.MODID, "tofu_village/streets"),
@@ -64,13 +64,7 @@ public class TofuVillagePools {
         JigsawManager.REGISTRY.register(new JigsawPattern(new ResourceLocation(TofuCraftCore.MODID, "tofu_village/tofunian"),
                 new ResourceLocation("empty"),
                 ImmutableList.of(new Pair<>(
-                        new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/tofunian/tofuguard"),
-                        1)), JigsawPattern.PlacementBehaviour.RIGID));
-
-        JigsawManager.REGISTRY.register(new JigsawPattern(new ResourceLocation(TofuCraftCore.MODID, "tofu_village/tofunian"),
-                new ResourceLocation("empty"),
-                ImmutableList.of(new Pair<>(
-                        new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/tofunian/tofuguard"),
+                        new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/tofunian/tofunian"),
                         1)), JigsawPattern.PlacementBehaviour.RIGID));
 
     }
