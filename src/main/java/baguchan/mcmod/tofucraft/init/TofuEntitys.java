@@ -17,6 +17,8 @@ import static baguchan.mcmod.tofucraft.TofuCraftCore.MODID;
 
 @Mod.EventBusSubscriber(modid = TofuCraftCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TofuEntitys {
+    public static final EntityClassification TOFU_MONSTER = EntityClassification.create("tofu_monster", "tofu_monster", 20, false, false);
+
 
     public static final EntityType<TofunianEntity> TOFUNIAN = EntityType.Builder.create(TofunianEntity::new, EntityClassification.CREATURE).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(0.6F, 1.2F).build(prefix("tofunian"));
 
@@ -29,8 +31,6 @@ public class TofuEntitys {
         event.getRegistry().register(TOFUSLIME.setRegistryName("tofuslime"));
 
         EntitySpawnPlacementRegistry.register(TOFUSLIME, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TofuSlimeEntity::spawnHandle);
-
-        spawnEntity();
     }
 
     private static String prefix(String path) {
@@ -42,8 +42,8 @@ public class TofuEntitys {
     public static void spawnEntity() {
         for (Biome biome : ForgeRegistries.BIOMES) {
 
-            if (biome.getRegistryName().getPath().contains("minecraft") || biome.getRegistryName().getPath().contains("biomesoplenty")) {
-                biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(TOFUSLIME, 65, 2, 3));
+            if (!TofuBiomes.tofubiome.contains(biome)) {
+                biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(TOFUSLIME, 70, 2, 3));
             }
         }
 

@@ -30,6 +30,8 @@ public class TofuItems {
     public static final Item TOFUSTICK = new TofuStickItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item ZUNDARUBY = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUNIAN_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUNIAN, 0xEBE8E8, 0xCACFA1, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUSLIME_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUSLIME, 0xEBE8E8, 0x2E2E2E, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+
 
     public static final Item ARMOR_KINUHELMET = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.HEAD, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item ARMOR_KINUCHESTPLATE = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.CHEST, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -115,6 +117,7 @@ public class TofuItems {
         register(registry, TOFUSTICK, "tofustick");
         register(registry, ZUNDARUBY, "zundaruby");
         register(registry, TOFUNIAN_SPAWNEGG, "tofunian_spawnegg");
+        register(registry, TOFUSLIME_SPAWNEGG, "tofuslime_spawnegg");
 
         register(registry, ARMOR_KINUHELMET, "armorkinuhelmet");
         register(registry, ARMOR_KINUCHESTPLATE, "armorkinuchestplate");

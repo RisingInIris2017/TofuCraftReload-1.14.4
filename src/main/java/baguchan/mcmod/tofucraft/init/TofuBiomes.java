@@ -15,7 +15,7 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(modid = TofuCraftCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TofuBiomes {
-    public static List<Biome> frostbiome = new ArrayList<Biome>();
+    public static List<Biome> tofubiome = new ArrayList<Biome>();
 
     public static final Biome TOFU_FOREST = new BiomeTofuForest();
     public static final Biome TOFU_PLAIN = new BiomeTofuPlain();
@@ -28,9 +28,9 @@ public class TofuBiomes {
         event.getRegistry().register(TOFU_PLAIN.setRegistryName("tofu_plain"));
         event.getRegistry().register(TOFU_RIVER.setRegistryName("tofu_river"));
 
-        frostbiome.add(TOFU_FOREST);
-        frostbiome.add(TOFU_PLAIN);
-        frostbiome.add(TOFU_RIVER);
+        tofubiome.add(TOFU_FOREST);
+        tofubiome.add(TOFU_PLAIN);
+        tofubiome.add(TOFU_RIVER);
 
         registerBiomeTypes();
     }

@@ -1,6 +1,7 @@
 package baguchan.mcmod.tofucraft;
 
 import baguchan.mcmod.tofucraft.client.TofuRender;
+import baguchan.mcmod.tofucraft.init.TofuEntitys;
 import baguchan.mcmod.tofucraft.init.TofuItems;
 import net.minecraft.block.TallGrassBlock;
 import net.minecraft.entity.item.ItemEntity;
@@ -40,6 +41,7 @@ public class TofuCraftCore {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
+        TofuEntitys.spawnEntity();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

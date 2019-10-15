@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTables;
@@ -31,7 +32,7 @@ public class TofuSlimeEntity extends SlimeEntity {
         } else {
             if (p_223366_1_.getDifficulty() != Difficulty.PEACEFUL) {
                 Biome biome = p_223366_1_.getBiome(p_223366_3_);
-                if (p_223366_1_.getWorld().getDimension().getType().getModType() == TofuDimensions.TOFUWORLD && randomIn.nextFloat() < 0.05F && p_223366_1_.getLight(p_223366_3_) <= randomIn.nextInt(10)) {
+                if (p_223366_1_.getWorld().getDimension().getType().getModType() == TofuDimensions.TOFUWORLD && randomIn.nextFloat() < 0.05F && p_223366_1_.getLightFor(LightType.BLOCK, p_223366_3_) <= randomIn.nextInt(10)) {
                     return func_223315_a(p_223366_0_, p_223366_1_, reason, p_223366_3_, randomIn);
                 }
 
