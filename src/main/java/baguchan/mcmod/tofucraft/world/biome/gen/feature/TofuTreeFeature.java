@@ -71,7 +71,7 @@ public class TofuTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
                 int k2 = 0;
 
                 for (int i3 = 0; i3 < i; ++i3) {
-                    if (isAirOrLeaves(worldIn, position.up(i3)) || func_214576_j(worldIn, position.up(i3))) {
+                    if (isAirOrLeaves(worldIn, position.up(i3)) || isTallPlants(worldIn, position.up(i3))) {
                         this.setLogState(changedBlocks, worldIn, position.up(i3), this.trunk, p_208519_5_);
                     }
                 }
@@ -86,7 +86,7 @@ public class TofuTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
                         for (int l1 = position.getZ() - j4; l1 <= position.getZ() + j4; ++l1) {
 
                             BlockPos blockpos = new BlockPos(j1, l2, l1);
-                            if (isAirOrLeaves(worldIn, blockpos) || func_214576_j(worldIn, blockpos)) {
+                            if (isAirOrLeaves(worldIn, blockpos) || isTallPlants(worldIn, blockpos)) {
                                 this.setLogState(changedBlocks, worldIn, blockpos, this.leaf, p_208519_5_);
                             }
 

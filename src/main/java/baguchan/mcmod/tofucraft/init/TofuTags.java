@@ -2,7 +2,9 @@ package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.item.Item;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
 
@@ -13,6 +15,16 @@ public class TofuTags {
 
         private static Tag<Fluid> tag(String name) {
             return new FluidTags.Wrapper(new ResourceLocation(TofuCraftCore.MODID, name));
+        }
+    }
+
+    public static class Items {
+
+        public static final Tag<Item> SOYBEANS = tag("soybeans");
+        public static final Tag<Item> TOFU = tag("tofu");
+
+        private static Tag<Item> tag(String name) {
+            return new ItemTags.Wrapper(new ResourceLocation(TofuCraftCore.MODID, name));
         }
     }
 }

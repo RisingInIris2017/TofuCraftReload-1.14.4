@@ -52,6 +52,27 @@ public class TofuItems {
     public static final Item ARMOR_METALBOOTS = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlotType.FEET, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
 
+    public static final Item KINUSWORD = new SwordItem(TofuItemTier.KINU, 0, -2.2F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item KINUAXE = new AxeItem(TofuItemTier.KINU, 0.0F, -2.25F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item KINUPICKAXE = new PickaxeItem(TofuItemTier.KINU, 0, -2.2F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item KINUSHOVEL = new ShovelItem(TofuItemTier.KINU, 0, -2.2F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+
+    public static final Item MOMENSWORD = new SwordItem(TofuItemTier.MOMEN, 0, -2.2F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item MOMENAXE = new AxeItem(TofuItemTier.MOMEN, 1.0F, -2.5F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item MOMENPICKAXE = new PickaxeItem(TofuItemTier.MOMEN, 0, -2.25F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item MOMENSHOVEL = new ShovelItem(TofuItemTier.MOMEN, 0, -2.25F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+
+    public static final Item SOLIDSWORD = new SwordItem(TofuItemTier.SOLID, 3, -2.3F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOLIDAXE = new AxeItem(TofuItemTier.SOLID, 7.0F, -2.9F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOLIDPICKAXE = new PickaxeItem(TofuItemTier.SOLID, 1, -2.9F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOLIDSHOVEL = new ShovelItem(TofuItemTier.SOLID, 1.5F, -2.9F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+
+    public static final Item METALSWORD = new SwordItem(TofuItemTier.METAL, 3, -2.3F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item METALAXE = new AxeItem(TofuItemTier.METAL, 6.0F, -3.0F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item METALPICKAXE = new PickaxeItem(TofuItemTier.METAL, 1, -2.9F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item METALSHOVEL = new ShovelItem(TofuItemTier.METAL, 1.5F, -2.9F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+
+
 
     public static void register(RegistryEvent.Register<Item> registry, Item item, String id) {
         if (item instanceof BlockItem){
@@ -111,5 +132,22 @@ public class TofuItems {
         register(registry, ARMOR_METALCHESTPLATE, "armormetalchestplate");
         register(registry, ARMOR_METALLEGGINS, "armormetalleggins");
         register(registry, ARMOR_METALBOOTS, "armormetalboots");
+
+        register(registry, KINUSWORD, "swordkinu");
+        register(registry, KINUAXE, "toolkinuaxe");
+        register(registry, KINUPICKAXE, "toolkinupickaxe");
+        register(registry, KINUSHOVEL, "toolkinushovel");
+        register(registry, MOMENSWORD, "swordmomen");
+        register(registry, MOMENAXE, "toolmomenaxe");
+        register(registry, MOMENPICKAXE, "toolmomenpickaxe");
+        register(registry, MOMENSHOVEL, "toolmomenshovel");
+        register(registry, SOLIDSWORD, "swordsolid");
+        register(registry, SOLIDAXE, "toolsolidaxe");
+        register(registry, SOLIDPICKAXE, "toolsolidpickaxe");
+        register(registry, SOLIDSHOVEL, "toolsolidshovel");
+        register(registry, METALSWORD, "swordmetal");
+        register(registry, METALAXE, "toolmetalaxe");
+        register(registry, METALPICKAXE, "toolmetalpickaxe");
+        register(registry, METALSHOVEL, "toolmetalshovel");
     }
 }

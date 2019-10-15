@@ -1,0 +1,62 @@
+package baguchan.mcmod.tofucraft.init;
+
+import net.minecraft.item.IItemTier;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.LazyLoadBase;
+
+import java.util.function.Supplier;
+
+public enum TofuItemTier implements IItemTier {
+    KINU(0, 1, 0.1F, 0.0F, 2, () -> {
+        return Ingredient.fromTag(TofuTags.Items.TOFU);
+    }),
+    MOMEN(0, 2, 0.25F, 0.25F, 5, () -> {
+        return Ingredient.fromTag(TofuTags.Items.TOFU);
+    }),
+    SOLID(1, 131, 6.0F, 1.0F, 12, () -> {
+        return Ingredient.fromItems(TofuItems.TOFUISHI);
+    }),
+    METAL(2, 250, 6.0F, 2.0F, 15, () -> {
+        return Ingredient.fromItems(TofuItems.TOFUMETAL);
+    });
+
+    private final int harvestLevel;
+    private final int maxUses;
+    private final float efficiency;
+    private final float attackDamage;
+    private final int enchantability;
+    private final LazyLoadBase<Ingredient> repairMaterial;
+
+    private TofuItemTier(int harvestLevelIn, int maxUsesIn, float efficiencyIn, float attackDamageIn, int enchantabilityIn, Supplier<Ingredient> repairMaterialIn) {
+        this.harvestLevel = harvestLevelIn;
+        this.maxUses = maxUsesIn;
+        this.efficiency = efficiencyIn;
+        this.attackDamage = attackDamageIn;
+        this.enchantability = enchantabilityIn;
+        this.repairMaterial = new LazyLoadBase<>(repairMaterialIn);
+    }
+
+    public int getMaxUses() {
+        return this.maxUses;
+    }
+
+    public float getEfficiency() {
+        return this.efficiency;
+    }
+
+    public float getAttackDamage() {
+        return this.attackDamage;
+    }
+
+    public int getHarvestLevel() {
+        return this.harvestLevel;
+    }
+
+    public int getEnchantability() {
+        return this.enchantability;
+    }
+
+    public Ingredient getRepairMaterial() {
+        return this.repairMaterial.getValue();
+    }
+}

@@ -19,6 +19,10 @@ public class TofunianRender extends BipedRenderer<TofunianEntity, TofunianModel>
         String role = "";
         if (entity.getRole() == TofunianEntity.Roles.GUARD) {
             role = "hunter_";
+        } else if (entity.getRole() == TofunianEntity.Roles.TOFUSMITH) {
+            role = "smith_";
+        } else if (entity.getRole() == TofunianEntity.Roles.TOFUCOCK) {
+            role = "cock_";
         }
         return new ResourceLocation(TofuCraftCore.MODID + ":textures/mob/tofunian/" + role + "tofunian.png");
     }
