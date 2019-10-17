@@ -3,6 +3,7 @@ package baguchan.mcmod.tofucraft.init;
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.item.BitternItem;
 import baguchan.mcmod.tofucraft.item.TofuStickItem;
+import net.minecraft.block.ComposterBlock;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
@@ -158,5 +159,8 @@ public class TofuItems {
         register(registry, METALAXE, "toolmetalaxe");
         register(registry, METALPICKAXE, "toolmetalpickaxe");
         register(registry, METALSHOVEL, "toolmetalshovel");
+
+        ComposterBlock.CHANCES.put(SEEDS_SOYBEAN, 0.3F);
+        ComposterBlock.CHANCES.put(EDAMAME, 0.35F);
     }
 }
