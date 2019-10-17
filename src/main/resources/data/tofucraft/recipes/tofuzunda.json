@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "tofucraft:zunda"
+    },
+    [
+      {
+        "item": "minecraft:tofumomen"
+      },
+      {
+        "item": "minecraft:tofukinu"
+      }
+    ]
+  ],
+  "result": {
+    "item": "tofucraft:tofuzunda"
+  }
+}

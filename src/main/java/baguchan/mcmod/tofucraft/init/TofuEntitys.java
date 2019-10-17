@@ -1,6 +1,7 @@
 package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
+import baguchan.mcmod.tofucraft.entity.TofuCowEntity;
 import baguchan.mcmod.tofucraft.entity.TofuSlimeEntity;
 import baguchan.mcmod.tofucraft.entity.TofunianEntity;
 import net.minecraft.entity.EntityClassification;
@@ -23,12 +24,14 @@ public class TofuEntitys {
     public static final EntityType<TofunianEntity> TOFUNIAN = EntityType.Builder.create(TofunianEntity::new, EntityClassification.CREATURE).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(0.6F, 1.2F).build(prefix("tofunian"));
 
     public static final EntityType<TofuSlimeEntity> TOFUSLIME = EntityType.Builder.create(TofuSlimeEntity::new, EntityClassification.MONSTER).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(2.04F, 2.04F).build(prefix("tofunian"));
+    public static final EntityType<TofuCowEntity> TOFUCOW = EntityType.Builder.create(TofuCowEntity::new, EntityClassification.CREATURE).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(2.04F, 2.04F).build(prefix("tofunian"));
 
 
     @SubscribeEvent
     public static void registerEntity(RegistryEvent.Register<EntityType<?>> event) {
         event.getRegistry().register(TOFUNIAN.setRegistryName("tofunian"));
         event.getRegistry().register(TOFUSLIME.setRegistryName("tofuslime"));
+        event.getRegistry().register(TOFUCOW.setRegistryName("tofucow"));
 
         EntitySpawnPlacementRegistry.register(TOFUSLIME, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TofuSlimeEntity::spawnHandle);
     }
@@ -43,7 +46,7 @@ public class TofuEntitys {
         for (Biome biome : ForgeRegistries.BIOMES) {
 
             if (!TofuBiomes.tofubiome.contains(biome)) {
-                biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(TOFUSLIME, 70, 2, 3));
+                biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(TOFUSLIME, 80, 2, 3));
             }
         }
 

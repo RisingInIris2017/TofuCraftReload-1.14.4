@@ -22,7 +22,7 @@ public class TofuWorldBiomeProvider extends BiomeProvider {
     private final World world;
     private final Layer genBiomes;
     private final Layer biomeFactoryLayer;
-    public static final Biome[] biomes = new Biome[]{TofuBiomes.TOFU_FOREST, TofuBiomes.TOFU_PLAIN};
+    public static final Biome[] biomes = new Biome[]{TofuBiomes.TOFU_FOREST, TofuBiomes.TOFUZUNDA_SWAMP, TofuBiomes.TOFU_PLAIN};
 
     public TofuWorldBiomeProvider(World world, OverworldGenSettings settings) {
         super();

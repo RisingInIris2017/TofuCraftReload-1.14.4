@@ -409,7 +409,6 @@ public class TofunianEntity extends AbstractVillagerEntity {
     @Override
     protected void onGrowingAdult() {
         super.onGrowingAdult();
-
     }
 
 

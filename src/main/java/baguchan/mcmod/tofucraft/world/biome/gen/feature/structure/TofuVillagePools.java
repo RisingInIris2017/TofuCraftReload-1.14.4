@@ -25,12 +25,15 @@ public class TofuVillagePools {
                 ImmutableList.of(
                         new Pair<>(
                                 new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/house/tofu_smith", buildingProcessors),
-                                3),
-                        new Pair<>(
-                                new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/house/tofunian_towerhouse", buildingProcessors),
                                 5),
                         new Pair<>(
+                                new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/house/tofunian_towerhouse", buildingProcessors),
+                                7),
+                        new Pair<>(
                                 new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/house/hut_1", buildingProcessors),
+                                9),
+                        new Pair<>(
+                                new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/house/hut_2", buildingProcessors),
                                 9)),
                 JigsawPattern.PlacementBehaviour.RIGID));
 
