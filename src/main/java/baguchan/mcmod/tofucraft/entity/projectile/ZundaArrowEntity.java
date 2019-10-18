@@ -1,5 +1,6 @@
 package baguchan.mcmod.tofucraft.entity.projectile;
 
+import baguchan.mcmod.tofucraft.entity.TofuSlimeEntity;
 import baguchan.mcmod.tofucraft.init.TofuEntitys;
 import baguchan.mcmod.tofucraft.init.TofuItems;
 import com.google.common.collect.Lists;
@@ -196,6 +197,13 @@ public class ZundaArrowEntity extends AbstractArrowEntity {
 
     protected void arrowHit(LivingEntity living) {
         super.arrowHit(living);
+
+        if (living instanceof TofuSlimeEntity) {
+            if (!this.world.isRemote) {
+                living.entityDropItem(new ItemStack(TofuItems.TOFUZUNDA, ((TofuSlimeEntity) living).getSlimeSize() * 2 + 1));
+                living.remove();
+            }
+        }
         EffectInstance effectinstance = new EffectInstance(Effects.REGENERATION, this.duration, 0);
         living.addPotionEffect(effectinstance);
     }
