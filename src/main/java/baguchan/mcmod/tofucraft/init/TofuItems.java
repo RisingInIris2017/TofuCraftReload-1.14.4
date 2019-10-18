@@ -19,7 +19,7 @@ public class TofuItems {
     public static final Item TOFUISHI = new Item(new Item.Properties().food(TofuFoods.TOFUISHI).group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUMETAL = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUGRILD = new Item(new Item.Properties().food(TofuFoods.TOFUGRILD).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item TOFUZUNDA = new Item(new Item.Properties().food(TofuFoods.COOKEDTOFU).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUZUNDA = new Item(new Item.Properties().food(TofuFoods.TOFUZUNDA).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item TOFUCOOKIE = new Item(new Item.Properties().food(TofuFoods.TOFUCOOKIE).group(TofuItemGroup.TOFUCRAFT));
 
