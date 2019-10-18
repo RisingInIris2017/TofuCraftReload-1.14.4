@@ -62,7 +62,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
 
 
     public static Predicate<Entity> ENEMY_PREDICATE =
-            input -> (input instanceof ZombieEntity || input instanceof AbstractIllagerEntity || input instanceof VexEntity);
+            input -> (input instanceof ZombieEntity || input instanceof AbstractIllagerEntity || input instanceof VexEntity || input instanceof TofuChingerEntity);
     private boolean isAISetupFinished;
 
 
@@ -373,7 +373,8 @@ public class TofunianEntity extends AbstractVillagerEntity {
         this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, ZombieEntity.class, 8.0F, 1.2D, 1.25D));
         this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, AbstractIllagerEntity.class, 8.0F, 1.25D, 1.25D));
         this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, VexEntity.class, 8.0F, 1.2D, 1.2D));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, TofuChingerEntity.class, 8.0F, 1.2D, 1.2D));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setCallsForHelp());
     }
 
     protected void registerAttributes() {
@@ -409,6 +410,10 @@ public class TofunianEntity extends AbstractVillagerEntity {
     @Override
     protected void onGrowingAdult() {
         super.onGrowingAdult();
+        if (this.rand.nextInt(5) == 0) {
+            setRole(Roles.GUARD);
+        }
+        updateTofunianState();
     }
 
 
