@@ -30,10 +30,6 @@ public class TofuLeavesBlock extends LeavesBlock {
         this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, Integer.valueOf(7)).with(PERSISTENT, Boolean.valueOf(false)));
     }
 
-    /**
-     * Returns whether or not this block is of a type that needs random ticking. Called for ref-counting purposes by
-     * ExtendedBlockStorage in order to broadly cull a chunk from the random chunk update list for efficiency's sake.
-     */
     public boolean ticksRandomly(BlockState state) {
         return state.get(DISTANCE) == 7 && !state.get(PERSISTENT);
     }

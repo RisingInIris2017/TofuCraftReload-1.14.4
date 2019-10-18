@@ -15,12 +15,12 @@ public class InterestJobBlockGoal extends MoveToBlockGoal {
     private int sleepTick;
 
     public InterestJobBlockGoal(TofunianEntity creature, double speed) {
-        super(creature, speed, 6);
+        super(creature, speed, 8);
         this.creature = creature;
     }
 
     public boolean shouldExecute() {
-        return !this.creature.isBeingRidden() && this.creature.isNitwit() && this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && super.shouldExecute();
+        return !this.creature.isBeingRidden() && this.creature.isNitwit() && this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && this.creature.world.rand.nextInt(40) == 0 && super.shouldExecute();
     }
 
     @Override

@@ -1,9 +1,14 @@
 package baguchan.mcmod.tofucraft.entity;
 
 import baguchan.mcmod.tofucraft.init.TofuDimensions;
+import baguchan.mcmod.tofucraft.init.TofuItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.monster.SlimeEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.ItemParticleData;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
@@ -32,7 +37,7 @@ public class TofuSlimeEntity extends SlimeEntity {
         } else {
             if (p_223366_1_.getDifficulty() != Difficulty.PEACEFUL) {
                 Biome biome = p_223366_1_.getBiome(p_223366_3_);
-                if (p_223366_1_.getWorld().getDimension().getType().getModType() == TofuDimensions.TOFUWORLD && randomIn.nextFloat() < 0.004F && p_223366_1_.getLightFor(LightType.BLOCK, p_223366_3_) <= randomIn.nextInt(10)) {
+                if (p_223366_1_.getWorld().getDimension().getType().getModType() == TofuDimensions.TOFUWORLD && randomIn.nextFloat() < 0.0035F && p_223366_1_.getLightFor(LightType.BLOCK, p_223366_3_) <= randomIn.nextInt(10)) {
                     return func_223315_a(p_223366_0_, p_223366_1_, reason, p_223366_3_, randomIn);
                 }
 
@@ -45,5 +50,9 @@ public class TofuSlimeEntity extends SlimeEntity {
 
             return false;
         }
+    }
+
+    protected IParticleData getSquishParticle() {
+        return new ItemParticleData(ParticleTypes.ITEM, new ItemStack(TofuItems.TOFUKINU));
     }
 }

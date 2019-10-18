@@ -12,6 +12,6 @@ import java.util.Random;
 public class ZundaTofuTree extends Tree {
     @Nullable
     protected AbstractTreeFeature<NoFeatureConfig> getTreeFeature(Random random) {
-        return new TofuTreeFeature(NoFeatureConfig::deserialize, false, 4, TofuBlocks.ZUNDATOFU.getDefaultState(), TofuBlocks.TOFUZUNDALEAVES.getDefaultState(), false);
+        return new TofuTreeFeature(NoFeatureConfig::deserialize, false, 4, TofuBlocks.ISHITOFU.getDefaultState(), TofuBlocks.TOFUZUNDALEAVES.getDefaultState(), false);
     }
 }

@@ -4,6 +4,8 @@
   "item.tofucraft.tofuishi": "石豆腐",
   "item.tofucraft.tofumetal": "鋼豆腐",
   "item.tofucraft.tofugrilled": "焼き豆腐",
+  "item.tofucraft.raw_tofufish": "生の豆腐フィッシュ",
+  "item.tofucraft.cooked_tofufish": "焼いた豆腐フィッシュ",
   "item.tofucraft.tofucookie": "豆腐クッキー",
   "item.tofucraft.bucketsoymilk": "豆乳バケツ",
   "item.tofucraft.seeds_soybeans": "大豆",
@@ -15,7 +17,12 @@
   "item.tofucraft.zundama": "ずんだま",
   "item.tofucraft.tofustick": "トーフステッキ",
   "item.tofucraft.zundaruby": "ずんだルビー",
-  "item.tofucraft.tofunian_spawnegg": "トーフニアンスポーンエッグ",
+  "item.tofucraft.tofunian_spawnegg": "トーフニアン　スポーンエッグ",
+  "item.tofucraft.tofuslime_spawnegg": "豆腐スライム　スポーンエッグ",
+  "item.tofucraft.tofucow_spawnegg": "豆腐牛 スポーンエッグ",
+  "item.tofucraft.tofufish_spawnegg": "豆腐フィッシュ スポーンエッグ",
+
+
   "item.tofucraft.armorkinuhelmet": "絹豆腐のヘルメット",
   "item.tofucraft.armorkinuchestplate": "絹豆腐のチェストプレート",
   "item.tofucraft.armorkinuleggins": "絹豆腐のレギンス",
