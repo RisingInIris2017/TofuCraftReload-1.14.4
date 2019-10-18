@@ -7,6 +7,7 @@
   "item.tofucraft.raw_tofufish": "生の豆腐フィッシュ",
   "item.tofucraft.cooked_tofufish": "焼いた豆腐フィッシュ",
   "item.tofucraft.tofucookie": "豆腐クッキー",
+  "item.tofucraft.soystick": "ソイスティック™",
   "item.tofucraft.tttburger": "豆腐バーガー",
   "item.tofucraft.saltymelon": "塩を付けたスイカ",
   "item.tofucraft.bucketsoymilk": "豆乳バケツ",
@@ -95,5 +96,11 @@
   "entity.tofucraft.tofucow": "豆腐牛",
   "entity.tofucraft.tofuslime": "豆腐スライム",
   "entity.tofucraft.zunda_arrow": "ずんだアロー",
-  "subtitles.entity.tofunian.idle": "トーフニアンがつぶやく"
+  "subtitles.entity.tofunian.idle": "トーフニアンがつぶやく",
+  "advancements.tofucraft.root.title": "TofuCraft",
+  "advancements.tofucraft.root.description": "新米豆腐クラフター",
+  "advancements.tofucraft.make_saltpan.title": "塩田",
+  "advancements.tofucraft.make_saltpan.description": "塩田を作る",
+  "advancements.tofucraft.make_tofu.title": "豆腐！",
+  "advancements.tofucraft.make_tofu.description": "にがり入りの瓶を使って豆乳を固め、豆腐を壊す"
 }

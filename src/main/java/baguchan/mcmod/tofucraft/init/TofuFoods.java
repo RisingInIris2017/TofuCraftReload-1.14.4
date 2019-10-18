@@ -8,12 +8,14 @@ public class TofuFoods {
     public static final Food TOFUKINU = new Food.Builder().hunger(2).saturation(0.15f).fastToEat().build();
     public static final Food TOFUMOMEN = new Food.Builder().hunger(2).saturation(0.15f).fastToEat().build();
     public static final Food TOFUISHI = new Food.Builder().hunger(2).saturation(0.2f).fastToEat().build();
-    public static final Food TOFUGRILD = new Food.Builder().hunger(3).saturation(0.24f).fastToEat().build();
+    public static final Food TOFUGRILD = new Food.Builder().hunger(3).saturation(0.25f).fastToEat().build();
     public static final Food COOKEDTOFU = new Food.Builder().hunger(4).saturation(0.3f).fastToEat().build();
-    public static final Food COOKEDTOFUFISH = new Food.Builder().hunger(4).saturation(0.34f).fastToEat().build();
+    public static final Food TOFUFISH = new Food.Builder().hunger(2).saturation(0.15f).build();
+    public static final Food COOKEDTOFUFISH = new Food.Builder().hunger(4).saturation(0.35f).build();
     public static final Food TOFUZUNDA = new Food.Builder().hunger(4).saturation(0.3f).fastToEat().effect(new EffectInstance(Effects.REGENERATION, 100), 0.4F).build();
 
-    public static final Food TOFUCOOKIE = new Food.Builder().hunger(3).saturation(0.32f).fastToEat().build();
+    public static final Food TOFUCOOKIE = new Food.Builder().hunger(3).saturation(0.32f).build();
+    public static final Food SOYSTICK = new Food.Builder().hunger(4).saturation(0.35f).fastToEat().build();
     public static final Food TTTBURGER = new Food.Builder().hunger(7).saturation(0.5f).build();
 
     public static final Food SALTYMELON = new Food.Builder().hunger(3).saturation(0.16f).build();

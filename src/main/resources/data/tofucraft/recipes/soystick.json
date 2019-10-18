@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "tofucraft:salt"
+    },
+    {
+      "item": "tofucraft:soybean"
+    },
+    {
+      "item": "minecraft:wheat"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:soystick"
+  }
+}
