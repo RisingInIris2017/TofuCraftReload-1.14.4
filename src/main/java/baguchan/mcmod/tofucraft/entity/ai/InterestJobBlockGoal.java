@@ -15,7 +15,7 @@ public class InterestJobBlockGoal extends MoveToBlockGoal {
     private int sleepTick;
 
     public InterestJobBlockGoal(TofunianEntity creature, double speed) {
-        super(creature, speed, 12);
+        super(creature, speed, 6);
         this.creature = creature;
     }
 

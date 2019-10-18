@@ -49,6 +49,7 @@
   "item.tofucraft.toolmetalaxe": "Metal Axe",
   "item.tofucraft.toolmetalpickaxe": "Metal Pickaxe",
   "item.tofucraft.toolmetalshovel": "Metal Shovel",
+  "item.tofucraft.zunda_arrow": "Zunda Arrow",
 
   "block.tofucraft.blocktofukinu": "KinuTofu Block",
   "block.tofucraft.blocktofumomen": "MomenTofu Block",
@@ -81,5 +82,10 @@
   "entity.tofucraft.tofunian.guard.name": "Guard Tofunian",
   "entity.tofucraft.tofunian.tofucock.name": "TofuCock Tofunian",
   "entity.tofucraft.tofunian.tofusmith.name": "TofuSmith Tofunian",
-  "entity.tofucraft.tofunian": "Tofunian"
+  "entity.tofucraft.tofunian.tofunian.name": "Tofunian",
+  "entity.tofucraft.tofunian": "Tofunian",
+  "entity.tofucraft.tofucow": "Tofu Cow",
+  "entity.tofucraft.tofuslime": "Tofu Slime",
+  "entity.tofucraft.zunda_arrow": "Zunda Arrow",
+  "subtitles.entity.tofunian.idle": "tofunian's murmur"
 }

@@ -3,6 +3,7 @@ package baguchan.mcmod.tofucraft.init;
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.item.BitternItem;
 import baguchan.mcmod.tofucraft.item.TofuStickItem;
+import baguchan.mcmod.tofucraft.item.ZundaArrowItem;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -77,6 +78,8 @@ public class TofuItems {
     public static final Item METALAXE = new AxeItem(TofuItemTier.METAL, 6.0F, -3.0F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item METALPICKAXE = new PickaxeItem(TofuItemTier.METAL, 1, -2.9F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item METALSHOVEL = new ShovelItem(TofuItemTier.METAL, 1.5F, -2.9F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+
+    public static final Item ZUNDAARROW = new ZundaArrowItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
 
 
@@ -159,6 +162,8 @@ public class TofuItems {
         register(registry, METALAXE, "toolmetalaxe");
         register(registry, METALPICKAXE, "toolmetalpickaxe");
         register(registry, METALSHOVEL, "toolmetalshovel");
+
+        register(registry, ZUNDAARROW, "zunda_arrow");
 
         ComposterBlock.CHANCES.put(SEEDS_SOYBEAN, 0.3F);
         ComposterBlock.CHANCES.put(EDAMAME, 0.35F);

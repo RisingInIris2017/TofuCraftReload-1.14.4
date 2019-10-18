@@ -48,6 +48,7 @@
   "item.tofucraft.toolmetalaxe": "鋼豆腐の斧",
   "item.tofucraft.toolmetalpickaxe": "鋼豆腐のつるはし",
   "item.tofucraft.toolmetalshovel": "鋼豆腐のショベル",
+  "item.tofucraft.zunda_arrow": "ずんだアロー",
 
   "block.tofucraft.blocktofukinu": "絹豆腐ブロック",
   "block.tofucraft.blocktofumomen": "木綿豆腐ブロック",
@@ -79,5 +80,10 @@
   "entity.tofucraft.tofunian.guard.name": "守備のトーフニアン",
   "entity.tofucraft.tofunian.tofucock.name": "豆腐コック トーフニアン",
   "entity.tofucraft.tofunian.tofusmith.name": "豆腐鍛冶　トーフニアン",
-  "entity.tofucraft.tofunian": "トーフニアン"
+  "entity.tofucraft.tofunian.tofunian.name": "トーフニアン",
+  "entity.tofucraft.tofunian": "トーフニアン",
+  "entity.tofucraft.tofucow": "豆腐牛",
+  "entity.tofucraft.tofuslime": "豆腐スライム",
+  "entity.tofucraft.zunda_arrow": "ずんだアロー",
+  "subtitles.entity.tofunian.idle": "トーフニアンがつぶやく"
 }
