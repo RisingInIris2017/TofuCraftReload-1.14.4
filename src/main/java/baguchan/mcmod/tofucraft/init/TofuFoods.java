@@ -14,5 +14,8 @@ public class TofuFoods {
     public static final Food TOFUZUNDA = new Food.Builder().hunger(4).saturation(0.3f).fastToEat().effect(new EffectInstance(Effects.REGENERATION, 100), 0.4F).build();
 
     public static final Food TOFUCOOKIE = new Food.Builder().hunger(3).saturation(0.32f).fastToEat().build();
+    public static final Food TTTBURGER = new Food.Builder().hunger(7).saturation(0.5f).build();
+
+    public static final Food SALTYMELON = new Food.Builder().hunger(3).saturation(0.16f).build();
     public static final Food EDAMAME = new Food.Builder().hunger(1).saturation(0.12f).fastToEat().build();
 }

@@ -24,6 +24,9 @@ public class TofuItems {
     public static final Item TOFUFISH = new Item(new Item.Properties().food(TofuFoods.TOFUKINU).group(TofuItemGroup.TOFUCRAFT));
     public static final Item COOKED_TOFUFISH = new Item(new Item.Properties().food(TofuFoods.COOKEDTOFUFISH).group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUCOOKIE = new Item(new Item.Properties().food(TofuFoods.TOFUCOOKIE).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TTTBURGER = new Item(new Item.Properties().food(TofuFoods.TTTBURGER).group(TofuItemGroup.TOFUCRAFT));
+
+    public static final Item SALTYMELON = new Item(new Item.Properties().food(TofuFoods.SALTYMELON).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item SEEDS_SOYBEAN = new BlockNamedItem(TofuBlocks.SOYBEAN,new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item EDAMAME = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -40,6 +43,7 @@ public class TofuItems {
     public static final Item TOFUSLIME_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUSLIME, 0xEBE8E8, 0x2E2E2E, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUCOW_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUCOW, 0xEBE8E8, 0xA3A3A3, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUFISH_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUFISH, 0xEBE8E8, 0x3a3e3f, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUCHINGER_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUCHINGER, 0xEBE8E8, 0xB3B3B3, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
 
     public static final Item ARMOR_KINUHELMET = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.HEAD, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -120,6 +124,8 @@ public class TofuItems {
         register(registry, TOFUFISH, "raw_tofufish");
         register(registry, COOKED_TOFUFISH, "cooked_tofufish");
         register(registry, TOFUCOOKIE, "tofucookie");
+        register(registry, TTTBURGER, "tttburger");
+        register(registry, SALTYMELON, "saltymelon");
         register(registry, SEEDS_SOYBEAN, "seeds_soybeans");
 
         register(registry, EDAMAME, "edamame");
@@ -136,6 +142,7 @@ public class TofuItems {
         register(registry, TOFUSLIME_SPAWNEGG, "tofuslime_spawnegg");
         register(registry, TOFUCOW_SPAWNEGG, "tofucow_spawnegg");
         register(registry, TOFUFISH_SPAWNEGG, "tofufish_spawnegg");
+        register(registry, TOFUCHINGER_SPAWNEGG, "tofuchinger_spawnegg");
 
         register(registry, ARMOR_KINUHELMET, "armorkinuhelmet");
         register(registry, ARMOR_KINUCHESTPLATE, "armorkinuchestplate");
