@@ -633,7 +633,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
         @Override
         public boolean shouldContinueExecuting() {
             BlockPos blockpos = this.tofunian.getTofunainHome();
-            return blockpos != null && this.func_220846_a(blockpos, this.distance * 0.85F);
+            return blockpos != null && this.func_220846_a(blockpos, this.distance * 0.65F);
         }
 
 
