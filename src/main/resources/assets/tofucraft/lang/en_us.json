@@ -19,6 +19,7 @@
   "item.tofucraft.zunda": "Zunda",
   "item.tofucraft.zundama": "Zundama",
   "item.tofucraft.tofustick": "Tofu Stick",
+  "item.tofucraft.tofuradar": "TofuSlime Radar",
   "item.tofucraft.zundaruby": "Zunda Ruby",
   "item.tofucraft.tofunian_spawnegg": "Tofunian SpawnEgg",
   "item.tofucraft.tofuslime_spawnegg": "TofuSlime SpawnEgg",
@@ -96,11 +97,14 @@
   "entity.tofucraft.tofucow": "Tofu Cow",
   "entity.tofucraft.tofuslime": "Tofu Slime",
   "entity.tofucraft.zunda_arrow": "Zunda Arrow",
+  "entity.tofucraft.tofu_chinger": "Tofu Chinger",
   "subtitles.entity.tofunian.idle": "tofunian's murmur",
   "advancements.tofucraft.root.title": "TofuCraft",
   "advancements.tofucraft.root.description": "Beginning Tofu Crafter",
   "advancements.tofucraft.make_saltpan.title": "SaltPan",
   "advancements.tofucraft.make_saltpan.description": "Crafted Saltpan",
   "advancements.tofucraft.make_tofu.title": "Tofu!",
-  "advancements.tofucraft.make_tofu.description": "Harden soymilk with BitternBottle and break tofu"
+  "advancements.tofucraft.make_tofu.description": "Harden soymilk with BitternBottle and break tofu",
+  "tofucraft.radar.result.success": "Success to Found TofuSlime Chunk",
+  "tofucraft.radar.result.failed": "Not Found TofuSlime Chunk"
 }

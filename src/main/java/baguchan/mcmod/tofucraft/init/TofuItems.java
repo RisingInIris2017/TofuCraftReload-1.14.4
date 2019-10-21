@@ -2,6 +2,7 @@ package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.item.BitternItem;
+import baguchan.mcmod.tofucraft.item.TofuSlimeRadarItem;
 import baguchan.mcmod.tofucraft.item.TofuStickItem;
 import baguchan.mcmod.tofucraft.item.ZundaArrowItem;
 import net.minecraft.block.ComposterBlock;
@@ -39,6 +40,7 @@ public class TofuItems {
     public static final Item ZUNDA = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item ZUNDAMA = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUSTICK = new TofuStickItem(new Item.Properties().rarity(Rarity.RARE).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFU_RADER = new TofuSlimeRadarItem(new Item.Properties().maxStackSize(1).maxDamage(120).group(TofuItemGroup.TOFUCRAFT));
     public static final Item ZUNDARUBY = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUNIAN_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUNIAN, 0xEBE8E8, 0xCACFA1, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUSLIME_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUSLIME, 0xEBE8E8, 0x2E2E2E, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -139,6 +141,7 @@ public class TofuItems {
         register(registry, ZUNDA, "zunda");
         register(registry, ZUNDAMA, "zundama");
         register(registry, TOFUSTICK, "tofustick");
+        register(registry, TOFU_RADER, "tofuradar");
         register(registry, ZUNDARUBY, "zundaruby");
         register(registry, TOFUNIAN_SPAWNEGG, "tofunian_spawnegg");
         register(registry, TOFUSLIME_SPAWNEGG, "tofuslime_spawnegg");

@@ -19,6 +19,7 @@
   "item.tofucraft.zunda": "ずんだペースト",
   "item.tofucraft.zundama": "ずんだま",
   "item.tofucraft.tofustick": "トーフステッキ",
+  "item.tofucraft.tofuradar": "トーフスライムレーダー",
   "item.tofucraft.zundaruby": "ずんだルビー",
   "item.tofucraft.tofunian_spawnegg": "トーフニアンのスポーンエッグ",
   "item.tofucraft.tofuslime_spawnegg": "豆腐スライムのスポーンエッグ",
@@ -96,11 +97,14 @@
   "entity.tofucraft.tofucow": "豆腐牛",
   "entity.tofucraft.tofuslime": "豆腐スライム",
   "entity.tofucraft.zunda_arrow": "ずんだアロー",
+  "entity.tofucraft.tofu_chinger": "ガブトーフン",
   "subtitles.entity.tofunian.idle": "トーフニアンがつぶやく",
   "advancements.tofucraft.root.title": "TofuCraft",
   "advancements.tofucraft.root.description": "新米豆腐クラフター",
   "advancements.tofucraft.make_saltpan.title": "塩田",
   "advancements.tofucraft.make_saltpan.description": "塩田を作る",
   "advancements.tofucraft.make_tofu.title": "豆腐！",
-  "advancements.tofucraft.make_tofu.description": "にがり入りの瓶を使って豆乳を固め、豆腐を壊す"
+  "advancements.tofucraft.make_tofu.description": "にがり入りの瓶を使って豆乳を固め、豆腐を壊す",
+  "tofucraft.radar.result.success": "豆腐スライムチャンクが見つかりました",
+  "tofucraft.radar.result.failed": "豆腐スライムチャンクが見つかりませんでした"
 }

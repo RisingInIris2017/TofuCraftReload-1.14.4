@@ -183,7 +183,7 @@ public class TofuChingerEntity extends MonsterEntity {
     }
 
     public static boolean spawnHandle(EntityType<TofuChingerEntity> p_223366_0_, IWorld p_223366_1_, SpawnReason reason, BlockPos p_223366_3_, Random randomIn) {
-        return !p_223366_1_.getWorld().canBlockSeeSky(p_223366_3_) && func_223315_a(p_223366_0_, p_223366_1_, reason, p_223366_3_, randomIn);
+        return p_223366_1_.getWorld().canBlockSeeSky(p_223366_3_) && func_223315_a(p_223366_0_, p_223366_1_, reason, p_223366_3_, randomIn);
     }
 
     class MeleeAttackGoal extends net.minecraft.entity.ai.goal.MeleeAttackGoal {
