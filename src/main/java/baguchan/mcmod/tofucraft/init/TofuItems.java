@@ -1,14 +1,25 @@
 package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
+import baguchan.mcmod.tofucraft.entity.projectile.ZundaArrowEntity;
 import baguchan.mcmod.tofucraft.item.BitternItem;
 import baguchan.mcmod.tofucraft.item.TofuSlimeRadarItem;
 import baguchan.mcmod.tofucraft.item.TofuStickItem;
 import baguchan.mcmod.tofucraft.item.ZundaArrowItem;
 import net.minecraft.block.ComposterBlock;
+import net.minecraft.block.DispenserBlock;
+import net.minecraft.dispenser.*;
+import net.minecraft.entity.IProjectile;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.fluid.IFluidState;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -187,5 +198,58 @@ public class TofuItems {
 
         ComposterBlock.CHANCES.put(SEEDS_SOYBEAN, 0.3F);
         ComposterBlock.CHANCES.put(EDAMAME, 0.35F);
+
+        DispenserBlock.registerDispenseBehavior(ZUNDAARROW, new ProjectileDispenseBehavior() {
+            @Override
+            protected IProjectile getProjectileEntity(World worldIn, IPosition position, ItemStack stackIn) {
+                AbstractArrowEntity abstractarrowentity = new ZundaArrowEntity(worldIn, position.getX(), position.getY(), position.getZ());
+                abstractarrowentity.pickupStatus = AbstractArrowEntity.PickupStatus.ALLOWED;
+                return abstractarrowentity;
+            }
+        });
+
+        IDispenseItemBehavior idispenseitembehavior = new DefaultDispenseItemBehavior() {
+            private final DefaultDispenseItemBehavior field_218405_b = new DefaultDispenseItemBehavior();
+
+            /**
+             * Dispense the specified stack, play the dispense sound and spawn particles.
+             */
+            public ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
+                BucketItem bucketitem = (BucketItem) stack.getItem();
+                BlockPos blockpos = source.getBlockPos().offset(source.getBlockState().get(DispenserBlock.FACING));
+                World world = source.getWorld();
+                if (bucketitem.tryPlaceContainedLiquid((PlayerEntity) null, world, blockpos, (BlockRayTraceResult) null)) {
+                    bucketitem.onLiquidPlaced(world, stack, blockpos);
+                    return new ItemStack(Items.BUCKET);
+                } else {
+                    return this.field_218405_b.dispense(source, stack);
+                }
+            }
+        };
+        DispenserBlock.registerDispenseBehavior(SOYMILK_BUCKET, idispenseitembehavior);
+
+        IDispenseItemBehavior bitternItemBehavior = new DefaultDispenseItemBehavior() {
+            private final DefaultDispenseItemBehavior field_218405_b = new DefaultDispenseItemBehavior();
+
+            @Override
+            public ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
+                BlockPos blockpos = source.getBlockPos().offset(source.getBlockState().get(DispenserBlock.FACING));
+                World world = source.getWorld();
+                IFluidState ifluidstate = world.getFluidState(blockpos);
+                if ((ifluidstate.getFluid() == TofuFluids.SOYMILK)) {
+                    world.setBlockState(blockpos, TofuBlocks.KINUTOFU.getDefaultState(), 11);
+
+                    Direction direction = source.getBlockState().get(DispenserBlock.FACING);
+                    IPosition iposition = DispenserBlock.getDispensePosition(source);
+                    doDispense(source.getWorld(), new ItemStack(Items.GLASS_BOTTLE), 6, direction, iposition);
+
+                    stack.shrink(1);
+                    return stack;
+                } else {
+                    return this.field_218405_b.dispense(source, stack);
+                }
+            }
+        };
+        DispenserBlock.registerDispenseBehavior(BITTERN, bitternItemBehavior);
     }
 }
