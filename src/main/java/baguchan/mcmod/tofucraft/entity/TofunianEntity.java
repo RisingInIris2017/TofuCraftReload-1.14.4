@@ -72,11 +72,15 @@ public class TofunianEntity extends AbstractVillagerEntity {
             offers = func_221238_a(ImmutableMap.of(1,
                     new VillagerTrades.ITrade[]{
                             new TradeForZundaRuby(TofuItems.TOFUKINU, 20, 8, 2),
-                            new TradeForZundaRuby(TofuItems.TOFUMOMEN, 26, 6, 2)
+                            new TradeForZundaRuby(TofuItems.TOFUMOMEN, 30, 6, 2)
                     }, 2,
                     new VillagerTrades.ITrade[]{
-                            new TradeForZundaRuby(TofuBlocks.ISHITOFU_BRICK, 12, 6, 3),
-                            new TradeForItem(TofuItems.TOFUCOOKIE, 9, 6, 2)
+                            new TradeForItem(TofuBlocks.ISHITOFU_BRICK, 12, 4, 6),
+                            new TradeForItem(TofuItems.TOFUCOOKIE, 9, 6, 6)
+                    }, 3,
+                    new VillagerTrades.ITrade[]{
+                            new TradeForZundaRuby(TofuItems.EDAMAME, 26, 6, 10),
+                            new TradeForItem(TofuItems.TTTBURGER, 6, 6, 12)
                     }));
         } else if (getRole() == Roles.TOFUSMITH) {
             offers = func_221238_a(ImmutableMap.of(1,
@@ -85,15 +89,15 @@ public class TofunianEntity extends AbstractVillagerEntity {
                             new TradeForItem(TofuItems.ARMOR_SOLIDHELMET, 1, 3, 3)
                     }, 2,
                     new VillagerTrades.ITrade[]{
-                            new TradeForZundaRuby(TofuItems.TOFUMETAL, 4, 7, 2),
-                            new TradeForHicostItem(TofuItems.ARMOR_METALBOOTS, 4, 3, 3)
+                            new TradeForZundaRuby(TofuItems.TOFUMETAL, 4, 7, 6),
+                            new TradeForHicostItem(TofuItems.ARMOR_METALBOOTS, 4, 3, 8)
                     }, 3,
                     new VillagerTrades.ITrade[]{
-                            new TradeForHicostItem(TofuItems.METALSWORD, 5, 3, 3),
-                            new TradeForHicostItem(TofuItems.METALSHOVEL, 4, 3, 3)
+                            new TradeForHicostItem(TofuItems.METALSWORD, 5, 3, 11),
+                            new TradeForHicostItem(TofuItems.METALSHOVEL, 4, 3, 10)
                     }, 4,
                     new VillagerTrades.ITrade[]{
-                            new TradeForHicostItem(TofuItems.TOFUSTICK, 4, 2, 2)
+                            new TradeForHicostItem(TofuItems.TOFUSTICK, 4, 2, 10)
                     }));
         }
 
