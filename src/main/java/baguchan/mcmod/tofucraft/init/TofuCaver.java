@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 public class TofuCaver {
 
     public static final WorldCarver<ProbabilityConfig> TOFU_CAVE = new TofuCaveCarver(ProbabilityConfig::deserialize, 2.0F, false);
-    public static final WorldCarver<ProbabilityConfig> TOFU_LARGECAVE = new TofuCaveCarver(ProbabilityConfig::deserialize, 4.0F, true);
+    public static final WorldCarver<ProbabilityConfig> TOFU_LARGECAVE = new TofuCaveCarver(ProbabilityConfig::deserialize, 3.0F, true);
 
     @SubscribeEvent
     public static void registerCarvers(RegistryEvent.Register<WorldCarver<?>> registry) {

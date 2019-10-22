@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "top": "tofucraft:blocks/blocktofuzunda",
+      "top": "tofucraft:blocks/tofuzunda_brick",
       "bottom": "#top",
       "side": "#top",
       "all": "#top"

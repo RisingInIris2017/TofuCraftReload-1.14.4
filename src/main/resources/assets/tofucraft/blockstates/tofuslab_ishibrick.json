@@ -9,15 +9,14 @@
     }
   },
   "variants": {
-    "inventory": [{"model": "half_slab"}],
-    "half=bottom": {
-      "model": "half_slab"
+    "type=bottom": {
+      "model": "block/slab"
     },
-    "half=top": {
-      "model": "upper_slab"
+    "type=top": {
+      "model": "block/slab_top"
     },
-    "half=full": {
-      "model": "minecraft:cube_all"
+    "type=double": {
+      "model": "block/cube_all"
     }
   }
 }

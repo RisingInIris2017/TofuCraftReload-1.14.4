@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "top": "tofucraft:blocks/blocktofuzunda",
+    "bottom": "tofucraft:blocks/blocktofuzunda",
+    "side": "tofucraft:blocks/blocktofuzunda"
+  }
+}
