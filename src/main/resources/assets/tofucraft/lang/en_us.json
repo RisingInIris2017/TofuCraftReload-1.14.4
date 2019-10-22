@@ -4,6 +4,7 @@
   "item.tofucraft.tofuishi": "Ishi Tofu",
   "item.tofucraft.tofumetal": "Metal Tofu",
   "item.tofucraft.tofugrilled": "Grilled Tofu",
+  "item.tofucraft.tofuzunda": "Zunda Tofu",
   "item.tofucraft.raw_tofufish": "Raw TofuFish",
   "item.tofucraft.cooked_tofufish": "Cooked TofuFish",
   "item.tofucraft.tofucookie": "Tofu Cookie",
@@ -60,6 +61,8 @@
   "item.tofucraft.toolmetalpickaxe": "Metal Pickaxe",
   "item.tofucraft.toolmetalshovel": "Metal Shovel",
   "item.tofucraft.zunda_arrow": "Zunda Arrow",
+  "item.tofucraft.tofuishi_shield": "TofuIshi Shield",
+  "item.tofucraft.tofumetal_shield": "TofuMetal Shield",
 
   "block.tofucraft.blocktofukinu": "KinuTofu Block",
   "block.tofucraft.blocktofumomen": "MomenTofu Block",
@@ -95,7 +98,7 @@
   "block.tofucraft.tofubedrock": "Tofu Bedrock",
   "block.tofucraft.tofuflower": "TofuFlower",
   "block.tofucraft.sapling_tofu": "Tofu Sapling",
-  "block.tofucraft.sapling_zundatofu": "ZundaTofu Sapling",
+  "block.tofucraft.zundasapling_tofu": "ZundaTofu Sapling",
   "block.tofucraft.leaves_tofu": "Tofu Leaves",
   "block.tofucraft.leaves_zundatofu": "ZundaTofu Leaves",
 

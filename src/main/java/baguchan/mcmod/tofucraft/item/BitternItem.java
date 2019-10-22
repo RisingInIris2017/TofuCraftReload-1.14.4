@@ -5,6 +5,7 @@ import baguchan.mcmod.tofucraft.init.TofuFluids;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.IFluidState;
@@ -62,10 +63,19 @@ public class BitternItem extends Item {
                         CriteriaTriggers.CONSUME_ITEM.trigger((ServerPlayerEntity) playerIn, itemstack);
                     }
 
-                    if (!playerIn.abilities.isCreativeMode) {
-                        itemstack.shrink(1);
+                    ItemStack itemHeld = playerIn.getHeldItem(handIn);
+                    ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE);
 
-                        playerIn.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
+                    if (!playerIn.abilities.isCreativeMode) {
+                        if (itemHeld.getCount() == 1) {
+                            playerIn.setHeldItem(handIn, bottle);
+                        } else {
+                            if (!playerIn.inventory.addItemStackToInventory(bottle)) {
+                                worldIn.addEntity(new ItemEntity(worldIn, (double) blockpos.getX() + 0.5D, (double) blockpos.getY() + 1.5D, (double) blockpos.getZ() + 0.5D, bottle));
+                            }
+
+                            itemHeld.shrink(1);
+                        }
                     }
 
                     playerIn.addStat(Stats.ITEM_USED.get(this));

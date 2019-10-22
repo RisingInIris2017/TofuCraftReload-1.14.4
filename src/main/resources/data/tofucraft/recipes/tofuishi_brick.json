@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "tofucraft:blocktofuishi"
+      "item": "tofucraft:blocktofuzunda"
     }
   },
   "result": {
-    "item": "tofucraft:tofuzunda_brick",
+    "item": "tofucraft:tofucraft:tofuishi_brick",
     "count": 4
   }
 }

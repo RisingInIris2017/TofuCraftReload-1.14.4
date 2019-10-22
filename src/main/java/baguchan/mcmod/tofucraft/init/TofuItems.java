@@ -1,6 +1,7 @@
 package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
+import baguchan.mcmod.tofucraft.client.render.item.TofuShieldItemRender;
 import baguchan.mcmod.tofucraft.entity.projectile.ZundaArrowEntity;
 import baguchan.mcmod.tofucraft.item.BitternItem;
 import baguchan.mcmod.tofucraft.item.TofuSlimeRadarItem;
@@ -103,6 +104,9 @@ public class TofuItems {
 
     public static final Item ZUNDAARROW = new ZundaArrowItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
+    public static final Item TOFUISHI_SHIELD = new ShieldItem(new Item.Properties().maxDamage(160).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUMETAL_SHIELD = new ShieldItem(new Item.Properties().maxDamage(360).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
+
 
 
     public static void register(RegistryEvent.Register<Item> registry, Item item, String id) {
@@ -195,6 +199,9 @@ public class TofuItems {
         register(registry, METALSHOVEL, "toolmetalshovel");
 
         register(registry, ZUNDAARROW, "zunda_arrow");
+
+        register(registry, TOFUISHI_SHIELD, "tofuishi_shield");
+        register(registry, TOFUMETAL_SHIELD, "tofumetal_shield");
 
         ComposterBlock.CHANCES.put(SEEDS_SOYBEAN, 0.3F);
         ComposterBlock.CHANCES.put(EDAMAME, 0.35F);
