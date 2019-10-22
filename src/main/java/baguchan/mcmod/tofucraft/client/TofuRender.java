@@ -13,6 +13,7 @@ public class TofuRender {
         RenderingRegistry.registerEntityRenderingHandler(TofuCowEntity.class, TofuCowRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuFishEntity.class, TofuFishRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuChingerEntity.class, TofuChingerRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(GrillderEntity.class, GrillderRender::new);
 
 
         RenderingRegistry.registerEntityRenderingHandler(ZundaArrowEntity.class, ZundaArrowRender::new);
