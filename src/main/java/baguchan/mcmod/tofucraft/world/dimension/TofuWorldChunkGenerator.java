@@ -51,7 +51,6 @@ public class TofuWorldChunkGenerator extends NoiseChunkGenerator<TofuWorldChunkG
     @Override
     public void generateSurface(IChunk chunkIn) {
         super.generateSurface(chunkIn);
-        this.makeBedrock(chunkIn, world.rand);
     }
 
     protected void makeBedrock(IChunk chunkIn, Random rand) {
@@ -59,6 +58,7 @@ public class TofuWorldChunkGenerator extends NoiseChunkGenerator<TofuWorldChunkG
         int i = chunkIn.getPos().getXStart();
         int j = chunkIn.getPos().getZStart();
         TofuWorldChunkGenerator.Config t = this.getSettings();
+        int k = t.getBedrockFloorHeight();
         int l = t.getBedrockRoofHeight();
 
         for (BlockPos blockpos : BlockPos.getAllInBoxMutable(i, 0, j, i + 15, 0, j + 15)) {
@@ -69,8 +69,15 @@ public class TofuWorldChunkGenerator extends NoiseChunkGenerator<TofuWorldChunkG
                     }
                 }
             }
-        }
 
+            if (k < 256) {
+                for (int j1 = k + 4; j1 >= k; --j1) {
+                    if (j1 <= k + rand.nextInt(5)) {
+                        chunkIn.setBlockState(blockpos$mutableblockpos.setPos(blockpos.getX(), j1, blockpos.getZ()), TofuBlocks.TOFUBEDROCK.getDefaultState(), false);
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -186,6 +193,10 @@ public class TofuWorldChunkGenerator extends NoiseChunkGenerator<TofuWorldChunkG
 
 
             return config;
+        }
+
+        public int getBedrockFloorHeight() {
+            return 0;
         }
     }
 }
