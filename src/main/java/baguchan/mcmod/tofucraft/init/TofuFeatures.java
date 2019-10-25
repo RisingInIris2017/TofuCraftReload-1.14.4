@@ -36,5 +36,7 @@ public class TofuFeatures {
         registry.getRegistry().register(TOFUTREE.setRegistryName("tofutree"));
         registry.getRegistry().register(ZUNDATOFUTREE.setRegistryName("zunda_tofutree"));
         registry.getRegistry().register(TOFUVILLAGE.setRegistryName("tofuvillage"));
+
+
     }
 }

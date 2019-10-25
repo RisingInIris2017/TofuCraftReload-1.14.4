@@ -68,6 +68,9 @@ public class TofuBlocks {
     public static final Block TOFUZUNDALEAVES = new TofuLeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.PLANT));
     public static final Block TOFUSAPLING = new TofuSaplingBlock(new TofuTree(), Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.0F).tickRandomly().doesNotBlockMovement().sound(SoundType.PLANT));
     public static final Block ZUNDATOFUSAPLING = new TofuSaplingBlock(new ZundaTofuTree(), Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.0F).tickRandomly().doesNotBlockMovement().sound(SoundType.PLANT));
+
+    public static final Block TOFUBERRY = new TofuBerryBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.5F).sound(SoundType.CLOTH));
+
     //Util block
     public static final TofuPortalBlock TOFUPORTAL = new TofuPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().harvestTool(ToolType.PICKAXE).hardnessAndResistance(-1.0F, 3000000.0F).sound(SoundType.GLASS));
     public static final Block SALTPAN = new SaltPanBlock(Block.Properties.create(Material.WOOD).tickRandomly().harvestTool(ToolType.AXE).hardnessAndResistance(1.0F).sound(SoundType.WOOD));
@@ -123,6 +126,7 @@ public class TofuBlocks {
         registry.getRegistry().register(TOFUZUNDALEAVES.setRegistryName("leaves_zundatofu"));
         registry.getRegistry().register(TOFUSAPLING.setRegistryName("sapling_tofu"));
         registry.getRegistry().register(ZUNDATOFUSAPLING.setRegistryName("zundasapling_tofu"));
+        registry.getRegistry().register(TOFUBERRY.setRegistryName("tofuberry"));
         //Util block
         registry.getRegistry().register(TOFUPORTAL.setRegistryName("tofuportal"));
         registry.getRegistry().register(SALTPAN.setRegistryName("blocksaltpan"));

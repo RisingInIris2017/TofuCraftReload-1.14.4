@@ -75,10 +75,8 @@ public class GrillderModel<T extends GrillderEntity> extends EntityModel<T> {
         this.legR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.legL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 
-
         this.WingR.rotateAngleZ = ageInTicks - ((float) Math.PI * 0.2F);
         this.WingL.rotateAngleZ = -ageInTicks + ((float) Math.PI * 0.2F);
-
     }
 
     /**

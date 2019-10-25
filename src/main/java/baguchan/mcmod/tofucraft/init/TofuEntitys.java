@@ -25,11 +25,9 @@ public class TofuEntitys {
     public static final EntityType<TofuCowEntity> TOFUCOW = EntityType.Builder.create(TofuCowEntity::new, EntityClassification.CREATURE).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(0.9F, 1.4F).build(prefix("tofucow"));
     public static final EntityType<TofuFishEntity> TOFUFISH = EntityType.Builder.create(TofuFishEntity::new, EntityClassification.WATER_CREATURE).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.3F).build(prefix("tofufish"));
     public static final EntityType<TofuChingerEntity> TOFUCHINGER = EntityType.Builder.create(TofuChingerEntity::new, TOFU_MONSTER).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.65F).build(prefix("tofuchinger"));
-    public static final EntityType<GrillderEntity> GRILLDER = EntityType.Builder.create(GrillderEntity::new, EntityClassification.CREATURE).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.65F).build(prefix("grillder"));
-
+    public static final EntityType<GrillderEntity> GRILLDER = EntityType.Builder.create(GrillderEntity::new, EntityClassification.CREATURE).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(0.6F, 0.65F).build(prefix("grillder"));
 
     public static final EntityType<ZundaArrowEntity> ZUNDAARROW = EntityType.Builder.<ZundaArrowEntity>create(ZundaArrowEntity::new, EntityClassification.MISC).setTrackingRange(100).setCustomClientFactory(ZundaArrowEntity::new).setUpdateInterval(1).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.5F).build(prefix("zunda_arrow"));
-
 
     @SubscribeEvent
     public static void registerEntity(RegistryEvent.Register<EntityType<?>> event) {
