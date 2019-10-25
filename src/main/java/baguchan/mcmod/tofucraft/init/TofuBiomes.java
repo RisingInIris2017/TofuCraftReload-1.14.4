@@ -1,10 +1,7 @@
 package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
-import baguchan.mcmod.tofucraft.world.biome.BiomeTofuForest;
-import baguchan.mcmod.tofucraft.world.biome.BiomeTofuPlain;
-import baguchan.mcmod.tofucraft.world.biome.BiomeTofuRiver;
-import baguchan.mcmod.tofucraft.world.biome.BiomeZundaTofuSwamp;
+import baguchan.mcmod.tofucraft.world.biome.*;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
@@ -21,6 +18,7 @@ public class TofuBiomes {
     public static final Biome TOFU_FOREST = new BiomeTofuForest();
     public static final Biome TOFUZUNDA_SWAMP = new BiomeZundaTofuSwamp();
     public static final Biome TOFU_PLAIN = new BiomeTofuPlain();
+    public static final Biome TOFU_MOUNTAIN = new BiomeTofuMountain();
     public static final Biome TOFU_RIVER = new BiomeTofuRiver();
 
     @SubscribeEvent
@@ -29,17 +27,20 @@ public class TofuBiomes {
         event.getRegistry().register(TOFU_FOREST.setRegistryName("tofu_forest"));
         event.getRegistry().register(TOFUZUNDA_SWAMP.setRegistryName("tofuzunda_forest"));
         event.getRegistry().register(TOFU_PLAIN.setRegistryName("tofu_plain"));
+        event.getRegistry().register(TOFU_MOUNTAIN.setRegistryName("tofu_mountain"));
         event.getRegistry().register(TOFU_RIVER.setRegistryName("tofu_river"));
 
         tofubiome.add(TOFU_FOREST);
         tofubiome.add(TOFUZUNDA_SWAMP);
         tofubiome.add(TOFU_PLAIN);
+        tofubiome.add(TOFU_MOUNTAIN);
         tofubiome.add(TOFU_RIVER);
 
         registerBiomeTypes();
     }
 
     public static void registerBiomeTypes() {
+        BiomeDictionary.addTypes(TOFU_MOUNTAIN, BiomeDictionary.Type.MOUNTAIN);
         BiomeDictionary.addTypes(TOFU_PLAIN, BiomeDictionary.Type.PLAINS);
         BiomeDictionary.addTypes(TOFU_FOREST, BiomeDictionary.Type.FOREST);
         BiomeDictionary.addTypes(TOFUZUNDA_SWAMP, BiomeDictionary.Type.SWAMP);

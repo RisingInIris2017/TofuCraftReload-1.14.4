@@ -12,6 +12,7 @@ public class BiomeTofuPlain extends BiomeTofuBase {
         super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, TofuSurfaceBuilder.TOFUDEFAULT_CONFIG).precipitation(RainType.RAIN).category(Category.PLAINS).depth(0.125F).scale(0.05F).temperature(0.8F).downfall(0.4F).waterColor(0xc7d8e8).waterFogColor(0xa7c2ff).parent(null));
         DefaultTofuBiomeFeature.addTofuFlowers(this);
         this.addStructure(TofuFeatures.TOFUVILLAGE, new NoFeatureConfig());
+        DefaultTofuBiomeFeature.addTofuNormalTrees(this);
 
     }
 }
