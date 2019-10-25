@@ -87,11 +87,15 @@
   "block.tofucraft.tofuslab_zunda": "Tofu Zunda Slab",
   "block.tofucraft.tofuslab_zundabrick": "Tofu ZundaBrick Slab",
   "block.tofucraft.tofuslab_metal": "Tofu Metal Slab",
-
   "block.tofucraft.tofutorch_kinu": "Tofu Kinu Torch",
   "block.tofucraft.tofutorch_momen": "Tofu Momen Torch",
   "block.tofucraft.tofutorch_ishi": "Tofu Ishi Torch",
   "block.tofucraft.tofutorch_metal": "Tofu Metal Torch",
+  "block.tofucraft.tofuladder_kinu": "TofuLadder Kinu",
+  "block.tofucraft.tofuladder_momen": "TofuLadder Momen",
+  "block.tofucraft.tofuladder_ishi": "TofuLadder Ishi",
+  "block.tofucraft.tofuladder_ishibrick": "TofuLadder IshiBrick",
+  "block.tofucraft.tofuladder_metal": "TofuLadder Metal",
 
   "block.tofucraft.blocksaltpan": "SaltPan",
   "block.tofucraft.tofu_terrain": "Tofu Terrain",

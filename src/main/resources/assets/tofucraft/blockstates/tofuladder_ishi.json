@@ -1,13 +1,13 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "minecraft:ladder",
+    "model": "minecraft:block/ladder",
     "transform": "forge:default-item"
   },
   "variants": {
     "facing=north": [
       {
-        "model": "ladder",
+        "model": "block/ladder",
         "textures": {
           "particle": "tofucraft:blocks/tofuladder_ishi",
           "texture": "tofucraft:blocks/tofuladder_ishi"
@@ -16,7 +16,7 @@
     ],
     "facing=east": [
       {
-        "model": "ladder",
+        "model": "block/ladder",
         "textures": {
           "particle": "tofucraft:blocks/tofuladder_ishi",
           "texture": "tofucraft:blocks/tofuladder_ishi"
@@ -26,7 +26,7 @@
     ],
     "facing=west": [
       {
-        "model": "ladder",
+        "model": "block/ladder",
         "textures": {
           "particle": "tofucraft:blocks/tofuladder_ishi",
           "texture": "tofucraft:blocks/tofuladder_ishi"
@@ -36,7 +36,7 @@
     ],
     "facing=south": [
       {
-        "model": "ladder",
+        "model": "block/ladder",
         "textures": {
           "particle": "tofucraft:blocks/tofuladder_ishi",
           "texture": "tofucraft:blocks/tofuladder_ishi"

@@ -57,6 +57,13 @@ public class TofuBlocks {
     public static final Block WALLTOFUTORCH_MOMEN = new WallTofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 0.5F).lightValue(14).doesNotBlockMovement().sound(SoundType.SNOW).lootFrom(TOFUTORCH_MOMEN));
     public static final Block WALLTOFUTORCH_ISHI = new WallTofuTorchBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F, 6.0F).lightValue(14).doesNotBlockMovement().sound(SoundType.STONE).lootFrom(TOFUTORCH_ISHI));
     public static final Block WALLTOFUTORCH_METAL = new WallTofuTorchBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F, 7.5F).lightValue(14).doesNotBlockMovement().sound(SoundType.METAL).lootFrom(TOFUTORCH_METAL));
+    //Ladder
+    public static final Block TOFULADDER_KINU = new TofuLadderBlock(Block.Properties.from(KINUTOFU));
+    public static final Block TOFULADDER_MOMEN = new TofuLadderBlock(Block.Properties.from(MOMENTOFU));
+    public static final Block TOFULADDER_ISHI = new TofuLadderBlock(Block.Properties.from(ISHITOFU));
+    public static final Block TOFULADDER_METAL = new TofuLadderBlock(Block.Properties.from(METALTOFU));
+    //public static final Block TOFULADDER_ZUNDABRICK = new TofuLadderBlock(Block.Properties.from(ZUNDATOFU_BRICK));
+    public static final Block TOFULADDER_ISHIBRICK = new TofuLadderBlock(Block.Properties.from(ISHITOFU_BRICK));
 
 
     //TERRAIN
@@ -117,6 +124,12 @@ public class TofuBlocks {
         registry.getRegistry().register(WALLTOFUTORCH_MOMEN.setRegistryName("walltofutorch_momen"));
         registry.getRegistry().register(WALLTOFUTORCH_ISHI.setRegistryName("walltofutorch_ishi"));
         registry.getRegistry().register(WALLTOFUTORCH_METAL.setRegistryName("walltofutorch_metal"));
+        //Ladder
+        registry.getRegistry().register(TOFULADDER_KINU.setRegistryName("tofuladder_kinu"));
+        registry.getRegistry().register(TOFULADDER_MOMEN.setRegistryName("tofuladder_momen"));
+        registry.getRegistry().register(TOFULADDER_ISHI.setRegistryName("tofuladder_ishi"));
+        registry.getRegistry().register(TOFULADDER_ISHIBRICK.setRegistryName("tofuladder_ishibrick"));
+        registry.getRegistry().register(TOFULADDER_METAL.setRegistryName("tofuladder_metal"));
         //terrain
         registry.getRegistry().register(TOFUSTEM.setRegistryName("tofustem"));
         registry.getRegistry().register(TOFUTERRAIN.setRegistryName("tofu_terrain"));
@@ -167,6 +180,12 @@ public class TofuBlocks {
         TofuItems.register(registry, new WallOrFloorItem(TOFUTORCH_MOMEN, WALLTOFUTORCH_MOMEN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new WallOrFloorItem(TOFUTORCH_ISHI, WALLTOFUTORCH_ISHI, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new WallOrFloorItem(TOFUTORCH_METAL, WALLTOFUTORCH_METAL, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+
+        TofuItems.register(registry, new BlockItem(TOFULADDER_KINU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        TofuItems.register(registry, new BlockItem(TOFULADDER_MOMEN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        TofuItems.register(registry, new BlockItem(TOFULADDER_ISHI, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        TofuItems.register(registry, new BlockItem(TOFULADDER_METAL, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        TofuItems.register(registry, new BlockItem(TOFULADDER_ISHIBRICK, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
 
         TofuItems.register(registry, new BlockItem(TOFUSTEM, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFUTERRAIN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
