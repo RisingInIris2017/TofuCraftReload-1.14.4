@@ -10,7 +10,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
-import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.IFlyingAnimal;
@@ -50,6 +49,8 @@ public class GrillderEntity extends AnimalEntity implements IFlyingAnimal {
         super(type, worldIn);
         this.flyNavigator = new FlyingCreaturePathNavigator(this, worldIn);
         this.groundNavigator = new GroundPathNavigator(this, worldIn);
+
+        this.moveController = new FlyingMovementController(this);
     }
 
     protected void registerGoals() {
@@ -72,7 +73,7 @@ public class GrillderEntity extends AnimalEntity implements IFlyingAnimal {
         super.registerAttributes();
         this.getAttributes().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 4.0D);
+        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.8D);
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.24F);
     }
 
@@ -83,15 +84,10 @@ public class GrillderEntity extends AnimalEntity implements IFlyingAnimal {
 
     private void switchNavigator(boolean onLand) {
         if (onLand) {
-            this.moveController = new MovementController(this);
-
             this.navigator = new GroundPathNavigator(this, world);
-            this.setNoGravity(false);
 
             this.isLandNavigator = true;
         } else {
-            this.moveController = new FlyingMovementController(this);
-
             this.navigator = new FlyingCreaturePathNavigator(this, world);
             this.isLandNavigator = false;
         }
@@ -119,7 +115,7 @@ public class GrillderEntity extends AnimalEntity implements IFlyingAnimal {
         super.livingTick();
         this.calculateFlapping();
 
-        if (!isFlying() && this.rand.nextInt(320) == 0) {
+        if (!isFlying() && this.rand.nextInt(300) == 0) {
             this.setFlying(true);
         }
 
@@ -272,7 +268,7 @@ public class GrillderEntity extends AnimalEntity implements IFlyingAnimal {
             if (this.parentEntity.isFlying()) {
                 Vec3d randomPosition = getPosition();
 
-                if (randomPosition == null || this.parentEntity.rand.nextInt(this.executionChance) == 0) {
+                if (randomPosition == null || this.parentEntity.rand.nextInt(this.executionChance) != 0) {
                     return false;
                 } else {
                     BlockPos groundHeight = getGroundHeight(this.parentEntity.world, new BlockPos(randomPosition), 8, new BlockPos(0, 0, 0));
