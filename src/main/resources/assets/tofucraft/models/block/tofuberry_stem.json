@@ -1,84 +1,14 @@
 {
   "parent": "block/block",
   "textures": {
-    "0": "tofucraft:blocks/blocktofukinu",
-    "1": "tofucraft:blocks/yubagrass_bottom",
-    "particle": "tofucraft:blocks/blocktofukinu"
+    "1": "tofucraft:blocks/yubagrass_bottom"
   },
   "elements": [
-    {
-      "from": [
-        4.5,
-        1,
-        4.5
-      ],
-      "to": [
-        11.5,
-        8,
-        11.5
-      ],
-      "faces": {
-        "north": {
-          "uv": [
-            0,
-            0,
-            7,
-            7
-          ],
-          "texture": "#0"
-        },
-        "east": {
-          "uv": [
-            0,
-            0,
-            7,
-            7
-          ],
-          "texture": "#0"
-        },
-        "south": {
-          "uv": [
-            0,
-            0,
-            7,
-            7
-          ],
-          "texture": "#0"
-        },
-        "west": {
-          "uv": [
-            0,
-            0,
-            7,
-            7
-          ],
-          "texture": "#0"
-        },
-        "up": {
-          "uv": [
-            0,
-            0,
-            7,
-            7
-          ],
-          "texture": "#0"
-        },
-        "down": {
-          "uv": [
-            0,
-            0,
-            7,
-            7
-          ],
-          "texture": "#0"
-        }
-      }
-    },
     {
       "name": "grass1",
       "from": [
         8,
-        8,
+        0,
         6.5
       ],
       "to": [
@@ -99,9 +29,9 @@
         "east": {
           "uv": [
             6,
-            2,
+            0,
             9,
-            10
+            16
           ],
           "texture": "#1"
         },
@@ -117,7 +47,7 @@
         "west": {
           "uv": [
             6,
-            8,
+            0,
             9,
             16
           ],
@@ -147,7 +77,7 @@
       "name": "grass2",
       "from": [
         6.5,
-        8,
+        0,
         8
       ],
       "to": [
@@ -159,9 +89,9 @@
         "north": {
           "uv": [
             6,
-            2,
+            0,
             9,
-            10
+            16
           ],
           "texture": "#1"
         },
@@ -170,14 +100,14 @@
             0,
             0,
             0,
-            8
+            16
           ],
           "texture": "#missing"
         },
         "south": {
           "uv": [
             6,
-            8,
+            0,
             9,
             16
           ],
@@ -188,7 +118,7 @@
             0,
             0,
             0,
-            8
+            16
           ],
           "texture": "#missing"
         },

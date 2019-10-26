@@ -20,13 +20,12 @@ import net.minecraft.world.IWorldReader;
 
 import javax.annotation.Nullable;
 
-public class TofuBerryBlock extends Block {
-    protected static final VoxelShape voxel = VoxelShapes.or(Block.makeCuboidShape(4.5D, 1.0D, 4.5D, 11.5D, 8.0D, 11.5D), Block.makeCuboidShape(7.0D, 8.0D, 7.0D, 9.0D, 16.0D, 9.0D));
+public class TofuBerryStemBlock extends Block {
+    protected static final VoxelShape voxel = VoxelShapes.or(Block.makeCuboidShape(7.0D, 0.0D, 7.0D, 9.0D, 16.0D, 9.0D));
 
-    public TofuBerryBlock(Properties properties) {
+    public TofuBerryStemBlock(Properties properties) {
         super(properties);
     }
-
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
@@ -61,10 +60,10 @@ public class TofuBerryBlock extends Block {
 
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         Direction direction = func_220277_j(state).getOpposite();
-        return vaildStem(worldIn, pos.offset(direction), direction.getOpposite());
+        return vaildBerry(worldIn, pos.offset(direction), direction.getOpposite());
     }
 
-    public static boolean vaildStem(IWorldReader worldIn, BlockPos pos, Direction directionIn) {
+    public static boolean vaildBerry(IWorldReader worldIn, BlockPos pos, Direction directionIn) {
         BlockState blockstate = worldIn.getBlockState(pos);
         return blockstate.isIn(BlockTags.LEAVES) || blockstate.getBlock() == TofuBlocks.TOFUTERRAIN || blockstate.getBlock() == TofuBlocks.MOMENTOFU || blockstate.getBlock() == TofuBlocks.TOFUBERRYSTEM;
     }

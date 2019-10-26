@@ -1,6 +1,7 @@
 package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
+import baguchan.mcmod.tofucraft.world.biome.gen.feature.TofuBerryFeature;
 import baguchan.mcmod.tofucraft.world.biome.gen.feature.TofuTreeFeature;
 import baguchan.mcmod.tofucraft.world.biome.gen.feature.structure.TofuVillageStructure;
 import net.minecraft.block.BlockState;
@@ -27,6 +28,9 @@ public class TofuFeatures {
     public static final Feature<NoFeatureConfig> TOFUTREE = new TofuTreeFeature(NoFeatureConfig::deserialize, false);
     public static final Feature<NoFeatureConfig> ZUNDATOFUTREE = new TofuTreeFeature(NoFeatureConfig::deserialize, false, 4, TofuBlocks.ISHITOFU.getDefaultState(), TofuBlocks.TOFUZUNDALEAVES.getDefaultState(), false);
 
+    public static final Feature<NoFeatureConfig> TOFUBERRY = new TofuBerryFeature(NoFeatureConfig::deserialize);
+
+
     public static final Structure<NoFeatureConfig> TOFUVILLAGE = new TofuVillageStructure(NoFeatureConfig::deserialize);
 
 
@@ -35,8 +39,7 @@ public class TofuFeatures {
         registry.getRegistry().register(TOFUFLOWER.setRegistryName("tofuflower"));
         registry.getRegistry().register(TOFUTREE.setRegistryName("tofutree"));
         registry.getRegistry().register(ZUNDATOFUTREE.setRegistryName("zunda_tofutree"));
+        registry.getRegistry().register(TOFUBERRY.setRegistryName("tofuberry"));
         registry.getRegistry().register(TOFUVILLAGE.setRegistryName("tofuvillage"));
-
-
     }
 }
