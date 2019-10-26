@@ -58,15 +58,18 @@ public class GrillderEntity extends AnimalEntity implements IFlyingAnimal {
         this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new StopFlyGoal(this, 120));
-        this.goalSelector.addGoal(2, new RandomFlyGoal(this, 1.3F, 20));
-        this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0F) {
+        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, BREEDING_ITEMS, false));
+        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
+        this.goalSelector.addGoal(5, new RandomFlyGoal(this, 1.3F, 20));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0F) {
             @Override
             public boolean shouldExecute() {
                 return !isFlying() && super.shouldExecute();
             }
         });
-        this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(4, new LookAtGoal(this, LivingEntity.class, 8.0F));
+        this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(8, new LookAtGoal(this, LivingEntity.class, 8.0F));
     }
 
     protected void registerAttributes() {

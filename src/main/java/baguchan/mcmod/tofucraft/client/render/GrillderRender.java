@@ -3,6 +3,7 @@ package baguchan.mcmod.tofucraft.client.render;
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.client.model.GrillderModel;
 import baguchan.mcmod.tofucraft.entity.GrillderEntity;
+import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -22,6 +23,11 @@ public class GrillderRender extends MobRenderer<GrillderEntity, GrillderModel<Gr
         float f = MathHelper.lerp(partialTicks, livingBase.oFlap, livingBase.flap);
         float f1 = MathHelper.lerp(partialTicks, livingBase.oFlapSpeed, livingBase.flapSpeed);
         return (MathHelper.sin(f) + 1.0F) * f1;
+    }
+
+    protected void preRenderCallback(GrillderEntity entitylivingbaseIn, float partialTickTime) {
+        float f1 = (float) entitylivingbaseIn.getRenderScale();
+        GlStateManager.scalef(f1, f1, f1);
     }
 
     protected ResourceLocation getEntityTexture(GrillderEntity entity) {

@@ -59,6 +59,7 @@ public class TofuItems {
     public static final Item TOFUCOW_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUCOW, 0xEBE8E8, 0xA3A3A3, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUFISH_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUFISH, 0xEBE8E8, 0x3a3e3f, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUCHINGER_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUCHINGER, 0xEBE8E8, 0xB3B3B3, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item GRILLDER_SPAWNEGG = new SpawnEggItem(TofuEntitys.GRILLDER, 0xEBE8E8, 0xdea65d, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
 
     public static final Item ARMOR_KINUHELMET = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.HEAD, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -163,6 +164,7 @@ public class TofuItems {
         register(registry, TOFUCOW_SPAWNEGG, "tofucow_spawnegg");
         register(registry, TOFUFISH_SPAWNEGG, "tofufish_spawnegg");
         register(registry, TOFUCHINGER_SPAWNEGG, "tofuchinger_spawnegg");
+        register(registry, GRILLDER_SPAWNEGG, "grillder_spawnegg");
 
         register(registry, ARMOR_KINUHELMET, "armorkinuhelmet");
         register(registry, ARMOR_KINUCHESTPLATE, "armorkinuchestplate");
