@@ -31,6 +31,8 @@ public class TofuItems {
     public static final Item TOFUMOMEN = new Item(new Item.Properties().food(TofuFoods.TOFUMOMEN).group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUISHI = new Item(new Item.Properties().food(TofuFoods.TOFUISHI).group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUMETAL = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUDIAMOND = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUDIAMOND_NUGGET = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUGRILD = new Item(new Item.Properties().food(TofuFoods.TOFUGRILD).group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUZUNDA = new Item(new Item.Properties().food(TofuFoods.TOFUZUNDA).group(TofuItemGroup.TOFUCRAFT));
 
@@ -138,6 +140,8 @@ public class TofuItems {
         register(registry, TOFUMOMEN, "tofumomen");
         register(registry, TOFUISHI, "tofuishi");
         register(registry, TOFUMETAL, "tofumetal");
+        register(registry, TOFUDIAMOND, "tofudiamond");
+        register(registry, TOFUDIAMOND_NUGGET, "tofudiamondnugget");
         register(registry, TOFUGRILD, "tofugrilled");
         register(registry, TOFUZUNDA, "tofuzunda");
         register(registry, TOFUFISH, "raw_tofufish");

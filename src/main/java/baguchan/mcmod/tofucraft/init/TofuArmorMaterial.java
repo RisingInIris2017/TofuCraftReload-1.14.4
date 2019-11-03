@@ -37,6 +37,7 @@ public class TofuArmorMaterial {
             .withDurabilityFactor(15)
             .withDamageReductionAmounts(new int[]{2, 5, 6, 2})
             .withEnchantability(12)
+            .withSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON)
             .withRepairMaterial(Ingredient.fromItems(TofuItems.TOFUISHI))
             .build();
 
