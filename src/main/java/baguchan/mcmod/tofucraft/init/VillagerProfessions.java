@@ -47,8 +47,10 @@ public class VillagerProfessions {
         return new Int2ObjectOpenHashMap<>(p_221238_0_);
     }
 
-    private static Set<BlockState> getAllStates(Block p_221042_0_) {
-        return ImmutableSet.copyOf(p_221042_0_.getStateContainer().getValidStates());
+    private static Set<BlockState> getAllStates(Block block) {
+        ImmutableSet.Builder<BlockState> builder = ImmutableSet.builder();
+        builder.add(block.getDefaultState());
+        return builder.build();
     }
 
     private static PointOfInterestType registerInterest(String key, Set<BlockState> p_221051_1_, int p_221051_2_, @Nullable SoundEvent p_221051_3_, int p_221051_4_) {
