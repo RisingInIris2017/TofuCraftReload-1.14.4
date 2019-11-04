@@ -78,8 +78,8 @@ public class TofuBlocks {
     public static final Block TOFUSAPLING = new TofuSaplingBlock(new TofuTree(), Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.0F).tickRandomly().doesNotBlockMovement().sound(SoundType.PLANT));
     public static final Block ZUNDATOFUSAPLING = new TofuSaplingBlock(new ZundaTofuTree(), Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.0F).tickRandomly().doesNotBlockMovement().sound(SoundType.PLANT));
 
-    public static final Block TOFUBERRYSTEM = new TofuBerryStemBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(1.0F).sound(SoundType.CLOTH));
-    public static final Block TOFUBERRY = new TofuBerryBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.65F).lightValue(9).sound(SoundType.CLOTH));
+    public static final Block TOFUBERRYSTEM = new TofuBerryStemBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(1.0F).tickRandomly().sound(SoundType.CLOTH));
+    public static final Block TOFUBERRY = new TofuBerryBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.65F).tickRandomly().lightValue(9).sound(SoundType.CLOTH));
 
     //Util block
     public static final TofuPortalBlock TOFUPORTAL = new TofuPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().harvestTool(ToolType.PICKAXE).hardnessAndResistance(-1.0F, 3000000.0F).sound(SoundType.GLASS));

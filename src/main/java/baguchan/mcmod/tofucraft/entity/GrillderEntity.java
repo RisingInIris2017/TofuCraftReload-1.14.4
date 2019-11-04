@@ -1,8 +1,8 @@
 package baguchan.mcmod.tofucraft.entity;
 
 import baguchan.mcmod.tofucraft.entity.pathnavigator.FlyingCreaturePathNavigator;
+import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.init.TofuEntitys;
-import baguchan.mcmod.tofucraft.init.TofuItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -31,7 +31,7 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 
 public class GrillderEntity extends AnimalEntity implements IFlyingAnimal {
-    private static final Ingredient BREEDING_ITEMS = Ingredient.fromItems(TofuItems.SEEDS_SOYBEAN);
+    private static final Ingredient BREEDING_ITEMS = Ingredient.fromItems(TofuBlocks.TOFUBERRY);
 
     private static final DataParameter<Boolean> IS_FLYING = EntityDataManager.createKey(GrillderEntity.class, DataSerializers.BOOLEAN);
 
