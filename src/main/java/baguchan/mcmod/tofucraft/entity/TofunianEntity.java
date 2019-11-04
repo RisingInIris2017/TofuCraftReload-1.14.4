@@ -379,7 +379,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
 
             BlockState state = world.getBlockState(tofunainHome);
 
-            if (this.getDistanceSq(tofunainHome.getX(), tofunainHome.getY(), tofunainHome.getZ()) > 200F) {
+            if (this.getDistanceSq(tofunainHome.getX(), tofunainHome.getY(), tofunainHome.getZ()) > 120F) {
                 tofunainHome = null;
 
                 tryFind = true;
