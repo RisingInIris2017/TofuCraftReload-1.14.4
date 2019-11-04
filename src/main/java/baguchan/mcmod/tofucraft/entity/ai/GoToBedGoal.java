@@ -1,6 +1,5 @@
 package baguchan.mcmod.tofucraft.entity.ai;
 
-import baguchan.mcmod.tofucraft.entity.TofunianEntity;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -35,12 +34,6 @@ public class GoToBedGoal extends MoveToBlockGoal {
     }
 
 
-    public void startExecuting() {
-        super.startExecuting();
-        if (this.creature instanceof TofunianEntity) {
-            ((TofunianEntity) this.creature).setTofunainHome(new BlockPos(destinationBlock.getX(), destinationBlock.getY(), destinationBlock.getZ()));
-        }
-    }
 
     public void resetTask() {
         super.resetTask();

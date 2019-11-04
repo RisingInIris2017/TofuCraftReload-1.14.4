@@ -10,6 +10,7 @@ import baguchan.mcmod.tofucraft.init.TofuSounds;
 import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -32,6 +33,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IItemProvider;
@@ -359,7 +361,53 @@ public class TofunianEntity extends AbstractVillagerEntity {
             this.func_213750_eg();
         }
 
+        findHome(false);
+
         super.updateAITasks();
+    }
+
+    private void findHome(boolean force) {
+        if (!force && (world.getGameTime() + this.getEntityId()) % (20 * 30) != 0) return;
+
+        boolean tryFind = false;
+
+        if (tofunainHome == null) {
+
+            tryFind = true;
+
+        } else if (tofunainHome != null) {
+
+            BlockState state = world.getBlockState(tofunainHome);
+
+            if (this.getDistanceSq(tofunainHome.getX(), tofunainHome.getY(), tofunainHome.getZ()) > 200F) {
+                tofunainHome = null;
+
+                tryFind = true;
+            } else if (!state.getBlock().isIn(BlockTags.BEDS)) {
+                tofunainHome = null;
+
+                tryFind = true;
+
+            }
+        }
+
+        if (tryFind) {
+            int range = 20;
+
+            for (int x = -range; x <= range; x++) {
+                for (int y = -range / 2; y <= range / 2; y++) {
+                    for (int z = -range; z <= range; z++) {
+                        BlockPos pos = this.getPosition().add(x, y, z);
+                        BlockState state = world.getBlockState(pos);
+
+                        if (state.getBlock().isIn(BlockTags.BEDS)) {
+                            setTofunainHome(pos);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     protected void registerGoals() {
@@ -368,7 +416,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
         this.goalSelector.addGoal(2, new TradeWithPlayerGoal(this));
         this.goalSelector.addGoal(2, new LookAtCustomerGoal(this));
         this.goalSelector.addGoal(4, new GoToBedGoal(this, 1.15D));
-        this.goalSelector.addGoal(5, new MoveToHomeGoal(this, 120D, 1.15D));
+        this.goalSelector.addGoal(5, new MoveToHomeGoal(this, 80D, 1.15D));
         this.goalSelector.addGoal(6, new InterestJobBlockGoal(this, 1.15D));
         this.goalSelector.addGoal(6, new RestockTradeGoal(this, 1.15D));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
@@ -547,6 +595,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
     public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         rollDiceChild();
         updateTofunianState();
+        findHome(true);
 
         ILivingEntityData data = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 

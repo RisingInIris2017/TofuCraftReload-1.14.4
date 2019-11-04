@@ -57,10 +57,6 @@ public class InterestJobBlockGoal extends MoveToBlockGoal {
             }
 
             this.creature.updateTofunianState();
-
-            if (this.creature.getTofunainHome() == null) {
-                this.creature.setTofunainHome(new BlockPos(destinationBlock.getX(), destinationBlock.getY(), destinationBlock.getZ()));
-            }
         }
 
     }
