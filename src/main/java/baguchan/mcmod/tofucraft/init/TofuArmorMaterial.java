@@ -38,7 +38,16 @@ public class TofuArmorMaterial {
             .withDamageReductionAmounts(new int[]{2, 5, 6, 2})
             .withEnchantability(12)
             .withSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON)
-            .withRepairMaterial(Ingredient.fromItems(TofuItems.TOFUISHI))
+            .withRepairMaterial(Ingredient.fromItems(TofuItems.TOFUMETAL))
+            .build();
+    public static final IArmorMaterial DIAMOND = new Builder()
+            .withName(TofuCraftCore.MODID + ":armor_diamond")
+            .withDurabilityFactor(35)
+            .withDamageReductionAmounts(new int[]{3, 6, 8, 3})
+            .withEnchantability(10)
+            .withToughness(2.5F)
+            .withSound(SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND)
+            .withRepairMaterial(Ingredient.fromItems(TofuItems.TOFUDIAMOND))
             .build();
 
     private static class Builder {

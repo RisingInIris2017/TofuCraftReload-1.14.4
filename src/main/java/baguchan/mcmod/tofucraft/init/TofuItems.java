@@ -84,6 +84,11 @@ public class TofuItems {
     public static final Item ARMOR_METALLEGGINS = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlotType.LEGS, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item ARMOR_METALBOOTS = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlotType.FEET, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
+    public static final Item ARMOR_DIAMONDHELMET = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlotType.HEAD, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_DIAMONDCHESTPLATE = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlotType.CHEST, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_DIAMONDLEGGINS = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlotType.LEGS, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_DIAMONDBOOTS = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlotType.FEET, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+
 
     public static final Item KINUSWORD = new SwordItem(TofuItemTier.KINU, 0, -2.2F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item KINUAXE = new AxeItem(TofuItemTier.KINU, 0.0F, -2.25F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -192,6 +197,10 @@ public class TofuItems {
         register(registry, ARMOR_METALCHESTPLATE, "armormetalchestplate");
         register(registry, ARMOR_METALLEGGINS, "armormetalleggins");
         register(registry, ARMOR_METALBOOTS, "armormetalboots");
+        register(registry, ARMOR_DIAMONDHELMET, "armordiamondhelmet");
+        register(registry, ARMOR_DIAMONDCHESTPLATE, "armordiamondchestplate");
+        register(registry, ARMOR_DIAMONDLEGGINS, "armordiamondleggins");
+        register(registry, ARMOR_DIAMONDBOOTS, "armordiamondboots");
 
         register(registry, KINUSWORD, "swordkinu");
         register(registry, KINUAXE, "toolkinuaxe");
