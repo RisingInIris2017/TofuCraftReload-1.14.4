@@ -84,8 +84,6 @@ public class TofuCraftCore {
         LivingEntity livingEntity = event.getEntityLiving();
 
         if (event.getSource().isProjectile()) {
-            LivingEntity attacker = (LivingEntity) event.getSource().getImmediateSource();
-
             if (livingEntity.getActivePotionEffect(TofuEffectRegistry.TOFU_RESISTANCE) != null) {
                 event.setAmount(event.getAmount() * 0.75F);
             }
