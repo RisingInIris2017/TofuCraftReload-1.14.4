@@ -1,7 +1,9 @@
 package baguchan.mcmod.tofucraft.world.biome.gen;
 
+import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.init.TofuCaver;
 import baguchan.mcmod.tofucraft.init.TofuFeatures;
+import baguchan.mcmod.tofucraft.world.biome.gen.feature.config.TofuOreConfig;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
@@ -21,6 +23,13 @@ public class DefaultTofuBiomeFeature {
 
     public static void addTofuNormalTrees(Biome biomeIn) {
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Biome.createDecoratedFeature(TofuFeatures.TOFUTREE, IFeatureConfig.NO_FEATURE_CONFIG, Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.02F, 1)));
+    }
+
+    public static void addTofuOre(Biome biomeIn) {
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(
+                TofuFeatures.TOFUORE, new TofuOreConfig(TofuBlocks.ORE_TOFUDIAMOND.getDefaultState(), 9),
+                Placement.COUNT_RANGE, new CountRangeConfig(5, 0, 0, 30)
+        ));
     }
 
     public static void addTofuForestTrees(Biome biomeIn) {

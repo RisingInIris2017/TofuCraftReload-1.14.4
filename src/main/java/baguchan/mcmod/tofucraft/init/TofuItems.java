@@ -105,6 +105,12 @@ public class TofuItems {
     public static final Item METALPICKAXE = new PickaxeItem(TofuItemTier.METAL, 1, -2.9F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item METALSHOVEL = new ShovelItem(TofuItemTier.METAL, 1.5F, -2.9F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
+    public static final Item TOFUDIAMONDSWORD = new SwordItem(TofuItemTier.TOFUDIAMOND, 3, -2.3F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUDIAMONDAXE = new AxeItem(TofuItemTier.TOFUDIAMOND, 6.0F, -3.0F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUDIAMONDPICKAXE = new PickaxeItem(TofuItemTier.TOFUDIAMOND, 1, -2.9F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUDIAMONDSHOVEL = new ShovelItem(TofuItemTier.TOFUDIAMOND, 1.5F, -2.9F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+
+
     public static final Item ZUNDAARROW = new ZundaArrowItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item TOFUISHI_SHIELD = new ShieldItem(new Item.Properties().maxDamage(160).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
@@ -203,6 +209,10 @@ public class TofuItems {
         register(registry, METALAXE, "toolmetalaxe");
         register(registry, METALPICKAXE, "toolmetalpickaxe");
         register(registry, METALSHOVEL, "toolmetalshovel");
+        register(registry, TOFUDIAMONDSWORD, "sworddiamond");
+        register(registry, TOFUDIAMONDAXE, "tooldiamondaxe");
+        register(registry, TOFUDIAMONDPICKAXE, "tooldiamondpickaxe");
+        register(registry, TOFUDIAMONDSHOVEL, "tooldiamondshovel");
 
         register(registry, ZUNDAARROW, "zunda_arrow");
 

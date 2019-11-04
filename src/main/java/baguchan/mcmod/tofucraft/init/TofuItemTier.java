@@ -13,11 +13,14 @@ public enum TofuItemTier implements IItemTier {
     MOMEN(0, 2, 0.25F, 0.25F, 5, () -> {
         return Ingredient.fromTag(TofuTags.Items.TOFU);
     }),
-    SOLID(1, 131, 6.0F, 1.0F, 12, () -> {
+    SOLID(1, 131, 5.0F, 1.0F, 12, () -> {
         return Ingredient.fromItems(TofuItems.TOFUISHI);
     }),
     METAL(2, 250, 6.0F, 2.0F, 15, () -> {
         return Ingredient.fromItems(TofuItems.TOFUMETAL);
+    }),
+    TOFUDIAMOND(3, 1600, 8.0F, 4.0F, 12, () -> {
+        return Ingredient.fromItems(TofuItems.TOFUDIAMOND);
     });
 
     private final int harvestLevel;

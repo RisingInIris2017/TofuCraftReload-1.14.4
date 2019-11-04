@@ -6,11 +6,11 @@
     }
   },
   "variants": {
-    "normal":{
-      "model": "cube_all"
+    "": {
+      "model": "block/cube_all"
     },
     "inventory": {
-      "model": "cube_all"
+      "model": "block/cube_all"
     }
   }
 }
