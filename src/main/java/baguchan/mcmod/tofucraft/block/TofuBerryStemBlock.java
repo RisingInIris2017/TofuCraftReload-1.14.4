@@ -90,7 +90,7 @@ public class TofuBerryStemBlock extends Block {
         if (!state.isValidPosition(worldIn, pos)) {
             worldIn.destroyBlock(pos, true);
         } else if (!state.get(GROW)) {
-            if (random.nextInt(5) == 0) {
+            if (random.nextInt(6) == 0) {
                 worldIn.setBlockState(pos, state.with(GROW, true), 3);
             }
         }

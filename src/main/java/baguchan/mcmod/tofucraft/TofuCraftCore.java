@@ -1,13 +1,22 @@
 package baguchan.mcmod.tofucraft;
 
 import baguchan.mcmod.tofucraft.client.TofuRender;
+import baguchan.mcmod.tofucraft.entity.TofuSlimeEntity;
+import baguchan.mcmod.tofucraft.init.TofuEffectRegistry;
 import baguchan.mcmod.tofucraft.init.TofuEntitys;
 import baguchan.mcmod.tofucraft.init.TofuItems;
 import net.minecraft.block.TallGrassBlock;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -67,6 +76,32 @@ public class TofuCraftCore {
                 }
 
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void onEntityHurt(LivingHurtEvent event) {
+        LivingEntity livingEntity = event.getEntityLiving();
+
+        if (event.getSource().isProjectile()) {
+            LivingEntity attacker = (LivingEntity) event.getSource().getImmediateSource();
+
+            if (livingEntity.getActivePotionEffect(TofuEffectRegistry.TOFU_RESISTANCE) != null) {
+                event.setAmount(event.getAmount() * 0.75F);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onEntityJoin(EntityJoinWorldEvent event) {
+        World world = event.getWorld();
+        if (event.getEntity().getType() == EntityType.SLIME && event.getWorld().rand.nextFloat() < 0.025F) {
+            TofuSlimeEntity scavenger = TofuEntitys.TOFUSLIME.create(world);
+            scavenger.setPosition((double) event.getEntity().getPosition().getX(), (double) event.getEntity().getPosition().getY(), (double) event.getEntity().getPosition().getZ());
+            scavenger.onInitialSpawn(world, world.getDifficultyForLocation(event.getEntity().getPosition()), SpawnReason.NATURAL, (ILivingEntityData) null, (CompoundNBT) null);
+            world.addEntity(scavenger);
+
+            event.setCanceled(true);
         }
     }
 }

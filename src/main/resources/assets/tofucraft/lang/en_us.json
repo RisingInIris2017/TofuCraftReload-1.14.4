@@ -139,5 +139,7 @@
   "advancements.tofucraft.make_tofu.description": "Harden soymilk with BitternBottle and break tofu",
   "tofucraft.radar.result.success": "Success to Found TofuSlime Chunk",
   "tofucraft.radar.result.failed": "Not Found TofuSlime Chunk",
-  "itemGroup.tofucraft": "TofuCraft"
+  "itemGroup.tofucraft": "TofuCraft",
+  "item.minecraft.potion.tofu_resistance": "Tofu Resistance",
+  "effect.tofucraft.tofu_resistance": "Tofu Resistance"
 }
