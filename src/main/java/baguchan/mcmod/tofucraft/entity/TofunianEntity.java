@@ -379,7 +379,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
 
             BlockState state = world.getBlockState(tofunainHome);
 
-            if (this.getDistanceSq(tofunainHome.getX(), tofunainHome.getY(), tofunainHome.getZ()) > 120F) {
+            if (this.getDistanceSq(tofunainHome.getX(), tofunainHome.getY(), tofunainHome.getZ()) > 2600F) {
                 tofunainHome = null;
 
                 tryFind = true;
@@ -412,11 +412,16 @@ public class TofunianEntity extends AbstractVillagerEntity {
 
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D) {
+            @Override
+            public boolean shouldExecute() {
+                return !canGuard() && super.shouldExecute();
+            }
+        });
         this.goalSelector.addGoal(2, new TradeWithPlayerGoal(this));
         this.goalSelector.addGoal(2, new LookAtCustomerGoal(this));
         this.goalSelector.addGoal(4, new GoToBedGoal(this, 1.15D));
-        this.goalSelector.addGoal(5, new MoveToHomeGoal(this, 80D, 1.15D));
+        this.goalSelector.addGoal(5, new MoveToHomeGoal(this, 20D, 1.15D));
         this.goalSelector.addGoal(6, new InterestJobBlockGoal(this, 1.15D));
         this.goalSelector.addGoal(6, new RestockTradeGoal(this, 1.15D));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
@@ -533,7 +538,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
             }
 
             if (this.getOffers().isEmpty()) {
-                if (!this.isNitwit()) {
+                if (!this.isNitwit() && !this.canGuard()) {
                     //remaking trade
                     this.populateTradeData();
 
