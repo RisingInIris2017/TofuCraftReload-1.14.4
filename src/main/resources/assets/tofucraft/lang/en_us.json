@@ -30,6 +30,8 @@
   "item.tofucraft.tofufish_spawnegg": "TofuFish SpawnEgg",
   "item.tofucraft.tofuchinger_spawnegg": "TofuChinger SpawnEgg",
   "item.tofucraft.grillder_spawnegg": "Grillder SpawnEgg",
+  "item.tofucraft.tofuspider_spawnegg": "TofuSpider SpawnEgg",
+  
   "item.tofucraft.armorkinuhelmet": "TofuKinu Helmet",
   "item.tofucraft.armorkinuchestplate": "TofuKinu Chestplate",
   "item.tofucraft.armorkinuleggins": "TofuKinu Leggins",
@@ -73,7 +75,6 @@
   "item.tofucraft.zunda_arrow": "Zunda Arrow",
   "item.tofucraft.tofuishi_shield": "TofuIshi Shield",
   "item.tofucraft.tofumetal_shield": "TofuMetal Shield",
-
   "block.tofucraft.blocktofukinu": "KinuTofu Block",
   "block.tofucraft.blocktofumomen": "MomenTofu Block",
   "block.tofucraft.blocktofuishi": "IshiTofu Block",
@@ -107,7 +108,6 @@
   "block.tofucraft.tofuladder_ishi": "TofuLadder Ishi",
   "block.tofucraft.tofuladder_ishibrick": "TofuLadder IshiBrick",
   "block.tofucraft.tofuladder_metal": "TofuLadder Metal",
-
   "block.tofucraft.blocksaltpan": "SaltPan",
   "block.tofucraft.tofu_terrain": "Tofu Terrain",
   "block.tofucraft.ore_tofudiamond": "TofuDiamond Ore",
@@ -119,7 +119,6 @@
   "block.tofucraft.leaves_zundatofu": "ZundaTofu Leaves",
   "block.tofucraft.tofuberry": "Tofu Berry",
   "block.tofucraft.tofuberry_stem": "Tofu Berry Stem",
-
   "entity.tofucraft.tofunian.guard.name": "Guard Tofunian",
   "entity.tofucraft.tofunian.tofucock.name": "TofuCock Tofunian",
   "entity.tofucraft.tofunian.tofusmith.name": "TofuSmith Tofunian",
@@ -130,6 +129,8 @@
   "entity.tofucraft.zunda_arrow": "Zunda Arrow",
   "entity.tofucraft.tofu_chinger": "Tofu Chinger",
   "entity.tofucraft.grillder": "Grillder",
+  "entity.tofucraft.tofuspider": "TofuSpider",
+  "entity.tofucraft.fukumame": "Fukumame",
   "subtitles.entity.tofunian.idle": "tofunian's murmur",
   "advancements.tofucraft.root.title": "TofuCraft",
   "advancements.tofucraft.root.description": "Beginning Tofu Crafter",

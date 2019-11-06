@@ -73,16 +73,16 @@ public class TofunianEntity extends AbstractVillagerEntity {
         if (getRole() == Roles.TOFUCOCK) {
             offers = func_221238_a(ImmutableMap.of(1,
                     new VillagerTrades.ITrade[]{
-                            new TradeForZundaRuby(TofuItems.TOFUKINU, 20, 8, 2),
-                            new TradeForZundaRuby(TofuItems.TOFUMOMEN, 30, 6, 2)
+                            new TradeForZundaRuby(TofuItems.TOFUKINU, 20, 8, 1),
+                            new TradeForZundaRuby(TofuItems.TOFUMOMEN, 30, 6, 1)
                     }, 2,
                     new VillagerTrades.ITrade[]{
-                            new TradeForItem(TofuBlocks.ISHITOFU_BRICK, 12, 4, 6),
-                            new TradeForItem(TofuItems.TOFUCOOKIE, 9, 6, 6)
+                            new TradeForItem(TofuBlocks.ISHITOFU_BRICK, 12, 4, 5),
+                            new TradeForItem(TofuItems.TOFUCOOKIE, 9, 6, 5)
                     }, 3,
                     new VillagerTrades.ITrade[]{
-                            new TradeForZundaRuby(TofuItems.EDAMAME, 26, 6, 10),
-                            new TradeForItem(TofuItems.TTTBURGER, 6, 6, 12)
+                            new TradeForZundaRuby(TofuItems.EDAMAME, 26, 6, 8),
+                            new TradeForItem(TofuItems.TTTBURGER, 6, 6, 10)
                     }));
         } else if (getRole() == Roles.TOFUSMITH) {
             offers = func_221238_a(ImmutableMap.of(1,
