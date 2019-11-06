@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 public class TofuSpiderEntity extends SpiderEntity implements IRangedAttackMob {
     public TofuSpiderEntity(EntityType<? extends TofuSpiderEntity> type, World p_i48550_2_) {
         super(type, p_i48550_2_);
+        this.experienceValue = 4;
     }
 
     protected void registerGoals() {
