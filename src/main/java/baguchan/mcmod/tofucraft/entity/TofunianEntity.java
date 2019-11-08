@@ -65,7 +65,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
 
     public static Predicate<Entity> ENEMY_PREDICATE =
             input -> (input instanceof ZombieEntity || input instanceof AbstractIllagerEntity || input instanceof VexEntity || input instanceof TofuChingerEntity);
-    private boolean isAISetupFinished;
+    private boolean isAISetupFinished = false;
 
 
     public Int2ObjectMap<VillagerTrades.ITrade[]> getOfferMap() {
@@ -427,10 +427,30 @@ public class TofunianEntity extends AbstractVillagerEntity {
         this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
         this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
-        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, ZombieEntity.class, 8.0F, 1.2D, 1.25D));
-        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, AbstractIllagerEntity.class, 8.0F, 1.25D, 1.25D));
-        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, VexEntity.class, 8.0F, 1.2D, 1.2D));
-        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, TofuChingerEntity.class, 8.0F, 1.2D, 1.2D));
+        this.goalSelector.addGoal(1, new AvoidEntityGoal(this, ZombieEntity.class, 8.0F, 1.2D, 1.25D) {
+            @Override
+            public boolean shouldExecute() {
+                return !canGuard() && super.shouldExecute();
+            }
+        });
+        this.goalSelector.addGoal(1, new AvoidEntityGoal(this, AbstractIllagerEntity.class, 8.0F, 1.25D, 1.25D) {
+            @Override
+            public boolean shouldExecute() {
+                return !canGuard() && super.shouldExecute();
+            }
+        });
+        this.goalSelector.addGoal(1, new AvoidEntityGoal(this, VexEntity.class, 8.0F, 1.2D, 1.2D) {
+            @Override
+            public boolean shouldExecute() {
+                return !canGuard() && super.shouldExecute();
+            }
+        });
+        this.goalSelector.addGoal(1, new AvoidEntityGoal(this, TofuChingerEntity.class, 8.0F, 1.2D, 1.2D) {
+            @Override
+            public boolean shouldExecute() {
+                return !canGuard() && super.shouldExecute();
+            }
+        });
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setCallsForHelp());
     }
 
@@ -447,7 +467,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
             if (canGuard()) {
                 this.targetSelector.addGoal(1, new MeleeAttackGoal(this, 1.0F, true));
                 this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, MonsterEntity.class, 10, true, false, ENEMY_PREDICATE));
-                this.isAISetupFinished = false;
+                this.isAISetupFinished = true;
             }
         }
     }
