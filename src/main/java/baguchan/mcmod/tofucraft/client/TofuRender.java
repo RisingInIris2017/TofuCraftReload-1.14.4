@@ -1,9 +1,12 @@
 package baguchan.mcmod.tofucraft.client;
 
 import baguchan.mcmod.tofucraft.client.render.*;
+import baguchan.mcmod.tofucraft.client.render.tileentity.TofuChestBlockRenderer;
 import baguchan.mcmod.tofucraft.entity.*;
 import baguchan.mcmod.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.ZundaArrowEntity;
+import baguchan.mcmod.tofucraft.tileentity.TofuChestTileEntity;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class TofuRender {
@@ -20,5 +23,9 @@ public class TofuRender {
 
         RenderingRegistry.registerEntityRenderingHandler(FukumameEntity.class, FukumameRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ZundaArrowEntity.class, ZundaArrowRender::new);
+    }
+
+    public static void renderTileEntity() {
+        ClientRegistry.bindTileEntitySpecialRenderer(TofuChestTileEntity.class, new TofuChestBlockRenderer());
     }
 }

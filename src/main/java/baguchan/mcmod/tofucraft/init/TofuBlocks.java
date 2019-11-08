@@ -3,6 +3,7 @@ package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.block.*;
+import baguchan.mcmod.tofucraft.client.render.tileentity.TofuChestItemRender;
 import baguchan.mcmod.tofucraft.world.tree.TofuTree;
 import baguchan.mcmod.tofucraft.world.tree.ZundaTofuTree;
 import net.minecraft.block.*;
@@ -85,6 +86,7 @@ public class TofuBlocks {
     public static final TofuPortalBlock TOFUPORTAL = new TofuPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().harvestTool(ToolType.PICKAXE).hardnessAndResistance(-1.0F, 3000000.0F).sound(SoundType.GLASS));
     public static final Block SALTPAN = new SaltPanBlock(Block.Properties.create(Material.WOOD).tickRandomly().harvestTool(ToolType.AXE).hardnessAndResistance(1.0F).sound(SoundType.WOOD));
     public static final Block POTTED_TOFUFLOWER = new FlowerPotBlock(TOFUFLOWER, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F));
+    public static final Block TOFUCHEST = new TofuChestBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
 
 
     @SubscribeEvent
@@ -150,6 +152,7 @@ public class TofuBlocks {
         registry.getRegistry().register(TOFUPORTAL.setRegistryName("tofuportal"));
         registry.getRegistry().register(SALTPAN.setRegistryName("blocksaltpan"));
         registry.getRegistry().register(POTTED_TOFUFLOWER.setRegistryName("potted_tofuflower"));
+        registry.getRegistry().register(TOFUCHEST.setRegistryName("tofuchest"));
     }
 
     @SubscribeEvent
@@ -206,6 +209,7 @@ public class TofuBlocks {
         TofuItems.register(registry, new BlockItem(TOFUBERRY, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
 
         TofuItems.register(registry, new BlockItem(SALTPAN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        TofuItems.register(registry, new BlockItem(TOFUCHEST, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT).setTEISR(() -> TofuChestItemRender::new)));
     }
 
 }

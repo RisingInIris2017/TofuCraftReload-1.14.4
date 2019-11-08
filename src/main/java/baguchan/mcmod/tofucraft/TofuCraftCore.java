@@ -49,6 +49,7 @@ public class TofuCraftCore {
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         TofuRender.renderEntity();
+        TofuRender.renderTileEntity();
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
