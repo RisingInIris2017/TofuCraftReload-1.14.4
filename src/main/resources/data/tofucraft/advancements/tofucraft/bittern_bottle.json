@@ -1,14 +1,14 @@
 {
-  "parent": "tofucraft:tofucraft/bittern_bottle",
+  "parent": "tofucraft:tofucraft/make_saltpan",
   "display": {
     "icon": {
-      "item": "tofucraft:blocktofukinu"
+      "item": "tofucraft:bittern_bottle"
     },
     "title": {
-      "translate": "advancements.tofucraft.make_tofu.title"
+      "translate": "advancements.tofucraft.bittern_bottle.title"
     },
     "description": {
-      "translate": "advancements.tofucraft.make_tofu.description"
+      "translate": "advancements.tofucraft.bittern_bottle.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "tofukinu": {
+    "bittern_bottle": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "tofucraft:tofukinu"
+            "item": "tofucraft:bittern_bottle"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "tofukinu"
+      "bittern_bottle"
     ]
   ]
 }

@@ -3,10 +3,7 @@ package baguchan.mcmod.tofucraft.init;
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.client.render.item.TofuShieldItemRender;
 import baguchan.mcmod.tofucraft.entity.projectile.ZundaArrowEntity;
-import baguchan.mcmod.tofucraft.item.BitternItem;
-import baguchan.mcmod.tofucraft.item.TofuSlimeRadarItem;
-import baguchan.mcmod.tofucraft.item.TofuStickItem;
-import baguchan.mcmod.tofucraft.item.ZundaArrowItem;
+import baguchan.mcmod.tofucraft.item.*;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.*;
@@ -45,6 +42,8 @@ public class TofuItems {
     public static final Item SALTYMELON = new Item(new Item.Properties().food(TofuFoods.SALTYMELON).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item SEEDS_SOYBEAN = new BlockNamedItem(TofuBlocks.SOYBEAN,new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYBEAN_PARCHED = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item FUKUMAME = new FukumameItem(new Item.Properties().maxDamage(64).group(TofuItemGroup.TOFUCRAFT));
     public static final Item EDAMAME = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item EDAMAME_BOILD = new Item(new Item.Properties().food(TofuFoods.EDAMAME).group(TofuItemGroup.TOFUCRAFT));
     public static final Item SOYMILK_BUCKET = new BucketItem(TofuFluids.SOYMILK, (new Item.Properties()).containerItem(Items.BUCKET).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
@@ -116,7 +115,6 @@ public class TofuItems {
     public static final Item TOFUDIAMONDPICKAXE = new PickaxeItem(TofuItemTier.TOFUDIAMOND, 1, -2.9F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUDIAMONDSHOVEL = new ShovelItem(TofuItemTier.TOFUDIAMOND, 1.5F, -2.9F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
-
     public static final Item ZUNDAARROW = new ZundaArrowItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item TOFUISHI_SHIELD = new ShieldItem(new Item.Properties().maxDamage(160).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
@@ -163,9 +161,11 @@ public class TofuItems {
         register(registry, TTTBURGER, "tttburger");
         register(registry, SALTYMELON, "saltymelon");
         register(registry, SEEDS_SOYBEAN, "seeds_soybeans");
+        register(registry, SOYBEAN_PARCHED, "soybeans_parched");
 
         register(registry, EDAMAME, "edamame");
         register(registry, EDAMAME_BOILD, "edamame_boild");
+        register(registry, FUKUMAME, "fukumame");
 
         register(registry, SOYMILK_BUCKET, "bucketsoymilk");
         register(registry, SALT, "salt");
