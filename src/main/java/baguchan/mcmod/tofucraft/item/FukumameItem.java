@@ -23,9 +23,9 @@ public class FukumameItem extends Item {
         }
 
         worldIn.playSound((PlayerEntity) null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-        playerIn.getCooldownTracker().setCooldown(this, 20);
+        playerIn.getCooldownTracker().setCooldown(this, 12);
         if (!worldIn.isRemote) {
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 5; i++) {
                 FukumameEntity fukumamelentity = new FukumameEntity(worldIn, playerIn);
                 float d0 = (worldIn.rand.nextFloat() * 20.0F) - 10.0F;
 
