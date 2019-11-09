@@ -73,16 +73,16 @@ public class TofunianEntity extends AbstractVillagerEntity {
         if (getRole() == Roles.TOFUCOCK) {
             offers = func_221238_a(ImmutableMap.of(1,
                     new VillagerTrades.ITrade[]{
-                            new TradeForZundaRuby(TofuItems.TOFUKINU, 20, 8, 1),
-                            new TradeForZundaRuby(TofuItems.TOFUMOMEN, 30, 6, 1)
+                            new TradeForZundaRuby(TofuItems.TOFUKINU, 20, 8, 2),
+                            new TradeForZundaRuby(TofuItems.TOFUMOMEN, 30, 6, 2)
                     }, 2,
                     new VillagerTrades.ITrade[]{
-                            new TradeForItem(TofuBlocks.ISHITOFU_BRICK, 12, 4, 5),
-                            new TradeForItem(TofuItems.TOFUCOOKIE, 9, 6, 5)
+                            new TradeForItem(TofuBlocks.ISHITOFU_BRICK, 12, 4, 12),
+                            new TradeForItem(TofuItems.TOFUCOOKIE, 9, 6, 10)
                     }, 3,
                     new VillagerTrades.ITrade[]{
-                            new TradeForZundaRuby(TofuItems.EDAMAME, 26, 6, 8),
-                            new TradeForItem(TofuItems.TTTBURGER, 6, 6, 10)
+                            new TradeForZundaRuby(TofuItems.EDAMAME, 26, 6, 14),
+                            new TradeForItem(TofuItems.TTTBURGER, 6, 6, 16)
                     }));
         } else if (getRole() == Roles.TOFUSMITH) {
             offers = func_221238_a(ImmutableMap.of(1,
@@ -91,15 +91,15 @@ public class TofunianEntity extends AbstractVillagerEntity {
                             new TradeForItem(TofuItems.ARMOR_SOLIDHELMET, 1, 3, 3)
                     }, 2,
                     new VillagerTrades.ITrade[]{
-                            new TradeForZundaRuby(TofuItems.TOFUMETAL, 4, 7, 6),
-                            new TradeForHicostItem(TofuItems.ARMOR_METALBOOTS, 4, 3, 8)
+                            new TradeForZundaRuby(TofuItems.TOFUMETAL, 4, 7, 8),
+                            new TradeForHicostItem(TofuItems.ARMOR_METALBOOTS, 4, 3, 14)
                     }, 3,
                     new VillagerTrades.ITrade[]{
-                            new TradeForHicostItem(TofuItems.METALSWORD, 5, 3, 11),
-                            new TradeForHicostItem(TofuItems.METALSHOVEL, 4, 3, 10)
+                            new TradeForHicostItem(TofuItems.METALSWORD, 5, 3, 16),
+                            new TradeForHicostItem(TofuItems.METALSHOVEL, 4, 3, 16)
                     }, 4,
                     new VillagerTrades.ITrade[]{
-                            new TradeForHicostItem(TofuItems.TOFUSTICK, 4, 2, 10)
+                            new TradeForHicostItem(TofuItems.TOFUSTICK, 4, 2, 30)
                     }));
         }
 
@@ -418,6 +418,12 @@ public class TofunianEntity extends AbstractVillagerEntity {
                 return !canGuard() && super.shouldExecute();
             }
         });
+        this.targetSelector.addGoal(1, new MeleeAttackGoal(this, 1.0F, true) {
+            @Override
+            public boolean shouldExecute() {
+                return canGuard() && super.shouldExecute();
+            }
+        });
         this.goalSelector.addGoal(2, new TradeWithPlayerGoal(this));
         this.goalSelector.addGoal(2, new LookAtCustomerGoal(this));
         this.goalSelector.addGoal(4, new GoToBedGoal(this, 1.15D));
@@ -452,6 +458,13 @@ public class TofunianEntity extends AbstractVillagerEntity {
             }
         });
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setCallsForHelp());
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, MonsterEntity.class, 10, true, false, ENEMY_PREDICATE) {
+            @Override
+            public boolean shouldExecute() {
+                return canGuard() && super.shouldExecute();
+            }
+        });
+
     }
 
     protected void registerAttributes() {
@@ -463,13 +476,6 @@ public class TofunianEntity extends AbstractVillagerEntity {
     }
 
     private void updateUniqueEntityAI() {
-        if (this.isAISetupFinished) {
-            if (canGuard()) {
-                this.targetSelector.addGoal(1, new MeleeAttackGoal(this, 1.0F, true));
-                this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, MonsterEntity.class, 10, true, false, ENEMY_PREDICATE));
-                this.isAISetupFinished = true;
-            }
-        }
     }
 
     private void updateEntityEquipment() {
