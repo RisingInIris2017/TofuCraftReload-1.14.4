@@ -50,6 +50,8 @@ public class TofuItems {
 
     public static final Item SALT = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item BITTERN = new BitternItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item KOUJIBASE = new KoujiBaseItem(new Item.Properties().maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item KOUJI = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item ZUNDA = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item ZUNDAMA = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUSTICK = new TofuStickItem(new Item.Properties().rarity(Rarity.RARE).group(TofuItemGroup.TOFUCRAFT));
@@ -170,6 +172,8 @@ public class TofuItems {
         register(registry, SOYMILK_BUCKET, "bucketsoymilk");
         register(registry, SALT, "salt");
         register(registry, BITTERN, "bittern_bottle");
+        register(registry, KOUJIBASE, "koujibase");
+        register(registry, KOUJI, "kouji");
         register(registry, ZUNDA, "zunda");
         register(registry, ZUNDAMA, "zundama");
         register(registry, TOFUSTICK, "tofustick");

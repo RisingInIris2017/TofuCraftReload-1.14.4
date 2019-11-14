@@ -44,6 +44,7 @@ public class TofuEntitys {
         event.getRegistry().register(GRILLDER.setRegistryName("grillder"));
         event.getRegistry().register(TOFUSPIDER.setRegistryName("tofuspider"));
 
+        event.getRegistry().register(TOFUTURRET.setRegistryName("tofuturret"));
         event.getRegistry().register(FUKUMAME.setRegistryName("fukumame"));
         event.getRegistry().register(ZUNDAARROW.setRegistryName("zunda_arrow"));
 

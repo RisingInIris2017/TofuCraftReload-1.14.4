@@ -78,7 +78,8 @@ public class TofunianEntity extends AbstractVillagerEntity {
                     }, 2,
                     new VillagerTrades.ITrade[]{
                             new TradeForItem(TofuBlocks.ISHITOFU_BRICK, 12, 4, 12),
-                            new TradeForItem(TofuItems.TOFUCOOKIE, 9, 6, 10)
+                            new TradeForItem(TofuItems.TOFUCOOKIE, 9, 6, 10),
+                            new TradeForZundaRuby(TofuBlocks.TOFUBERRY, 16, 6, 14)
                     }, 3,
                     new VillagerTrades.ITrade[]{
                             new TradeForZundaRuby(TofuItems.EDAMAME, 26, 6, 14),
