@@ -83,7 +83,7 @@ public class WheatBowlBlock extends Block {
         if (stat == Stat.KOUJIBASE) {
             float f = this.calcWarmth(worldIn, pos);
 
-            if (f > 0.0F && random.nextInt((int) (25.0F / f) + 1) == 0) {
+            if (f > 0.0F && random.nextInt((int) (27.0F / f) + 1) == 0) {
                 worldIn.setBlockState(pos, state.with(STAT, Stat.KOUJI), 2);
             }
         }
