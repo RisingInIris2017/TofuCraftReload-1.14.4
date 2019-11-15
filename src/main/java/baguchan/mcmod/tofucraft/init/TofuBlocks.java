@@ -91,6 +91,8 @@ public class TofuBlocks {
     public static final Block POTTED_TOFUFLOWER = new FlowerPotBlock(TOFUFLOWER, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F));
     public static final Block TOFUCHEST = new TofuChestBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
     public static final Block WHEAT_BOWL = new WheatBowlBlock(Block.Properties.create(Material.ORGANIC).hardnessAndResistance(0.5F, 1.0F).tickRandomly().sound(SoundType.PLANT));
+    //Barrel
+    public static final Block BARREL_MISO = new MisoBarrelBlock(Block.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(0.5F, 2.0F).tickRandomly().sound(SoundType.WOOD));
 
 
     @SubscribeEvent
@@ -160,6 +162,8 @@ public class TofuBlocks {
         registry.getRegistry().register(POTTED_TOFUFLOWER.setRegistryName("potted_tofuflower"));
         registry.getRegistry().register(TOFUCHEST.setRegistryName("tofuchest"));
         registry.getRegistry().register(WHEAT_BOWL.setRegistryName("wheat_bowl"));
+        //Barrel
+        registry.getRegistry().register(BARREL_MISO.setRegistryName("barrelmiso"));
     }
 
     @SubscribeEvent
@@ -218,6 +222,8 @@ public class TofuBlocks {
         TofuItems.register(registry, new BlockItem(SALTPAN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFUCHEST, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT).setTEISR(() -> TofuChestItemRender::new)));
         TofuItems.register(registry, new BlockItem(WHEAT_BOWL, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+
+        TofuItems.register(registry, new BlockItem(BARREL_MISO, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
     }
 
 }
