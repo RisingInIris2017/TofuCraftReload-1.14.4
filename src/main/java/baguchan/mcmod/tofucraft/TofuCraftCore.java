@@ -68,6 +68,9 @@ public class TofuCraftCore {
                 if (Math.random() <= 0.025) {
                     event.getWorld().addEntity(new ItemEntity((World) event.getWorld(), event.getPos().getX(),
                             event.getPos().getY(), event.getPos().getZ(), new ItemStack(TofuItems.SEEDS_SOYBEAN)));
+                } else if (Math.random() <= 0.025) {
+                    event.getWorld().addEntity(new ItemEntity((World) event.getWorld(), event.getPos().getX(),
+                            event.getPos().getY(), event.getPos().getZ(), new ItemStack(TofuItems.SEEDS_RICE)));
                 }
 
             }

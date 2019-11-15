@@ -22,6 +22,9 @@ public class TofuBlocks {
 
     public static final Block SOYMILK = new TofuFluidBlock(TofuFluids.SOYMILK, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops());
     public static final Block SOYBEAN = new SoyBeanCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
+    public static final Block RICE = new RiceCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
+    public static final Block RICE_ROOT = new RiceRootBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
+
     public static final Block KINUTOFU = new TofuBlock(Block.Properties.create(TofuMaterial.TOFU).tickRandomly().harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.1F, 0.2F).sound(SoundType.SNOW));
     public static final Block MOMENTOFU = new TofuBlock(Block.Properties.create(TofuMaterial.TOFU).tickRandomly().harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.35F, 0.5F).sound(SoundType.SNOW));
     public static final Block ISHITOFU = new TofuBlock(Block.Properties.create(Material.ROCK).tickRandomly().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
@@ -95,6 +98,8 @@ public class TofuBlocks {
         //Terrain
         registry.getRegistry().register(SOYMILK.setRegistryName("soymilk"));
         registry.getRegistry().register(SOYBEAN.setRegistryName("soybean"));
+        registry.getRegistry().register(RICE.setRegistryName("rice"));
+        registry.getRegistry().register(RICE_ROOT.setRegistryName("rice_root"));
         registry.getRegistry().register(KINUTOFU.setRegistryName("blocktofukinu"));
         registry.getRegistry().register(MOMENTOFU.setRegistryName("blocktofumomen"));
         registry.getRegistry().register(ISHITOFU.setRegistryName("blocktofuishi"));

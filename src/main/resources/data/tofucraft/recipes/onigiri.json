@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " R ",
+    "RRR"
+  ],
+  "key": {
+    "R": {
+      "item": "tofucraft:rice"
+    }
+  },
+  "result": {
+    "item": "tofucraft:onigiri"
+  }
+}

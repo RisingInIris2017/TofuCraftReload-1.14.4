@@ -46,6 +46,10 @@ public class TofuItems {
     public static final Item FUKUMAME = new FukumameItem(new Item.Properties().maxDamage(64).group(TofuItemGroup.TOFUCRAFT));
     public static final Item EDAMAME = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item EDAMAME_BOILD = new Item(new Item.Properties().food(TofuFoods.EDAMAME).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item RICE = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SEEDS_RICE = new BlockRiceItem(TofuBlocks.RICE, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ONIGIRI = new Item(new Item.Properties().food(TofuFoods.RICEBALL).group(TofuItemGroup.TOFUCRAFT));
+
     public static final Item SOYMILK_BUCKET = new BucketItem(TofuFluids.SOYMILK, (new Item.Properties()).containerItem(Items.BUCKET).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item SALT = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -168,6 +172,10 @@ public class TofuItems {
         register(registry, EDAMAME, "edamame");
         register(registry, EDAMAME_BOILD, "edamame_boild");
         register(registry, FUKUMAME, "fukumame");
+
+        register(registry, RICE, "rice");
+        register(registry, SEEDS_RICE, "seeds_rice");
+        register(registry, ONIGIRI, "onigiri");
 
         register(registry, SOYMILK_BUCKET, "bucketsoymilk");
         register(registry, SALT, "salt");
