@@ -6,6 +6,8 @@ import baguchan.mcmod.tofucraft.entity.TofuTurretEntity;
 import baguchan.mcmod.tofucraft.init.TofuEntitys;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
@@ -91,6 +93,7 @@ public class TofuCastlePieces {
                 TofuMindEntity entitymind = TofuEntitys.TOFUMIND.create(world.getWorld());
                 entitymind.enablePersistence();
                 entitymind.moveToBlockPosAndAngles(pos, 0.0F, 0.0F);
+                entitymind.onInitialSpawn(world, world.getDifficultyForLocation(new BlockPos(entitymind)), SpawnReason.STRUCTURE, (ILivingEntityData) null, (CompoundNBT) null);
                 world.addEntity(entitymind);
                 world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
             }
