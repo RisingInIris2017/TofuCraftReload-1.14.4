@@ -1,4 +1,4 @@
-package baguchan.mcmod.tofucraft.world.biome.gen.feature.config;
+package baguchan.mcmod.tofucraft.world.gen.feature.config;
 
 import com.google.common.collect.ImmutableMap;
 import com.mojang.datafixers.Dynamic;

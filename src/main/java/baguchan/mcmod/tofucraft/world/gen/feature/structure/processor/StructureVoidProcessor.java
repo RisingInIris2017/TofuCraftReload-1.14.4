@@ -1,4 +1,4 @@
-package baguchan.mcmod.tofucraft.world.biome.gen.feature.structure.processor;
+package baguchan.mcmod.tofucraft.world.gen.feature.structure.processor;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import com.mojang.datafixers.Dynamic;

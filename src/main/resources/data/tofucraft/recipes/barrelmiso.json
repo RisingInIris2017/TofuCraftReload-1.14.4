@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "KKK",
+    " B "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:barrel"
+    },
+    "K": {
+      "item": "tofucraft:kouji"
+    },
+    "S": {
+      "item": "tofucraft:salt"
+    }
+  },
+  "result": {
+    "item": "tofucraft:barrelmiso"
+  }
+}

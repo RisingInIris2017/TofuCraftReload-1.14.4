@@ -2,6 +2,7 @@ package baguchan.mcmod.tofucraft.client.render;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.client.model.TofuTurretModel;
+import baguchan.mcmod.tofucraft.client.render.layer.GlowLayer;
 import baguchan.mcmod.tofucraft.entity.TofuTurretEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -14,7 +15,8 @@ public class TofuTurretRender extends MobRenderer<TofuTurretEntity, TofuTurretMo
     private static final ResourceLocation TEXTURES = new ResourceLocation(TofuCraftCore.MODID, "textures/mob/tofuturret/tofuturret.png");
 
     public TofuTurretRender(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new TofuTurretModel<>(), 0.5F);
+        super(renderManagerIn, new TofuTurretModel<>(), 0.45F);
+        this.addLayer(new GlowLayer<>(this, new ResourceLocation(TofuCraftCore.MODID, "textures/mob/tofuturret/tofuturret_eye.png")));
     }
 
     protected ResourceLocation getEntityTexture(TofuTurretEntity entity) {

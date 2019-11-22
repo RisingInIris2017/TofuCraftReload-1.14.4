@@ -2,7 +2,7 @@ package baguchan.mcmod.tofucraft.world.biome;
 
 import baguchan.mcmod.tofucraft.init.TofuFeatures;
 import baguchan.mcmod.tofucraft.init.TofuSurfaceBuilder;
-import baguchan.mcmod.tofucraft.world.biome.gen.DefaultTofuBiomeFeature;
+import baguchan.mcmod.tofucraft.world.gen.DefaultTofuBiomeFeature;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;

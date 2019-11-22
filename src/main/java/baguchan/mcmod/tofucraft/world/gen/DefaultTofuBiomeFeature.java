@@ -1,9 +1,9 @@
-package baguchan.mcmod.tofucraft.world.biome.gen;
+package baguchan.mcmod.tofucraft.world.gen;
 
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.init.TofuCaver;
 import baguchan.mcmod.tofucraft.init.TofuFeatures;
-import baguchan.mcmod.tofucraft.world.biome.gen.feature.config.TofuOreConfig;
+import baguchan.mcmod.tofucraft.world.gen.feature.config.TofuOreConfig;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.WorldCarver;
@@ -14,6 +14,8 @@ import net.minecraft.world.gen.placement.*;
 public class DefaultTofuBiomeFeature {
     public static void addStructure(Biome biome) {
         biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(TofuFeatures.TOFUVILLAGE, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
+        biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(TofuFeatures.TOFUCASTLE, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
+
     }
 
     public static void addCarvers(Biome biomeIn) {

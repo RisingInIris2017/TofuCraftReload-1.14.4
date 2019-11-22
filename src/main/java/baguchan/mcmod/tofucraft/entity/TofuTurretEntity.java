@@ -1,13 +1,16 @@
 package baguchan.mcmod.tofucraft.entity;
 
 import baguchan.mcmod.tofucraft.entity.ai.RangedStrafeAttackGoal;
+import baguchan.mcmod.tofucraft.entity.movement.FlyingStrafeMovementController;
+import baguchan.mcmod.tofucraft.entity.projectile.BeamEntity;
+import baguchan.mcmod.tofucraft.init.TofuCreatureAttribute;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.pathfinding.FlyingPathNavigator;
+import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -18,17 +21,37 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
 
     public TofuTurretEntity(EntityType<? extends TofuTurretEntity> p_i48553_1_, World p_i48553_2_) {
         super(p_i48553_1_, p_i48553_2_);
+        this.moveController = new FlyingStrafeMovementController(this);
     }
 
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new RangedStrafeAttackGoal<>(this, 0.95D, 65, 20F));
-        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, false));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.8D));
+        this.goalSelector.addGoal(2, new RangedStrafeAttackGoal<>(this, 1.0D, 65, 20F));
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomFlyingGoal(this, 0.95D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setCallsForHelp());
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+
+    }
+
+    protected void registerAttributes() {
+        super.registerAttributes();
+        this.getAttributes().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
+        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
+        this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(4.0D);
+        this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
+        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.5D);
+        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.265F);
+    }
+
+    @Override
+    protected PathNavigator createNavigator(World worldIn) {
+        FlyingPathNavigator flyingpathnavigator = new FlyingPathNavigator(this, worldIn);
+        flyingpathnavigator.setCanOpenDoors(false);
+        flyingpathnavigator.setCanSwim(true);
+        flyingpathnavigator.setCanEnterDoors(true);
+        return flyingpathnavigator;
     }
 
     @Override
@@ -45,14 +68,14 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
             getMotion().add(0d, (0.3 - getMotion().y) * 0.3, 0d);
 
             this.isAirBorne = true;
-        } else {
-
-            Vec3d vec3d = this.getMotion();
-            if (!this.onGround && vec3d.y < 0.0D) {
-                this.setMotion(vec3d.mul(1.0D, 0.6D, 1.0D));
-            }
-
         }
+
+        Vec3d vec3d = this.getMotion();
+        if (!this.onGround && vec3d.y < 0.0D) {
+            this.setMotion(vec3d.mul(1.0D, 0.6D, 1.0D));
+        }
+
+
         super.updateAITasks();
     }
 
@@ -75,7 +98,32 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
     }
 
     @Override
-    public void attackEntityWithRangedAttack(LivingEntity livingEntity, float v) {
+    public float getEyeHeight(Pose p_213307_1_) {
+        return this.getHeight() * 0.55F;
+    }
 
+    @Override
+    public void attackEntityWithRangedAttack(LivingEntity livingEntity, float v) {
+        double d1 = livingEntity.posX - this.posX;
+        double d2 = livingEntity.getBoundingBox().minY + (double) (livingEntity.getHeight() / 2.0F) - (this.posY + (double) (this.getHeight() / 2.0F));
+        double d3 = livingEntity.posZ - this.posZ;
+        float f = 0.075F;
+        BeamEntity smallfireballentity = new BeamEntity(this.world, this, d1 + this.getRNG().nextGaussian() * (double) f - this.getRNG().nextGaussian() * (double) f, d2, d3 + this.getRNG().nextGaussian() * (double) f - this.getRNG().nextGaussian() * (double) f);
+        smallfireballentity.posY = this.posY + (double) (this.getHeight() / 2.0F);
+        this.world.addEntity(smallfireballentity);
+    }
+
+    public boolean isOnSameTeam(Entity entityIn) {
+        if (super.isOnSameTeam(entityIn)) {
+            return true;
+        } else if (entityIn instanceof LivingEntity && ((LivingEntity) entityIn).getCreatureAttribute() == TofuCreatureAttribute.TOFUGUARIAN) {
+            return this.getTeam() == null && entityIn.getTeam() == null;
+        } else {
+            return false;
+        }
+    }
+
+    public CreatureAttribute getCreatureAttribute() {
+        return TofuCreatureAttribute.TOFUGUARIAN;
     }
 }

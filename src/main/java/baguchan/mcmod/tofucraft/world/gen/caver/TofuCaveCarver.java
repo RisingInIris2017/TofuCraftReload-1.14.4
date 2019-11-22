@@ -1,4 +1,4 @@
-package baguchan.mcmod.tofucraft.world.biome.gen.caver;
+package baguchan.mcmod.tofucraft.world.gen.caver;
 
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.world.dimension.TofuWorldChunkGenerator;

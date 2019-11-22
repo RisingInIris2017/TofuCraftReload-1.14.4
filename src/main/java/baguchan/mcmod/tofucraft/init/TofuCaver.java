@@ -1,7 +1,7 @@
 package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
-import baguchan.mcmod.tofucraft.world.biome.gen.caver.TofuCaveCarver;
+import baguchan.mcmod.tofucraft.world.gen.caver.TofuCaveCarver;
 import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 import net.minecraftforge.event.RegistryEvent;

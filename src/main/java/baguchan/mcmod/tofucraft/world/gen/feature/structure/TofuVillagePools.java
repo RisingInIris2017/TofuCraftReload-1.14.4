@@ -1,7 +1,7 @@
-package baguchan.mcmod.tofucraft.world.biome.gen.feature.structure;
+package baguchan.mcmod.tofucraft.world.gen.feature.structure;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
-import baguchan.mcmod.tofucraft.world.biome.gen.feature.structure.processor.StructureVoidProcessor;
+import baguchan.mcmod.tofucraft.world.gen.feature.structure.processor.StructureVoidProcessor;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.util.ResourceLocation;

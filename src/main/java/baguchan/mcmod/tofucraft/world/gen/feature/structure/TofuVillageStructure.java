@@ -1,4 +1,4 @@
-package baguchan.mcmod.tofucraft.world.biome.gen.feature.structure;
+package baguchan.mcmod.tofucraft.world.gen.feature.structure;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.init.TofuFeatures;

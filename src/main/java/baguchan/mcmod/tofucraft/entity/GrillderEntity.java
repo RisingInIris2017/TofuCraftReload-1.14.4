@@ -76,7 +76,7 @@ public class GrillderEntity extends AnimalEntity implements IFlyingAnimal {
         super.registerAttributes();
         this.getAttributes().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.8D);
+        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.5D);
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.24F);
     }
 

@@ -419,7 +419,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
                 return !canGuard() && super.shouldExecute();
             }
         });
-        this.targetSelector.addGoal(1, new MeleeAttackGoal(this, 1.0F, true) {
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0F, true) {
             @Override
             public boolean shouldExecute() {
                 return canGuard() && super.shouldExecute();
@@ -427,11 +427,11 @@ public class TofunianEntity extends AbstractVillagerEntity {
         });
         this.goalSelector.addGoal(2, new TradeWithPlayerGoal(this));
         this.goalSelector.addGoal(2, new LookAtCustomerGoal(this));
-        this.goalSelector.addGoal(4, new GoToBedGoal(this, 1.15D));
+        this.goalSelector.addGoal(4, new GoToBedGoal(this, 1.1D));
         this.goalSelector.addGoal(5, new MoveToHomeGoal(this, 20D, 1.15D));
-        this.goalSelector.addGoal(6, new InterestJobBlockGoal(this, 1.15D));
-        this.goalSelector.addGoal(6, new RestockTradeGoal(this, 1.15D));
-        this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(6, new InterestJobBlockGoal(this, 1.05D));
+        this.goalSelector.addGoal(6, new RestockTradeGoal(this, 1.05D));
+        this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.9D));
         this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
         this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
         this.goalSelector.addGoal(1, new AvoidEntityGoal(this, ZombieEntity.class, 8.0F, 1.2D, 1.25D) {
@@ -603,15 +603,6 @@ public class TofunianEntity extends AbstractVillagerEntity {
         return TofuSounds.TOFUNIAN_AMBIENT;
     }
 
-    @Override
-    protected SoundEvent getDeathSound() {
-        return null;
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return null;
-    }
 
     protected SoundEvent func_213721_r(boolean p_213721_1_) {
         return p_213721_1_ ? TofuSounds.TOFUNIAN_YES : null;
@@ -718,7 +709,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
         @Override
         public boolean shouldContinueExecuting() {
             BlockPos blockpos = this.tofunian.getTofunainHome();
-            return blockpos != null && this.func_220846_a(blockpos, this.distance * 0.65F);
+            return blockpos != null && this.func_220846_a(blockpos, this.distance * 0.75F);
         }
 
 

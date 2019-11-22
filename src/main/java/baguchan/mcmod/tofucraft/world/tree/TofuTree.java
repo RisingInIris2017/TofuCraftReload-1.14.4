@@ -1,6 +1,6 @@
 package baguchan.mcmod.tofucraft.world.tree;
 
-import baguchan.mcmod.tofucraft.world.biome.gen.feature.TofuTreeFeature;
+import baguchan.mcmod.tofucraft.world.gen.feature.TofuTreeFeature;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;

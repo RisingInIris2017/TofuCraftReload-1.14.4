@@ -1,4 +1,4 @@
-package baguchan.mcmod.tofucraft.world.biome.gen.feature;
+package baguchan.mcmod.tofucraft.world.gen.feature;
 
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import com.mojang.datafixers.Dynamic;

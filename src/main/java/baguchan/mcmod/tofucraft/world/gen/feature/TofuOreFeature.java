@@ -1,7 +1,7 @@
-package baguchan.mcmod.tofucraft.world.biome.gen.feature;
+package baguchan.mcmod.tofucraft.world.gen.feature;
 
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
-import baguchan.mcmod.tofucraft.world.biome.gen.feature.config.TofuOreConfig;
+import baguchan.mcmod.tofucraft.world.gen.feature.config.TofuOreConfig;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;

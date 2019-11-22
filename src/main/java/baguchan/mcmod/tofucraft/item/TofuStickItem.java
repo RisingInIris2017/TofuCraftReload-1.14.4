@@ -2,8 +2,12 @@ package baguchan.mcmod.tofucraft.item;
 
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
+import net.minecraft.item.Rarity;
 import net.minecraft.util.ActionResultType;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class TofuStickItem extends Item {
     public TofuStickItem(Properties group) {
@@ -22,5 +26,18 @@ public class TofuStickItem extends Item {
             }
         }
         return super.onItemUse(context);
+    }
+
+    public Rarity getRarity(ItemStack stack) {
+        return Rarity.RARE;
+    }
+
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public boolean hasEffect(ItemStack stack) {
+
+        return true;
+
     }
 }
