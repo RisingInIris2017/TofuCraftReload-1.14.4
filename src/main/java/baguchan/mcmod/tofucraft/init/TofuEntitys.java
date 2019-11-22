@@ -75,7 +75,7 @@ public class TofuEntitys {
         for (Biome biome : ForgeRegistries.BIOMES) {
 
             if (!TofuBiomes.tofubiome.contains(biome)) {
-                biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(TOFUSLIME, 120, 2, 3));
+                biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(TOFUSLIME, 80, 2, 3));
             }
         }
 
