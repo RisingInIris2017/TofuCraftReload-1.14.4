@@ -88,6 +88,7 @@
   "item.tofucraft.zunda_arrow": "ずんだアロー",
   "item.tofucraft.tofuishi_shield": "石豆腐のシールド",
   "item.tofucraft.tofumetal_shield": "鋼豆腐のシールド",
+  "item.tofucraft.tofuforce_core": "トーフフォースコア",
   "block.tofucraft.rice": "米",
   "block.tofucraft.rice_root": "米の根っこ",
   "block.tofucraft.blocktofukinu": "絹豆腐ブロック",
@@ -167,6 +168,10 @@
   "advancements.tofucraft.tofustick.description": "トーフステッキを手に入れる",
   "advancements.tofucraft.tofuworld.title": "トーフワールド！",
   "advancements.tofucraft.tofuworld.description": "トーフワールドに入る",
+  "advancements.tofucraft.tofucastle.description": "トーフニアンの歴史に触れる",
+  "advancements.tofucraft.tofucastle.title": "厄災となったトーフガンドレムの封印されたコアを探そう",
+  "advancements.tofucraft.tofugandlem.description": "トーフフォースメカ",
+  "advancements.tofucraft.tofugandlem.title": "トーフガンドレムを倒す",
 
   "tofucraft.radar.result.success": "豆腐スライムチャンクが見つかりました",
   "tofucraft.radar.result.failed": "豆腐スライムチャンクが見つかりませんでした"

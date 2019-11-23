@@ -93,6 +93,8 @@ public class TofuBlocks {
     public static final Block WHEAT_BOWL = new WheatBowlBlock(Block.Properties.create(Material.ORGANIC).hardnessAndResistance(0.5F, 1.0F).tickRandomly().sound(SoundType.PLANT));
     //Barrel
     public static final Block BARREL_MISO = new MisoBarrelBlock(Block.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(0.5F, 2.0F).tickRandomly().sound(SoundType.WOOD));
+    //Misc
+    public static final Block TOFUGANDLEM_CORE = new TofuGandlemCoreBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(10000.0F).tickRandomly().sound(SoundType.STONE));
 
 
     @SubscribeEvent
@@ -164,6 +166,8 @@ public class TofuBlocks {
         registry.getRegistry().register(WHEAT_BOWL.setRegistryName("wheat_bowl"));
         //Barrel
         registry.getRegistry().register(BARREL_MISO.setRegistryName("barrelmiso"));
+
+        registry.getRegistry().register(TOFUGANDLEM_CORE.setRegistryName("tofugandlem_core"));
     }
 
     @SubscribeEvent

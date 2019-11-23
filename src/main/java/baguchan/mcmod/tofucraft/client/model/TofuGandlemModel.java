@@ -4,6 +4,7 @@ import baguchan.mcmod.tofucraft.entity.TofuGandlemEntity;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
+import net.minecraft.util.HandSide;
 import net.minecraft.util.math.MathHelper;
 
 public class TofuGandlemModel<T extends TofuGandlemEntity> extends EntityModel<T> {
@@ -79,6 +80,52 @@ public class TofuGandlemModel<T extends TofuGandlemEntity> extends EntityModel<T
         this.handL.rotateAngleZ = 0.0F;
 
         float f = ageInTicks - (float) entityIn.ticksExisted;
+
+        float f1 = entityIn.getAttackingAnimationScale(f);
+        f1 = f1 * f1;
+
+        float f2 = entityIn.getSpellCastingAnimationScale(f);
+        f2 = f2 * f2;
+
+        float f3 = entityIn.getSoyShotAnimationScale(f);
+        f3 = f3 * f3;
+
+
+        if (f2 > 0) {
+            this.handR.rotateAngleX = (MathHelper.cos(ageInTicks * 0.6662F) * 0.2F) * f2;
+            this.handL.rotateAngleX = (MathHelper.cos(ageInTicks * 0.6662F) * 0.2F) * f2;
+            this.handR.rotateAngleZ = 2.3561945F * f2;
+            this.handL.rotateAngleZ = -2.3561945F * f2;
+            this.handR.rotateAngleY = 0.0F;
+            this.handL.rotateAngleY = 0.0F;
+            this.handR2.rotateAngleX = 0.0F;
+            this.handL2.rotateAngleX = 0.0F;
+        } else if (f3 > 0) {
+
+            if (entityIn.getPrimaryHand() == HandSide.RIGHT) {
+                this.handR2.rotateAngleX = -0.6F + MathHelper.cos(ageInTicks * 0.04F) * 0.15F;
+                this.handR.rotateAngleX = -1.2F + MathHelper.cos(ageInTicks * 0.04F) * 0.15F;
+            } else {
+                this.handL2.rotateAngleX = -0.6F + MathHelper.cos(ageInTicks * 0.04F) * 0.15F;
+                this.handL.rotateAngleX = -1.2F + MathHelper.cos(ageInTicks * 0.04F) * 0.15F;
+            }
+        } else if (f1 > 0) {
+            this.handR.rotateAngleZ = 0.0F;
+            this.handL.rotateAngleZ = 0.0F;
+            this.handR.rotateAngleY = 0.15707964F * f1;
+            this.handL.rotateAngleY = -0.15707964F * f1;
+
+            if (entityIn.getPrimaryHand() == HandSide.RIGHT) {
+                this.handR.rotateAngleX = -1.6F + MathHelper.cos(ageInTicks * 0.04F) * 0.15F;
+            } else {
+                this.handL.rotateAngleX = -1.6F + MathHelper.cos(ageInTicks * 0.04F) * 0.15F;
+            }
+
+            this.handR.rotateAngleZ += (MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F) * f1;
+            this.handL.rotateAngleZ -= (MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F) * f1;
+            this.handR.rotateAngleX += (MathHelper.cos(ageInTicks * 0.09F) * 0.05F) * f1;
+            this.handL.rotateAngleX -= (MathHelper.cos(ageInTicks * 0.09F) * 0.05F) * f1;
+        }
     }
 
     @Override

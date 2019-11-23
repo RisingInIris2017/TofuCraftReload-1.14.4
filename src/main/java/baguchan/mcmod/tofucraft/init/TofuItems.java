@@ -133,6 +133,8 @@ public class TofuItems {
     public static final Item TOFUISHI_SHIELD = new ShieldItem(new Item.Properties().maxDamage(160).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUMETAL_SHIELD = new ShieldItem(new Item.Properties().maxDamage(360).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
 
+    public static final Item TOFUFORCE_CORE = new TofuForceCoreItem(new Item.Properties().maxDamage(340).group(TofuItemGroup.TOFUCRAFT));
+
 
 
     public static void register(RegistryEvent.Register<Item> registry, Item item, String id) {
@@ -254,6 +256,7 @@ public class TofuItems {
 
         register(registry, TOFUISHI_SHIELD, "tofuishi_shield");
         register(registry, TOFUMETAL_SHIELD, "tofumetal_shield");
+        register(registry, TOFUFORCE_CORE, "tofuforce_core");
 
         ComposterBlock.CHANCES.put(SEEDS_SOYBEAN, 0.3F);
         ComposterBlock.CHANCES.put(EDAMAME, 0.35F);

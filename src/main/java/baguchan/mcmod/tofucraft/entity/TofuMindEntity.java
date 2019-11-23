@@ -5,7 +5,7 @@ import baguchan.mcmod.tofucraft.init.TofuItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
+import net.minecraft.entity.monster.AbstractIllagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -32,7 +32,7 @@ public class TofuMindEntity extends MonsterEntity {
         this.goalSelector.addGoal(8, new LookAtGoal(this, MobEntity.class, 8.0F));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setCallsForHelp());
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, false));
     }
 
     protected void registerAttributes() {

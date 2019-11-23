@@ -34,11 +34,9 @@ public class TofuPortalBlock extends Block {
 
     private static final VoxelShape NULL = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
 
-
     public TofuPortalBlock(Properties properties) {
         super(properties);
     }
-
 
     public boolean trySpawnPortal(World worldIn, BlockPos pos) {
 

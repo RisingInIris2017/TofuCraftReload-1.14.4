@@ -32,12 +32,9 @@ public class TofuStickItem extends Item {
         return Rarity.RARE;
     }
 
-
     @Override
     @OnlyIn(Dist.CLIENT)
     public boolean hasEffect(ItemStack stack) {
-
         return true;
-
     }
 }
