@@ -22,6 +22,7 @@ public class TofuRender {
         RenderingRegistry.registerEntityRenderingHandler(TofuSpiderEntity.class, TofuSpiderRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuTurretEntity.class, TofuTurretRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuMindEntity.class, TofuMindRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuGandlemEntity.class, TofuGandlemRender::new);
         RenderingRegistry.registerEntityRenderingHandler(SesamenianEntity.class, SesamenianRender::new);
 
 

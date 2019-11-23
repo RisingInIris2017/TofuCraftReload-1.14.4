@@ -9,37 +9,27 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.BossInfo;
-import net.minecraft.world.ServerBossInfo;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
-
-public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob {
+public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob {
     private float heightOffset = 0.5f;
     private int heightOffsetUpdateTime;
 
-    private final ServerBossInfo bossInfo = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS));
-
-
-    public TofuTurretEntity(EntityType<? extends TofuTurretEntity> p_i48553_1_, World p_i48553_2_) {
-        super(p_i48553_1_, p_i48553_2_);
+    public TofuGandlemEntity(EntityType<? extends TofuGandlemEntity> type, World p_i48553_2_) {
+        super(type, p_i48553_2_);
         this.moveController = new FlyingStrafeMovementController(this);
     }
 
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new RangedStrafeAttackGoal<>(this, 1.0D, 65, 20F));
+        this.goalSelector.addGoal(2, new RangedStrafeAttackGoal<>(this, 0.95D, 65, 20F));
         this.goalSelector.addGoal(4, new WaterAvoidingRandomFlyingGoal(this, 0.95D));
-        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(10, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setCallsForHelp());
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
 
@@ -48,11 +38,11 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
     protected void registerAttributes() {
         super.registerAttributes();
         this.getAttributes().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
-        this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(4.0D);
-        this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
-        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.5D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.265F);
+        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(300.0D);
+        this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(6.0D);
+        this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40.0D);
+        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.65D);
+        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.26F);
     }
 
     @Override
@@ -62,19 +52,6 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
         flyingpathnavigator.setCanSwim(true);
         flyingpathnavigator.setCanEnterDoors(true);
         return flyingpathnavigator;
-    }
-
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
-        if (this.hasCustomName()) {
-            this.bossInfo.setName(this.getDisplayName());
-        }
-
-    }
-
-    public void setCustomName(@Nullable ITextComponent name) {
-        super.setCustomName(name);
-        this.bossInfo.setName(this.getDisplayName());
     }
 
     @Override
@@ -99,8 +76,6 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
 
 
         super.updateAITasks();
-
-        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
     }
 
     @Override
@@ -129,11 +104,11 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
     @Override
     public void attackEntityWithRangedAttack(LivingEntity livingEntity, float v) {
         double d1 = livingEntity.posX - this.posX;
-        double d2 = livingEntity.getBoundingBox().minY + (double) (livingEntity.getHeight() / 2.0F) - (this.posY + (double) (this.getHeight() / 2.0F));
+        double d2 = livingEntity.getBoundingBox().minY + (double) (livingEntity.getHeight() / 2.0F) - (this.posY + (double) (this.getEyeHeight()));
         double d3 = livingEntity.posZ - this.posZ;
         float f = 0.075F;
         BeamEntity smallfireballentity = new BeamEntity(this.world, this, d1 + this.getRNG().nextGaussian() * (double) f - this.getRNG().nextGaussian() * (double) f, d2, d3 + this.getRNG().nextGaussian() * (double) f - this.getRNG().nextGaussian() * (double) f);
-        smallfireballentity.posY = this.posY + (double) (this.getHeight() / 2.0F);
+        smallfireballentity.posY = this.posY + (double) (this.getEyeHeight());
         this.world.addEntity(smallfireballentity);
     }
 
@@ -145,20 +120,6 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
         } else {
             return false;
         }
-    }
-
-    public void addTrackingPlayer(ServerPlayerEntity player) {
-        super.addTrackingPlayer(player);
-        this.bossInfo.addPlayer(player);
-    }
-
-    /**
-     * Removes the given player from the list of players tracking this entity. See {@link Entity#addTrackingPlayer} for
-     * more information on tracking.
-     */
-    public void removeTrackingPlayer(ServerPlayerEntity player) {
-        super.removeTrackingPlayer(player);
-        this.bossInfo.removePlayer(player);
     }
 
     public CreatureAttribute getCreatureAttribute() {

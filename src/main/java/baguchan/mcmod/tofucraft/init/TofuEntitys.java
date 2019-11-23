@@ -32,6 +32,7 @@ public class TofuEntitys {
 
     public static final EntityType<TofuTurretEntity> TOFUTURRET = EntityType.Builder.create(TofuTurretEntity::new, TOFU_MONSTER).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.5F).build(prefix("tofuturret"));
     public static final EntityType<TofuMindEntity> TOFUMIND = EntityType.Builder.create(TofuMindEntity::new, TOFU_MONSTER).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(0.6F, 1.6F).build(prefix("tofumind"));
+    public static final EntityType<TofuGandlemEntity> TOFUGANDLEM = EntityType.Builder.create(TofuGandlemEntity::new, TOFU_MONSTER).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(0.6F, 2.05F).build(prefix("tofugandlem"));
 
 
     public static final EntityType<SesamenianEntity> SESAMENIAN = EntityType.Builder.create(SesamenianEntity::new, TOFU_MONSTER).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(0.6F, 1.2F).build(prefix("sesamenian"));
@@ -53,12 +54,16 @@ public class TofuEntitys {
 
         event.getRegistry().register(TOFUTURRET.setRegistryName("tofuturret"));
         event.getRegistry().register(TOFUMIND.setRegistryName("tofumind"));
+        event.getRegistry().register(TOFUGANDLEM.setRegistryName("tofugandlem"));
 
         event.getRegistry().register(SESAMENIAN.setRegistryName("sesamenian"));
 
         event.getRegistry().register(FUKUMAME.setRegistryName("fukumame"));
         event.getRegistry().register(ZUNDAARROW.setRegistryName("zunda_arrow"));
         event.getRegistry().register(BEAM.setRegistryName("beam"));
+
+        EntitySpawnPlacementRegistry.register(TOFUCOW, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TofuAnimalEntity::spawnHandle);
+        EntitySpawnPlacementRegistry.register(GRILLDER, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TofuAnimalEntity::spawnHandle);
 
         EntitySpawnPlacementRegistry.register(TOFUSLIME, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TofuSlimeEntity::spawnHandle);
         EntitySpawnPlacementRegistry.register(TOFUCHINGER, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TofuChingerEntity::spawnHandle);

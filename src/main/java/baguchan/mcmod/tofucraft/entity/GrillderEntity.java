@@ -11,7 +11,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.IFlyingAnimal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -30,7 +29,7 @@ import net.minecraft.world.gen.Heightmap;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
-public class GrillderEntity extends AnimalEntity implements IFlyingAnimal {
+public class GrillderEntity extends TofuAnimalEntity implements IFlyingAnimal {
     private static final Ingredient BREEDING_ITEMS = Ingredient.fromItems(TofuBlocks.TOFUBERRY);
 
     private static final DataParameter<Boolean> IS_FLYING = EntityDataManager.createKey(GrillderEntity.class, DataSerializers.BOOLEAN);

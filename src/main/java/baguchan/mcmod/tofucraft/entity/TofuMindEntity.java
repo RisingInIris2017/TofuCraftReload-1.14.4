@@ -2,6 +2,7 @@ package baguchan.mcmod.tofucraft.entity;
 
 import baguchan.mcmod.tofucraft.init.TofuCreatureAttribute;
 import baguchan.mcmod.tofucraft.init.TofuItems;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
@@ -10,6 +11,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -47,6 +50,18 @@ public class TofuMindEntity extends MonsterEntity {
         super.livingTick();
     }
 
+    @Override
+    protected void updateAITasks() {
+
+        Vec3d vec3d = this.getMotion();
+        if (!this.onGround && vec3d.y < 0.0D) {
+            this.setMotion(vec3d.mul(1.0D, 0.6D, 1.0D));
+        }
+
+
+        super.updateAITasks();
+    }
+
     @Nullable
     @Override
     public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
@@ -56,6 +71,25 @@ public class TofuMindEntity extends MonsterEntity {
 
 
         return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+    }
+
+
+    @Override
+    public void fall(float distance, float damageMultiplier) {
+    }
+
+    @Override
+    public boolean doesEntityNotTriggerPressurePlate() {
+        return true;
+    }
+
+    @Override
+    protected boolean canTriggerWalking() {
+        return false;
+    }
+
+    @Override
+    protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
     }
 
     public boolean isOnSameTeam(Entity entityIn) {

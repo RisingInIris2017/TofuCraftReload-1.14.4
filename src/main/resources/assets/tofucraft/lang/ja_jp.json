@@ -151,6 +151,7 @@
   "entity.tofucraft.tofuspider": "豆腐スパイダー",
   "entity.tofucraft.tofuturret": "トーフタレット",
   "entity.tofucraft.tofumind": "トーフマインド",
+  "entity.tofucraft.tofugandlem": "トーフガンドレム",
   "entity.tofucraft.fukumame": "福豆",
 
   "subtitles.entity.tofunian.idle": "トーフニアンがつぶやく",
@@ -162,6 +163,11 @@
   "advancements.tofucraft.bittern_bottle.description": "塩田に水を入れた後、しばらくしてボトルで塩田ににがりを入れる",
   "advancements.tofucraft.make_tofu.title": "豆腐！",
   "advancements.tofucraft.make_tofu.description": "にがり入りの瓶を使って豆乳を固め、豆腐を壊す",
+  "advancements.tofucraft.tofustick.title": "トーフワールドへのパスポート",
+  "advancements.tofucraft.tofustick.description": "トーフステッキを手に入れる",
+  "advancements.tofucraft.tofuworld.title": "トーフワールド！",
+  "advancements.tofucraft.tofuworld.description": "トーフワールドに入る",
+
   "tofucraft.radar.result.success": "豆腐スライムチャンクが見つかりました",
   "tofucraft.radar.result.failed": "豆腐スライムチャンクが見つかりませんでした"
 }
