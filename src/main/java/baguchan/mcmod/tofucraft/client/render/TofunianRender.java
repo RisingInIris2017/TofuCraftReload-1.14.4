@@ -2,6 +2,7 @@ package baguchan.mcmod.tofucraft.client.render;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.client.model.TofunianModel;
+import baguchan.mcmod.tofucraft.client.render.layer.EyelidLayer;
 import baguchan.mcmod.tofucraft.entity.TofunianEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -18,6 +19,8 @@ public class TofunianRender extends MobRenderer<TofunianEntity, TofunianModel> {
         this.addLayer(new HeadLayer<>(this));
         this.addLayer(new ElytraLayer<>(this));
         this.addLayer(new HeldItemLayer<>(this));
+        this.addLayer(new EyelidLayer<>(this, new ResourceLocation(TofuCraftCore.MODID, "textures/mob/tofunian/tofunian_eye.png")));
+        ;
     }
 
     @Override
