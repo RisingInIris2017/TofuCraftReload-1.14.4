@@ -75,7 +75,7 @@ public class GoToBedGoal extends MoveToBlockGoal {
             BlockState blockstate = worldIn.getBlockState(pos);
             Block block = blockstate.getBlock();
 
-            return block.isIn(BlockTags.BEDS) && blockstate.get(BedBlock.PART) == BedPart.HEAD && !blockstate.get(BedBlock.OCCUPIED);
+            return block.isIn(BlockTags.BEDS) && blockstate.get(BedBlock.PART) == BedPart.FOOT && !blockstate.get(BedBlock.OCCUPIED);
 
         }
     }

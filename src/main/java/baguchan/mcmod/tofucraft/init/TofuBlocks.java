@@ -86,7 +86,7 @@ public class TofuBlocks {
     public static final Block TOFUBERRY = new TofuBerryBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.65F).tickRandomly().lightValue(9).sound(SoundType.CLOTH));
 
     //Util block
-    public static final TofuPortalBlock TOFUPORTAL = new TofuPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().harvestTool(ToolType.PICKAXE).hardnessAndResistance(-1.0F, 3000000.0F).sound(SoundType.GLASS));
+    public static final TofuPortalBlock TOFUPORTAL = new TofuPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().harvestTool(ToolType.PICKAXE).hardnessAndResistance(-1.0F, 3000000.0F).lightValue(10).sound(SoundType.GLASS));
     public static final Block SALTPAN = new SaltPanBlock(Block.Properties.create(Material.WOOD).tickRandomly().harvestTool(ToolType.AXE).hardnessAndResistance(1.0F).sound(SoundType.WOOD));
     public static final Block POTTED_TOFUFLOWER = new FlowerPotBlock(TOFUFLOWER, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F));
     public static final Block TOFUCHEST = new TofuChestBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
