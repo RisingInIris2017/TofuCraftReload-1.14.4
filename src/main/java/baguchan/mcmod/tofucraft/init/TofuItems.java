@@ -51,6 +51,11 @@ public class TofuItems {
     public static final Item ONIGIRI = new Item(new Item.Properties().food(TofuFoods.RICEBALL).group(TofuItemGroup.TOFUCRAFT));
     public static final Item ONIGIRI_SALT = new Item(new Item.Properties().food(TofuFoods.RICEBALL_SALT).group(TofuItemGroup.TOFUCRAFT));
     public static final Item ZUNDAMOCHI = new Item(new Item.Properties().food(TofuFoods.ZUNDAMOCHI).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item GOHEIMOCHI = new Item(new Item.Properties().food(TofuFoods.GOHEIMOCHI).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item YAKIONIGIRI_MISO = new Item(new Item.Properties().food(TofuFoods.YAKIONIGIRI_MISO).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item YAKIONIGIRI_SHOYU = new Item(new Item.Properties().food(TofuFoods.YAKIONIGIRI_SHOYU).group(TofuItemGroup.TOFUCRAFT));
+
+
 
     public static final Item SOYMILK_BUCKET = new BucketItem(TofuFluids.SOYMILK, (new Item.Properties()).containerItem(Items.BUCKET).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
 
@@ -187,6 +192,9 @@ public class TofuItems {
         register(registry, ONIGIRI, "onigiri");
         register(registry, ONIGIRI_SALT, "onigirisalt");
         register(registry, ZUNDAMOCHI, "zundamochi");
+        register(registry, GOHEIMOCHI, "goheimochi");
+        register(registry, YAKIONIGIRI_MISO, "yakionigiri_miso");
+        register(registry, YAKIONIGIRI_SHOYU, "yakionigiri_shoyu");
 
         register(registry, SOYMILK_BUCKET, "bucketsoymilk");
         register(registry, SALT, "salt");

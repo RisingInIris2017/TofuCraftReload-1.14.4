@@ -70,7 +70,7 @@ public class TofuVillagePools {
                         new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/tofunian/tofunian_guard"),
                         1), new Pair<>(
                         new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/tofunian/tofunian"),
-                        3)), JigsawPattern.PlacementBehaviour.RIGID));
+                        4)), JigsawPattern.PlacementBehaviour.RIGID));
 
     }
 }
