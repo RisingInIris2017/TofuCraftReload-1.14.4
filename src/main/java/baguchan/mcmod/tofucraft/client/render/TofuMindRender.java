@@ -6,6 +6,7 @@ import baguchan.mcmod.tofucraft.client.render.layer.GlowLayer;
 import baguchan.mcmod.tofucraft.entity.TofuMindEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.HeldItemLayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -16,6 +17,7 @@ public class TofuMindRender extends MobRenderer<TofuMindEntity, TofuMindModel<To
 
     public TofuMindRender(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new TofuMindModel<>(), 0.5F);
+        this.addLayer(new HeldItemLayer<>(this));
         this.addLayer(new GlowLayer<>(this, new ResourceLocation(TofuCraftCore.MODID, "textures/mob/tofumind/tofumind_eye.png")));
     }
 

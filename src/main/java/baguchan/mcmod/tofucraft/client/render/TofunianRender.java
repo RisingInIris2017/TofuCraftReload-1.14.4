@@ -20,7 +20,6 @@ public class TofunianRender extends MobRenderer<TofunianEntity, TofunianModel> {
         this.addLayer(new ElytraLayer<>(this));
         this.addLayer(new HeldItemLayer<>(this));
         this.addLayer(new EyelidLayer<>(this, new ResourceLocation(TofuCraftCore.MODID, "textures/mob/tofunian/tofunian_eye.png")));
-        ;
     }
 
     @Override

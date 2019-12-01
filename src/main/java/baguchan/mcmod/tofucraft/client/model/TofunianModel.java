@@ -3,6 +3,7 @@ package baguchan.mcmod.tofucraft.client.model;
 import baguchan.mcmod.tofucraft.entity.TofunianEntity;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
+import net.minecraft.util.HandSide;
 import org.lwjgl.opengl.GL11;
 
 public class TofunianModel extends BipedModel<TofunianEntity> {
@@ -108,5 +109,9 @@ public class TofunianModel extends BipedModel<TofunianEntity> {
         this.bipedHeadwear.rotateAngleX = this.bipedHead.rotateAngleX;
         this.bipedHeadwear.rotateAngleY = this.bipedHead.rotateAngleY;
         this.bipedHeadwear.rotateAngleZ = this.bipedHead.rotateAngleZ;
+    }
+
+    protected RendererModel getArmForSide(HandSide side) {
+        return side == HandSide.LEFT ? this.bipedLeftArm : this.bipedRightArm;
     }
 }

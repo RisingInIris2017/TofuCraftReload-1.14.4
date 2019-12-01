@@ -114,6 +114,10 @@ public class TofuMindModel<T extends TofuMindEntity> extends BipedModel<T> {
         GlStateManager.translatef(0F, -0.1F - MathHelper.sin(tick * 0.12F) * 0.1F, 0F);
     }
 
+    protected RendererModel getArmForSide(HandSide side) {
+        return side == HandSide.LEFT ? this.handL : this.handR;
+    }
+
     @OnlyIn(Dist.CLIENT)
     public static enum ArmPose {
         EMPTY,
