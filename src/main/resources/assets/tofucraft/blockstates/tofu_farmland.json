@@ -1,11 +1,11 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "farmland"
+    "model": "block/farmland"
   },
   "variants": {
     "moisture=0": {
-      "model": "farmland",
+      "model": "block/farmland",
       "textures": {
         "particle": "tofucraft:blocks/blocktofumomen",
         "dirt": "tofucraft:blocks/blocktofumomen",
@@ -13,7 +13,7 @@
       }
     },
     "moisture=1": {
-      "model": "farmland",
+      "model": "block/farmland",
       "textures": {
         "particle": "tofucraft:blocks/blocktofumomen",
         "dirt": "tofucraft:blocks/blocktofumomen",
@@ -21,7 +21,7 @@
       }
     },
     "moisture=2": {
-      "model": "farmland",
+      "model": "block/farmland",
       "textures": {
         "particle": "tofucraft:blocks/blocktofumomen",
         "dirt": "tofucraft:blocks/blocktofumomen",
@@ -29,7 +29,7 @@
       }
     },
     "moisture=3": {
-      "model": "farmland",
+      "model": "block/farmland",
       "textures": {
         "particle": "tofucraft:blocks/blocktofumomen",
         "dirt": "tofucraft:blocks/blocktofumomen",
@@ -37,7 +37,7 @@
       }
     },
     "moisture=4": {
-      "model": "farmland",
+      "model": "block/farmland",
       "textures": {
         "particle": "tofucraft:blocks/blocktofumomen",
         "dirt": "tofucraft:blocks/blocktofumomen",
@@ -45,7 +45,7 @@
       }
     },
     "moisture=5": {
-      "model": "farmland",
+      "model": "block/farmland",
       "textures": {
         "particle": "tofucraft:blocks/blocktofumomen",
         "dirt": "tofucraft:blocks/blocktofumomen",
@@ -53,7 +53,7 @@
       }
     },
     "moisture=6": {
-      "model": "farmland",
+      "model": "block/farmland",
       "textures": {
         "particle": "tofucraft:blocks/blocktofumomen",
         "dirt": "tofucraft:blocks/blocktofumomen",
@@ -61,7 +61,7 @@
       }
     },
     "moisture=7": {
-      "model": "farmland",
+      "model": "block/farmland",
       "textures": {
         "particle": "tofucraft:blocks/blocktofumomen",
         "dirt": "tofucraft:blocks/blocktofumomen",
@@ -69,7 +69,7 @@
       }
     },
     "inventory": {
-      "model": "farmland",
+      "model": "block/farmland",
       "textures": {
         "particle": "tofucraft:blocks/blocktofumomen",
         "dirt": "tofucraft:blocks/blocktofumomen",

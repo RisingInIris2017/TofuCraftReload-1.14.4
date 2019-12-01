@@ -133,6 +133,7 @@ public class TofuItems {
     public static final Item TOFUDIAMONDPICKAXE = new PickaxeItem(TofuItemTier.TOFUDIAMOND, 1, -2.9F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUDIAMONDSHOVEL = new ShovelItem(TofuItemTier.TOFUDIAMOND, 1.5F, -2.9F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
+    public static final Item TOFUHOE = new TofuHoeItem(new Item.Properties().maxDamage(280).group(TofuItemGroup.TOFUCRAFT));
     public static final Item ZUNDAARROW = new ZundaArrowItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item TOFUISHI_SHIELD = new ShieldItem(new Item.Properties().maxDamage(160).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
@@ -260,6 +261,7 @@ public class TofuItems {
         register(registry, TOFUDIAMONDPICKAXE, "tooldiamondpickaxe");
         register(registry, TOFUDIAMONDSHOVEL, "tooldiamondshovel");
 
+        register(registry, TOFUHOE, "tofuhoe");
         register(registry, ZUNDAARROW, "zunda_arrow");
 
         register(registry, TOFUISHI_SHIELD, "tofuishi_shield");

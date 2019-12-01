@@ -86,10 +86,12 @@
   "item.tofucraft.tooldiamondaxe": "TofuDiamond Axe",
   "item.tofucraft.tooldiamondpickaxe": "TofuDiamond Pickaxe",
   "item.tofucraft.tooldiamondshovel": "TofuDiamond Shovel",
+  "item.tofucraft.tofuhoe": "Tofu Hoe",
   "item.tofucraft.zunda_arrow": "Zunda Arrow",
   "item.tofucraft.tofuishi_shield": "TofuIshi Shield",
   "item.tofucraft.tofumetal_shield": "TofuMetal Shield",
   "item.tofucraft.tofuforce_core": "TofuForce Core",
+
   "block.tofucraft.rice": "Rice",
   "block.tofucraft.rice_root": "Rice Root",
   "block.tofucraft.blocktofukinu": "KinuTofu Block",
@@ -128,6 +130,7 @@
   "block.tofucraft.blocksaltpan": "SaltPan",
   "block.tofucraft.tofuchest": "TofuChest",
   "block.tofucraft.wheat_bowl": "Wheat Bowl",
+  "block.tofucraft.tofu_farmland": "Tofu Farmland",
   "block.tofucraft.barrelmiso": "Barrel Miso",
 
   "block.tofucraft.tofu_terrain": "Tofu Terrain",

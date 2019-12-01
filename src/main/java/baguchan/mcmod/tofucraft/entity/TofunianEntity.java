@@ -84,6 +84,13 @@ public class TofunianEntity extends AbstractVillagerEntity {
                     new VillagerTrades.ITrade[]{
                             new TradeForZundaRuby(TofuItems.EDAMAME, 26, 6, 14),
                             new TradeForItem(TofuItems.TTTBURGER, 6, 6, 16)
+                    }, 4,
+                    new VillagerTrades.ITrade[]{
+                            new TradeForZundaRuby(TofuItems.SOYSAUCE, 1, 4, 20),
+                            new TradeForItem(TofuItems.TOFUZUNDA, 7, 6, 22)
+                    }, 5,
+                    new VillagerTrades.ITrade[]{
+                            new TradeForHicostItem(TofuItems.TOFUHOE, 4, 4, 30)
                     }));
         } else if (getRole() == Roles.TOFUSMITH) {
             offers = func_221238_a(ImmutableMap.of(1,
@@ -97,10 +104,17 @@ public class TofunianEntity extends AbstractVillagerEntity {
                     }, 3,
                     new VillagerTrades.ITrade[]{
                             new TradeForHicostItem(TofuItems.METALSWORD, 5, 3, 16),
-                            new TradeForHicostItem(TofuItems.METALSHOVEL, 4, 3, 16)
+                            new TradeForHicostItem(TofuItems.METALSHOVEL, 4, 3, 16),
+                            new TradeForHicostItem(TofuItems.METALPICKAXE, 6, 3, 16)
                     }, 4,
                     new VillagerTrades.ITrade[]{
                             new TradeForHicostItem(TofuItems.TOFUSTICK, 4, 2, 30)
+                    }, 5,
+                    new VillagerTrades.ITrade[]{
+                            new TradeForHicostItem(TofuItems.TOFUDIAMONDAXE, 18, 1, 30),
+                            new TradeForHicostItem(TofuItems.TOFUDIAMONDPICKAXE, 17, 1, 30),
+                            new TradeForHicostItem(TofuItems.TOFUDIAMONDSHOVEL, 15, 1, 30),
+                            new TradeForHicostItem(TofuItems.ARMOR_DIAMONDBOOTS, 15, 1, 30)
                     }));
         }
 
