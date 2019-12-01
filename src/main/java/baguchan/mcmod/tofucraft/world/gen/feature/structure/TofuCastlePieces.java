@@ -1,14 +1,20 @@
 package baguchan.mcmod.tofucraft.world.gen.feature.structure;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
+import baguchan.mcmod.tofucraft.block.TofuChestBlock;
 import baguchan.mcmod.tofucraft.entity.TofuMindEntity;
 import baguchan.mcmod.tofucraft.entity.TofuTurretEntity;
+import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.init.TofuEntitys;
+import baguchan.mcmod.tofucraft.init.TofuLootTables;
+import baguchan.mcmod.tofucraft.tileentity.TofuChestTileEntity;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -83,7 +89,16 @@ public class TofuCastlePieces {
         }
 
         protected void handleDataMarker(String function, BlockPos pos, IWorld world, Random rand, MutableBoundingBox box) {
-            if (function.equals("Turret")) {
+            if (function.equals("Chest")) {
+                if (box.isVecInside(pos)) {
+                    world.setBlockState(pos, TofuBlocks.TOFUCHEST.getDefaultState().with(TofuChestBlock.FACING, Direction.WEST), 2);
+
+                    TileEntity tileEntity = world.getTileEntity(pos);
+                    if (tileEntity instanceof TofuChestTileEntity) {
+                        ((TofuChestTileEntity) tileEntity).setLootTable(TofuLootTables.tofucastle_normal, rand.nextLong());
+                    }
+                }
+            } else if (function.equals("Turret")) {
                 TofuTurretEntity entityturret = TofuEntitys.TOFUTURRET.create(world.getWorld());
                 entityturret.enablePersistence();
                 entityturret.moveToBlockPosAndAngles(pos, 0.0F, 0.0F);

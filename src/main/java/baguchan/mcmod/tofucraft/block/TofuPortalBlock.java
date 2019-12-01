@@ -2,6 +2,7 @@ package baguchan.mcmod.tofucraft.block;
 
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.init.TofuDimensions;
+import baguchan.mcmod.tofucraft.init.TofuParticles;
 import baguchan.mcmod.tofucraft.world.dimension.TofuWorldTeleporter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -26,8 +27,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.WorldInfo;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class TofuPortalBlock extends Block {
     private static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
@@ -56,6 +60,27 @@ public class TofuPortalBlock extends Block {
             } else {
                 return false;
             }
+        }
+
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+        if (rand.nextInt(100) == 0) {
+            worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+        }
+
+        for (int i = 0; i < 4; ++i) {
+            double d0 = (double) ((float) pos.getX() + rand.nextFloat());
+            double d1 = (double) ((float) pos.getY() + rand.nextFloat()) + 0.8D;
+            double d2 = (double) ((float) pos.getZ() + rand.nextFloat());
+            double d3 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
+            double d4 = ((double) rand.nextFloat()) * 0.5D;
+            double d5 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
+            int j = rand.nextInt(2) * 2 - 1;
+
+            worldIn.addParticle(TofuParticles.TOFUPORTAL, false, d0, d1, d2, d3, d4, d5);
         }
 
     }
