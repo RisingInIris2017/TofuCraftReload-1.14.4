@@ -8,6 +8,7 @@ import baguchan.mcmod.tofucraft.init.TofuEntitys;
 import baguchan.mcmod.tofucraft.init.TofuItems;
 import baguchan.mcmod.tofucraft.init.TofuSounds;
 import com.google.common.collect.ImmutableMap;
+import com.mojang.datafixers.Dynamic;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.block.BlockState;
@@ -15,6 +16,8 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.merchant.IReputationTracking;
+import net.minecraft.entity.merchant.IReputationType;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.merchant.villager.VillagerData;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
@@ -26,6 +29,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.NBTDynamicOps;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -43,24 +48,28 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.village.GossipManager;
+import net.minecraft.village.GossipType;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Predicate;
 
-public class TofunianEntity extends AbstractVillagerEntity {
+public class TofunianEntity extends AbstractVillagerEntity implements IReputationTracking {
     private static final DataParameter<Integer> ROLE = EntityDataManager.createKey(TofunianEntity.class, DataSerializers.VARINT);
     private boolean customer;
     private int tofunianCareerLevel = 1;
     private int xp;
     @Nullable
-    private PlayerEntity field_213778_bG;
+    private PlayerEntity previousCustomer;
 
     @Nullable
     private BlockPos tofunainHome;
+    private final GossipManager gossip = new GossipManager();
 
 
     public static Predicate<Entity> ENEMY_PREDICATE =
@@ -150,10 +159,11 @@ public class TofunianEntity extends AbstractVillagerEntity {
         }
     }
 
-    protected void func_213713_b(MerchantOffer p_213713_1_) {
+    @Override
+    protected void onVillagerTrade(MerchantOffer offer) {
         int i = 3 + this.rand.nextInt(4);
-        this.xp += p_213713_1_.func_222210_n();
-        this.field_213778_bG = this.getCustomer();
+        this.xp += offer.getGivenExp();
+        this.previousCustomer = this.getCustomer();
 
         if (this.func_213741_eu()) {
             this.timeUntilReset = 40;
@@ -161,8 +171,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
             i += 5;
         }
 
-
-        if (p_213713_1_.func_222221_q()) {
+        if (offer.getDoesRewardExp()) {
             this.world.addEntity(new ExperienceOrbEntity(this.world, this.posX, this.posY + 0.5D, this.posZ, i));
         }
     }
@@ -240,7 +249,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
 
     public void restock() {
         for (MerchantOffer merchantoffer : this.getOffers()) {
-            merchantoffer.func_222203_h();
+            merchantoffer.resetUses();
         }
     }
 
@@ -251,6 +260,8 @@ public class TofunianEntity extends AbstractVillagerEntity {
         compound.putInt("Level", getLevel());
         compound.putInt("Xp", this.xp);
         compound.putInt("Role", getRole().ordinal());
+
+        compound.put("Gossips", this.gossip.serialize(NBTDynamicOps.INSTANCE).getValue());
 
         if (this.tofunainHome != null) {
             compound.put("TofunianHome", NBTUtil.writeBlockPos(this.tofunainHome));
@@ -268,6 +279,9 @@ public class TofunianEntity extends AbstractVillagerEntity {
         if (compound.contains("Role")) {
             this.setRole(Roles.get(compound.getInt("Role")));
         }
+
+        ListNBT listnbt = compound.getList("Gossips", 10);
+        this.gossip.deserialize(new Dynamic<>(NBTDynamicOps.INSTANCE, listnbt));
 
         if (compound.contains("TofunianHome")) {
             this.tofunainHome = NBTUtil.readBlockPos(compound.getCompound("TofunianHome"));
@@ -340,17 +354,18 @@ public class TofunianEntity extends AbstractVillagerEntity {
         return this.getRole() == Roles.TOFUNIAN;
     }
 
-    protected void func_213750_eg() {
-        super.func_213750_eg();
+    protected void resetCustomer() {
+        super.resetCustomer();
         for (MerchantOffer merchantoffer : this.getOffers()) {
-            merchantoffer.func_222220_k();
+            merchantoffer.resetSpecialPrice();
         }
     }
 
 
+    //when uses no left
     public boolean isStockOut() {
         for (MerchantOffer merchantoffer : this.getOffers()) {
-            if (merchantoffer.func_222217_o()) {
+            if (merchantoffer.hasNoUsesLeft()) {
                 return true;
             }
         }
@@ -360,7 +375,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
 
     @Override
     protected void updateAITasks() {
-        if (!this.func_213716_dX() && this.timeUntilReset > 0) {
+        if (!this.hasCustomer() && this.timeUntilReset > 0) {
             --this.timeUntilReset;
             if (this.timeUntilReset <= 0) {
                 if (this.customer) {
@@ -372,9 +387,16 @@ public class TofunianEntity extends AbstractVillagerEntity {
             }
         }
 
-        if (this.isNitwit() && this.func_213716_dX()) {
-            this.func_213750_eg();
+        if (this.isNitwit() && this.hasCustomer()) {
+            this.resetCustomer();
         }
+
+        if (this.previousCustomer != null && this.world instanceof ServerWorld) {
+            ((ServerWorld) this.world).updateReputation(IReputationType.TRADE, this.previousCustomer, this);
+            this.world.setEntityState(this, (byte) 14);
+            this.previousCustomer = null;
+        }
+
 
         findHome(false);
 
@@ -573,7 +595,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
         if (flag) {
             itemstack.interactWithEntity(player, this, hand);
             return true;
-        } else if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG && this.isAlive() && !this.func_213716_dX() && !this.isChild()) {
+        } else if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
             if (hand == Hand.MAIN_HAND) {
                 player.addStat(Stats.TALKED_TO_VILLAGER);
             }
@@ -585,7 +607,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
 
                     if (!this.world.isRemote) {
                         this.setCustomer(player);
-                        this.func_213707_a(player, this.getDisplayName(), getLevel());
+                        this.displayMerchantGui(player);
                     }
                     return true;
                 }
@@ -593,7 +615,7 @@ public class TofunianEntity extends AbstractVillagerEntity {
             } else {
                 if (!this.world.isRemote) {
                     this.setCustomer(player);
-                    this.func_213707_a(player, this.getDisplayName(), getLevel());
+                    this.displayMerchantGui(player);
                 }
 
                 return true;
@@ -607,7 +629,51 @@ public class TofunianEntity extends AbstractVillagerEntity {
         boolean flag = this.getCustomer() != null && player == null;
         super.setCustomer(player);
         if (flag) {
-            this.func_213750_eg();
+            this.resetCustomer();
+        }
+    }
+
+
+    private void displayMerchantGui(PlayerEntity player) {
+        this.recalculateSpecialPricesFor(player);
+        this.setCustomer(player);
+        this.openMerchantContainer(player, this.getDisplayName(), this.getLevel());
+    }
+
+    private void recalculateSpecialPricesFor(PlayerEntity playerIn) {
+        int i = this.getPlayerReputation(playerIn);
+        if (i != 0) {
+            for (MerchantOffer merchantoffer : this.getOffers()) {
+                merchantoffer.increaseSpecialPrice(-MathHelper.floor((float) i * merchantoffer.getPriceMultiplier()));
+            }
+        }
+
+        if (playerIn.isPotionActive(Effects.HERO_OF_THE_VILLAGE)) {
+            EffectInstance effectinstance = playerIn.getActivePotionEffect(Effects.HERO_OF_THE_VILLAGE);
+            int k = effectinstance.getAmplifier();
+
+            for (MerchantOffer merchantoffer1 : this.getOffers()) {
+                double d0 = 0.3D + 0.0625D * (double) k;
+                int j = (int) Math.floor(d0 * (double) merchantoffer1.getBuyingStackFirst().getCount());
+                merchantoffer1.increaseSpecialPrice(-Math.max(j, 1));
+            }
+        }
+
+    }
+
+    public int getPlayerReputation(PlayerEntity player) {
+        return this.gossip.func_220921_a(player.getUniqueID(), (p_223103_0_) -> {
+            return true;
+        });
+    }
+
+    public void updateReputation(IReputationType type, Entity target) {
+        if (type == IReputationType.TRADE) {
+            this.gossip.func_220916_a(target.getUniqueID(), GossipType.TRADING, 2);
+        } else if (type == IReputationType.VILLAGER_HURT) {
+            this.gossip.func_220916_a(target.getUniqueID(), GossipType.MINOR_NEGATIVE, 25);
+        } else if (type == IReputationType.VILLAGER_KILLED) {
+            this.gossip.func_220916_a(target.getUniqueID(), GossipType.MAJOR_NEGATIVE, 25);
         }
 
     }
@@ -617,9 +683,8 @@ public class TofunianEntity extends AbstractVillagerEntity {
         return TofuSounds.TOFUNIAN_AMBIENT;
     }
 
-
-    protected SoundEvent func_213721_r(boolean p_213721_1_) {
-        return p_213721_1_ ? TofuSounds.TOFUNIAN_YES : null;
+    protected SoundEvent getVillagerYesNoSound(boolean getYesSound) {
+        return getYesSound ? TofuSounds.TOFUNIAN_YES : null;
     }
 
     @Override

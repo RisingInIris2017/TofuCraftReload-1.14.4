@@ -75,7 +75,7 @@ public class ZundaArrowEntity extends AbstractArrowEntity {
     }
 
     @Override
-    protected void func_213868_a(EntityRayTraceResult p_213868_1_) {
+    protected void onEntityHit(EntityRayTraceResult p_213868_1_) {
         Entity entity = p_213868_1_.getEntity();
         float f = (float) this.getMotion().length();
         int i = MathHelper.ceil(Math.max((double) f * this.getDamage(), 0.0D));
@@ -149,10 +149,10 @@ public class ZundaArrowEntity extends AbstractArrowEntity {
 
                 if (!this.world.isRemote && entity1 instanceof ServerPlayerEntity) {
                     ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) entity1;
-                    if (this.field_213875_aA != null && this.func_213873_r()) {
-                        CriteriaTriggers.KILLED_BY_CROSSBOW.func_215105_a(serverplayerentity, this.field_213875_aA, this.field_213875_aA.size());
-                    } else if (!entity.isAlive() && this.func_213873_r()) {
-                        CriteriaTriggers.KILLED_BY_CROSSBOW.func_215105_a(serverplayerentity, Arrays.asList(entity), 0);
+                    if (this.field_213875_aA != null && this.getShotFromCrossbow()) {
+                        CriteriaTriggers.KILLED_BY_CROSSBOW.trigger(serverplayerentity, this.field_213875_aA, this.field_213875_aA.size());
+                    } else if (!entity.isAlive() && this.getShotFromCrossbow()) {
+                        CriteriaTriggers.KILLED_BY_CROSSBOW.trigger(serverplayerentity, Arrays.asList(entity), 0);
                     }
                 }
 

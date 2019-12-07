@@ -39,7 +39,7 @@ public class VillagerProfessions {
 
     @SubscribeEvent
     public static void registerProfession(RegistryEvent.Register<VillagerProfession> event) {
-        VillagerTrades.field_221239_a.put(TOFUCRAFTSMAN_PROFESSION, func_221238_a(ImmutableMap.of(1, new VillagerTrades.ITrade[]{new EmeraldForItemsTrade(TofuItems.SEEDS_SOYBEAN, 14, 20, 2), new EmeraldForItemsTrade(TofuItems.SALT, 14, 22, 2), new ItemsForEmeraldsTrade(TofuItems.TOFUMOMEN, 1, 12, 2)}, 2, new VillagerTrades.ITrade[]{new EmeraldForItemsTrade(Items.GLASS_BOTTLE, 4, 8, 2)})));
+        VillagerTrades.VILLAGER_DEFAULT_TRADES.put(TOFUCRAFTSMAN_PROFESSION, func_221238_a(ImmutableMap.of(1, new VillagerTrades.ITrade[]{new EmeraldForItemsTrade(TofuItems.SEEDS_SOYBEAN, 14, 20, 2), new EmeraldForItemsTrade(TofuItems.SALT, 14, 22, 2), new ItemsForEmeraldsTrade(TofuItems.TOFUMOMEN, 1, 12, 2)}, 2, new VillagerTrades.ITrade[]{new EmeraldForItemsTrade(Items.GLASS_BOTTLE, 4, 8, 2)})));
         event.getRegistry().register(TOFUCRAFTSMAN_PROFESSION.setRegistryName("tofu_craftsman"));
     }
 
@@ -47,10 +47,8 @@ public class VillagerProfessions {
         return new Int2ObjectOpenHashMap<>(p_221238_0_);
     }
 
-    private static Set<BlockState> getAllStates(Block block) {
-        ImmutableSet.Builder<BlockState> builder = ImmutableSet.builder();
-        builder.add(block.getDefaultState());
-        return builder.build();
+    private static Set<BlockState> getAllStates(Block p_221042_0_) {
+        return ImmutableSet.copyOf(p_221042_0_.getStateContainer().getValidStates());
     }
 
     private static PointOfInterestType registerInterest(String key, Set<BlockState> p_221051_1_, int p_221051_2_, @Nullable SoundEvent p_221051_3_, int p_221051_4_) {

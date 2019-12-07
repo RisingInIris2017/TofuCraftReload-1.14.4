@@ -40,13 +40,13 @@ public class TofuSlimeEntity extends SlimeEntity {
             if (p_223366_1_.getDifficulty() != Difficulty.PEACEFUL) {
                 Biome biome = p_223366_1_.getBiome(p_223366_3_);
                 if (p_223366_1_.getWorld().getDimension().getType().getModType() == TofuDimensions.TOFUWORLD && p_223366_1_.getLightFor(LightType.BLOCK, p_223366_3_) <= randomIn.nextInt(7)) {
-                    return func_223315_a(p_223366_0_, p_223366_1_, reason, p_223366_3_, randomIn);
+                    return canSpawnOn(p_223366_0_, p_223366_1_, reason, p_223366_3_, randomIn);
                 }
 
                 ChunkPos chunkpos = new ChunkPos(p_223366_3_);
                 boolean flag = SharedSeedRandom.seedSlimeChunk(chunkpos.x, chunkpos.z, p_223366_1_.getSeed(), 987234911L).nextInt(10) == 0;
                 if (p_223366_1_.getWorld().getDimension().getType() == DimensionType.OVERWORLD && randomIn.nextInt(10) == 0 && flag && p_223366_3_.getY() < 50) {
-                    return func_223315_a(p_223366_0_, p_223366_1_, reason, p_223366_3_, randomIn);
+                    return canSpawnOn(p_223366_0_, p_223366_1_, reason, p_223366_3_, randomIn);
                 }
             }
 
