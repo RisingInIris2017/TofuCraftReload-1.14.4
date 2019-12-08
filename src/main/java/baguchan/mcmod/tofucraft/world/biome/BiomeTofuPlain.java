@@ -13,5 +13,6 @@ public class BiomeTofuPlain extends BiomeTofuBase {
         DefaultTofuBiomeFeature.addTofuFlowers(this);
         this.addStructure(TofuFeatures.TOFUVILLAGE, new NoFeatureConfig());
         DefaultTofuBiomeFeature.addTofuNormalTrees(this);
+        DefaultTofuBiomeFeature.addLeeks(this);
     }
 }

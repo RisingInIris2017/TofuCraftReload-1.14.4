@@ -59,6 +59,8 @@ public class TofuItems {
 
     public static final Item SALT = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item BITTERN = new BitternItem(new Item.Properties().containerItem(Items.GLASS_BOTTLE).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item LEEK = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+
     public static final Item KOUJIBASE = new KoujiBaseItem(new Item.Properties().maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
     public static final Item KOUJI = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item MISO = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -135,7 +137,6 @@ public class TofuItems {
     public static final Item ZUNDAARROW = new ZundaArrowItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item BUGLE = new BugleItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
-
     public static final Item TOFUISHI_SHIELD = new ShieldItem(new Item.Properties().maxDamage(160).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUMETAL_SHIELD = new ShieldItem(new Item.Properties().maxDamage(360).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
 
@@ -200,6 +201,7 @@ public class TofuItems {
         register(registry, SOYMILK_BUCKET, "bucketsoymilk");
         register(registry, SALT, "salt");
         register(registry, BITTERN, "bittern_bottle");
+        register(registry, LEEK, "leek");
         register(registry, KOUJIBASE, "koujibase");
         register(registry, KOUJI, "kouji");
         register(registry, MISO, "miso");

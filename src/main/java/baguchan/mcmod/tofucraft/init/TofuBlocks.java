@@ -83,6 +83,7 @@ public class TofuBlocks {
     public static final Block ORE_TOFUDIAMOND = new Block(Block.Properties.create(TofuMaterial.TOFUORE).harvestTool(ToolType.SHOVEL).harvestLevel(2).hardnessAndResistance(1.0F, 2.0F).sound(SoundType.SNOW));
     public static final Block TOFUBEDROCK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(-1.0F, 2000000.0F).sound(SoundType.STONE));
     public static final Block TOFUFLOWER = new TofuFlowerBlock(Effects.ABSORPTION, 20, Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT));
+    public static final Block LEEK = new TofuBushBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F, 0.3F).sound(SoundType.PLANT));
     public static final Block TOFULEAVES = new TofuLeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.PLANT));
     public static final Block TOFUZUNDALEAVES = new TofuLeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.5F).tickRandomly().sound(SoundType.PLANT));
     public static final Block TOFUSAPLING = new TofuSaplingBlock(new TofuTree(), Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.0F).tickRandomly().doesNotBlockMovement().sound(SoundType.PLANT));
@@ -164,6 +165,7 @@ public class TofuBlocks {
         registry.getRegistry().register(ORE_TOFUDIAMOND.setRegistryName("ore_tofudiamond"));
         registry.getRegistry().register(TOFUBEDROCK.setRegistryName("tofubedrock"));
         registry.getRegistry().register(TOFUFLOWER.setRegistryName("tofuflower"));
+        registry.getRegistry().register(LEEK.setRegistryName("blockleek"));
         registry.getRegistry().register(TOFULEAVES.setRegistryName("leaves_tofu"));
         registry.getRegistry().register(TOFUZUNDALEAVES.setRegistryName("leaves_zundatofu"));
         registry.getRegistry().register(TOFUSAPLING.setRegistryName("sapling_tofu"));

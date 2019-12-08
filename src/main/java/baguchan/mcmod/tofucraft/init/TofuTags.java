@@ -25,6 +25,7 @@ public class TofuTags {
         public static final Tag<Item> SOYBEANS = tag("soybeans");
         public static final Tag<Item> TOFU = tag("tofu");
 
+
         private static Tag<Item> tag(String name) {
             return new ItemTags.Wrapper(new ResourceLocation(TofuCraftCore.MODID, name));
         }
@@ -33,6 +34,7 @@ public class TofuTags {
     public static class Blocks {
 
         public static final Tag<Block> TOFULOG = tag("tofulogs");
+        public static final Tag<Block> TOFUTERRAIN = tag("tofu_terrain");
 
         private static Tag<Block> tag(String name) {
             return new BlockTags.Wrapper(new ResourceLocation(TofuCraftCore.MODID, name));

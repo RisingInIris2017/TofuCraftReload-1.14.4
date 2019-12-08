@@ -1,6 +1,6 @@
 package baguchan.mcmod.tofucraft.entity;
 
-import baguchan.mcmod.tofucraft.init.TofuBlocks;
+import baguchan.mcmod.tofucraft.init.TofuTags;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -16,6 +16,6 @@ public abstract class TofuAnimalEntity extends AnimalEntity {
     }
 
     public static boolean spawnHandle(EntityType<? extends AnimalEntity> p_223316_0_, IWorld p_223316_1_, SpawnReason reason, BlockPos p_223316_3_, Random p_223316_4_) {
-        return p_223316_1_.getBlockState(p_223316_3_.down()).getBlock() == TofuBlocks.TOFUTERRAIN && p_223316_1_.getLightSubtracted(p_223316_3_, 0) > 8;
+        return p_223316_1_.getBlockState(p_223316_3_.down()).isIn(TofuTags.Blocks.TOFUTERRAIN) && p_223316_1_.getLightSubtracted(p_223316_3_, 0) > 8;
     }
 }

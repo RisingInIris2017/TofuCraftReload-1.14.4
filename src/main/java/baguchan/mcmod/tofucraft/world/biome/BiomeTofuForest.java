@@ -15,6 +15,7 @@ public class BiomeTofuForest extends BiomeTofuBase {
         this.addStructure(TofuFeatures.TOFUCASTLE, new NoFeatureConfig());
         DefaultTofuBiomeFeature.addManyTofuFlowers(this);
         DefaultTofuBiomeFeature.addTofuForestTrees(this);
+        DefaultTofuBiomeFeature.addLeeks(this);
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(TofuEntitys.TOFUCOW, 10, 4, 4));
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(TofuEntitys.GRILLDER, 8, 2, 3));
 

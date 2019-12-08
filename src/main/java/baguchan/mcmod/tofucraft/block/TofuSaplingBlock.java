@@ -1,6 +1,6 @@
 package baguchan.mcmod.tofucraft.block;
 
-import baguchan.mcmod.tofucraft.init.TofuBlocks;
+import baguchan.mcmod.tofucraft.init.TofuTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -28,6 +28,6 @@ public class TofuSaplingBlock extends SaplingBlock {
 
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
         Block block = state.getBlock();
-        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == TofuBlocks.TOFUTERRAIN || block == TofuBlocks.MOMENTOFU;
+        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || state.isIn(TofuTags.Blocks.TOFUTERRAIN);
     }
 }

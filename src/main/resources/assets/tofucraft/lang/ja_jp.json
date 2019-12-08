@@ -28,6 +28,7 @@
   "item.tofucraft.yakionigiri_shoyu": "焼き醬油おにぎり",
   "item.tofucraft.salt": "塩",
   "item.tofucraft.bittern_bottle": "にがりが入った瓶",
+  "item.tofucraft.leek": "葱",
   "item.tofucraft.koujibase": "麹の種",
   "item.tofucraft.kouji": "麹",
   "item.tofucraft.miso": "味噌",
@@ -93,6 +94,7 @@
   "item.tofucraft.tofuishi_shield": "石豆腐のシールド",
   "item.tofucraft.tofumetal_shield": "鋼豆腐のシールド",
   "item.tofucraft.tofuforce_core": "トーフフォースコア",
+
   "block.tofucraft.rice": "米",
   "block.tofucraft.rice_root": "米の根っこ",
   "block.tofucraft.blocktofukinu": "絹豆腐ブロック",
@@ -143,6 +145,7 @@
   "block.tofucraft.ore_tofudiamond": "金剛豆腐鉱石",
   "block.tofucraft.tofubedrock": "豆腐岩盤",
   "block.tofucraft.tofuflower": "豆腐の花",
+  "block.tofucraft.blockleek": "葱",
   "block.tofucraft.sapling_tofu": "豆腐の苗木",
   "block.tofucraft.zundasapling_tofu": "ずんだ豆腐の苗木",
   "block.tofucraft.leaves_tofu": "豆腐の葉",
