@@ -55,8 +55,6 @@ public class TofuItems {
     public static final Item YAKIONIGIRI_MISO = new Item(new Item.Properties().food(TofuFoods.YAKIONIGIRI_MISO).group(TofuItemGroup.TOFUCRAFT));
     public static final Item YAKIONIGIRI_SHOYU = new Item(new Item.Properties().food(TofuFoods.YAKIONIGIRI_SHOYU).group(TofuItemGroup.TOFUCRAFT));
 
-
-
     public static final Item SOYMILK_BUCKET = new BucketItem(TofuFluids.SOYMILK, (new Item.Properties()).containerItem(Items.BUCKET).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item SALT = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -135,6 +133,8 @@ public class TofuItems {
 
     public static final Item TOFUHOE = new TofuHoeItem(new Item.Properties().maxDamage(280).group(TofuItemGroup.TOFUCRAFT));
     public static final Item ZUNDAARROW = new ZundaArrowItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item BUGLE = new BugleItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+
 
     public static final Item TOFUISHI_SHIELD = new ShieldItem(new Item.Properties().maxDamage(160).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUMETAL_SHIELD = new ShieldItem(new Item.Properties().maxDamage(360).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
@@ -263,6 +263,7 @@ public class TofuItems {
 
         register(registry, TOFUHOE, "tofuhoe");
         register(registry, ZUNDAARROW, "zunda_arrow");
+        register(registry, BUGLE, "bugle");
 
         register(registry, TOFUISHI_SHIELD, "tofuishi_shield");
         register(registry, TOFUMETAL_SHIELD, "tofumetal_shield");

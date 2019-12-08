@@ -89,6 +89,7 @@
   "item.tofucraft.tooldiamondshovel": "金鋼豆腐のショベル",
   "item.tofucraft.tofuhoe": "豆腐クワ",
   "item.tofucraft.zunda_arrow": "ずんだアロー",
+  "item.tofucraft.bugle": "豆腐屋のラッパ",
   "item.tofucraft.tofuishi_shield": "石豆腐のシールド",
   "item.tofucraft.tofumetal_shield": "鋼豆腐のシールド",
   "item.tofucraft.tofuforce_core": "トーフフォースコア",
@@ -118,6 +119,7 @@
   "block.tofucraft.tofuslab_zunda": "ずんだのハーフブロック",
   "block.tofucraft.tofuslab_zundabrick": "ずんだ豆腐のハーフブロック",
   "block.tofucraft.tofuslab_metal": "鋼豆腐のハーフブロック",
+
   "block.tofucraft.tofutorch_kinu": "絹豆腐のトーチ",
   "block.tofucraft.tofutorch_momen": "木綿豆腐のトーチ",
   "block.tofucraft.tofutorch_ishi": "石豆腐のトーチ",
@@ -127,6 +129,10 @@
   "block.tofucraft.tofuladder_ishi": "石豆腐の階段",
   "block.tofucraft.tofuladder_ishibrick": "石豆腐レンガの階段",
   "block.tofucraft.tofuladder_metal": "鋼豆腐の階段",
+  "block.tofucraft.tofudoor_kinu": "絹豆腐のドア",
+  "block.tofucraft.tofudoor_momen": "木綿豆腐のドア",
+  "block.tofucraft.tofudoor_ishi": "石豆腐のドア",
+  "block.tofucraft.tofudoor_metal": "鋼豆腐のドア",
 
   "block.tofucraft.blocksaltpan": "塩田",
   "block.tofucraft.tofuchest": "豆腐チェスト",

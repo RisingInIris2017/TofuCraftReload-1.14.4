@@ -88,6 +88,7 @@
   "item.tofucraft.tooldiamondshovel": "TofuDiamond Shovel",
   "item.tofucraft.tofuhoe": "Tofu Hoe",
   "item.tofucraft.zunda_arrow": "Zunda Arrow",
+  "item.tofucraft.bugle": "Bugle",
   "item.tofucraft.tofuishi_shield": "TofuIshi Shield",
   "item.tofucraft.tofumetal_shield": "TofuMetal Shield",
   "item.tofucraft.tofuforce_core": "TofuForce Core",
@@ -118,6 +119,7 @@
   "block.tofucraft.tofuslab_zunda": "Tofu Zunda Slab",
   "block.tofucraft.tofuslab_zundabrick": "Tofu ZundaBrick Slab",
   "block.tofucraft.tofuslab_metal": "Tofu Metal Slab",
+
   "block.tofucraft.tofutorch_kinu": "Tofu Kinu Torch",
   "block.tofucraft.tofutorch_momen": "Tofu Momen Torch",
   "block.tofucraft.tofutorch_ishi": "Tofu Ishi Torch",
@@ -127,6 +129,11 @@
   "block.tofucraft.tofuladder_ishi": "TofuLadder Ishi",
   "block.tofucraft.tofuladder_ishibrick": "TofuLadder IshiBrick",
   "block.tofucraft.tofuladder_metal": "TofuLadder Metal",
+  "block.tofucraft.tofudoor_kinu": "TofuDoor Kinu",
+  "block.tofucraft.tofudoor_momen": "TofuDoor Momen",
+  "block.tofucraft.tofudoor_ishi": "TofuDoor Ishi",
+  "block.tofucraft.tofudoor_metal": "TofuDoor Metal",
+
   "block.tofucraft.blocksaltpan": "SaltPan",
   "block.tofucraft.tofuchest": "TofuChest",
   "block.tofucraft.wheat_bowl": "Wheat Bowl",
