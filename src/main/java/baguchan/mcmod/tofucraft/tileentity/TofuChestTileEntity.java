@@ -7,6 +7,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public class TofuChestTileEntity extends ChestTileEntity {
     private Block block = Blocks.AIR;
@@ -25,6 +27,10 @@ public class TofuChestTileEntity extends ChestTileEntity {
                 this.pos.add(-1, 0, -1),
                 this.pos.add(2, 2, 2)
         );
+    }
+
+    protected ITextComponent getDefaultName() {
+        return new TranslationTextComponent("container.tofucraft.tofuchest");
     }
 
     public void setChestModel(Block block) {

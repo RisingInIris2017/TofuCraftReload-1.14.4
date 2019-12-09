@@ -18,22 +18,35 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.Calendar;
+
 @OnlyIn(Dist.CLIENT)
 public class TofuChestBlockRenderer extends TileEntityRenderer<TofuChestTileEntity> {
+    private static final ResourceLocation TEXTURE_NORMALTOFU_DOUBLE_CHRISTMAS = new ResourceLocation(TofuCraftCore.MODID, "textures/entity/chest/tofuchest_double_christmas.png");
+    private static final ResourceLocation TEXTURE_NORMALTOFU_CHRISTMAS = new ResourceLocation(TofuCraftCore.MODID, "textures/entity/chest/tofuchest_christmas.png");
     private static final ResourceLocation TEXTURE_NORMALTOFU_DOUBLE = new ResourceLocation(TofuCraftCore.MODID, "textures/entity/chest/tofuchest_double.png");
-    private static final ResourceLocation TEXTURE_NORMALTOFU_NORMAL = new ResourceLocation(TofuCraftCore.MODID, "textures/entity/chest/tofuchest.png");
+    private static final ResourceLocation TEXTURE_NORMALTOFU = new ResourceLocation(TofuCraftCore.MODID, "textures/entity/chest/tofuchest.png");
     private final ChestModel simpleChest = new ChestModel();
     private final LargeChestModel largeChest = new LargeChestModel();
+    private boolean isChristmas;
 
     public TofuChestBlockRenderer() {
+        Calendar calendar = Calendar.getInstance();
+        if (calendar.get(Calendar.MONTH) == Calendar.DECEMBER && calendar.get(Calendar.DAY_OF_MONTH) >= 9 && calendar.get(Calendar.DAY_OF_MONTH) <= 26) {
+            this.isChristmas = true;
+        }
     }
 
     private void bindTexture(Block chestModel, int destroyStage, boolean isDouble) {
-        ResourceLocation rl = TEXTURE_NORMALTOFU_NORMAL;
+        ResourceLocation rl = TEXTURE_NORMALTOFU;
         if (destroyStage >= 0) {
             rl = DESTROY_STAGES[destroyStage];
         } else if (chestModel == TofuBlocks.TOFUCHEST) {
-            rl = isDouble ? TEXTURE_NORMALTOFU_DOUBLE : TEXTURE_NORMALTOFU_NORMAL;
+            if (this.isChristmas) {
+                rl = isDouble ? TEXTURE_NORMALTOFU_DOUBLE_CHRISTMAS : TEXTURE_NORMALTOFU_CHRISTMAS;
+            } else {
+                rl = isDouble ? TEXTURE_NORMALTOFU_DOUBLE : TEXTURE_NORMALTOFU;
+            }
         }
         bindTexture(rl);
     }

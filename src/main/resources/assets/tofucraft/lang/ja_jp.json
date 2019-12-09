@@ -187,5 +187,6 @@
   "advancements.tofucraft.tofugandlem.description": "トーフガンドレムを倒す",
 
   "tofucraft.radar.result.success": "豆腐スライムチャンクが見つかりました",
-  "tofucraft.radar.result.failed": "豆腐スライムチャンクが見つかりませんでした"
+  "tofucraft.radar.result.failed": "豆腐スライムチャンクが見つかりませんでした",
+  "container.tofucraft.tofuchest": "トーフチェスト"
 }
