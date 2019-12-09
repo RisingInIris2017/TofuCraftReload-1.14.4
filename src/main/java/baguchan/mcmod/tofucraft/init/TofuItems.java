@@ -38,6 +38,10 @@ public class TofuItems {
     public static final Item TOFUCOOKIE = new Item(new Item.Properties().food(TofuFoods.TOFUCOOKIE).group(TofuItemGroup.TOFUCRAFT));
     public static final Item SOYSTICK = new Item(new Item.Properties().food(TofuFoods.SOYSTICK).group(TofuItemGroup.TOFUCRAFT));
     public static final Item TTTBURGER = new Item(new Item.Properties().food(TofuFoods.TTTBURGER).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item RICEBURGER = new Item(new Item.Properties().food(TofuFoods.RICEBURGER).group(TofuItemGroup.TOFUCRAFT));
+
+    public static final Item HIYAYAKKO = new StackableBowlItem(new Item.Properties().food(TofuFoods.HIYAYAKKO).containerItem(Items.BOWL).maxStackSize(4).group(TofuItemGroup.TOFUCRAFT));
+
 
     public static final Item SALTYMELON = new Item(new Item.Properties().food(TofuFoods.SALTYMELON).group(TofuItemGroup.TOFUCRAFT));
 
@@ -181,6 +185,8 @@ public class TofuItems {
         register(registry, TOFUCOOKIE, "tofucookie");
         register(registry, SOYSTICK, "soystick");
         register(registry, TTTBURGER, "tttburger");
+        register(registry, RICEBURGER, "riceburger");
+        register(registry, HIYAYAKKO, "hiyayakko");
         register(registry, SALTYMELON, "saltymelon");
         register(registry, SEEDS_SOYBEAN, "seeds_soybeans");
         register(registry, SOYBEAN_PARCHED, "soybeans_parched");
