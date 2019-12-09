@@ -40,8 +40,7 @@ public class TofuItems {
     public static final Item TTTBURGER = new Item(new Item.Properties().food(TofuFoods.TTTBURGER).group(TofuItemGroup.TOFUCRAFT));
     public static final Item RICEBURGER = new Item(new Item.Properties().food(TofuFoods.RICEBURGER).group(TofuItemGroup.TOFUCRAFT));
 
-    public static final Item HIYAYAKKO = new StackableBowlItem(new Item.Properties().food(TofuFoods.HIYAYAKKO).containerItem(Items.BOWL).maxStackSize(4).group(TofuItemGroup.TOFUCRAFT));
-
+    public static final Item HIYAYAKKO = new StackableBowlItem(new Item.Properties().food(TofuFoods.HIYAYAKKO).containerItem(Items.BOWL).maxStackSize(6).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item SALTYMELON = new Item(new Item.Properties().food(TofuFoods.SALTYMELON).group(TofuItemGroup.TOFUCRAFT));
 
@@ -63,7 +62,7 @@ public class TofuItems {
 
     public static final Item SALT = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item BITTERN = new BitternItem(new Item.Properties().containerItem(Items.GLASS_BOTTLE).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item LEEK = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item LEEK = new BlockNamedItem(TofuBlocks.LEEKCROP, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item KOUJIBASE = new KoujiBaseItem(new Item.Properties().maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
     public static final Item KOUJI = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));

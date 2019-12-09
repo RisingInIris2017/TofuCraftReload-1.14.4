@@ -23,6 +23,7 @@ public class TofuBlocks {
 
     public static final Block SOYMILK = new TofuFluidBlock(TofuFluids.SOYMILK, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops());
     public static final Block SOYBEAN = new SoyBeanCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
+    public static final Block LEEKCROP = new LeekCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
     public static final Block RICE = new RiceCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
     public static final Block RICE_ROOT = new RiceRootBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
 
@@ -110,6 +111,7 @@ public class TofuBlocks {
         //Terrain
         registry.getRegistry().register(SOYMILK.setRegistryName("soymilk"));
         registry.getRegistry().register(SOYBEAN.setRegistryName("soybean"));
+        registry.getRegistry().register(LEEKCROP.setRegistryName("blockleek_crop"));
         registry.getRegistry().register(RICE.setRegistryName("rice"));
         registry.getRegistry().register(RICE_ROOT.setRegistryName("rice_root"));
         registry.getRegistry().register(KINUTOFU.setRegistryName("blocktofukinu"));

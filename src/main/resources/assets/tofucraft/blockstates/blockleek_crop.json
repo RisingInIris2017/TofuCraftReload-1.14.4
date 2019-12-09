@@ -1,27 +1,31 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:block/crop"
+  },
   "variants": {
     "age=0": {
-      "model": "crop",
+      "model": "block/crop",
       "textures": {
         "crop": "tofucraft:blocks/blockleek_stage1"
       }
     },
     "age=1": {
-      "model": "crop",
+      "model": "block/crop",
       "textures": {
         "crop": "tofucraft:blocks/blockleek_stage2"
       }
     },
     "age=2": {
-      "model": "crop",
+      "model": "block/crop",
       "textures": {
-        "crop": "tofucraft:blocks/blockleek"
+        "crop": "tofucraft:blocks/blockleek_stage2"
       }
     },
-    "inventory": {
-      "model": "builtin/generated",
+    "age=3": {
+      "model": "block/crop",
       "textures": {
-        "all": "tofucraft:blocks/blockleek"
+        "crop": "tofucraft:blocks/blockleek"
       }
     }
   }
