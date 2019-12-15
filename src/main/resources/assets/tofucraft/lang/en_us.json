@@ -184,7 +184,7 @@
   "advancements.tofucraft.tofuworld.description": "Enter to TofuWorld",
   "advancements.tofucraft.tofucastle.title": "Ancient Tofunian's Structure",
   "advancements.tofucraft.tofucastle.description": "Now Find the core of the sealed Tofu Gandlem!",
-  "advancements.tofucraft.tofugandlem.title": "Tofu Force Mecha",
+  "advancements.tofucraft.tofugandlem.title": "Ancient Tofu Force Mecha",
   "advancements.tofucraft.tofugandlem.description": "defeat to Tofu Gandlem",
 
   "tofucraft.radar.result.success": "Success to Found TofuSlime Chunk",
@@ -192,5 +192,7 @@
   "itemGroup.tofucraft": "TofuCraft",
   "item.minecraft.potion.tofu_resistance": "Tofu Resistance",
   "effect.tofucraft.tofu_resistance": "Tofu Resistance",
-  "container.tofucraft.tofuchest": "Tofu Chest"
+  "container.tofucraft.tofuchest": "Tofu Chest",
+  "tooltip.tofucraft.energy": "TofuForce, Energy: %d/%d",
+  "tooltip.tofucraft.tofuforce.broken": "Broken"
 }

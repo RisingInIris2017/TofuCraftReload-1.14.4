@@ -61,6 +61,13 @@
       "entries": [
         {
           "type": "item",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{tf_energy: 4000}"
+            }
+          ],
+
           "name": "tofucraft:tofuforce_core"
         }
       ]

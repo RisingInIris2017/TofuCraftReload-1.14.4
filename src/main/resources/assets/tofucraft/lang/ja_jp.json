@@ -185,10 +185,12 @@
   "advancements.tofucraft.tofuworld.description": "トーフワールドに入る",
   "advancements.tofucraft.tofucastle.title": "トーフニアンの歴史に触れる",
   "advancements.tofucraft.tofucastle.description": "厄災となったトーフガンドレムの封印されたコアを探そう",
-  "advancements.tofucraft.tofugandlem.title": "トーフフォースメカ",
+  "advancements.tofucraft.tofugandlem.title": "古代のトーフフォースメカ",
   "advancements.tofucraft.tofugandlem.description": "トーフガンドレムを倒す",
 
   "tofucraft.radar.result.success": "豆腐スライムチャンクが見つかりました",
   "tofucraft.radar.result.failed": "豆腐スライムチャンクが見つかりませんでした",
-  "container.tofucraft.tofuchest": "トーフチェスト"
+  "container.tofucraft.tofuchest": "トーフチェスト",
+  "tooltip.tofucraft.energy": "トーフフォースエネルギー: %d/%d",
+  "tooltip.tofucraft.tofuforce.broken": "破損"
 }

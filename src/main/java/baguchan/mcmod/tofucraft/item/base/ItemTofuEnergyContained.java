@@ -118,7 +118,7 @@ public class ItemTofuEnergyContained extends Item implements IEnergyExtractable,
                 for (TileEntity te : list) {
                     if (te instanceof TileEntitySenderBase &&
                             ((TileEntitySenderBase) te).isValid() &&
-                            te.getPos().getDistance(entityPos.getX(), entityPos.getY(), entityPos.getZ()) <= ((TileEntitySenderBase) te).getRadius()) {
+                            te.getDistanceSq(entityPos.getX(), entityPos.getY(), entityPos.getZ()) <= ((TileEntitySenderBase) te).getRadius()) {
                         toDrain -= ((ITofuEnergy) te).drain(Math.min(toDrain, ((TileEntitySenderBase) te).getTransferPower()), false);
                         if (toDrain == 0) break;
                     }

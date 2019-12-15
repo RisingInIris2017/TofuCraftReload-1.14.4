@@ -2,6 +2,7 @@ package baguchan.mcmod.tofucraft.item;
 
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.item.base.ItemTofuEnergyContained;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -9,9 +10,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class TofuForceCoreItem extends ItemTofuEnergyContained {
     public TofuForceCoreItem(Properties group) {
@@ -59,8 +66,20 @@ public class TofuForceCoreItem extends ItemTofuEnergyContained {
         return true;
     }
 
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+        if (!isUsable(stack)) {
+            tooltip.add(new TranslationTextComponent("tooltip.tofucraft.tofuforce.broken").applyTextStyle(TextFormatting.ITALIC).applyTextStyle(TextFormatting.GRAY));
+        }
+    }
+
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
         return repair.getItem() == Item.getItemFromBlock(TofuBlocks.METALTOFU) || super.getIsRepairable(toRepair, repair);
     }
 
+    @Override
+    public int getEnergyMax(ItemStack inst) {
+        return 10000;
+    }
 }
