@@ -6,7 +6,10 @@ import baguchan.mcmod.tofucraft.entity.*;
 import baguchan.mcmod.tofucraft.entity.projectile.BeamEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.ZundaArrowEntity;
+import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.tileentity.TofuChestTileEntity;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
@@ -33,5 +36,11 @@ public class TofuRender {
 
     public static void renderTileEntity() {
         ClientRegistry.bindTileEntitySpecialRenderer(TofuChestTileEntity.class, new TofuChestBlockRenderer());
+    }
+
+    public static void renderBlockColor() {
+        Minecraft.getInstance().getBlockColors().register((p_210226_0_, p_210226_1_, p_210226_2_, p_210226_3_) -> {
+            return p_210226_1_ != null && p_210226_2_ != null ? BiomeColors.getWaterColor(p_210226_1_, p_210226_2_) : -1;
+        }, TofuBlocks.SALTPAN);
     }
 }

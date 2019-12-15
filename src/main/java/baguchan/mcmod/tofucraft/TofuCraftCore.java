@@ -48,6 +48,7 @@ public class TofuCraftCore {
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
+        TofuRender.renderBlockColor();
         TofuRender.renderEntity();
         TofuRender.renderTileEntity();
     }

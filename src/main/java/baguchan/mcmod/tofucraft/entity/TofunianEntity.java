@@ -745,6 +745,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         GUARD,
         TOFUCOCK,
         TOFUSMITH,
+        TOFUELF,
         TOFUNIAN;
 
         private static final Map<Integer, Roles> lookup = new HashMap<>();
