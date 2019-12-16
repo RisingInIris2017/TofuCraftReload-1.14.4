@@ -5,37 +5,37 @@
   },
   "variants": {
     "facing=north,lit=false": {
-      "model": "tofucraft:tfstorage",
+      "model": "tofucraft:block/tfstorage",
       "y": 180
     },
     "facing=south,lit=false": {
-      "model": "tofucraft:tfstorage"
+      "model": "tofucraft:block/tfstorage"
     },
     "facing=west,lit=false": {
-      "model": "tofucraft:tfstorage",
+      "model": "tofucraft:block/tfstorage",
       "y": 90
     },
     "facing=east,lit=false": {
-      "model": "tofucraft:tfstorage",
+      "model": "tofucraft:block/tfstorage",
       "y": 270
     },
     "facing=north,lit=true": {
-      "model": "tofucraft:tfstorage_lit",
+      "model": "tofucraft:block/tfstorage_lit",
       "y": 180
     },
     "facing=south,lit=true": {
-      "model": "tofucraft:tfstorage_lit"
+      "model": "tofucraft:block/tfstorage_lit"
     },
     "facing=west,lit=true": {
-      "model": "tofucraft:tfstorage_lit",
+      "model": "tofucraft:block/tfstorage_lit",
       "y": 90
     },
     "facing=east,lit=true": {
-      "model": "tofucraft:tfstorage_lit",
+      "model": "tofucraft:block/tfstorage_lit",
       "y": 270
     },
     "inventory": {
-      "model": "tofucraft:tfstorage"
+      "model": "tofucraft:block/tfstorage"
     }
   }
 }

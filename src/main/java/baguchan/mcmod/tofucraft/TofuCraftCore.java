@@ -1,6 +1,6 @@
 package baguchan.mcmod.tofucraft;
 
-import baguchan.mcmod.tofucraft.client.TofuRender;
+import baguchan.mcmod.tofucraft.client.ClientRegistrar;
 import baguchan.mcmod.tofucraft.init.TofuEffectRegistry;
 import baguchan.mcmod.tofucraft.init.TofuEntitys;
 import baguchan.mcmod.tofucraft.init.TofuItems;
@@ -9,10 +9,12 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -39,6 +41,8 @@ public class TofuCraftCore {
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
+        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientRegistrar::setup));
+
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -48,13 +52,9 @@ public class TofuCraftCore {
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
-        TofuRender.renderBlockColor();
-        TofuRender.renderEntity();
-        TofuRender.renderTileEntity();
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
-
     }
 
     private void processIMC(final InterModProcessEvent event) {
