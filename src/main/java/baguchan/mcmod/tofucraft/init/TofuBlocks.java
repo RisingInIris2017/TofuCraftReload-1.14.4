@@ -100,6 +100,9 @@ public class TofuBlocks {
     public static final Block TOFUCHEST = new TofuChestBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
     public static final Block WHEAT_BOWL = new WheatBowlBlock(Block.Properties.create(Material.ORGANIC).hardnessAndResistance(0.5F, 1.0F).tickRandomly().sound(SoundType.PLANT));
     public static final Block TOFUFARMLAND = new TofuFarmlandBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.45F, 0.85F).tickRandomly().sound(SoundType.CLOTH));
+    //FoodBlock
+    public static final Block TOFUCAKE = new TofuCakeBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.45F, 0.85F).sound(SoundType.SNOW));
+
     //Barrel
     public static final Block BARREL_MISO = new MisoBarrelBlock(Block.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(0.5F, 2.0F).tickRandomly().sound(SoundType.WOOD));
     //Misc
@@ -181,6 +184,7 @@ public class TofuBlocks {
         registry.getRegistry().register(TOFUCHEST.setRegistryName("tofuchest"));
         registry.getRegistry().register(WHEAT_BOWL.setRegistryName("wheat_bowl"));
         registry.getRegistry().register(TOFUFARMLAND.setRegistryName("tofu_farmland"));
+        registry.getRegistry().register(TOFUCAKE.setRegistryName("tofucake"));
         //Barrel
         registry.getRegistry().register(BARREL_MISO.setRegistryName("barrelmiso"));
 
@@ -249,6 +253,8 @@ public class TofuBlocks {
         TofuItems.register(registry, new BlockItem(TOFUCHEST, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT).setTEISR(() -> TofuChestItemRender::new)));
         TofuItems.register(registry, new BlockItem(WHEAT_BOWL, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFUFARMLAND, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+
+        TofuItems.register(registry, new BlockItem(TOFUCAKE, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
 
         TofuItems.register(registry, new BlockItem(BARREL_MISO, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
     }
