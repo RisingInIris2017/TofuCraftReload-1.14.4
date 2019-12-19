@@ -22,11 +22,16 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 public class TofuCakeBlock extends Block {
+    private int foodLevel;
+    private float foodSaturation;
     public static final IntegerProperty BITES = BlockStateProperties.BITES_0_6;
     protected static final VoxelShape[] SHAPES = new VoxelShape[]{Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(3.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(5.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(7.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(9.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(11.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(13.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D)};
 
-    public TofuCakeBlock(Block.Properties properties) {
+    public TofuCakeBlock(int foodLevel, float foodSaturation, Block.Properties properties) {
         super(properties);
+        this.foodLevel = foodLevel;
+        this.foodSaturation = foodSaturation;
+
         this.setDefaultState(this.stateContainer.getBaseState().with(BITES, Integer.valueOf(0)));
     }
 
@@ -48,7 +53,7 @@ public class TofuCakeBlock extends Block {
             return false;
         } else {
             player.addStat(Stats.EAT_CAKE_SLICE);
-            player.getFoodStats().addStats(2, 0.095F);
+            player.getFoodStats().addStats(this.foodLevel, this.foodSaturation);
             int i = state.get(BITES);
             if (i < 6) {
                 worldIn.setBlockState(pos, state.with(BITES, Integer.valueOf(i + 1)), 3);

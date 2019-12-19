@@ -1,0 +1,9 @@
+{
+  "parent": "block/cake",
+  "textures": {
+    "particle": "tofucraft:blocks/zundatofucake_side",
+    "bottom": "tofucraft:blocks/tofucake_bottom",
+    "top": "tofucraft:blocks/zundatofucake_top",
+    "side": "tofucraft:blocks/zundatofucake_side"
+  }
+}
