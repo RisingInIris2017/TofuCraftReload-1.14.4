@@ -36,6 +36,8 @@ public class TofuItems {
 
     public static final Item TOFUFISH = new Item(new Item.Properties().food(TofuFoods.TOFUFISH).group(TofuItemGroup.TOFUCRAFT));
     public static final Item COOKED_TOFUFISH = new Item(new Item.Properties().food(TofuFoods.COOKEDTOFUFISH).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUHAMBURG = new Item(new Item.Properties().food(TofuFoods.TOFUHAMBURG).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUHAMBURG_RAW = new Item(new Item.Properties().food(TofuFoods.TOFUHAMBURG_RAW).group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUCOOKIE = new Item(new Item.Properties().food(TofuFoods.TOFUCOOKIE).group(TofuItemGroup.TOFUCRAFT));
     public static final Item SOYSTICK = new Item(new Item.Properties().food(TofuFoods.SOYSTICK).group(TofuItemGroup.TOFUCRAFT));
     public static final Item TTTBURGER = new Item(new Item.Properties().food(TofuFoods.TTTBURGER).group(TofuItemGroup.TOFUCRAFT));
@@ -184,6 +186,8 @@ public class TofuItems {
 
         register(registry, TOFUFISH, "raw_tofufish");
         register(registry, COOKED_TOFUFISH, "cooked_tofufish");
+        register(registry, TOFUHAMBURG, "tofuhamburg");
+        register(registry, TOFUHAMBURG_RAW, "tofuhamburg_raw");
         register(registry, TOFUCOOKIE, "tofucookie");
         register(registry, SOYSTICK, "soystick");
         register(registry, TTTBURGER, "tttburger");

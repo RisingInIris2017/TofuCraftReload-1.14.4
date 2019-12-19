@@ -10,6 +10,8 @@ public class TofuFoods {
     public static final Food COOKEDTOFU = new Food.Builder().hunger(4).saturation(0.3f).fastToEat().build();
     public static final Food TOFUFISH = new Food.Builder().hunger(2).saturation(0.15f).build();
     public static final Food COOKEDTOFUFISH = new Food.Builder().hunger(4).saturation(0.35f).build();
+    public static final Food TOFUHAMBURG = new Food.Builder().hunger(6).saturation(0.42f).build();
+    public static final Food TOFUHAMBURG_RAW = new Food.Builder().hunger(2).saturation(0.12f).build();
     public static final Food TOFUZUNDA = new Food.Builder().hunger(4).saturation(0.32f).fastToEat().build();
 
     public static final Food TOFUCOOKIE = new Food.Builder().hunger(3).saturation(0.32f).build();

@@ -14,7 +14,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 public class TofuCowEntity extends CowEntity {
-    private static final Ingredient BREEDING_ITEMS = Ingredient.fromItems(Items.WHEAT, TofuItems.SEEDS_SOYBEAN);
+    private static final Ingredient BREEDING_ITEMS = Ingredient.fromItems(Items.WHEAT, TofuItems.LEEK);
 
     public TofuCowEntity(EntityType<? extends TofuCowEntity> type, World worldIn) {
         super(type, worldIn);
