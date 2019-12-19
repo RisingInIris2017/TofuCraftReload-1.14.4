@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "T#",
+    "#T"
+  ],
+  "key": {
+    "#": {
+      "item": "tofucraft:blocktofuminced"
+    },
+    "T": {
+      "item": "tofucraft:tofuberry"
+    }
+  },
+  "result": {
+    "item": "tofucraft:concrete_powder_tofu",
+    "count": 2
+  }
+}

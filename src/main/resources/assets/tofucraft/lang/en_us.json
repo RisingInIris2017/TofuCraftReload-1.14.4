@@ -7,6 +7,8 @@
   "item.tofucraft.tofudiamondnugget": "Diamond TofuNugget",
   "item.tofucraft.tofugrilled": "Grilled Tofu",
   "item.tofucraft.tofuzunda": "Zunda Tofu",
+  "item.tofucraft.tofuminced": "Minced Tofu",
+
   "item.tofucraft.raw_tofufish": "Raw TofuFish",
   "item.tofucraft.cooked_tofufish": "Cooked TofuFish",
   "item.tofucraft.tofucookie": "Tofu Cookie",
@@ -105,9 +107,14 @@
   "block.tofucraft.blocktofudiamond": "DiamondTofu Block",
   "block.tofucraft.blocktofugrilled": "GrilledTofu Block",
   "block.tofucraft.blocktofuzunda": "ZundaTofu Block",
+  "block.tofucraft.blocktofuminced": "MincedTofu Block",
+
   "block.tofucraft.tofuishi_brick": "TofuIshi Brick",
   "block.tofucraft.tofuzunda_brick": "Zunda Brick",
   "block.tofucraft.tofuzunda_smoothbrick": "Zunda SmoothBrick",
+  "block.tofucraft.concrete_tofu": "Tofu Concrete",
+  "block.tofucraft.concrete_powder_tofu": "Tofu ConcretePowder",
+
   "block.tofucraft.tofustair_kinu": "Tofu Kinu Stair",
   "block.tofucraft.tofustair_momen": "Tofu Momen Stair",
   "block.tofucraft.tofustair_ishi": "Tofu Ishi Stair",

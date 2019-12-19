@@ -7,6 +7,8 @@
   "item.tofucraft.tofudiamondnugget": "金剛豆腐のナゲット",
   "item.tofucraft.tofugrilled": "焼き豆腐",
   "item.tofucraft.tofuzunda": "ずんだ豆腐",
+  "item.tofucraft.tofuminced": "そぼろ豆腐",
+
   "item.tofucraft.raw_tofufish": "生の豆腐フィッシュ",
   "item.tofucraft.cooked_tofufish": "焼いた豆腐フィッシュ",
   "item.tofucraft.tofucookie": "豆腐クッキー",
@@ -106,9 +108,14 @@
   "block.tofucraft.blocktofudiamond": "金剛豆腐ブロック",
   "block.tofucraft.blocktofugrilled": "焼き豆腐ブロック",
   "block.tofucraft.blocktofuzunda": "ずんだ豆腐ブロック",
+  "block.tofucraft.blocktofuminced": "そぼろ豆腐ブロック",
+
   "block.tofucraft.tofuishi_brick": "豆腐石レンガブロック",
   "block.tofucraft.tofuzunda_brick": "ずんだ豆腐レンガブロック",
   "block.tofucraft.tofuzunda_smoothbrick": "滑らかなずんだ豆腐レンガブロック",
+  "block.tofucraft.concrete_tofu": "トーフコンクリート",
+  "block.tofucraft.concrete_powder_tofu": "トーフコンクリートパウダー",
+
   "block.tofucraft.tofustair_kinu": "絹豆腐の階段",
   "block.tofucraft.tofustair_momen": "木綿豆腐の階段",
   "block.tofucraft.tofustair_ishi": "石豆腐の階段",
