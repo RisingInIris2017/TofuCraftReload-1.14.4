@@ -1,10 +1,12 @@
 package baguchan.mcmod.tofucraft.world.gen.caver;
 
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
+import baguchan.mcmod.tofucraft.init.TofuFluids;
 import baguchan.mcmod.tofucraft.world.dimension.TofuWorldChunkGenerator;
+import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.IChunk;
@@ -24,6 +26,8 @@ public class TofuCaveCarver extends CaveWorldCarver {
         super(deserialize, 256);
         this.radiusScale = radiusScale;
         this.largeCave = largeCave;
+        this.carvableBlocks = ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK, TofuBlocks.TOFUTERRAIN, TofuBlocks.MINCEDTOFU);
+        this.carvableFluids = ImmutableSet.of(TofuFluids.SOYMILK);
     }
 
     @Override
@@ -59,14 +63,6 @@ public class TofuCaveCarver extends CaveWorldCarver {
         }
 
         return true;
-    }
-
-    @Override
-    protected boolean canCarveBlock(BlockState state, BlockState aboveState) {
-        Material material = state.getMaterial();
-        Material aboveMaterial = aboveState.getMaterial();
-        return (material == Material.ROCK || material == Material.EARTH || material == Material.ORGANIC || state.getBlock() == TofuBlocks.TOFUTERRAIN)
-                && aboveMaterial != Material.WATER && aboveMaterial != Material.LAVA;
     }
 
     @Override
