@@ -52,7 +52,7 @@ public abstract class TileEntitySenderBase extends TileEntityEnergyBase implemen
                         .entrySet()
                         .stream()
                         .filter(entry -> entry.getValue() instanceof TileEntitySenderBase &&
-                                (((TileEntitySenderBase) entry.getValue()).isValid())));
+                                ((TileEntitySenderBase) entry.getValue()).isValid()));
         tes.forEach(te -> ((TileEntitySenderBase) te).onCache());
     }
 

@@ -3,6 +3,7 @@ package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.block.*;
+import baguchan.mcmod.tofucraft.block.mecha.TFStorageBlock;
 import baguchan.mcmod.tofucraft.client.render.tileentity.TofuChestItemRender;
 import baguchan.mcmod.tofucraft.world.tree.TofuTree;
 import baguchan.mcmod.tofucraft.world.tree.ZundaTofuTree;
@@ -111,6 +112,8 @@ public class TofuBlocks {
     public static final Block BARREL_MISO = new MisoBarrelBlock(Block.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(0.5F, 2.0F).tickRandomly().sound(SoundType.WOOD));
     //Misc
     public static final Block TOFUGANDLEM_CORE = new TofuGandlemCoreBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(10000.0F).tickRandomly().sound(SoundType.STONE));
+    //Mecha
+    public static final Block TFSTORAGE = new TFStorageBlock(Block.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).hardnessAndResistance(4.0F, 7.5F).lightValue(12).tickRandomly().sound(SoundType.METAL));
 
 
     @SubscribeEvent
@@ -197,6 +200,8 @@ public class TofuBlocks {
         registry.getRegistry().register(BARREL_MISO.setRegistryName("barrelmiso"));
 
         registry.getRegistry().register(TOFUGANDLEM_CORE.setRegistryName("tofugandlem_core"));
+        //Mecha
+        registry.getRegistry().register(TFSTORAGE.setRegistryName("tfstorage"));
     }
 
     @SubscribeEvent
@@ -270,6 +275,8 @@ public class TofuBlocks {
         TofuItems.register(registry, new BlockItem(ZUNDATOFUCAKE, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
 
         TofuItems.register(registry, new BlockItem(BARREL_MISO, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        //Mecha
+        TofuItems.register(registry, new BlockItem(TFSTORAGE, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
     }
 
 }
