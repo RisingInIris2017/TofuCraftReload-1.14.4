@@ -51,6 +51,7 @@
   "item.tofucraft.tofuchinger_spawnegg": "ガブトーフンのスポーンエッグ",
   "item.tofucraft.grillder_spawnegg": "グリルダーのスポーンエッグ",
   "item.tofucraft.tofuspider_spawnegg": "豆腐スパイダーのスポーンエッグ",
+  "item.tofucraft.tofueagle_spawnegg": "豆腐イーグルのスポーンエッグ",
   "item.tofucraft.tofuturret_spawnegg": "トーフタレットのスポーンエッグ",
   "item.tofucraft.tofumind_spawnegg": "トーフマインド",
 
@@ -177,6 +178,7 @@
   "entity.tofucraft.tofu_chinger": "ガブトーフン",
   "entity.tofucraft.grillder": "グリルダー",
   "entity.tofucraft.tofuspider": "豆腐スパイダー",
+  "entity.tofucraft.tofueagle": "トーフイーグル",
   "entity.tofucraft.tofuturret": "トーフタレット",
   "entity.tofucraft.tofumind": "トーフマインド",
   "entity.tofucraft.tofugandlem": "トーフガンドレム",

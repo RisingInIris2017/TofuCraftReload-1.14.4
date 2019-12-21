@@ -27,6 +27,7 @@ public class ClientRegistrar {
         RenderingRegistry.registerEntityRenderingHandler(TofuChingerEntity.class, TofuChingerRender::new);
         RenderingRegistry.registerEntityRenderingHandler(GrillderEntity.class, GrillderRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuSpiderEntity.class, TofuSpiderRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEagleEntity.class, TofuEagleRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuTurretEntity.class, TofuTurretRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuMindEntity.class, TofuMindRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuGandlemEntity.class, TofuGandlemRender::new);
