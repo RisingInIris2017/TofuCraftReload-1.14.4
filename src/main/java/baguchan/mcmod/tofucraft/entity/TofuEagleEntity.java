@@ -137,14 +137,6 @@ public class TofuEagleEntity extends TameableEntity {
     }
 
     public void updateFlying() {
-
-        if (!isFlying()) {
-            Vec3d vec3d = this.getMotion();
-            if (!this.onGround && vec3d.y < 0.0D) {
-                this.setMotion(vec3d.mul(1.0D, 0.6D, 1.0D));
-            }
-        }
-
         if (!this.world.isRemote) {
             if (!isSitting() && this.isServerWorld() && !this.isFlying() && this.rand.nextInt(300) == 0) {
                 this.navigator = this.flyNavigator;
@@ -285,19 +277,10 @@ public class TofuEagleEntity extends TameableEntity {
 
     @Override
     public void fall(float distance, float damageMultiplier) {
-        if (!isFlying()) {
-            super.fall(distance, damageMultiplier);
-        }
     }
 
     @Override
     protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
-
-        if (isFlying()) {
-            fallDistance = 0.0F;
-        } else {
-            super.updateFallState(y, onGroundIn, state, pos);
-        }
     }
 
     static class MoveHelperController extends MovementController {
