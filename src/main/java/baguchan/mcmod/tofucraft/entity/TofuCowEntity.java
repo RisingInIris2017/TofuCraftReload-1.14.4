@@ -1,7 +1,11 @@
 package baguchan.mcmod.tofucraft.entity;
 
+import baguchan.mcmod.tofucraft.init.TofuBiomes;
+import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.init.TofuEntitys;
 import baguchan.mcmod.tofucraft.init.TofuItems;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.CowEntity;
@@ -9,11 +13,25 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nullable;
 
 public class TofuCowEntity extends CowEntity {
+    private static final DataParameter<String> TOFUCOW_TYPE = EntityDataManager.createKey(TofuCowEntity.class, DataSerializers.STRING);
+
     private static final Ingredient BREEDING_ITEMS = Ingredient.fromItems(Items.WHEAT, TofuItems.LEEK);
 
     public TofuCowEntity(EntityType<? extends TofuCowEntity> type, World worldIn) {
@@ -37,11 +55,22 @@ public class TofuCowEntity extends CowEntity {
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.2F);
     }
 
+    protected void registerData() {
+        super.registerData();
+        this.dataManager.register(TOFUCOW_TYPE, TofuCowEntity.Type.NONE.name);
+    }
+
+    public void writeAdditional(CompoundNBT compound) {
+        super.writeAdditional(compound);
+        compound.putString("Type", this.getTofuCowType().name);
+    }
+
     /**
-     * Returns the volume for the sounds this mob makes.
+     * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    protected float getSoundVolume() {
-        return 0.4F;
+    public void readAdditional(CompoundNBT compound) {
+        super.readAdditional(compound);
+        this.setTofuCowType(TofuCowEntity.Type.getTypeByName(compound.getString("Type")));
     }
 
     public boolean processInteract(PlayerEntity player, Hand hand) {
@@ -61,8 +90,48 @@ public class TofuCowEntity extends CowEntity {
         }
     }
 
-    public CowEntity createChild(AgeableEntity ageable) {
-        return TofuEntitys.TOFUCOW.create(this.world);
+    private void setTofuCowType(TofuCowEntity.Type typeIn) {
+        this.dataManager.set(TOFUCOW_TYPE, typeIn.name);
+    }
+
+    public TofuCowEntity.Type getTofuCowType() {
+        return TofuCowEntity.Type.getTypeByName(this.dataManager.get(TOFUCOW_TYPE));
+    }
+
+    public TofuCowEntity createChild(AgeableEntity ageable) {
+        TofuCowEntity mooshroomentity = TofuEntitys.TOFUCOW.create(this.world);
+        mooshroomentity.setTofuCowType(this.func_213445_a((TofuCowEntity) ageable));
+        return mooshroomentity;
+    }
+
+    private TofuCowEntity.Type func_213445_a(TofuCowEntity p_213445_1_) {
+        TofuCowEntity.Type mooshroomentity$type = this.getTofuCowType();
+        TofuCowEntity.Type mooshroomentity$type1 = p_213445_1_.getTofuCowType();
+        TofuCowEntity.Type mooshroomentity$type2;
+
+        mooshroomentity$type2 = this.rand.nextBoolean() ? mooshroomentity$type : mooshroomentity$type1;
+
+
+        return mooshroomentity$type2;
+    }
+
+    @Nullable
+    @Override
+    public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+        Biome biome = worldIn.getBiome(new BlockPos(this));
+
+        if (biome == TofuBiomes.TOFU_PLAIN) {
+            if (worldIn.getRandom().nextInt(8) == 0) {
+                this.setTofuCowType(Type.LEEK);
+            }
+        } else {
+            if (worldIn.getRandom().nextInt(8) == 0) {
+                this.setTofuCowType(Type.BROWN);
+            }
+        }
+
+
+        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
     @Override
@@ -72,5 +141,37 @@ public class TofuCowEntity extends CowEntity {
 
     protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
         return this.isChild() ? sizeIn.height * 0.95F : 1.3F;
+    }
+
+    public static enum Type {
+        NONE("none", Blocks.AIR.getDefaultState()),
+        LEEK("leek", TofuBlocks.LEEK.getDefaultState()),
+        BROWN("brown", Blocks.BROWN_MUSHROOM.getDefaultState());
+
+        private final String name;
+        private final BlockState renderState;
+
+        private Type(String nameIn, BlockState renderStateIn) {
+            this.name = nameIn;
+            this.renderState = renderStateIn;
+        }
+
+        /**
+         * A block state that is rendered on the back of the mooshroom.
+         */
+        @OnlyIn(Dist.CLIENT)
+        public BlockState getRenderState() {
+            return this.renderState;
+        }
+
+        private static TofuCowEntity.Type getTypeByName(String nameIn) {
+            for (TofuCowEntity.Type mooshroomentity$type : values()) {
+                if (mooshroomentity$type.name.equals(nameIn)) {
+                    return mooshroomentity$type;
+                }
+            }
+
+            return LEEK;
+        }
     }
 }

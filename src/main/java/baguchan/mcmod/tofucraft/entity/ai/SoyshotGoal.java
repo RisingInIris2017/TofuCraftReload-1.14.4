@@ -61,8 +61,8 @@ public class SoyshotGoal extends Goal {
         }
 
         if (this.shotTime <= 20) {
-            if (this.tofuGandlemEntity.ticksExisted % 5 == 0) {
-                for (int i = 0; i < 4; i++) {
+            if (this.tofuGandlemEntity.ticksExisted % 6 == 0) {
+                for (int i = 0; i < 3; i++) {
                     FukumameEntity projectile = new FukumameEntity(this.tofuGandlemEntity.world, this.tofuGandlemEntity);
 
                     Vec3d vec3d = this.tofuGandlemEntity.getLook(1.0F);
