@@ -58,9 +58,10 @@ import net.minecraft.world.server.ServerWorld;
 import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class TofunianEntity extends AbstractVillagerEntity implements IReputationTracking {
-    private static final DataParameter<Integer> ROLE = EntityDataManager.createKey(TofunianEntity.class, DataSerializers.VARINT);
+    private static final DataParameter<String> ROLE = EntityDataManager.createKey(TofunianEntity.class, DataSerializers.STRING);
     private boolean customer;
     private int tofunianCareerLevel = 1;
     private int xp;
@@ -259,7 +260,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
         compound.putInt("Level", getLevel());
         compound.putInt("Xp", this.xp);
-        compound.putInt("Role", getRole().ordinal());
+        compound.putString("Role", getRole().getString());
 
         compound.put("Gossips", this.gossip.serialize(NBTDynamicOps.INSTANCE).getValue());
 
@@ -277,7 +278,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
             this.xp = compound.getInt("Xp");
         }
         if (compound.contains("Role")) {
-            this.setRole(Roles.get(compound.getInt("Role")));
+            this.setRole(Roles.get(compound.getString("Role")));
         }
 
         ListNBT listnbt = compound.getList("Gossips", 10);
@@ -316,7 +317,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     protected void registerData() {
         super.registerData();
 
-        this.getDataManager().register(ROLE, Roles.TOFUNIAN.ordinal());
+        this.getDataManager().register(ROLE, Roles.TOFUNIAN.getString());
     }
 
     public void setLevel(int level) {
@@ -328,7 +329,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     }
 
     public void setRole(Roles role) {
-        this.getDataManager().set(ROLE, role.ordinal());
+        this.getDataManager().set(ROLE, role.getString());
         if (canGuard()) {
             this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(5.0D);
         }
@@ -711,14 +712,6 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         }
     }
 
-    public void rollDiceRole() {
-        int randRole = this.world.rand.nextInt(Roles.values().length - 1);
-
-        this.setRole(Roles.get(randRole));
-
-        updateTofunianState();
-    }
-
     public boolean canDespawn(double distanceToClosestPlayer) {
         return false;
     }
@@ -741,23 +734,32 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         );
     }
 
-    public enum Roles {
-        GUARD,
-        TOFUCOCK,
-        TOFUSMITH,
-        TOFUELF,
-        TOFUNIAN;
+    public enum Roles implements net.minecraftforge.common.IExtensibleEnum {
+        GUARD("guard"),
+        TOFUCOCK("tofucock"),
+        TOFUSMITH("tofusmith"),
+        TOFUNIAN("tofunian");
 
-        private static final Map<Integer, Roles> lookup = new HashMap<>();
+        private static final Map<String, Roles> lookup = Arrays.stream(values()).collect(Collectors.toMap(Roles::getString, (p_220362_0_) -> {
+            return p_220362_0_;
+        }));
 
-        static {
-            for (Roles e : EnumSet.allOf(Roles.class)) {
-                lookup.put(e.ordinal(), e);
-            }
+        private final String name;
+
+        private Roles(String p_i50381_3_) {
+            this.name = p_i50381_3_;
         }
 
-        public static Roles get(int intValue) {
-            return lookup.get(intValue);
+        public String getString() {
+            return this.name;
+        }
+
+        public static Roles create(String name) {
+            throw new IllegalStateException("Enum not extended");
+        }
+
+        public static Roles get(String stringValue) {
+            return lookup.get(stringValue);
         }
     }
 

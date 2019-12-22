@@ -5,6 +5,7 @@ import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
@@ -25,6 +26,10 @@ public class RestockTradeGoal extends MoveToBlockGoal {
      */
     public boolean shouldExecute() {
         return !this.creature.isBeingRidden() && this.creature.isStockOut() && this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && super.shouldExecute();
+    }
+
+    protected int getRunDelay(CreatureEntity creatureIn) {
+        return 40 + creatureIn.getRNG().nextInt(60);
     }
 
     @Override

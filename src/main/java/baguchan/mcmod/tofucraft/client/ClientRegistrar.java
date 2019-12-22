@@ -2,16 +2,13 @@ package baguchan.mcmod.tofucraft.client;
 
 import baguchan.mcmod.tofucraft.client.render.*;
 import baguchan.mcmod.tofucraft.client.render.tileentity.TofuChestBlockRenderer;
-import baguchan.mcmod.tofucraft.client.screen.TFStorageScreen;
 import baguchan.mcmod.tofucraft.entity.*;
 import baguchan.mcmod.tofucraft.entity.projectile.BeamEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.ZundaArrowEntity;
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
-import baguchan.mcmod.tofucraft.init.TofuContainers;
 import baguchan.mcmod.tofucraft.tileentity.TofuChestTileEntity;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -21,9 +18,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 @OnlyIn(Dist.CLIENT)
 public class ClientRegistrar {
-    public static void render() {
-        ScreenManager.registerFactory(TofuContainers.TFSTORAGE, TFStorageScreen::new);
-    }
 
     public static void renderEntity() {
         RenderingRegistry.registerEntityRenderingHandler(TofunianEntity.class, TofunianRender::new);
@@ -59,6 +53,5 @@ public class ClientRegistrar {
         ClientRegistrar.renderEntity();
         ClientRegistrar.renderTileEntity();
         ClientRegistrar.renderBlockColor();
-        ClientRegistrar.render();
     }
 }

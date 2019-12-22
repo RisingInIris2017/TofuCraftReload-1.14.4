@@ -5,6 +5,7 @@ import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -21,6 +22,10 @@ public class InterestJobBlockGoal extends MoveToBlockGoal {
 
     public boolean shouldExecute() {
         return !this.creature.isBeingRidden() && this.creature.isNitwit() && this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && this.creature.world.rand.nextInt(40) == 0 && super.shouldExecute();
+    }
+
+    protected int getRunDelay(CreatureEntity creatureIn) {
+        return 40 + creatureIn.getRNG().nextInt(60);
     }
 
     @Override

@@ -23,7 +23,11 @@ public class GoToBedGoal extends MoveToBlockGoal {
      * Returns whether the EntityAIBase should begin execution.
      */
     public boolean shouldExecute() {
-        return !this.creature.isBeingRidden() && this.creature.world.getDimension().isSurfaceWorld() && !this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && this.searchForDestination();
+        return !this.creature.isBeingRidden() && this.creature.world.getDimension().isSurfaceWorld() && !this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && super.shouldExecute();
+    }
+
+    protected int getRunDelay(CreatureEntity creatureIn) {
+        return 100 + creatureIn.getRNG().nextInt(60);
     }
 
     @Override

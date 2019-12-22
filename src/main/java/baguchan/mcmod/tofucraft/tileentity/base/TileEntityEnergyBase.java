@@ -106,7 +106,9 @@ public abstract class TileEntityEnergyBase extends TileEntity implements ITofuEn
     @Override
     @Nullable
     public SUpdateTileEntityPacket getUpdatePacket() {
-        return new SUpdateTileEntityPacket(pos, 99, this.getUpdateTag());
+        CompoundNBT nbtTagCompound = new CompoundNBT();
+        this.write(nbtTagCompound);
+        return new SUpdateTileEntityPacket(pos, 99, nbtTagCompound);
     }
 
     @Override
@@ -132,9 +134,8 @@ public abstract class TileEntityEnergyBase extends TileEntity implements ITofuEn
     @Override
     public void remove() {
         super.remove();
-        if (!world.isRemote) {
+        if (!world.isRemote)
             TofuNetwork.Instance.unload(uuid, false);
-        }
     }
 
     public boolean isRedstonePowered() {

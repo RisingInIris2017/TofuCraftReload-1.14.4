@@ -69,9 +69,8 @@ public class TofuNetwork {
     }
 
     public void register(String uid, TileEntity te, boolean isSystem) {
-        if (!(te instanceof ITofuEnergy)) {
+        if (!(te instanceof ITofuEnergy))
             throw new IllegalArgumentException("Can't register machine which is not Tofu Energy Tile!");
-        }
         reference.put(uid, te);
         MinecraftForge.EVENT_BUS.post(new TofuNetworkChangedEvent.NetworkLoaded(uid, te, isSystem));
     }
