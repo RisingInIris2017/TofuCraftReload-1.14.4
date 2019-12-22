@@ -260,7 +260,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
         compound.putInt("Level", getLevel());
         compound.putInt("Xp", this.xp);
-        compound.putString("Role", getRole().getString());
+        compound.putString("Role", getRole().name());
 
         compound.put("Gossips", this.gossip.serialize(NBTDynamicOps.INSTANCE).getValue());
 
@@ -317,7 +317,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     protected void registerData() {
         super.registerData();
 
-        this.getDataManager().register(ROLE, Roles.TOFUNIAN.getString());
+        this.getDataManager().register(ROLE, Roles.TOFUNIAN.name());
     }
 
     public void setLevel(int level) {
@@ -329,7 +329,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     }
 
     public void setRole(Roles role) {
-        this.getDataManager().set(ROLE, role.getString());
+        this.getDataManager().set(ROLE, role.name());
         if (canGuard()) {
             this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(5.0D);
         }
@@ -735,23 +735,17 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     }
 
     public enum Roles implements net.minecraftforge.common.IExtensibleEnum {
-        GUARD("guard"),
-        TOFUCOCK("tofucock"),
-        TOFUSMITH("tofusmith"),
-        TOFUNIAN("tofunian");
+        GUARD,
+        TOFUCOCK,
+        TOFUSMITH,
+        TOFUNIAN;
 
-        private static final Map<String, Roles> lookup = Arrays.stream(values()).collect(Collectors.toMap(Roles::getString, (p_220362_0_) -> {
+        private static final Map<String, Roles> lookup = Arrays.stream(values()).collect(Collectors.toMap(Roles::name, (p_220362_0_) -> {
             return p_220362_0_;
         }));
 
-        private final String name;
 
-        private Roles(String p_i50381_3_) {
-            this.name = p_i50381_3_;
-        }
-
-        public String getString() {
-            return this.name;
+        private Roles() {
         }
 
         public static Roles create(String name) {
