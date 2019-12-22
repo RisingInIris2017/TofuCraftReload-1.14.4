@@ -1,13 +1,12 @@
 package baguchan.mcmod.tofucraft.entity;
 
-import baguchan.mcmod.tofucraft.entity.ai.GoToBedGoal;
-import baguchan.mcmod.tofucraft.entity.ai.InterestJobBlockGoal;
-import baguchan.mcmod.tofucraft.entity.ai.RestockTradeGoal;
+import baguchan.mcmod.tofucraft.entity.ai.*;
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.init.TofuEntitys;
 import baguchan.mcmod.tofucraft.init.TofuItems;
 import baguchan.mcmod.tofucraft.init.TofuSounds;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.Dynamic;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -16,6 +15,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.IReputationTracking;
 import net.minecraft.entity.merchant.IReputationType;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
@@ -27,6 +27,7 @@ import net.minecraft.entity.monster.VexEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
@@ -35,6 +36,7 @@ import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.stats.Stats;
@@ -54,6 +56,8 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -62,6 +66,11 @@ import java.util.stream.Collectors;
 
 public class TofunianEntity extends AbstractVillagerEntity implements IReputationTracking {
     private static final DataParameter<String> ROLE = EntityDataManager.createKey(TofunianEntity.class, DataSerializers.STRING);
+    private static final Set<Item> FOOD = ImmutableSet.of(TofuItems.SEEDS_SOYBEAN, TofuItems.TOFUGRILD, TofuItems.TOFUCOOKIE, TofuItems.TOFUMOMEN);
+    public static final Map<Item, Integer> field_213788_bA = ImmutableMap.of(TofuItems.SEEDS_SOYBEAN, 1, TofuItems.TOFUGRILD, 2, TofuItems.TOFUCOOKIE, 2, TofuItems.TOFUMOMEN, 1);
+
+    private int inLove;
+
     private boolean customer;
     private int tofunianCareerLevel = 1;
     private int xp;
@@ -135,6 +144,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
     public TofunianEntity(EntityType<? extends TofunianEntity> p_i50182_1_, World p_i50182_2_) {
         super(p_i50182_1_, p_i50182_2_);
+        this.setCanPickUpLoot(true);
     }
 
 
@@ -258,6 +268,8 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     public void writeAdditional(CompoundNBT compound) {
         super.writeAdditional(compound);
 
+        compound.putInt("InLove", this.inLove);
+
         compound.putInt("Level", getLevel());
         compound.putInt("Xp", this.xp);
         compound.putString("Role", getRole().name());
@@ -272,6 +284,8 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     @Override
     public void readAdditional(CompoundNBT compound) {
         super.readAdditional(compound);
+
+        this.inLove = compound.getInt("InLove");
 
         this.setLevel(compound.getInt("Level"));
         if (compound.contains("Xp", 3)) {
@@ -289,6 +303,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         }
 
         updateUniqueEntityAI();
+        this.setCanPickUpLoot(true);
     }
 
     public void setTofunainHome(@Nullable BlockPos pos) {
@@ -401,6 +416,10 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
         findHome(false);
 
+        if (this.getGrowingAge() != 0) {
+            this.inLove = 0;
+        }
+
         super.updateAITasks();
     }
 
@@ -417,7 +436,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
             BlockState state = world.getBlockState(tofunainHome);
 
-            if (this.getDistanceSq(tofunainHome.getX(), tofunainHome.getY(), tofunainHome.getZ()) > 2200F) {
+            if (this.getDistanceSq(tofunainHome.getX(), tofunainHome.getY(), tofunainHome.getZ()) > 1800F) {
                 tofunainHome = null;
 
                 tryFind = true;
@@ -464,10 +483,12 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         });
         this.goalSelector.addGoal(2, new TradeWithPlayerGoal(this));
         this.goalSelector.addGoal(2, new LookAtCustomerGoal(this));
-        this.goalSelector.addGoal(4, new GoToBedGoal(this, 1.1D));
-        this.goalSelector.addGoal(5, new MoveToHomeGoal(this, 20D, 1.15D));
-        this.goalSelector.addGoal(6, new InterestJobBlockGoal(this, 1.05D));
+        this.goalSelector.addGoal(3, new GoToBedGoal(this, 1.1D));
+        this.goalSelector.addGoal(4, new MoveToHomeGoal(this, 30D, 1.10D));
+        this.goalSelector.addGoal(5, new TofunianLoveGoal(this, 0.85D));
+        this.goalSelector.addGoal(6, new InterestJobBlockGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new RestockTradeGoal(this, 1.05D));
+        this.goalSelector.addGoal(7, new CropHarvestGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.9D));
         this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
         this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
@@ -542,6 +563,128 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     public void livingTick() {
         this.updateArmSwingProgress();
         super.livingTick();
+
+        if (this.inLove > 0) {
+            --this.inLove;
+            if (this.inLove % 10 == 0) {
+                double d0 = this.rand.nextGaussian() * 0.02D;
+                double d1 = this.rand.nextGaussian() * 0.02D;
+                double d2 = this.rand.nextGaussian() * 0.02D;
+                this.world.addParticle(ParticleTypes.HEART, this.posX + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), this.posY + 0.5D + (double) (this.rand.nextFloat() * this.getHeight()), this.posZ + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), d0, d1, d2);
+            }
+        }
+    }
+
+    public void setInLove(int inLove) {
+        this.inLove = inLove;
+    }
+
+    @Override
+    protected void updateEquipmentIfNeeded(ItemEntity itemEntity) {
+        ItemStack itemstack = itemEntity.getItem();
+        Item item = itemstack.getItem();
+        if (this.func_223717_b(item)) {
+            Inventory inventory = this.getVillagerInventory();
+            boolean flag = false;
+
+            for (int i = 0; i < inventory.getSizeInventory(); ++i) {
+                ItemStack itemstack1 = inventory.getStackInSlot(i);
+                if (itemstack1.isEmpty() || itemstack1.getItem() == item && itemstack1.getCount() < itemstack1.getMaxStackSize()) {
+                    flag = true;
+                    break;
+                }
+            }
+
+            if (!flag) {
+                return;
+            }
+
+            int j = inventory.count(item);
+            if (j == 256) {
+                return;
+            }
+
+            if (j > 256) {
+                inventory.func_223374_a(item, j - 256);
+                return;
+            }
+
+            this.onItemPickup(itemEntity, itemstack.getCount());
+            ItemStack itemstack2 = inventory.addItem(itemstack);
+            if (itemstack2.isEmpty()) {
+                itemEntity.remove();
+            } else {
+                itemstack.setCount(itemstack2.getCount());
+            }
+        }
+    }
+
+    public boolean func_223717_b(Item p_223717_1_) {
+        return FOOD.contains(p_223717_1_);
+    }
+
+    //when tofunian have enough foods
+    public boolean canAbondonItems() {
+        return this.func_213751_ew() >= 24;
+    }
+
+    public boolean wantsMoreFood() {
+        return this.func_213751_ew() < 12;
+    }
+
+    private int func_213751_ew() {
+        Inventory inventory = this.getVillagerInventory();
+        return field_213788_bA.entrySet().stream().mapToInt((p_213764_1_) -> {
+            return inventory.count(p_213764_1_.getKey()) * p_213764_1_.getValue();
+        }).sum();
+    }
+
+    //When tofunian make child,consume foods
+    public void consumeFoods() {
+        if (this.canAbondonItems() && this.func_213751_ew() != 0) {
+            for (int i = 0; i < this.getVillagerInventory().getSizeInventory(); ++i) {
+                ItemStack itemstack = this.getVillagerInventory().getStackInSlot(i);
+                if (!itemstack.isEmpty()) {
+                    Integer integer = field_213788_bA.get(itemstack.getItem());
+                    if (integer != null) {
+                        int j = itemstack.getCount();
+
+                        for (int k = j; k > 0; --k) {
+                            this.getVillagerInventory().decrStackSize(i, 1);
+                            if (!this.canAbondonItems()) {
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public void handleStatusUpdate(byte id) {
+        if (id == 18) {
+            for (int i = 0; i < 7; ++i) {
+                double d0 = this.rand.nextGaussian() * 0.02D;
+                double d1 = this.rand.nextGaussian() * 0.02D;
+                double d2 = this.rand.nextGaussian() * 0.02D;
+                this.world.addParticle(ParticleTypes.HEART, this.posX + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), this.posY + 0.5D + (double) (this.rand.nextFloat() * this.getHeight()), this.posZ + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), d0, d1, d2);
+            }
+        } else {
+            super.handleStatusUpdate(id);
+        }
+
+    }
+
+
+    public boolean canMateWith(TofunianEntity otherTofunian) {
+        if (otherTofunian == this) {
+            return false;
+        } else if (otherTofunian.getClass() != this.getClass()) {
+            return false;
+        } else {
+            return this.canAbondonItems() && otherTofunian.canAbondonItems();
+        }
     }
 
     @Override
@@ -587,6 +730,15 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         }
 
         return flag;
+    }
+
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        if (this.isInvulnerableTo(source)) {
+            return false;
+        } else {
+            this.inLove = 0;
+            return super.attackEntityFrom(source, amount);
+        }
     }
 
     @Override
