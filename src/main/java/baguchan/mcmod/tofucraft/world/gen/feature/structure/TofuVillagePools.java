@@ -82,7 +82,7 @@ public class TofuVillagePools {
         JigsawManager.REGISTRY.register(new JigsawPattern(new ResourceLocation(TofuCraftCore.MODID, "tofu_village/tofunian"),
                 new ResourceLocation("empty"),
                 ImmutableList.of(new Pair<>(
-                        new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/tofunian/tofunian_guard"),
+                        new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/tofunian/tofunian_child"),
                         1), new Pair<>(
                         new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/tofunian/tofunian"),
                         4)), JigsawPattern.PlacementBehaviour.RIGID));
