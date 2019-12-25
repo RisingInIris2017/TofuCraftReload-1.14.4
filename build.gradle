@@ -86,7 +86,20 @@ minecraft {
 }
 
 repositories {
+    maven {
+        url = "https://maven.blamejared.com"
+    }
+
     maven { url = "http://dvs1.progwml6.com/files/maven" }
+
+    maven {
+        url = "https://minecraft.curseforge.com/api/maven/"
+    }
+
+    maven {
+        name = "curios"
+        url = "https://maven.theillusivec4.top/"
+    }
 }
 
 dependencies {
@@ -95,27 +108,13 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.14.4-28.1.102'
 
+    compile fg.deobf("vazkii.patchouli:Patchouli:1.1-22.43") { transitive = false }
+
     runtimeOnly fg.deobf("mezz.jei:jei-1.14.4:6.0.0.18")
     compileOnly fg.deobf("mezz.jei:jei-1.14.4:6.0.0.18:api")
 
-    // You may put jars on which you depend on in ./libs or you may define them like so..
-    // compile "some.group:artifact:version:classifier"
-    // compile "some.group:artifact:version"
-
-    // Real examples
-    // compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    // compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // The 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
-    // provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // These dependencies get remapped to your current MCP mappings
-    // deobf 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // For more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
+    compileOnly fg.deobf("top.theillusivec4.curios:curios:FORGE-1.14.4-1.0.2:api")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios:FORGE-1.14.4-1.0.2")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
