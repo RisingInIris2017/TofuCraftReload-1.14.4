@@ -12,9 +12,11 @@
     }
   },
   "variants": {
-    "normal": { "model": "cube" },
+    "": {
+      "model": "block/cube"
+    },
     "inventory": {
-      "model": "cube"
+      "model": "block/cube"
     }
   }
 }

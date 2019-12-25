@@ -13,6 +13,8 @@ public abstract class BiomeTofuBase extends Biome {
         DefaultTofuBiomeFeature.addStructure(this);
         DefaultTofuBiomeFeature.addTofuBerry(this);
         DefaultTofuBiomeFeature.addTofuOre(this);
+        DefaultTofuBiomeFeature.addTofuVariants(this);
+        DefaultTofuBiomeFeature.addTofuSedimentDisks(this);
         this.addSpawn(TofuEntitys.TOFU_MONSTER, new SpawnListEntry(TofuEntitys.TOFUSLIME, 25, 1, 1));
         this.addSpawn(TofuEntitys.TOFU_MONSTER, new SpawnListEntry(TofuEntitys.TOFUSPIDER, 1, 1, 2));
 
