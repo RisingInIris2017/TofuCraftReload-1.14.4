@@ -2,6 +2,7 @@ package baguchan.mcmod.tofucraft.block;
 
 import baguchan.mcmod.tofucraft.entity.TofuGandlemEntity;
 import baguchan.mcmod.tofucraft.init.TofuEntitys;
+import baguchan.mcmod.tofucraft.init.TofuParticles;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -19,12 +20,43 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.Random;
 
 public class TofuGandlemCoreBlock extends Block {
     public static VoxelShape AABB = Block.makeCuboidShape(4.0f, 0.0f, 4.0f, 12.0f, 8.0F, 12.0f);
 
     public TofuGandlemCoreBlock(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+        super.animateTick(stateIn, worldIn, pos, rand);
+
+        for (int i = -2; i <= 2; ++i) {
+            for (int j = -2; j <= 2; ++j) {
+                if (i > -2 && i < 2 && j == -1) {
+                    j = 2;
+                }
+
+                if (rand.nextInt(16) == 0) {
+                    for (int k = 0; k <= 1; ++k) {
+                        BlockPos blockpos = pos.add(i, k, j);
+                        if (!worldIn.isAirBlock(pos.add(i / 2, 0, j / 2))) {
+                            break;
+                        }
+
+                        worldIn.addParticle(TofuParticles.TOFUPORTAL, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.25D, (double) pos.getZ() + 0.5D, (double) ((float) i + rand.nextFloat()) - 0.5D, (double) ((float) k - rand.nextFloat() - 1.0F), (double) ((float) j + rand.nextFloat()) - 0.5D);
+
+                    }
+                }
+            }
+        }
+
     }
 
     @Override
