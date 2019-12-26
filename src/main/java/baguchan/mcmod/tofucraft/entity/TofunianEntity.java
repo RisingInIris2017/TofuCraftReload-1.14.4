@@ -931,7 +931,11 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
         public boolean shouldExecute() {
             BlockPos blockpos = this.tofunian.getTofunainHome();
-            return blockpos != null && this.func_220846_a(blockpos, this.distance);
+            if (!this.tofunian.world.isDaytime() && this.tofunian.world.getDimension().isSurfaceWorld()) {
+                return blockpos != null && this.func_220846_a(blockpos, this.distance * 0.35F);
+            } else {
+                return blockpos != null && this.func_220846_a(blockpos, this.distance);
+            }
         }
 
         @Override
@@ -944,9 +948,9 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
             BlockPos blockpos = this.tofunian.getTofunainHome();
 
             if (!this.tofunian.world.isDaytime() && this.tofunian.world.getDimension().isSurfaceWorld()) {
-                return this.func_220846_a(blockpos, this.distance * 0.75F);
-            } else {
                 return this.func_220846_a(blockpos, this.distance * 0.2F);
+            } else {
+                return this.func_220846_a(blockpos, this.distance * 0.75F);
             }
         }
 
