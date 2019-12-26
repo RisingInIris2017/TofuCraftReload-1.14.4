@@ -1,15 +1,17 @@
 package baguchan.mcmod.tofucraft.client.model;
 
 import baguchan.mcmod.tofucraft.entity.TofuMindEntity;
-import com.mojang.blaze3d.platform.GlStateManager;
-import net.minecraft.client.renderer.entity.model.BipedModel;
+import net.minecraft.client.renderer.entity.model.EntityModel;
+import net.minecraft.client.renderer.entity.model.IHasArm;
+import net.minecraft.client.renderer.entity.model.IHasHead;
 import net.minecraft.client.renderer.entity.model.RendererModel;
+import net.minecraft.util.Hand;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class TofuMindModel<T extends TofuMindEntity> extends BipedModel<T> {
+public class TofuMindModel<T extends TofuMindEntity> extends EntityModel<T> implements IHasArm, IHasHead {
     public RendererModel body;
     public RendererModel head;
     public RendererModel handR;
@@ -107,15 +109,21 @@ public class TofuMindModel<T extends TofuMindEntity> extends BipedModel<T> {
         this.handL.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
     }
 
-    @Override
-    public void setLivingAnimations(T entity, float limbSwing, float limbSwingAmount, float partialTicks) {
-        float tick = entity.ticksExisted + partialTicks;
-
-        GlStateManager.translatef(0F, -0.1F - MathHelper.sin(tick * 0.12F) * 0.1F, 0F);
-    }
-
     protected RendererModel getArmForSide(HandSide side) {
         return side == HandSide.LEFT ? this.handL : this.handR;
+    }
+
+    public void postRenderArm(float scale, HandSide side) {
+        this.getArmForSide(side).postRender(scale);
+    }
+
+    public RendererModel func_205072_a() {
+        return this.head;
+    }
+
+    protected HandSide func_217147_a(T p_217147_1_) {
+        HandSide handside = p_217147_1_.getPrimaryHand();
+        return p_217147_1_.swingingHand == Hand.MAIN_HAND ? handside : handside.opposite();
     }
 
     @OnlyIn(Dist.CLIENT)
