@@ -25,12 +25,8 @@ public class TofunianRender extends MobRenderer<TofunianEntity, TofunianModel> {
     @Override
     protected ResourceLocation getEntityTexture(TofunianEntity entity) {
         String role = "";
-        if (entity.getRole() == TofunianEntity.Roles.GUARD) {
-            role = "hunter_";
-        } else if (entity.getRole() == TofunianEntity.Roles.TOFUSMITH) {
-            role = "smith_";
-        } else if (entity.getRole() == TofunianEntity.Roles.TOFUCOCK) {
-            role = "cock_";
+        if (entity.getRole() != TofunianEntity.Roles.TOFUNIAN) {
+            role = entity.getRole().name().toLowerCase() + "_";
         }
         return new ResourceLocation(TofuCraftCore.MODID + ":textures/mob/tofunian/" + role + "tofunian.png");
     }

@@ -6,9 +6,12 @@
     },
     {
       "item": "minecraft:bottle"
+    },
+    {
+      "item": "minecraft:cocoa_beans"
     }
   ],
   "result": {
-    "item": "tofucraft:soymilk"
+    "item": "tofucraft:soymilk_cocoa"
   }
 }

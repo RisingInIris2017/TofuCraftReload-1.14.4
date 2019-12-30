@@ -13,11 +13,13 @@ import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -42,6 +44,19 @@ public class TofuItems {
     public static final Item SOYSTICK = new Item(new Item.Properties().food(TofuFoods.SOYSTICK).group(TofuItemGroup.TOFUCRAFT));
     public static final Item TTTBURGER = new Item(new Item.Properties().food(TofuFoods.TTTBURGER).group(TofuItemGroup.TOFUCRAFT));
     public static final Item RICEBURGER = new Item(new Item.Properties().food(TofuFoods.RICEBURGER).group(TofuItemGroup.TOFUCRAFT));
+    //Drink
+    public static final Item SOYMILK_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_ANNIN_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_ANNIN).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_APPLE_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_APPLE).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item BREWED_SOYMILK_ANNIN_BOTTLE = new FoildDrinkItem(new Item.Properties().food(TofuFoods.BREWED_SOYMILK_ANNIN).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item BREWED_SOYMILK_APPLE_BOTTLE = new FoildDrinkItem(new Item.Properties().food(TofuFoods.BREWED_SOYMILK_APPLE).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_COCOA_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_COCOA).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_KINAKO_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_KINAKO).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_PUDDING_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_PUDDING).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_PUMPKIN_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_PUMPKIN).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_RAMUNE_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_RAMUNE).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_STRAWBERRY_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_STRAWBERRY).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_ZUNDA_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_ZUNDA).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item HIYAYAKKO = new StackableBowlItem(new Item.Properties().food(TofuFoods.HIYAYAKKO).containerItem(Items.BOWL).maxStackSize(6).group(TofuItemGroup.TOFUCRAFT));
 
@@ -193,6 +208,20 @@ public class TofuItems {
         register(registry, SOYSTICK, "soystick");
         register(registry, TTTBURGER, "tttburger");
         register(registry, RICEBURGER, "riceburger");
+
+        register(registry, SOYMILK_BOTTLE, "soymilk");
+        register(registry, SOYMILK_ANNIN_BOTTLE, "soymilk_annin");
+        register(registry, SOYMILK_APPLE_BOTTLE, "soymilk_apple");
+        register(registry, BREWED_SOYMILK_ANNIN_BOTTLE, "brewed_soymilk_annin");
+        register(registry, BREWED_SOYMILK_APPLE_BOTTLE, "brewed_soymilk_apple");
+        register(registry, SOYMILK_COCOA_BOTTLE, "soymilk_cocoa");
+        register(registry, SOYMILK_KINAKO_BOTTLE, "soymilk_kinako");
+        register(registry, SOYMILK_PUDDING_BOTTLE, "soymilk_pudding");
+        register(registry, SOYMILK_PUMPKIN_BOTTLE, "soymilk_pumpkin");
+        register(registry, SOYMILK_RAMUNE_BOTTLE, "soymilk_ramune");
+        register(registry, SOYMILK_STRAWBERRY_BOTTLE, "soymilk_strawberry");
+        register(registry, SOYMILK_ZUNDA_BOTTLE, "soymilk_zunda");
+
         register(registry, HIYAYAKKO, "hiyayakko");
         register(registry, SALTYMELON, "saltymelon");
         register(registry, SEEDS_SOYBEAN, "seeds_soybeans");
@@ -340,5 +369,9 @@ public class TofuItems {
             }
         };
         DispenserBlock.registerDispenseBehavior(BITTERN, bitternItemBehavior);
+
+        BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(new ItemStack(SOYMILK_ANNIN_BOTTLE)), Ingredient.fromItems(TofuBlocks.TOFUBERRY), new ItemStack(BREWED_SOYMILK_ANNIN_BOTTLE));
+        BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(new ItemStack(SOYMILK_APPLE_BOTTLE)), Ingredient.fromItems(TofuBlocks.TOFUBERRY), new ItemStack(BREWED_SOYMILK_APPLE_BOTTLE));
+
     }
 }

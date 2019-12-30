@@ -135,6 +135,30 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
                             new TradeForHicostItem(TofuItems.TOFUDIAMONDSHOVEL, 15, 1, 30),
                             new TradeForHicostItem(TofuItems.ARMOR_DIAMONDBOOTS, 15, 1, 30)
                     }));
+        } else if (getRole() == Roles.SOYWORKER) {
+            offers = func_221238_a(ImmutableMap.of(1,
+                    new VillagerTrades.ITrade[]{
+                            new TradeForZundaRuby(Items.GLASS_BOTTLE, 6, 8, 2),
+                            new TradeForItem(TofuItems.SOYMILK_BOTTLE, 1, 3, 4)
+                    }, 2,
+                    new VillagerTrades.ITrade[]{
+                            new TradeForZundaRuby(TofuItems.SEEDS_SOYBEAN, 28, 6, 8),
+                            new TradeForHicostItem(TofuItems.SOYMILK_COCOA_BOTTLE, 2, 3, 14),
+                            new TradeForHicostItem(TofuItems.SOYMILK_KINAKO_BOTTLE, 2, 3, 14)
+                    }, 3,
+                    new VillagerTrades.ITrade[]{
+                            new TradeForHicostItem(TofuItems.SOYMILK_RAMUNE_BOTTLE, 2, 3, 16),
+                            new TradeForHicostItem(TofuItems.SOYMILK_STRAWBERRY_BOTTLE, 2, 3, 16),
+                            new TradeForHicostItem(TofuItems.SOYMILK_ZUNDA_BOTTLE, 2, 3, 16)
+                    }, 4,
+                    new VillagerTrades.ITrade[]{
+                            new TradeForZundaRuby(TofuBlocks.TOFUBERRY, 12, 8, 26),
+                            new TradeForHicostItem(TofuItems.SOYMILK_PUDDING_BOTTLE, 4, 2, 28)
+                    }, 5,
+                    new VillagerTrades.ITrade[]{
+                            new TradeForHicostItem(TofuItems.BREWED_SOYMILK_ANNIN_BOTTLE, 4, 3, 30),
+                            new TradeForHicostItem(TofuItems.BREWED_SOYMILK_APPLE_BOTTLE, 4, 3, 30)
+                    }));
         }
 
         return offers;
@@ -848,7 +872,16 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     @Nullable
     @Override
     public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        rollDiceChild();
+
+        if (reason == SpawnReason.BREEDING) {
+            int chance = 10;
+            if (chance >= this.world.rand.nextInt(100)) {
+                setRole(Roles.GUARD);
+            }
+        } else {
+            rollDiceChild();
+        }
+
         updateTofunianState();
         findHome(true);
 
@@ -890,6 +923,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         GUARD,
         TOFUCOCK,
         TOFUSMITH,
+        SOYWORKER,
         TOFUNIAN;
 
         private static final Map<String, Roles> lookup = Arrays.stream(values()).collect(Collectors.toMap(Roles::name, (p_220362_0_) -> {

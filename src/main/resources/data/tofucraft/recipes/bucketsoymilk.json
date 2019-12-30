@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "tofucraft:bucketsoymilk"
+      "tag": "tofucraft:soybeans"
     },
     {
-      "item": "minecraft:bottle"
+      "item": "minecraft:bucket"
     }
   ],
   "result": {
-    "item": "tofucraft:soymilk"
+    "item": "tofucraft:bucketsoymilk"
   }
 }

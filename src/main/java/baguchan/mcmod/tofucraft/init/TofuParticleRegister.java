@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 public class TofuParticleRegister {
 
     @SubscribeEvent
-    public static void registerParticles(final ParticleFactoryRegisterEvent event) {
+    public static void registerParticleFactory(final ParticleFactoryRegisterEvent event) {
         Minecraft.getInstance().particles.registerFactory(TofuParticles.TOFUPORTAL, TofuPortalParticle.Factory::new);
     }
 

@@ -6,9 +6,12 @@
     },
     {
       "item": "minecraft:bottle"
+    },
+    {
+      "item": "tofucraft:zunda"
     }
   ],
   "result": {
-    "item": "tofucraft:soymilk"
+    "item": "tofucraft:soymilk_zunda"
   }
 }

@@ -1,10 +1,7 @@
 package baguchan.mcmod.tofucraft.entity.ai;
 
 import baguchan.mcmod.tofucraft.entity.TofunianEntity;
-import net.minecraft.block.AbstractFurnaceBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.util.SoundEvents;
@@ -21,7 +18,7 @@ public class InterestJobBlockGoal extends MoveToBlockGoal {
     }
 
     public boolean shouldExecute() {
-        return !this.creature.isBeingRidden() && this.creature.isNitwit() && this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && this.creature.world.rand.nextInt(40) == 0 && super.shouldExecute();
+        return !this.creature.isBeingRidden() && !this.creature.isChild() && this.creature.isNitwit() && this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && this.creature.world.rand.nextInt(40) == 0 && super.shouldExecute();
     }
 
     protected int getRunDelay(CreatureEntity creatureIn) {
@@ -59,6 +56,8 @@ public class InterestJobBlockGoal extends MoveToBlockGoal {
                 this.creature.setRole(TofunianEntity.Roles.TOFUCOCK);
             } else if (block instanceof AbstractFurnaceBlock) {
                 this.creature.setRole(TofunianEntity.Roles.TOFUSMITH);
+            } else if (block instanceof CauldronBlock) {
+                this.creature.setRole(TofunianEntity.Roles.SOYWORKER);
             }
 
             this.creature.updateTofunianState();
@@ -77,7 +76,7 @@ public class InterestJobBlockGoal extends MoveToBlockGoal {
             BlockState blockstate = worldIn.getBlockState(pos);
             Block block = blockstate.getBlock();
 
-            return block instanceof AbstractFurnaceBlock || block == Blocks.CRAFTING_TABLE;
+            return block instanceof CauldronBlock || block instanceof AbstractFurnaceBlock || block == Blocks.CRAFTING_TABLE;
 
         }
     }
