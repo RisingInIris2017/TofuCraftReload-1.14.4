@@ -28,7 +28,7 @@ public class TofuFoods {
     public static final Food BREWED_SOYMILK_APPLE = new Food.Builder().hunger(0).saturation(0.12f).effect(new EffectInstance(Effects.RESISTANCE, 900), 1.0F).build();
     public static final Food SOYMILK_COCOA = new Food.Builder().hunger(0).saturation(0.12f).effect(new EffectInstance(Effects.JUMP_BOOST, 100), 1.0F).build();
     public static final Food SOYMILK_KINAKO = new Food.Builder().hunger(0).saturation(0.12f).effect(new EffectInstance(Effects.SPEED, 400), 1.0F).build();
-    public static final Food SOYMILK_PUDDING = new Food.Builder().hunger(0).saturation(0.14f).effect(new EffectInstance(Effects.REGENERATION, 120), 1.0F).build();
+    public static final Food SOYMILK_PUDDING = new Food.Builder().hunger(0).saturation(0.14f).effect(new EffectInstance(Effects.REGENERATION, 200), 1.0F).build();
     public static final Food SOYMILK_PUMPKIN = new Food.Builder().hunger(0).saturation(0.12f).effect(new EffectInstance(Effects.STRENGTH, 200), 1.0F).build();
     public static final Food SOYMILK_RAMUNE = new Food.Builder().hunger(1).saturation(0.13f).effect(new EffectInstance(Effects.DOLPHINS_GRACE, 400), 1.0F).build();
     public static final Food SOYMILK_STRAWBERRY = new Food.Builder().hunger(0).saturation(0.13f).effect(new EffectInstance(Effects.MINING_FATIGUE, 400), 1.0F).build();

@@ -45,18 +45,18 @@ public class TofuItems {
     public static final Item TTTBURGER = new Item(new Item.Properties().food(TofuFoods.TTTBURGER).group(TofuItemGroup.TOFUCRAFT));
     public static final Item RICEBURGER = new Item(new Item.Properties().food(TofuFoods.RICEBURGER).group(TofuItemGroup.TOFUCRAFT));
     //Drink
-    public static final Item SOYMILK_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item SOYMILK_ANNIN_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_ANNIN).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item SOYMILK_APPLE_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_APPLE).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item BREWED_SOYMILK_ANNIN_BOTTLE = new FoildDrinkItem(new Item.Properties().food(TofuFoods.BREWED_SOYMILK_ANNIN).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item BREWED_SOYMILK_APPLE_BOTTLE = new FoildDrinkItem(new Item.Properties().food(TofuFoods.BREWED_SOYMILK_APPLE).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item SOYMILK_COCOA_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_COCOA).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item SOYMILK_KINAKO_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_KINAKO).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item SOYMILK_PUDDING_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_PUDDING).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item SOYMILK_PUMPKIN_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_PUMPKIN).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item SOYMILK_RAMUNE_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_RAMUNE).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item SOYMILK_STRAWBERRY_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_STRAWBERRY).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item SOYMILK_ZUNDA_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_ZUNDA).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_ANNIN_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_ANNIN).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_APPLE_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_APPLE).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item BREWED_SOYMILK_ANNIN_BOTTLE = new FoildDrinkItem(new Item.Properties().food(TofuFoods.BREWED_SOYMILK_ANNIN).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item BREWED_SOYMILK_APPLE_BOTTLE = new FoildDrinkItem(new Item.Properties().food(TofuFoods.BREWED_SOYMILK_APPLE).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_COCOA_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_COCOA).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_KINAKO_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_KINAKO).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_PUDDING_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_PUDDING).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_PUMPKIN_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_PUMPKIN).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_RAMUNE_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_RAMUNE).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_STRAWBERRY_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_STRAWBERRY).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_ZUNDA_BOTTLE = new DrinkItem(new Item.Properties().food(TofuFoods.SOYMILK_ZUNDA).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item HIYAYAKKO = new StackableBowlItem(new Item.Properties().food(TofuFoods.HIYAYAKKO).containerItem(Items.BOWL).maxStackSize(6).group(TofuItemGroup.TOFUCRAFT));
 

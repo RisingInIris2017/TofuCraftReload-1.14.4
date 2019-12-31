@@ -28,6 +28,9 @@ public class TofuVillagePools {
                                 new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/house/tofu_smith", buildingProcessors),
                                 2),
                         new Pair<>(
+                                new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/house/soyworker_house", buildingProcessors),
+                                2),
+                        new Pair<>(
                                 new SingleJigsawPiece(TofuCraftCore.MODID + ":tofu_village/house/tofunian_towerhouse", buildingProcessors),
                                 4),
                         new Pair<>(

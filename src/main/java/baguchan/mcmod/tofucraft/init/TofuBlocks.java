@@ -74,11 +74,16 @@ public class TofuBlocks {
     public static final Block TOFULADDER_METAL = new TofuLadderBlock(Block.Properties.from(METALTOFU));
     //public static final Block TOFULADDER_ZUNDABRICK = new TofuLadderBlock(Block.Properties.from(ZUNDATOFU_BRICK));
     public static final Block TOFULADDER_ISHIBRICK = new TofuLadderBlock(Block.Properties.from(ISHITOFU_BRICK));
+    //FENCE
+    public static final Block TOFUFENCE_KINU = new WallBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.1F, 0.2F).sound(SoundType.SNOW));
+    public static final Block TOFUFENCE_MOMEN = new WallBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.35F, 0.5F).sound(SoundType.SNOW));
+    public static final Block TOFUFENCE_ISHI = new WallBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
+    public static final Block TOFUFENCE_METAL = new WallBlock(Block.Properties.from(METALTOFU));
 
     //DOOR
-    public static final Block TOFUDOOR_KINU = new TofuDoorBlock(Block.Properties.create(TofuMaterial.TOFU).tickRandomly().harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.1F, 0.2F).sound(SoundType.SNOW));
-    public static final Block TOFUDOOR_MOMEN = new TofuDoorBlock(Block.Properties.create(TofuMaterial.TOFU).tickRandomly().harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.35F, 0.5F).sound(SoundType.SNOW));
-    public static final Block TOFUDOOR_ISHI = new TofuDoorBlock(Block.Properties.create(Material.ROCK).tickRandomly().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
+    public static final Block TOFUDOOR_KINU = new TofuDoorBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.1F, 0.2F).sound(SoundType.SNOW));
+    public static final Block TOFUDOOR_MOMEN = new TofuDoorBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.35F, 0.5F).sound(SoundType.SNOW));
+    public static final Block TOFUDOOR_ISHI = new TofuDoorBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
     public static final Block TOFUDOOR_METAL = new TofuDoorBlock(Block.Properties.from(METALTOFU));
 
     //TERRAIN
@@ -167,6 +172,11 @@ public class TofuBlocks {
         registry.getRegistry().register(TOFULADDER_ISHI.setRegistryName("tofuladder_ishi"));
         registry.getRegistry().register(TOFULADDER_ISHIBRICK.setRegistryName("tofuladder_ishibrick"));
         registry.getRegistry().register(TOFULADDER_METAL.setRegistryName("tofuladder_metal"));
+        //FENCE
+        registry.getRegistry().register(TOFUFENCE_KINU.setRegistryName("tofufence_kinu"));
+        registry.getRegistry().register(TOFUFENCE_MOMEN.setRegistryName("tofufence_momen"));
+        registry.getRegistry().register(TOFUFENCE_ISHI.setRegistryName("tofufence_ishi"));
+        registry.getRegistry().register(TOFUFENCE_METAL.setRegistryName("tofufence_metal"));
         //Door
         registry.getRegistry().register(TOFUDOOR_KINU.setRegistryName("tofudoor_kinu"));
         registry.getRegistry().register(TOFUDOOR_MOMEN.setRegistryName("tofudoor_momen"));
@@ -246,6 +256,11 @@ public class TofuBlocks {
         TofuItems.register(registry, new BlockItem(TOFULADDER_ISHI, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFULADDER_METAL, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFULADDER_ISHIBRICK, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+
+        TofuItems.register(registry, new BlockItem(TOFUFENCE_KINU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        TofuItems.register(registry, new BlockItem(TOFUFENCE_MOMEN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        TofuItems.register(registry, new BlockItem(TOFUFENCE_ISHI, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        TofuItems.register(registry, new BlockItem(TOFUFENCE_METAL, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
 
         TofuItems.register(registry, new TallBlockItem(TOFUDOOR_KINU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new TallBlockItem(TOFUDOOR_MOMEN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
