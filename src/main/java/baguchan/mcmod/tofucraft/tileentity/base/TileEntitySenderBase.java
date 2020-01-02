@@ -5,7 +5,7 @@ import baguchan.mcmod.tofucraft.api.tfenergy.ITofuEnergy;
 import baguchan.mcmod.tofucraft.api.tfenergy.TofuNetwork;
 import baguchan.mcmod.tofucraft.api.tfenergy.TofuNetworkChangedEvent;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.ITickable;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mod.EventBusSubscriber
-public abstract class TileEntitySenderBase extends TileEntityEnergyBase implements ITickable {
+public abstract class TileEntitySenderBase extends TileEntityEnergyBase implements ITickableTileEntity {
 
     /*
      * Comment:
