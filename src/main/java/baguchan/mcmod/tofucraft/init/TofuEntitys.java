@@ -30,6 +30,7 @@ public class TofuEntitys {
     public static final EntityType<GrillderEntity> GRILLDER = EntityType.Builder.create(GrillderEntity::new, EntityClassification.CREATURE).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(0.6F, 0.65F).build(prefix("grillder"));
     public static final EntityType<TofuSpiderEntity> TOFUSPIDER = EntityType.Builder.create(TofuSpiderEntity::new, TOFU_MONSTER).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(1.2F, 0.7F).build(prefix("tofuspider"));
     public static final EntityType<TofuEagleEntity> TOFUEAGLE = EntityType.Builder.create(TofuEagleEntity::new, EntityClassification.CREATURE).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(0.6F, 0.65F).build(prefix("tofueagle"));
+    public static final EntityType<TofuLizardEntity> TOFULIZARD = EntityType.Builder.create(TofuLizardEntity::new, EntityClassification.CREATURE).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(0.65F, 1.65F).build(prefix("tofulizard"));
 
 
     public static final EntityType<TofuTurretEntity> TOFUTURRET = EntityType.Builder.create(TofuTurretEntity::new, TOFU_MONSTER).setTrackingRange(80).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.5F).build(prefix("tofuturret"));
@@ -54,6 +55,7 @@ public class TofuEntitys {
         event.getRegistry().register(GRILLDER.setRegistryName("grillder"));
         event.getRegistry().register(TOFUSPIDER.setRegistryName("tofuspider"));
         event.getRegistry().register(TOFUEAGLE.setRegistryName("tofueagle"));
+        event.getRegistry().register(TOFULIZARD.setRegistryName("tofulizard"));
 
         event.getRegistry().register(TOFUTURRET.setRegistryName("tofuturret"));
         event.getRegistry().register(TOFUMIND.setRegistryName("tofumind"));
@@ -68,6 +70,7 @@ public class TofuEntitys {
         EntitySpawnPlacementRegistry.register(TOFUCOW, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TofuAnimalEntity::spawnHandle);
         EntitySpawnPlacementRegistry.register(GRILLDER, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TofuAnimalEntity::spawnHandle);
         EntitySpawnPlacementRegistry.register(TOFUEAGLE, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TofuAnimalEntity::spawnHandle);
+        EntitySpawnPlacementRegistry.register(TOFULIZARD, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TofuAnimalEntity::spawnHandle);
 
         EntitySpawnPlacementRegistry.register(TOFUSLIME, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TofuSlimeEntity::spawnHandle);
         EntitySpawnPlacementRegistry.register(TOFUCHINGER, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TofuChingerEntity::spawnHandle);
