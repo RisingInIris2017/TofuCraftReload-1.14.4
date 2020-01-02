@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "tofucraft:potted_tofuflower"
+    "tofucraft:potted_tofuflower",
+    "tofucraft:potted_tofusapling",
+    "tofucraft:potted_zunda_tofusapling"
   ]
 }
