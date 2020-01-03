@@ -36,14 +36,15 @@ import java.util.Map;
 import java.util.Random;
 
 public class TofuCastlePieces {
+    private static final ResourceLocation tofucastle_roof = new ResourceLocation(TofuCraftCore.MODID, "tofucastle/tofucastle_roof");
     private static final ResourceLocation tofucastle_main = new ResourceLocation(TofuCraftCore.MODID, "tofucastle/tofucastle_main");
     private static final ResourceLocation tofucastle_under = new ResourceLocation(TofuCraftCore.MODID, "tofucastle/tofucastle_undermain");
 
-    private static final Map<ResourceLocation, BlockPos> structurePos = ImmutableMap.of(tofucastle_main, BlockPos.ZERO, tofucastle_under, new BlockPos(0, -19, 0));
+    private static final Map<ResourceLocation, BlockPos> structurePos = ImmutableMap.of(tofucastle_main, BlockPos.ZERO, tofucastle_under, new BlockPos(0, -19, 0), tofucastle_roof, new BlockPos(0, 19, 0));
 
     public static void addStructure(TemplateManager templateManager, BlockPos pos, Rotation rotation, List<StructurePiece> list, Random p_207617_4_, Biome biome) {
         addGenerate(list, new TofuCastlePieces.Piece(templateManager, tofucastle_main, pos, rotation, 0));
-
+        addGenerate(list, new TofuCastlePieces.Piece(templateManager, tofucastle_roof, pos, rotation, 0));
         addGenerate(list, new TofuCastlePieces.Piece(templateManager, tofucastle_under, pos, rotation, 0));
     }
 
@@ -121,7 +122,7 @@ public class TofuCastlePieces {
         public boolean addComponentParts(IWorld worldIn, Random randomIn, MutableBoundingBox structureBoundingBoxIn, ChunkPos p_74875_4_) {
             PlacementSettings placementsettings = (new PlacementSettings()).setRotation(this.field_207616_e).setMirror(Mirror.NONE).setCenterOffset(TofuCastlePieces.structurePos.get(this.field_207615_d)).addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK);
             BlockPos blockpos = TofuCastlePieces.structurePos.get(this.field_207615_d);
-            BlockPos blockpos1 = this.templatePosition.add(Template.transformedBlockPos(placementsettings, new BlockPos(3 - blockpos.getX(), 0, 0 - blockpos.getZ())));
+            BlockPos blockpos1 = this.templatePosition.add(Template.transformedBlockPos(placementsettings, new BlockPos(blockpos.getX(), 0, blockpos.getZ())));
             int i = worldIn.getHeight(Heightmap.Type.WORLD_SURFACE_WG, blockpos1.getX(), blockpos1.getZ());
             BlockPos blockpos2 = this.templatePosition;
             this.templatePosition = this.templatePosition.add(0, i - 90 - 1, 0);

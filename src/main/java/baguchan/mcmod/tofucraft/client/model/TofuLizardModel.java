@@ -86,7 +86,7 @@ public class TofuLizardModel<T extends TofuLizardEntity> extends EntityModel<T> 
 
     @Override
     public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-        float f = ageInTicks - (float) entityIn.ticksExisted;
+        float f = 1.0F;
         this.head.rotateAngleY = netHeadYaw * 0.017453292F;
         this.head.rotateAngleX = headPitch * 0.017453292F;
         this.legR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
