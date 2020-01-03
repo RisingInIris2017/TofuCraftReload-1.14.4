@@ -4,7 +4,8 @@
     "textures": {
       "top": "tofucraft:blocks/blocktofumetal",
       "bottom": "#top",
-      "side": "#top"
+      "side": "#top",
+      "all": "#top"
     }
   },
   "variants": {
