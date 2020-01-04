@@ -62,8 +62,8 @@ public class TofuBlocks {
     //torch
     public static final Block TOFUTORCH_KINU = new TofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 0.5F).lightValue(14).doesNotBlockMovement().sound(SoundType.SNOW));
     public static final Block TOFUTORCH_MOMEN = new TofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 0.5F).lightValue(14).doesNotBlockMovement().sound(SoundType.SNOW));
-    public static final Block TOFUTORCH_ISHI = new TofuTorchBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F, 6.0F).lightValue(14).doesNotBlockMovement().sound(SoundType.STONE));
-    public static final Block TOFUTORCH_METAL = new TofuTorchBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F, 7.5F).lightValue(14).doesNotBlockMovement().sound(SoundType.METAL));
+    public static final Block TOFUTORCH_ISHI = new TofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 6.0F).lightValue(14).doesNotBlockMovement().sound(SoundType.STONE));
+    public static final Block TOFUTORCH_METAL = new TofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 7.5F).lightValue(14).doesNotBlockMovement().sound(SoundType.METAL));
     public static final Block WALLTOFUTORCH_KINU = new WallTofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 0.5F).lightValue(14).doesNotBlockMovement().sound(SoundType.SNOW).lootFrom(TOFUTORCH_KINU));
     public static final Block WALLTOFUTORCH_MOMEN = new WallTofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 0.5F).lightValue(14).doesNotBlockMovement().sound(SoundType.SNOW).lootFrom(TOFUTORCH_MOMEN));
     public static final Block WALLTOFUTORCH_ISHI = new WallTofuTorchBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F, 6.0F).lightValue(14).doesNotBlockMovement().sound(SoundType.STONE).lootFrom(TOFUTORCH_ISHI));

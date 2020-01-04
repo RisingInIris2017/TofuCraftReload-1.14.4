@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
@@ -47,6 +48,16 @@ public class TofuBlock extends Block {
                     worldIn.addParticle(ParticleTypes.DRIPPING_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D);
                 }
             }
+        }
+    }
+
+    @Override
+    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
+        if (this.getBlock() == TofuBlocks.KINUTOFU) {
+            super.onFallenUpon(worldIn, pos, entityIn, fallDistance * 0.75F);
+            worldIn.destroyBlock(pos, true);
+        } else {
+            super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
         }
     }
 

@@ -70,6 +70,7 @@ public class TofuGandlemCoreBlock extends Block {
 
             TofuGandlemEntity tofuGandlemEntity = TofuEntitys.TOFUGANDLEM.create(worldIn);
             tofuGandlemEntity.moveToBlockPosAndAngles(pos, 0.0F, 0.0F);
+            tofuGandlemEntity.enablePersistence();
             tofuGandlemEntity.onInitialSpawn(worldIn, worldIn.getDifficultyForLocation(new BlockPos(tofuGandlemEntity)), SpawnReason.MOB_SUMMONED, (ILivingEntityData) null, (CompoundNBT) null);
             worldIn.addEntity(tofuGandlemEntity);
 

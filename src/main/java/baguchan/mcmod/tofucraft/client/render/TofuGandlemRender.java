@@ -13,6 +13,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class TofuGandlemRender extends MobRenderer<TofuGandlemEntity, TofuGandlemModel<TofuGandlemEntity>> {
     private static final ResourceLocation TEXTURES = new ResourceLocation(TofuCraftCore.MODID, "textures/mob/tofugandlem/tofugandlem.png");
+    private static final ResourceLocation SHOOTING_TEXTURES = new ResourceLocation(TofuCraftCore.MODID, "textures/mob/tofugandlem/tofugandlem_shooting.png");
+
 
     public TofuGandlemRender(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new TofuGandlemModel<>(), 0.5F);
@@ -20,6 +22,10 @@ public class TofuGandlemRender extends MobRenderer<TofuGandlemEntity, TofuGandle
     }
 
     protected ResourceLocation getEntityTexture(TofuGandlemEntity entity) {
-        return TEXTURES;
+        if (entity.isShooting()) {
+            return SHOOTING_TEXTURES;
+        } else {
+            return TEXTURES;
+        }
     }
 }

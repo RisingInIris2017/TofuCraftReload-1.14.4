@@ -203,6 +203,7 @@
   "entity.tofucraft.tofumind": "トーフマインド",
   "entity.tofucraft.tofugandlem": "トーフガンドレム",
   "entity.tofucraft.fukumame": "福豆",
+  "entity.tofucraft.tofu_homing_force": "トーフホーミングフォース",
 
   "subtitles.entity.tofunian.idle": "トーフニアンがつぶやく",
   "advancements.tofucraft.root.title": "TofuCraft",
@@ -228,5 +229,7 @@
   "tofucraft.radar.result.failed": "豆腐スライムチャンクが見つかりませんでした",
   "container.tofucraft.tofuchest": "トーフチェスト",
   "tooltip.tofucraft.energy": "トーフフォースエネルギー: %d/%d",
-  "tooltip.tofucraft.tofuforce.broken": "破損"
+  "tooltip.tofucraft.tofuforce.broken": "破損",
+  "death.attack.tofucraft.tofuforce": "%1$s は %2$s のトーフフォースにやられた",
+  "death.attack.tofucraft.tofuforce.item": "%1$s は %2$s の %3$s　を使ったトーフフォースにやられた"
 }

@@ -205,6 +205,7 @@
   "entity.tofucraft.tofumind": "Tofu Mind",
   "entity.tofucraft.tofugandlem": "Tofu Gandlem",
   "entity.tofucraft.fukumame": "Fukumame",
+  "entity.tofucraft.tofu_homing_force": "Tofu Homing Force",
   "subtitles.entity.tofunian.idle": "tofunian's murmur",
   "advancements.tofucraft.root.title": "TofuCraft",
   "advancements.tofucraft.root.description": "Beginning Tofu Crafter",
@@ -232,5 +233,7 @@
   "effect.tofucraft.tofu_resistance": "Tofu Resistance",
   "container.tofucraft.tofuchest": "Tofu Chest",
   "tooltip.tofucraft.energy": "TofuForce, Energy: %d/%d",
-  "tooltip.tofucraft.tofuforce.broken": "Broken"
+  "tooltip.tofucraft.tofuforce.broken": "Broken",
+  "death.attack.tofucraft.tofuforce": "%1$s was slain by %2$s s TofuForce",
+  "death.attack.tofucraft.tofuforce.item": "%1$s was slain by %2$s using TofuForce with %3$s"
 }

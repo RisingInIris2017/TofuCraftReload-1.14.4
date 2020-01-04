@@ -6,6 +6,7 @@ import baguchan.mcmod.tofucraft.client.render.tileentity.TofuChestBlockRenderer;
 import baguchan.mcmod.tofucraft.entity.*;
 import baguchan.mcmod.tofucraft.entity.projectile.BeamEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.FukumameEntity;
+import baguchan.mcmod.tofucraft.entity.projectile.TofuHomingForceEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.ZundaArrowEntity;
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.tileentity.TofuBedTileEntity;
@@ -40,6 +41,7 @@ public class ClientRegistrar {
         RenderingRegistry.registerEntityRenderingHandler(FukumameEntity.class, FukumameRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ZundaArrowEntity.class, ZundaArrowRender::new);
         RenderingRegistry.registerEntityRenderingHandler(BeamEntity.class, BeamRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuHomingForceEntity.class, EmptyRender::new);
     }
 
     public static void renderTileEntity() {

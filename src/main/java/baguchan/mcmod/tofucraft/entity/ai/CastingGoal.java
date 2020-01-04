@@ -19,7 +19,7 @@ public abstract class CastingGoal extends Goal {
     public boolean shouldExecute() {
         LivingEntity livingentity = this.tofuGandlemEntity.getAttackTarget();
         if (livingentity != null && livingentity.isAlive()) {
-            if (this.tofuGandlemEntity.isCasting() || this.tofuGandlemEntity.isSoyshot()) {
+            if (this.tofuGandlemEntity.isCasting() || this.tofuGandlemEntity.isShooting()) {
                 return false;
             } else {
                 return this.tofuGandlemEntity.ticksExisted >= this.spellCooldown;

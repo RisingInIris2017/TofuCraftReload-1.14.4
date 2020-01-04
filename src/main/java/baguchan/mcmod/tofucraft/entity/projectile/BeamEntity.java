@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.projectile.AbstractFireballEntity;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
@@ -20,6 +21,8 @@ import net.minecraftforge.fml.network.FMLPlayMessages;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class BeamEntity extends AbstractFireballEntity {
+    public boolean isCanBreak = false;
+
     public BeamEntity(EntityType<? extends BeamEntity> p_i50160_1_, World p_i50160_2_) {
         super(p_i50160_1_, p_i50160_2_);
     }
@@ -49,19 +52,34 @@ public class BeamEntity extends AbstractFireballEntity {
                     this.applyEnchantments(this.shootingEntity, entity);
                 }
 
-                this.world.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, 0.4F, Explosion.Mode.NONE);
+                this.world.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, 0.4F, this.isCanBreak ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
 
             } else if (this.shootingEntity == null || !(this.shootingEntity instanceof MobEntity) || net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this.shootingEntity)) {
                 BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) result;
                 BlockPos blockpos = blockraytraceresult.getPos().offset(blockraytraceresult.getFace());
 
-                this.world.createExplosion(this.shootingEntity, blockpos.getX(), blockpos.getY(), blockpos.getZ(), 0.4F, Explosion.Mode.NONE);
+                this.world.createExplosion(this.shootingEntity, blockpos.getX(), blockpos.getY(), blockpos.getZ(), 0.4F, this.isCanBreak ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
 
             }
 
             this.remove();
         }
 
+    }
+
+    public void writeAdditional(CompoundNBT compound) {
+        super.writeAdditional(compound);
+        compound.putBoolean("CanBreak", this.isCanBreak);
+    }
+
+    /**
+     * (abstract) Protected helper method to read subclass entity data from NBT.
+     */
+    public void readAdditional(CompoundNBT compound) {
+        super.readAdditional(compound);
+        if (compound.contains("CanBreak")) {
+            this.isCanBreak = compound.getBoolean("CanBreak");
+        }
     }
 
     /**

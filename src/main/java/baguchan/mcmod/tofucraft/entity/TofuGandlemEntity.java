@@ -1,9 +1,6 @@
 package baguchan.mcmod.tofucraft.entity;
 
-import baguchan.mcmod.tofucraft.entity.ai.HealSpellGoal;
-import baguchan.mcmod.tofucraft.entity.ai.RangedStrafeAttackGoal;
-import baguchan.mcmod.tofucraft.entity.ai.SoyshotGoal;
-import baguchan.mcmod.tofucraft.entity.ai.SummonMinionGoal;
+import baguchan.mcmod.tofucraft.entity.ai.*;
 import baguchan.mcmod.tofucraft.entity.movement.FlyingStrafeMovementController;
 import baguchan.mcmod.tofucraft.entity.projectile.BeamEntity;
 import baguchan.mcmod.tofucraft.init.TofuCreatureAttribute;
@@ -37,7 +34,7 @@ import javax.annotation.Nullable;
 
 public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob {
     private static final DataParameter<Boolean> CASTING = EntityDataManager.createKey(TofuGandlemEntity.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> SOYSHOT = EntityDataManager.createKey(TofuGandlemEntity.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> SHOOTING = EntityDataManager.createKey(TofuGandlemEntity.class, DataSerializers.BOOLEAN);
 
 
     private float heightOffset = 0.5f;
@@ -47,8 +44,8 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
     private float clientSideSpellCastingAnimation;
     private float prevClientSideAttackingAnimation;
     private float clientSideAttackingAnimation;
-    private float prevClientSideSoyShotAnimation;
-    private float clientSideSoyShotAnimation;
+    private float prevClientSideShootingAnimation;
+    private float clientSideShootingAnimation;
 
     private final ServerBossInfo bossInfo = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS));
 
@@ -62,7 +59,7 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
     protected void registerData() {
         super.registerData();
         this.dataManager.register(CASTING, false);
-        this.dataManager.register(SOYSHOT, false);
+        this.dataManager.register(SHOOTING, false);
     }
 
     public boolean isCasting() {
@@ -73,21 +70,22 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
         this.dataManager.set(CASTING, isCasting);
     }
 
-    public void setSoyshot(boolean soyshot) {
-        this.dataManager.set(SOYSHOT, soyshot);
+    public void setShooting(boolean shooting) {
+        this.dataManager.set(SHOOTING, shooting);
     }
 
-    public boolean isSoyshot() {
-        return this.dataManager.get(SOYSHOT);
+    public boolean isShooting() {
+        return this.dataManager.get(SHOOTING);
     }
 
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new SoyshotGoal(this));
-        this.goalSelector.addGoal(3, new SummonMinionGoal(this));
-        this.goalSelector.addGoal(4, new HealSpellGoal(this));
-        this.goalSelector.addGoal(5, new RangedStrafeAttackGoal<>(this, 0.95D, 65, 20F));
-        this.goalSelector.addGoal(6, new WaterAvoidingRandomFlyingGoal(this, 0.95D));
+        this.goalSelector.addGoal(2, new TofuHomingShotGoal(this));
+        this.goalSelector.addGoal(3, new SoyshotGoal(this));
+        this.goalSelector.addGoal(4, new SummonMinionGoal(this));
+        this.goalSelector.addGoal(5, new HealSpellGoal(this));
+        this.goalSelector.addGoal(6, new RangedStrafeAttackGoal<>(this, 0.95D, 65, 20F));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomFlyingGoal(this, 0.95D));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(10, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setCallsForHelp());
@@ -100,7 +98,7 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
         super.registerAttributes();
         this.getAttributes().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(400.0D);
-        this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(8.0D);
+        this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(10.0D);
         this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40.0D);
         this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.65D);
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.26F);
@@ -173,11 +171,11 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
                 this.clientSideAttackingAnimation = MathHelper.clamp(this.clientSideAttackingAnimation - 1.0F, 0.0F, 6.0F);
             }
 
-            this.prevClientSideSoyShotAnimation = this.clientSideSoyShotAnimation;
-            if (this.isSoyshot()) {
-                this.clientSideSoyShotAnimation = MathHelper.clamp(this.clientSideSoyShotAnimation + 1.0F, 0.0F, 6.0F);
+            this.prevClientSideShootingAnimation = this.clientSideShootingAnimation;
+            if (this.isShooting()) {
+                this.clientSideShootingAnimation = MathHelper.clamp(this.clientSideShootingAnimation + 1.0F, 0.0F, 6.0F);
             } else {
-                this.clientSideSoyShotAnimation = MathHelper.clamp(this.clientSideSoyShotAnimation - 1.0F, 0.0F, 6.0F);
+                this.clientSideShootingAnimation = MathHelper.clamp(this.clientSideShootingAnimation - 1.0F, 0.0F, 6.0F);
             }
         }
     }
@@ -193,8 +191,8 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
     }
 
     @OnlyIn(Dist.CLIENT)
-    public float getSoyShotAnimationScale(float p_189795_1_) {
-        return (this.prevClientSideSoyShotAnimation + (this.clientSideSoyShotAnimation - this.prevClientSideSoyShotAnimation) * p_189795_1_) / 6.0F;
+    public float getShootingAnimationScale(float p_189795_1_) {
+        return (this.prevClientSideShootingAnimation + (this.clientSideShootingAnimation - this.prevClientSideShootingAnimation) * p_189795_1_) / 6.0F;
     }
 
     @Override

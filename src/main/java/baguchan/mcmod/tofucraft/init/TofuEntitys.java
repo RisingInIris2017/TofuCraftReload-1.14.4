@@ -4,6 +4,7 @@ import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.entity.*;
 import baguchan.mcmod.tofucraft.entity.projectile.BeamEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.FukumameEntity;
+import baguchan.mcmod.tofucraft.entity.projectile.TofuHomingForceEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.ZundaArrowEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
@@ -44,6 +45,7 @@ public class TofuEntitys {
     public static final EntityType<FukumameEntity> FUKUMAME = EntityType.Builder.<FukumameEntity>create(FukumameEntity::new, EntityClassification.MISC).setTrackingRange(120).setCustomClientFactory(FukumameEntity::new).setUpdateInterval(3).setShouldReceiveVelocityUpdates(true).size(0.4F, 0.4F).build(prefix("fukumame"));
     public static final EntityType<ZundaArrowEntity> ZUNDAARROW = EntityType.Builder.<ZundaArrowEntity>create(ZundaArrowEntity::new, EntityClassification.MISC).setTrackingRange(100).setCustomClientFactory(ZundaArrowEntity::new).setUpdateInterval(1).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.5F).build(prefix("zunda_arrow"));
     public static final EntityType<BeamEntity> BEAM = EntityType.Builder.<BeamEntity>create(BeamEntity::new, EntityClassification.MISC).setTrackingRange(100).setCustomClientFactory(BeamEntity::new).setUpdateInterval(1).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.5F).build(prefix("beam"));
+    public static final EntityType<TofuHomingForceEntity> TOFU_HOMING_FORCE = EntityType.Builder.<TofuHomingForceEntity>create(TofuHomingForceEntity::new, EntityClassification.MISC).setTrackingRange(100).setCustomClientFactory(TofuHomingForceEntity::new).setUpdateInterval(1).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.5F).build(prefix("tofu_homing_force"));
 
     @SubscribeEvent
     public static void registerEntity(RegistryEvent.Register<EntityType<?>> event) {
@@ -66,6 +68,7 @@ public class TofuEntitys {
         event.getRegistry().register(FUKUMAME.setRegistryName("fukumame"));
         event.getRegistry().register(ZUNDAARROW.setRegistryName("zunda_arrow"));
         event.getRegistry().register(BEAM.setRegistryName("beam"));
+        event.getRegistry().register(TOFU_HOMING_FORCE.setRegistryName("tofu_homing_force"));
 
         EntitySpawnPlacementRegistry.register(TOFUCOW, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TofuAnimalEntity::spawnHandle);
         EntitySpawnPlacementRegistry.register(GRILLDER, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TofuAnimalEntity::spawnHandle);

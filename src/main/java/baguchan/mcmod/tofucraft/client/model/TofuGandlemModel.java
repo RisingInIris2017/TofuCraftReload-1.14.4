@@ -87,7 +87,7 @@ public class TofuGandlemModel<T extends TofuGandlemEntity> extends EntityModel<T
         float f2 = entityIn.getSpellCastingAnimationScale(f);
         f2 = f2 * f2;
 
-        float f3 = entityIn.getSoyShotAnimationScale(f);
+        float f3 = entityIn.getShootingAnimationScale(f);
         f3 = f3 * f3;
 
 
