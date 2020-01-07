@@ -218,7 +218,7 @@ public class TofuHomingForceEntity extends Entity {
     protected void bulletHit(RayTraceResult result) {
         if (result.getType() == RayTraceResult.Type.ENTITY) {
             Entity entity = ((EntityRayTraceResult) result).getEntity();
-            boolean flag = entity.attackEntityFrom(TofuDamageSource.causeTofuForceDamage(this, this.owner).setProjectile(), 4.0F);
+            boolean flag = entity.attackEntityFrom(TofuDamageSource.causeTofuForceDamage(this, this.owner).setProjectile(), 5.0F);
             if (flag) {
                 this.applyEnchantments(this.owner, entity);
                 if (entity instanceof LivingEntity) {

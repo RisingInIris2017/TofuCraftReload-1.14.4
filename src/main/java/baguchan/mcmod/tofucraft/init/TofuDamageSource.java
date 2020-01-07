@@ -7,6 +7,6 @@ import net.minecraft.util.IndirectEntityDamageSource;
 
 public class TofuDamageSource {
     public static DamageSource causeTofuForceDamage(Entity source, LivingEntity indirectEntityIn) {
-        return new IndirectEntityDamageSource("tofucraft.tofuforce", source, indirectEntityIn).setProjectile();
+        return new IndirectEntityDamageSource("tofucraft.tofuforce", source, indirectEntityIn);
     }
 }

@@ -22,6 +22,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 public class BeamEntity extends AbstractFireballEntity {
     public boolean isCanBreak = false;
+    public float explosionPower = 0.6F;
 
     public BeamEntity(EntityType<? extends BeamEntity> p_i50160_1_, World p_i50160_2_) {
         super(p_i50160_1_, p_i50160_2_);
@@ -58,7 +59,7 @@ public class BeamEntity extends AbstractFireballEntity {
                 BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) result;
                 BlockPos blockpos = blockraytraceresult.getPos().offset(blockraytraceresult.getFace());
 
-                this.world.createExplosion(this.shootingEntity, blockpos.getX(), blockpos.getY(), blockpos.getZ(), 0.4F, this.isCanBreak ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
+                this.world.createExplosion(this.shootingEntity, blockpos.getX(), blockpos.getY(), blockpos.getZ(), this.explosionPower, this.isCanBreak ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
 
             }
 
@@ -70,6 +71,7 @@ public class BeamEntity extends AbstractFireballEntity {
     public void writeAdditional(CompoundNBT compound) {
         super.writeAdditional(compound);
         compound.putBoolean("CanBreak", this.isCanBreak);
+        compound.putFloat("ExplosionPower", this.explosionPower);
     }
 
     /**
@@ -79,6 +81,9 @@ public class BeamEntity extends AbstractFireballEntity {
         super.readAdditional(compound);
         if (compound.contains("CanBreak")) {
             this.isCanBreak = compound.getBoolean("CanBreak");
+        }
+        if (compound.contains("ExplosionPower")) {
+            this.explosionPower = compound.getFloat("ExplosionPower");
         }
     }
 

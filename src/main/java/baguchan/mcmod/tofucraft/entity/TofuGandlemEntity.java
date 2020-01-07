@@ -98,7 +98,7 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
         super.registerAttributes();
         this.getAttributes().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(400.0D);
-        this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(10.0D);
+        this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(8.0D);
         this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40.0D);
         this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.65D);
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.26F);
@@ -230,6 +230,8 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
         float f = 0.075F;
         BeamEntity smallfireballentity = new BeamEntity(this.world, this, d1 + this.getRNG().nextGaussian() * (double) f - this.getRNG().nextGaussian() * (double) f, d2, d3 + this.getRNG().nextGaussian() * (double) f - this.getRNG().nextGaussian() * (double) f);
         smallfireballentity.posY = this.posY + (double) (this.getEyeHeight());
+        smallfireballentity.explosionPower = 1.2F;
+
         this.world.addEntity(smallfireballentity);
     }
 
