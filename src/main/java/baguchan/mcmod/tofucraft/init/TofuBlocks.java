@@ -36,13 +36,13 @@ public class TofuBlocks {
     public static final Block GRILLEDTOFU = new Block(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.25F, 0.5F).sound(SoundType.SNOW));
     public static final Block ZUNDATOFU = new Block(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.25F, 0.5F).sound(SoundType.SNOW));
     public static final Block MINCEDTOFU = new FallingBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F, 0.9F).sound(SoundType.GROUND));
-
+    //Building
     public static final Block ISHITOFU_BRICK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.6F, 6.5F).sound(SoundType.STONE));
     public static final Block ZUNDATOFU_BRICK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.6F, 6.5F).sound(SoundType.STONE));
     public static final Block ZUNDATOFU_SMOOTHBRICK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.6F, 6.5F).sound(SoundType.STONE));
     public static final Block CONCRETE_TOFU = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.4F, 6.0F).sound(SoundType.STONE));
     public static final Block CONCRETE_POWDER_TOFU = new ConcretePowderBlock(CONCRETE_TOFU, Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F, 0.9F).sound(SoundType.SAND));
-
+    public static final Block MOMEN_TOFUNAMAKO_WALL = new TofuNamakoWallBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F, 0.9F).doesNotBlockMovement().sound(SoundType.STONE));
     //Stair
     public static final Block TOFUSTAIR_KINU = new StairsBlock(KINUTOFU::getDefaultState, Block.Properties.from(KINUTOFU));
     public static final Block TOFUSTAIR_MOMEN = new StairsBlock(MOMENTOFU::getDefaultState, Block.Properties.from(MOMENTOFU));
@@ -139,12 +139,13 @@ public class TofuBlocks {
         registry.getRegistry().register(GRILLEDTOFU.setRegistryName("blocktofugrilled"));
         registry.getRegistry().register(ZUNDATOFU.setRegistryName("blocktofuzunda"));
         registry.getRegistry().register(MINCEDTOFU.setRegistryName("blocktofuminced"));
-
+        //Building
         registry.getRegistry().register(ISHITOFU_BRICK.setRegistryName("tofuishi_brick"));
         registry.getRegistry().register(ZUNDATOFU_BRICK.setRegistryName("tofuzunda_brick"));
         registry.getRegistry().register(ZUNDATOFU_SMOOTHBRICK.setRegistryName("tofuzunda_smoothbrick"));
         registry.getRegistry().register(CONCRETE_TOFU.setRegistryName("concrete_tofu"));
         registry.getRegistry().register(CONCRETE_POWDER_TOFU.setRegistryName("concrete_powder_tofu"));
+        registry.getRegistry().register(MOMEN_TOFUNAMAKO_WALL.setRegistryName("momen_tofu_namako_wall"));
         //Stair
         registry.getRegistry().register(TOFUSTAIR_KINU.setRegistryName("tofustair_kinu"));
         registry.getRegistry().register(TOFUSTAIR_MOMEN.setRegistryName("tofustair_momen"));
@@ -233,14 +234,14 @@ public class TofuBlocks {
         TofuItems.register(registry, new BlockItem(GRILLEDTOFU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(ZUNDATOFU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(MINCEDTOFU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
-
+        //Building
         TofuItems.register(registry, new BlockItem(ISHITOFU_BRICK, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(ZUNDATOFU_BRICK, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(ZUNDATOFU_SMOOTHBRICK, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(CONCRETE_TOFU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(CONCRETE_POWDER_TOFU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
-
-
+        TofuItems.register(registry, new BlockItem(MOMEN_TOFUNAMAKO_WALL, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        //Stair
         TofuItems.register(registry, new BlockItem(TOFUSTAIR_KINU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFUSTAIR_MOMEN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFUSTAIR_ISHI, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    " T ",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "tofucraft:tofumomen"
+    },
+    "T": {
+      "item": "tofucraft:tofuberry"
+    }
+  },
+  "result": {
+    "item": "tofucraft:momen_tofu_namako_wall",
+    "count": 4
+  }
+}
