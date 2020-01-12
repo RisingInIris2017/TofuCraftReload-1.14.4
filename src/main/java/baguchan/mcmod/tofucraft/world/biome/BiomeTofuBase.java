@@ -11,6 +11,7 @@ public abstract class BiomeTofuBase extends Biome {
 
         DefaultTofuBiomeFeature.addCarvers(this);
         DefaultTofuBiomeFeature.addStructure(this);
+        DefaultTofuBiomeFeature.addTofuStoneCaves(this);
         DefaultTofuBiomeFeature.addTofuBerry(this);
         DefaultTofuBiomeFeature.addTofuOre(this);
         DefaultTofuBiomeFeature.addTofuVariants(this);

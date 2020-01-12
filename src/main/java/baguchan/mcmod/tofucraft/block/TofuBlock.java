@@ -85,7 +85,7 @@ public class TofuBlock extends Block {
 
         BlockState baseBlock = world.getBlockState(pos.down());
 
-        boolean isWeightValid = weightBlock != null && (weightBlock.getMaterial() == Material.ROCK || weightBlock.getMaterial() == Material.IRON) && weightBlock != TofuBlocks.ISHITOFU.getDefaultState();
+        boolean isWeightValid = weightBlock != null && (weightBlock.getMaterial() == Material.ROCK || weightBlock.getMaterial() == Material.IRON) && !(weightBlock.getBlock() instanceof TofuBlock);
 
         float baseHardness = baseBlock.getBlockHardness(world, pos.down());
 
@@ -103,6 +103,8 @@ public class TofuBlock extends Block {
             worldIn.setBlockState(pos, TofuBlocks.ISHITOFU.getDefaultState(), 2);
         } else if (this.getBlock() == TofuBlocks.ISHITOFU) {
             worldIn.setBlockState(pos, TofuBlocks.METALTOFU.getDefaultState(), 2);
+        } else if (this.getBlock() == TofuBlocks.ZUNDATOFU) {
+            worldIn.setBlockState(pos, TofuBlocks.ZUNDAISHITOFU.getDefaultState(), 2);
         }
     }
 }

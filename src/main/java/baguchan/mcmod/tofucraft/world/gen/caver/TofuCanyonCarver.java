@@ -20,7 +20,7 @@ import java.util.function.Function;
 public class TofuCanyonCarver extends CanyonWorldCarver {
     public TofuCanyonCarver(Function<Dynamic<?>, ? extends ProbabilityConfig> p_i49930_1_) {
         super(p_i49930_1_);
-        this.carvableBlocks = ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK, TofuBlocks.TOFUTERRAIN, TofuBlocks.MINCEDTOFU);
+        this.carvableBlocks = ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK, TofuBlocks.TOFUTERRAIN, TofuBlocks.MINCEDTOFU, TofuBlocks.TOFUISHI_TERRAIN);
         this.carvableFluids = ImmutableSet.of(TofuFluids.SOYMILK);
     }
 
