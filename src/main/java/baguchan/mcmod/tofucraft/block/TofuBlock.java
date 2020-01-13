@@ -3,6 +3,7 @@ package baguchan.mcmod.tofucraft.block;
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -11,13 +12,18 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.DecoratedFeatureConfig;
+import net.minecraft.world.gen.feature.FlowersFeature;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.List;
 import java.util.Random;
 
-public class TofuBlock extends Block {
+public class TofuBlock extends Block implements IGrowable {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_0_7;
 
     public TofuBlock(Properties properties) {
@@ -105,6 +111,63 @@ public class TofuBlock extends Block {
             worldIn.setBlockState(pos, TofuBlocks.METALTOFU.getDefaultState(), 2);
         } else if (this.getBlock() == TofuBlocks.ZUNDATOFU) {
             worldIn.setBlockState(pos, TofuBlocks.ZUNDAISHITOFU.getDefaultState(), 2);
+        }
+    }
+
+    public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+        return worldIn.getBlockState(pos.up()).isAir();
+    }
+
+    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
+        return this.getBlock() == TofuBlocks.MOMENTOFU;
+    }
+
+    public void grow(World worldIn, Random rand, BlockPos pos, BlockState state) {
+        if (this.getBlock() == TofuBlocks.MOMENTOFU) {
+            BlockPos blockpos = pos.up();
+            BlockState blockstate = TofuBlocks.LEEK.getDefaultState();
+
+            for (int i = 0; i < 128; ++i) {
+                BlockPos blockpos1 = blockpos;
+                int j = 0;
+
+                while (true) {
+                    if (j >= i / 16) {
+                        BlockState blockstate2 = worldIn.getBlockState(blockpos1);
+                        if (blockstate2.getBlock() == blockstate.getBlock() && rand.nextInt(10) == 0 && blockstate.getBlock() instanceof IGrowable) {
+                            ((IGrowable) blockstate.getBlock()).grow(worldIn, rand, blockpos1, blockstate2);
+                        }
+
+                        if (!blockstate2.isAir()) {
+                            break;
+                        }
+
+                        BlockState blockstate1;
+                        if (rand.nextInt(8) == 0) {
+                            List<ConfiguredFeature<?>> list = worldIn.getBiome(blockpos1).getFlowers();
+                            if (list.isEmpty()) {
+                                break;
+                            }
+
+                            blockstate1 = ((FlowersFeature) ((DecoratedFeatureConfig) (list.get(0)).config).feature.feature).getRandomFlower(rand, blockpos1);
+                        } else {
+                            blockstate1 = blockstate;
+                        }
+
+                        if (blockstate1.isValidPosition(worldIn, blockpos1)) {
+                            worldIn.setBlockState(blockpos1, blockstate1, 3);
+                        }
+                        break;
+                    }
+
+                    blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
+                    if (worldIn.getBlockState(blockpos1.down()).getBlock() != this || worldIn.getBlockState(blockpos1).func_224756_o(worldIn, blockpos1)) {
+                        break;
+                    }
+
+                    ++j;
+                }
+            }
         }
     }
 }
