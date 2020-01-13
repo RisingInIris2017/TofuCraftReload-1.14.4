@@ -85,6 +85,16 @@ public class TofuCowEntity extends CowEntity {
             }
 
             return true;
+        } else if (itemstack.getItem() == Items.GLASS_BOTTLE && !player.abilities.isCreativeMode && !this.isChild()) {
+            player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
+            itemstack.shrink(1);
+            if (itemstack.isEmpty()) {
+                player.setHeldItem(hand, new ItemStack(TofuItems.SOYMILK_BOTTLE));
+            } else if (!player.inventory.addItemStackToInventory(new ItemStack(TofuItems.SOYMILK_BOTTLE))) {
+                player.dropItem(new ItemStack(TofuItems.SOYMILK_BOTTLE), false);
+            }
+
+            return true;
         } else {
             return super.processInteract(player, hand);
         }
