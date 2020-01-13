@@ -20,13 +20,13 @@ public class KoujiBaseItem extends Item {
         if (entityIn instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) entityIn;
             CompoundNBT nbt = ItemStackUtil.getItemTagCompound(stack);
-            if (!nbt.hasUniqueId("timer")) {
+            if (!nbt.contains("timer")) {
                 nbt.putInt("timer", 0);
-            } else if (nbt.hasUniqueId("timer") && nbt.getInt("timer") >= 18000) {
+            } else if (nbt.contains("timer") && nbt.getInt("timer") >= 18000) {
                 ItemStack newstack = new ItemStack(TofuItems.KOUJI, 1);
                 stack.shrink(1);
                 player.inventory.addItemStackToInventory(newstack);
-            } else if (nbt.hasUniqueId("timer")) {
+            } else if (nbt.contains("timer")) {
                 nbt.putInt("timer", nbt.getInt("timer") + 1);
             }
         }
