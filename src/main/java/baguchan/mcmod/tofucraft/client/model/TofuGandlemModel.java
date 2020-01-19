@@ -128,14 +128,6 @@ public class TofuGandlemModel<T extends TofuGandlemEntity> extends EntityModel<T
         }
     }
 
-    @Override
-    public void setLivingAnimations(T entity, float limbSwing, float limbSwingAmount, float partialTicks) {
-        float tick = entity.ticksExisted + partialTicks;
-
-        GlStateManager.translatef(0F, (-0.2F - MathHelper.sin(tick * 0.12F) * 0.1F), 0F);
-
-    }
-
     public void setRotateAngle(RendererModel modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;

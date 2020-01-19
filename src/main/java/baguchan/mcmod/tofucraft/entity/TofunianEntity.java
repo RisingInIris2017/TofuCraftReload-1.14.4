@@ -7,6 +7,7 @@ import baguchan.mcmod.tofucraft.init.TofuItems;
 import baguchan.mcmod.tofucraft.init.TofuSounds;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
 import com.mojang.datafixers.Dynamic;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -67,7 +68,10 @@ import java.util.stream.Collectors;
 public class TofunianEntity extends AbstractVillagerEntity implements IReputationTracking {
     private static final DataParameter<String> ROLE = EntityDataManager.createKey(TofunianEntity.class, DataSerializers.STRING);
     private static final Set<Item> FOOD = ImmutableSet.of(TofuItems.SEEDS_SOYBEAN, TofuItems.TOFUGRILD, TofuItems.TOFUCOOKIE, TofuItems.TOFUMOMEN);
-    public static final Map<Item, Integer> field_213788_bA = ImmutableMap.of(TofuItems.SEEDS_SOYBEAN, 1, TofuItems.TOFUGRILD, 2, TofuItems.TOFUCOOKIE, 2, TofuItems.TOFUMOMEN, 1);
+    private static final Map<Item, Integer> field_213788_bA = ImmutableMap.of(TofuItems.SEEDS_SOYBEAN, 1, TofuItems.TOFUGRILD, 2, TofuItems.TOFUCOOKIE, 2, TofuItems.TOFUMOMEN, 1);
+    private static final Map<Item, Integer> canCookItems = ImmutableMap.of(TofuItems.SEEDS_SOYBEAN, 1);
+    public static final List<Item> cookedItem = Lists.newArrayList(TofuItems.TOFUGRILD, TofuItems.TOFUCOOKIE);
+
 
     private int inLove;
 
@@ -512,6 +516,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         this.goalSelector.addGoal(5, new TofunianLoveGoal(this, 0.85D));
         this.goalSelector.addGoal(6, new InterestJobBlockGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new RestockTradeGoal(this, 1.05D));
+        this.goalSelector.addGoal(7, new CookingTofuGoal(this, 1.0D));
         this.goalSelector.addGoal(7, new CropHarvestGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.9D));
         this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
@@ -649,7 +654,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
     //when tofunian have enough foods
     public boolean canAbondonItems() {
-        return this.func_213751_ew() >= 24;
+        return this.func_213751_ew() >= 32;
     }
 
     public boolean wantsMoreFood() {
@@ -661,6 +666,21 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         return field_213788_bA.entrySet().stream().mapToInt((p_213764_1_) -> {
             return inventory.count(p_213764_1_.getKey()) * p_213764_1_.getValue();
         }).sum();
+    }
+
+    public boolean canCookItem() {
+        return this.canCookItemCount() > 40 && this.func_213751_ew() < 128;
+    }
+
+    private int canCookItemCount() {
+        Inventory inventory = this.getVillagerInventory();
+        return canCookItems.entrySet().stream().mapToInt((p_213764_1_) -> {
+            return inventory.count(p_213764_1_.getKey()) * p_213764_1_.getValue();
+        }).sum();
+    }
+
+    public boolean canKeepCookItem() {
+        return this.canCookItemCount() > 16 && this.func_213751_ew() < 128;
     }
 
     //When tofunian make child,consume foods
@@ -683,6 +703,28 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
                 }
             }
         }
+    }
+
+    public void cookingFood() {
+        if (this.canCookItemCount() != 0) {
+            for (int i = 0; i < this.getVillagerInventory().getSizeInventory(); ++i) {
+                ItemStack itemstack = this.getVillagerInventory().getStackInSlot(i);
+                if (!itemstack.isEmpty()) {
+                    Integer integer = canCookItems.get(itemstack.getItem());
+                    if (integer != null) {
+                        int j = itemstack.getCount();
+
+                        this.getVillagerInventory().decrStackSize(i, 1);
+                        this.cookResult();
+
+                    }
+                }
+            }
+        }
+    }
+
+    private void cookResult() {
+        this.getVillagerInventory().addItem(new ItemStack(cookedItem.get(this.getRNG().nextInt(cookedItem.size()))));
     }
 
     @OnlyIn(Dist.CLIENT)

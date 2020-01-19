@@ -37,7 +37,7 @@ public class SummonMinionGoal extends CastingGoal {
     @Override
     public void startExecuting() {
         super.startExecuting();
-        this.spellCooldown = this.tofuGandlemEntity.ticksExisted + 1200;
+        this.spellCooldown = this.tofuGandlemEntity.ticksExisted + 1800;
         this.spellWarmup = 100;
         this.tofuGandlemEntity.playSound(SoundEvents.ENTITY_EVOKER_PREPARE_SUMMON, 2.0F, 1.0F);
     }

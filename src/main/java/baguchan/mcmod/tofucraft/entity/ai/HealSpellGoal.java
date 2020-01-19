@@ -36,7 +36,7 @@ public class HealSpellGoal extends CastingGoal {
     protected void castSpell() {
         super.castSpell();
 
-        this.tofuGandlemEntity.heal(4);
+        this.tofuGandlemEntity.heal(10);
         this.tofuGandlemEntity.addPotionEffect(new EffectInstance(Effects.REGENERATION, 300));
         this.tofuGandlemEntity.addPotionEffect(new EffectInstance(TofuEffectRegistry.TOFU_RESISTANCE, 1200));
     }

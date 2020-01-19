@@ -4,7 +4,6 @@ import baguchan.mcmod.tofucraft.entity.TofuTurretEntity;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.util.math.MathHelper;
 
 public class TofuTurretModel<T extends TofuTurretEntity> extends EntityModel<T> {
     public RendererModel core;
@@ -47,13 +46,6 @@ public class TofuTurretModel<T extends TofuTurretEntity> extends EntityModel<T> 
         GlStateManager.scalef(1.1F, 1.1F, 1.1F);
         this.core.render(scale);
         GlStateManager.popMatrix();
-    }
-
-    @Override
-    public void setLivingAnimations(T entity, float limbSwing, float limbSwingAmount, float partialTicks) {
-        float tick = entity.ticksExisted + partialTicks;
-
-        GlStateManager.translatef(0F, -0.2F - MathHelper.sin(tick * 0.1F) * 0.1F, 0F);
     }
 
     /**

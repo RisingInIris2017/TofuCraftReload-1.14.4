@@ -43,7 +43,7 @@ public class TofuHomingShotGoal extends Goal {
     public void startExecuting() {
         super.startExecuting();
         this.tofuGandlemEntity.setShooting(true);
-        this.shotCooldown = this.tofuGandlemEntity.ticksExisted + 900;
+        this.shotCooldown = this.tofuGandlemEntity.ticksExisted + 1200;
         this.shotTime = 100;
     }
 

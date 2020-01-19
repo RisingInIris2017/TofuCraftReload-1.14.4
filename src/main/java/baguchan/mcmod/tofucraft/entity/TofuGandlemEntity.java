@@ -20,6 +20,7 @@ import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -211,6 +212,15 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
 
     @Override
     protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
+    }
+
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        if (source.isExplosion() || source.isFireDamage()) {
+            return super.attackEntityFrom(source, amount * 0.85F);
+        } else {
+            return super.attackEntityFrom(source, amount);
+        }
     }
 
     public boolean isPotionApplicable(EffectInstance potioneffectIn) {

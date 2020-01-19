@@ -90,7 +90,7 @@ public class TofuBlocks {
 
     //TERRAIN
     public static final Block TOFUSTEM = new RotatedPillarBlock(Block.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 5.0F).sound(SoundType.WOOD));
-    public static final Block TOFUTERRAIN = new Block(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.45F, 0.85F).sound(SoundType.SNOW));
+    public static final Block TOFUTERRAIN = new TofuTerrainBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.45F, 0.85F).sound(SoundType.SNOW));
     public static final Block TOFUISHI_TERRAIN = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
     public static final Block ZUNDATOFUTERRAIN = new TofuGrassBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).tickRandomly().hardnessAndResistance(0.5F, 0.9F).sound(SoundType.SNOW));
     public static final Block ORE_TOFUDIAMOND = new Block(Block.Properties.create(TofuMaterial.TOFUORE).harvestTool(ToolType.SHOVEL).harvestLevel(2).hardnessAndResistance(1.0F, 2.0F).sound(SoundType.SNOW));

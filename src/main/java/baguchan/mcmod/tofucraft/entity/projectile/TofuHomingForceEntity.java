@@ -56,7 +56,7 @@ public class TofuHomingForceEntity extends Entity {
         this.owner = ownerIn;
         BlockPos blockpos = new BlockPos(ownerIn);
         double d0 = (double) blockpos.getX() + 0.5D;
-        double d1 = (double) blockpos.getY() + 0.5D;
+        double d1 = (double) blockpos.getY() + 0.75D;
         double d2 = (double) blockpos.getZ() + 0.5D;
         this.setLocationAndAngles(d0, d1, d2, this.rotationYaw, this.rotationPitch);
         this.target = targetIn;

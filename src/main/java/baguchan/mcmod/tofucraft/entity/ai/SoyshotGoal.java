@@ -45,7 +45,7 @@ public class SoyshotGoal extends Goal {
         super.startExecuting();
         this.tofuGandlemEntity.setShooting(true);
         this.shotCooldown = this.tofuGandlemEntity.ticksExisted + 1200;
-        this.shotTime = 200;
+        this.shotTime = 120;
     }
 
     @Override
