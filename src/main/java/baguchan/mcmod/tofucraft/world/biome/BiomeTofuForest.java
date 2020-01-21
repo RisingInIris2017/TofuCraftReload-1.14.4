@@ -19,7 +19,7 @@ public class BiomeTofuForest extends BiomeTofuBase {
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(TofuEntitys.TOFUCOW, 10, 4, 4));
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(TofuEntitys.GRILLDER, 8, 2, 3));
 
-        this.addSpawn(TofuEntitys.TOFU_MONSTER, new SpawnListEntry(TofuEntitys.TOFUCHINGER, 80, 2, 3));
+        this.addSpawn(TofuEntitys.TOFU_MONSTER, new SpawnListEntry(TofuEntitys.TOFUCHINGER, 40, 2, 3));
     }
 
 }

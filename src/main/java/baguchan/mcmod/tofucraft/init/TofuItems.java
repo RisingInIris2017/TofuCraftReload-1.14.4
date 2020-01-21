@@ -100,6 +100,7 @@ public class TofuItems {
     public static final Item GRILLDER_SPAWNEGG = new SpawnEggItem(TofuEntitys.GRILLDER, 0xEBE8E8, 0xdea65d, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUSPIDER_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUSPIDER, 0xEBE8E8, 0x2E2E2E, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUEAGLE_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUEAGLE, 0xebaf35, 0xeaeae4, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUCREEPER_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUCREEPER, 0xefeedf, 0x82817b, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUTURRET_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUTURRET, 0xe5e0bd, 0x9cd6f5, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUMIND_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUMIND, 0xe5e0bd, 0x9cd6f5, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
@@ -261,6 +262,7 @@ public class TofuItems {
         register(registry, GRILLDER_SPAWNEGG, "grillder_spawnegg");
         register(registry, TOFUSPIDER_SPAWNEGG, "tofuspider_spawnegg");
         register(registry, TOFUEAGLE_SPAWNEGG, "tofueagle_spawnegg");
+        register(registry, TOFUCREEPER_SPAWNEGG, "tofucreeper_spawnegg");
         register(registry, TOFUTURRET_SPAWNEGG, "tofuturret_spawnegg");
         register(registry, TOFUMIND_SPAWNEGG, "tofumind_spawnegg");
 

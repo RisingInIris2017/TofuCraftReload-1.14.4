@@ -4,7 +4,6 @@ import baguchan.mcmod.tofucraft.client.render.*;
 import baguchan.mcmod.tofucraft.client.render.tileentity.TofuBedBlockRenderer;
 import baguchan.mcmod.tofucraft.client.render.tileentity.TofuChestBlockRenderer;
 import baguchan.mcmod.tofucraft.entity.*;
-import baguchan.mcmod.tofucraft.entity.part.TofudamaPartEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.BeamEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.TofuHomingForceEntity;
@@ -32,8 +31,7 @@ public class ClientRegistrar {
         RenderingRegistry.registerEntityRenderingHandler(GrillderEntity.class, GrillderRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuSpiderEntity.class, TofuSpiderRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuEagleEntity.class, TofuEagleRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(TofudamaEntity.class, TofudamaRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(TofudamaPartEntity.class, TofudamaPartRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuCreeperEntity.class, TofuCreeperRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuTurretEntity.class, TofuTurretRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuMindEntity.class, TofuMindRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuGandlemEntity.class, TofuGandlemRender::new);
