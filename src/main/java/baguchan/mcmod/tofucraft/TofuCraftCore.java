@@ -63,7 +63,7 @@ public class TofuCraftCore {
 
     @SubscribeEvent
     public void onGrassBroken(BlockEvent.BreakEvent event) {
-        if (!event.getWorld().isRemote()) {
+        if (!event.getWorld().isRemote() && !event.getPlayer().isCreative()) {
 
             if (event.getWorld().getBlockState(event.getPos()).getBlock() instanceof TallGrassBlock) {
                 if (Math.random() <= 0.025) {

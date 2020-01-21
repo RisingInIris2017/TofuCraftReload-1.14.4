@@ -1,6 +1,7 @@
 package baguchan.mcmod.tofucraft.item;
 
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
+import baguchan.mcmod.tofucraft.init.TofuTags;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -62,7 +63,7 @@ public class BlockRiceItem extends BlockItem {
                 BlockState blockstate = worldIn.getBlockState(blockpos);
                 Material material = blockstate.getMaterial();
                 IFluidState ifluidstate = worldIn.getFluidState(blockpos);
-                if ((ifluidstate.getFluid() == Fluids.WATER || material == Material.ICE) && worldIn.isAirBlock(blockpos1) && (worldIn.getBlockState(blockpos.down()).isIn(BlockTags.SAND) || worldIn.getBlockState(blockpos.down()).isIn(BlockTags.DIRT_LIKE) || worldIn.getBlockState(blockpos.down()).getBlock() == Blocks.GRAVEL)) {
+                if ((ifluidstate.getFluid() == Fluids.WATER || material == Material.ICE) && worldIn.isAirBlock(blockpos1) && (worldIn.getBlockState(blockpos.down()).isIn(BlockTags.SAND) || worldIn.getBlockState(blockpos.down()).isIn(TofuTags.Blocks.TOFUTERRAIN) || worldIn.getBlockState(blockpos.down()).isIn(BlockTags.DIRT_LIKE) || worldIn.getBlockState(blockpos.down()).getBlock() == Blocks.GRAVEL)) {
 
                     // special case for handling block placement with water lilies
                     net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(worldIn, blockpos1);

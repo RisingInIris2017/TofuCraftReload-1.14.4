@@ -1,5 +1,6 @@
 package baguchan.mcmod.tofucraft.block;
 
+import baguchan.mcmod.tofucraft.init.TofuTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BushBlock;
@@ -33,7 +34,7 @@ public class RiceRootBlock extends BushBlock implements net.minecraftforge.commo
     }
 
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return state.isIn(BlockTags.SAND) || state.isIn(BlockTags.DIRT_LIKE) || state.getBlock() == Blocks.GRAVEL;
+        return state.isIn(BlockTags.SAND) || state.isIn(TofuTags.Blocks.TOFUTERRAIN) || state.isIn(BlockTags.DIRT_LIKE) || state.getBlock() == Blocks.GRAVEL;
     }
 
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
