@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#G#",
+    " # "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "#": {
+      "item": "tofucraft:zunda"
+    }
+  },
+  "result": {
+    "item": "tofucraft:zundama"
+  }
+}

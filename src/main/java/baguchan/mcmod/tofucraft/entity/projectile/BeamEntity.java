@@ -48,7 +48,7 @@ public class BeamEntity extends AbstractFireballEntity {
             if (result.getType() == RayTraceResult.Type.ENTITY) {
                 Entity entity = ((EntityRayTraceResult) result).getEntity();
 
-                boolean flag = entity.attackEntityFrom(DamageSource.causeFireballDamage(this, this.shootingEntity), 4.0F);
+                boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this.shootingEntity).setProjectile(), 6.0F);
                 if (flag) {
                     this.applyEnchantments(this.shootingEntity, entity);
                 }

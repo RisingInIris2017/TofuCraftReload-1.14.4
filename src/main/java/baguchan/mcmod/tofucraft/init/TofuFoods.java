@@ -42,8 +42,11 @@ public class TofuFoods {
     public static final Food RICEBALL = new Food.Builder().hunger(3).saturation(0.32f).fastToEat().build();
     public static final Food RICEBALL_SALT = new Food.Builder().hunger(3).saturation(0.34f).fastToEat().build();
 
-    public static final Food ZUNDAMOCHI = new Food.Builder().hunger(5).saturation(0.365f).fastToEat().build();
+    public static final Food ZUNDAMOCHI = new Food.Builder().hunger(4).saturation(0.365f).fastToEat().build();
     public static final Food GOHEIMOCHI = new Food.Builder().hunger(4).saturation(0.36f).build();
     public static final Food YAKIONIGIRI_MISO = new Food.Builder().hunger(4).saturation(0.36f).build();
     public static final Food YAKIONIGIRI_SHOYU = new Food.Builder().hunger(4).saturation(0.36f).build();
+    public static final Food KINAKOMANJU = new Food.Builder().hunger(3).saturation(0.20f).fastToEat().build();
+    public static final Food ZUNDAMANJU = new Food.Builder().hunger(3).saturation(0.24f).fastToEat().build();
+
 }

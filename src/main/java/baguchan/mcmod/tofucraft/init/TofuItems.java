@@ -16,6 +16,7 @@ import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
@@ -63,6 +64,7 @@ public class TofuItems {
     public static final Item SALTYMELON = new Item(new Item.Properties().food(TofuFoods.SALTYMELON).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item SEEDS_SOYBEAN = new BlockNamedItem(TofuBlocks.SOYBEAN,new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item KINAKO = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item SOYBEAN_PARCHED = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item FUKUMAME = new FukumameItem(new Item.Properties().maxDamage(64).group(TofuItemGroup.TOFUCRAFT));
     public static final Item EDAMAME = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -75,6 +77,8 @@ public class TofuItems {
     public static final Item GOHEIMOCHI = new Item(new Item.Properties().food(TofuFoods.GOHEIMOCHI).group(TofuItemGroup.TOFUCRAFT));
     public static final Item YAKIONIGIRI_MISO = new Item(new Item.Properties().food(TofuFoods.YAKIONIGIRI_MISO).group(TofuItemGroup.TOFUCRAFT));
     public static final Item YAKIONIGIRI_SHOYU = new Item(new Item.Properties().food(TofuFoods.YAKIONIGIRI_SHOYU).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item KINAKOMANJU = new Item(new Item.Properties().food(TofuFoods.KINAKOMANJU).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ZUNDAMANJU = new Item(new Item.Properties().food(TofuFoods.ZUNDAMANJU).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item SOYMILK_BUCKET = new BucketItem(TofuFluids.SOYMILK, (new Item.Properties()).containerItem(Items.BUCKET).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
 
@@ -86,6 +90,8 @@ public class TofuItems {
     public static final Item KOUJI = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item MISO = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item SOYSAUCE = new SeasoningItem(new Item.Properties().maxStackSize(1).maxDamage(32).containerItem(Items.GLASS_BOTTLE).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item DASHI = new SeasoningItem(new Item.Properties().maxStackSize(1).maxDamage(32).containerItem(Items.GLASS_BOTTLE).group(TofuItemGroup.TOFUCRAFT));
+
 
     public static final Item ZUNDA = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item ZUNDAMA = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -160,8 +166,8 @@ public class TofuItems {
     public static final Item ZUNDAARROW = new ZundaArrowItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item BUGLE = new BugleItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
-    public static final Item TOFUISHI_SHIELD = new TofuShieldItem(new Item.Properties().maxDamage(160).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item TOFUMETAL_SHIELD = new TofuShieldItem(new Item.Properties().maxDamage(360).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUISHI_SHIELD = new TofuShieldItem(new Item.Properties().maxDamage(320).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUMETAL_SHIELD = new TofuShieldItem(new Item.Properties().maxDamage(450).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item TOFUFORCE_CORE = new TofuForceCoreItem(new Item.Properties().maxDamage(340).group(TofuItemGroup.TOFUCRAFT));
 
@@ -227,6 +233,7 @@ public class TofuItems {
         register(registry, SALTYMELON, "saltymelon");
         register(registry, SEEDS_SOYBEAN, "seeds_soybeans");
         register(registry, SOYBEAN_PARCHED, "soybeans_parched");
+        register(registry, KINAKO, "kinako");
 
         register(registry, EDAMAME, "edamame");
         register(registry, EDAMAME_BOILD, "edamame_boild");
@@ -240,6 +247,8 @@ public class TofuItems {
         register(registry, GOHEIMOCHI, "goheimochi");
         register(registry, YAKIONIGIRI_MISO, "yakionigiri_miso");
         register(registry, YAKIONIGIRI_SHOYU, "yakionigiri_shoyu");
+        register(registry, KINAKOMANJU, "kinakomanju");
+        register(registry, ZUNDAMANJU, "zundamanju");
 
         register(registry, SOYMILK_BUCKET, "bucketsoymilk");
         register(registry, SALT, "salt");
@@ -249,6 +258,7 @@ public class TofuItems {
         register(registry, KOUJI, "kouji");
         register(registry, MISO, "miso");
         register(registry, SOYSAUCE, "bottlesoysause");
+        register(registry, DASHI, "bottle_dashi");
         register(registry, ZUNDA, "zunda");
         register(registry, ZUNDAMA, "zundama");
         register(registry, TOFUSTICK, "tofustick");
@@ -371,6 +381,15 @@ public class TofuItems {
             }
         };
         DispenserBlock.registerDispenseBehavior(BITTERN, bitternItemBehavior);
+
+        IDispenseItemBehavior bugleItemBehavior = new DefaultDispenseItemBehavior() {
+            @Override
+            public ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
+                source.getWorld().playSound((PlayerEntity) null, source.getBlockPos(), TofuSounds.TOFUBUGLE, SoundCategory.BLOCKS, 40F, 1.0F);
+                return stack;
+            }
+        };
+        DispenserBlock.registerDispenseBehavior(BUGLE, bugleItemBehavior);
 
         BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(new ItemStack(SOYMILK_ANNIN_BOTTLE)), Ingredient.fromItems(TofuBlocks.TOFUBERRY), new ItemStack(BREWED_SOYMILK_ANNIN_BOTTLE));
         BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(new ItemStack(SOYMILK_APPLE_BOTTLE)), Ingredient.fromItems(TofuBlocks.TOFUBERRY), new ItemStack(BREWED_SOYMILK_APPLE_BOTTLE));
