@@ -7,8 +7,6 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.entity.model.ShieldModel;
-import net.minecraft.client.renderer.model.Material;
-import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -17,8 +15,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuShieldItemRender extends ItemStackTileEntityRenderer {
-    public static final Material LOCATION_ISHISHIELD_NO_PATTERN = new Material(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(TofuCraftCore.MODID, "textures/entity/tofuishi_shield"));
-    public static final Material LOCATION_METALSHIELD_NO_PATTERN = new Material(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(TofuCraftCore.MODID, "textures/entity/tofumetal_shield"));
+    private final static ResourceLocation ISHI_TEXTURE = new ResourceLocation(TofuCraftCore.MODID, "textures/entity/tofuishi_shield.png");
+    private final static ResourceLocation METAL_TEXTURE = new ResourceLocation(TofuCraftCore.MODID, "textures/entity/tofumetal_shield.png");
 
 
     private final ShieldModel modelShield = new ShieldModel(); // TODO model rockshroom
@@ -29,8 +27,7 @@ public class TofuShieldItemRender extends ItemStackTileEntityRenderer {
         if (itemStackIn.getItem() == TofuItems.TOFUISHI_SHIELD) {
             matrixStackIn.push();
             matrixStackIn.scale(1.0F, -1.0F, -1.0F);
-            Material material = LOCATION_ISHISHIELD_NO_PATTERN;
-            IVertexBuilder ivertexbuilder = material.getSprite().wrapBuffer(ItemRenderer.getBuffer(bufferIn, this.modelShield.getRenderType(material.getAtlasLocation()), false, itemStackIn.hasEffect()));
+            IVertexBuilder ivertexbuilder = ItemRenderer.getBuffer(bufferIn, this.modelShield.getRenderType(ISHI_TEXTURE), false, itemStackIn.hasEffect());
             this.modelShield.func_228294_b_().render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
 
             this.modelShield.func_228293_a_().render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
@@ -40,8 +37,7 @@ public class TofuShieldItemRender extends ItemStackTileEntityRenderer {
         } else if (itemStackIn.getItem() == TofuItems.TOFUMETAL_SHIELD) {
             matrixStackIn.push();
             matrixStackIn.scale(1.0F, -1.0F, -1.0F);
-            Material material = LOCATION_METALSHIELD_NO_PATTERN;
-            IVertexBuilder ivertexbuilder = material.getSprite().wrapBuffer(ItemRenderer.getBuffer(bufferIn, this.modelShield.getRenderType(material.getAtlasLocation()), false, itemStackIn.hasEffect()));
+            IVertexBuilder ivertexbuilder = ItemRenderer.getBuffer(bufferIn, this.modelShield.getRenderType(METAL_TEXTURE), false, itemStackIn.hasEffect());
             this.modelShield.func_228294_b_().render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
 
             this.modelShield.func_228293_a_().render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);

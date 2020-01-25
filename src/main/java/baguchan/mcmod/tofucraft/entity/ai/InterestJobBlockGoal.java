@@ -18,7 +18,7 @@ public class InterestJobBlockGoal extends MoveToBlockGoal {
     }
 
     public boolean shouldExecute() {
-        return !this.creature.isBeingRidden() && !this.creature.isChild() && this.creature.isNitwit() && this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && this.creature.world.rand.nextInt(40) == 0 && super.shouldExecute();
+        return !this.creature.isBeingRidden() && !this.creature.isChild() && this.creature.isNitwit() && this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && this.creature.world.rand.nextInt(20) == 0 && super.shouldExecute();
     }
 
     protected int getRunDelay(CreatureEntity creatureIn) {

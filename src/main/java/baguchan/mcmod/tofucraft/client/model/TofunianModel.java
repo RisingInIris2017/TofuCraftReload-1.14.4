@@ -34,16 +34,16 @@ public class TofunianModel extends BipedModel<TofunianEntity> {
 
         this.bipedBody = new ModelRenderer(this, 8, 16);
         this.bipedBody.addBox(-3.0F, 0.0F, -2.0F, 6, 6, 4, par1);
-        this.bipedBody.setRotationPoint(0.0F, 13.0F, 0.0F);
+        this.bipedBody.setRotationPoint(0.0F, 16.0F, 0.0F);
 
         this.bipedRightArm = new ModelRenderer(this, 28, 16);
         this.bipedRightArm.addBox(-0.0F, -2.0F, -1.0F, 2, 5, 2, par1);
-        this.bipedRightArm.setRotationPoint(-5.0F, 15.0F, 0.0F);
+        this.bipedRightArm.setRotationPoint(-5.0F, 18.0F, 0.0F);
 
         this.bipedLeftArm = new ModelRenderer(this, 28, 16);
         this.bipedLeftArm.mirror = true;
         this.bipedLeftArm.addBox(-2.0F, -2.0F, -1.0F, 2, 5, 2, par1);
-        this.bipedLeftArm.setRotationPoint(5.0F, 15.0F, 0.0F);
+        this.bipedLeftArm.setRotationPoint(5.0F, 18.0F, 0.0F);
 
         this.bipedRightLeg = new ModelRenderer(this, 0, 16);
         this.bipedRightLeg.addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2, par1);
@@ -60,14 +60,21 @@ public class TofunianModel extends BipedModel<TofunianEntity> {
         super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
         float f6 = 12.0f;
 
+        this.bipedBody.rotationPointY = 14.0F;
         this.bipedRightArm.rotationPointZ = 0.0F;
         this.bipedLeftArm.rotationPointZ = 0.0F;
+        this.bipedLeftArm.rotationPointY = 16.0F;
+        this.bipedRightArm.rotationPointY = 16.0F;
         this.bipedRightLeg.rotationPointZ = 0.0F;
         this.bipedLeftLeg.rotationPointZ = 0.0F;
         this.bipedRightLeg.rotationPointY = 6.0F + f6;
         this.bipedLeftLeg.rotationPointY = 6.0F + f6;
         this.bipedHead.rotationPointZ = -0.0F;
-        this.bipedHead.rotationPointY = f6 + 1.0F;
+        if (isChild) {
+            this.bipedHead.rotationPointY = f6 + 1.0F;
+        } else {
+            this.bipedHead.rotationPointY = f6 + 2.0F;
+        }
         this.bipedHeadwear.rotationPointX = this.bipedHead.rotationPointX;
         this.bipedHeadwear.rotationPointY = this.bipedHead.rotationPointY;
         this.bipedHeadwear.rotationPointZ = this.bipedHead.rotationPointZ;
