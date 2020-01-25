@@ -23,7 +23,7 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
 
     public TofuTurretEntity(EntityType<? extends TofuTurretEntity> p_i48553_1_, World p_i48553_2_) {
         super(p_i48553_1_, p_i48553_2_);
-        this.moveController = new FlyingStrafeMovementController(this);
+        this.moveController = new FlyingStrafeMovementController(this, 20, true);
     }
 
     protected void registerGoals() {
@@ -67,7 +67,7 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
 
         LivingEntity target = getAttackTarget();
         Vec3d vec3d = this.getMotion();
-        if (target != null && target.isAlive() && target.posY + (double) target.getEyeHeight() > this.posY + (double) getEyeHeight() + (double) this.heightOffset && this.isAlive()) {
+        if (target != null && target.isAlive() && target.getPosY() + (double) target.getEyeHeight() > this.getPosY() + (double) getEyeHeight() + (double) this.heightOffset && this.isAlive()) {
             this.setMotion(this.getMotion().add(0.0D, ((double) 0.3F - vec3d.y) * (double) 0.3F, 0.0D));
             this.isAirBorne = true;
         }
@@ -81,8 +81,10 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
     }
 
     @Override
-    public void fall(float distance, float damageMultiplier) {
+    public boolean func_225503_b_(float p_225503_1_, float p_225503_2_) {
+        return false;
     }
+
 
     @Override
     public boolean doesEntityNotTriggerPressurePlate() {
@@ -105,12 +107,14 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
 
     @Override
     public void attackEntityWithRangedAttack(LivingEntity livingEntity, float v) {
-        double d1 = livingEntity.posX - this.posX;
-        double d2 = livingEntity.getBoundingBox().minY + (double) (livingEntity.getHeight() / 2.0F) - (this.posY + (double) (this.getHeight() / 2.0F));
-        double d3 = livingEntity.posZ - this.posZ;
+        double d1 = livingEntity.getPosX() - this.getPosX();
+        double d2 = livingEntity.getBoundingBox().minY + (double) (livingEntity.getHeight() / 2.0F) - (this.getPosY() + (double) (this.getEyeHeight()));
+        double d3 = livingEntity.getPosZ() - this.getPosZ();
         float f = 0.075F;
         BeamEntity smallfireballentity = new BeamEntity(this.world, this, d1 + this.getRNG().nextGaussian() * (double) f - this.getRNG().nextGaussian() * (double) f, d2, d3 + this.getRNG().nextGaussian() * (double) f - this.getRNG().nextGaussian() * (double) f);
-        smallfireballentity.posY = this.posY + (double) (this.getHeight() / 2.0F);
+        smallfireballentity.setPosition(smallfireballentity.getPosX(), this.getPosY() + (double) (this.getEyeHeight()), smallfireballentity.getPosZ());
+        smallfireballentity.explosionPower = 1.2F;
+
         this.world.addEntity(smallfireballentity);
     }
 

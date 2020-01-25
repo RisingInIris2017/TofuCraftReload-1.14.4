@@ -8,6 +8,7 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
@@ -20,11 +21,11 @@ public class SimpleBarrelBlock extends Block {
     }
 
     @Override
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
-        super.tick(state, worldIn, pos, random);
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+        super.tick(state, worldIn, pos, rand);
         if (isUnderWeight(worldIn, pos)) {
             int i = state.get(FERM);
-            if (random.nextInt(5) == 0) {
+            if (rand.nextInt(5) == 0) {
                 if (i < 7) {
                     worldIn.setBlockState(pos, state.with(FERM, Integer.valueOf(i + 1)), 2);
                 }

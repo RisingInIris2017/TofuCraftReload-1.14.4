@@ -25,6 +25,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -96,10 +97,8 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (worldIn.isRemote) {
-            return true;
-        } else {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+
             ItemStack itemHeld = player.getHeldItem(handIn);
             Stat stat = this.getStat(state);
 
@@ -124,7 +123,7 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
 
                     worldIn.setBlockState(pos, state.with(STAT, Stat.WATER), 3);
 
-                    return true;
+                    return ActionResultType.SUCCESS;
                 } else if (stat == Stat.BITTERN && itemHeld != null && itemHeld.getItem() == Items.GLASS_BOTTLE) {
                     ItemStack nigari = new ItemStack(TofuItems.BITTERN);
 
@@ -140,9 +139,10 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
                     }
                     worldIn.setBlockState(pos, state.with(STAT, Stat.EMPTY), 3);
 
-                    return true;
+                    return ActionResultType.SUCCESS;
                 } else if (stat == Stat.BITTERN && itemHeld == null) {
                     worldIn.setBlockState(pos, state.with(STAT, Stat.EMPTY), 3);
+                    return ActionResultType.SUCCESS;
                 } else if (stat == Stat.SALT) {
                     ItemStack salt = new ItemStack(TofuItems.SALT, 1);
 
@@ -156,15 +156,15 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
 
                     worldIn.setBlockState(pos, state.with(STAT, Stat.BITTERN), 3);
 
-                    return true;
+                    return ActionResultType.SUCCESS;
                 }
             }
-            return true;
-        }
+        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+
     }
 
     @Override
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (!state.isValidPosition(worldIn, pos)) {
             worldIn.destroyBlock(pos, true);
         }
@@ -175,7 +175,7 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
         if (stat == Stat.WATER && !state.get(WATERLOGGED)) {
             float f = this.calcAdaptation(worldIn, pos);
 
-            if (f > 0.0F && random.nextInt((int) (25.0F / f) + 1) == 0) {
+            if (f > 0.0F && rand.nextInt((int) (25.0F / f) + 1) == 0) {
                 ++l;
                 worldIn.setBlockState(pos, state.with(STAT, Stat.SALT), 2);
             }
@@ -225,14 +225,7 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
         return BlockRenderType.MODEL;
     }
 
-    @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
-    }
 
-    public boolean isSolid(BlockState state) {
-        return false;
-    }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(STAT, NORTH, EAST, SOUTH, WEST, WATERLOGGED);

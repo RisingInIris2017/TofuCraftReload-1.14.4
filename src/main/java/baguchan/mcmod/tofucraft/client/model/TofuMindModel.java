@@ -1,43 +1,45 @@
 package baguchan.mcmod.tofucraft.client.model;
 
 import baguchan.mcmod.tofucraft.entity.TofuMindEntity;
-import net.minecraft.client.renderer.entity.model.EntityModel;
+import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.model.IHasArm;
 import net.minecraft.client.renderer.entity.model.IHasHead;
-import net.minecraft.client.renderer.entity.model.RendererModel;
+import net.minecraft.client.renderer.entity.model.SegmentedModel;
+import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.Hand;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class TofuMindModel<T extends TofuMindEntity> extends EntityModel<T> implements IHasArm, IHasHead {
-    public RendererModel body;
-    public RendererModel head;
-    public RendererModel handR;
-    public RendererModel handL;
-    public RendererModel balanceCore;
-    public RendererModel core;
+public class TofuMindModel<T extends TofuMindEntity> extends SegmentedModel<T> implements IHasArm, IHasHead {
+    public ModelRenderer body;
+    public ModelRenderer head;
+    public ModelRenderer handR;
+    public ModelRenderer handL;
+    public ModelRenderer balanceCore;
+    public ModelRenderer core;
 
     public TofuMindModel() {
         this.textureWidth = 128;
         this.textureHeight = 64;
-        this.core = new RendererModel(this, 28, 26);
+        this.core = new ModelRenderer(this, 28, 26);
         this.core.setRotationPoint(0.0F, 5.3F, -2.6F);
         this.core.addBox(-2.0F, -2.0F, -1.0F, 4, 4, 1, 0.0F);
-        this.balanceCore = new RendererModel(this, 28, 16);
+        this.balanceCore = new ModelRenderer(this, 28, 16);
         this.balanceCore.setRotationPoint(0.0F, 10.0F, 0.0F);
         this.balanceCore.addBox(-2.5F, 0.0F, -2.5F, 5, 5, 5, 0.0F);
-        this.handL = new RendererModel(this, 14, 18);
+        this.handL = new ModelRenderer(this, 14, 18);
         this.handL.setRotationPoint(5.0F, 2.0F, 0.0F);
         this.handL.addBox(-0.5F, 0.0F, -2.0F, 3, 9, 4, 0.0F);
-        this.body = new RendererModel(this, 0, 0);
+        this.body = new ModelRenderer(this, 0, 0);
         this.body.setRotationPoint(0.0F, 8.0F, 0.0F);
         this.body.addBox(-5.0F, 0.0F, -3.0F, 10, 12, 6, 0.0F);
-        this.handR = new RendererModel(this, 0, 18);
+        this.handR = new ModelRenderer(this, 0, 18);
         this.handR.setRotationPoint(-5.0F, 2.0F, 0.0F);
         this.handR.addBox(-2.5F, 0.0F, -2.0F, 3, 9, 4, 0.0F);
-        this.head = new RendererModel(this, 32, 0);
+        this.head = new ModelRenderer(this, 32, 0);
         this.head.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
         this.body.addChild(this.core);
@@ -48,12 +50,11 @@ public class TofuMindModel<T extends TofuMindEntity> extends EntityModel<T> impl
     }
 
     @Override
-    public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        this.body.render(f5);
+    public Iterable<ModelRenderer> getParts() {
+        return ImmutableList.of(this.body);
     }
-
     @Override
-    public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+    public void render(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.rotateAngleY = netHeadYaw * ((float) Math.PI / 180F);
 
         this.head.rotateAngleX = headPitch * ((float) Math.PI / 180F);
@@ -75,7 +76,7 @@ public class TofuMindModel<T extends TofuMindEntity> extends EntityModel<T> impl
 
         if (this.swingProgress > 0.0F) {
             HandSide enumhandside = this.func_217147_a(entityIn);
-            RendererModel modelrenderer = this.getArmForSide(enumhandside);
+            ModelRenderer modelrenderer = this.getArmForSide(enumhandside);
             float f1 = this.swingProgress;
             this.body.rotateAngleY = MathHelper.sin(MathHelper.sqrt(f1) * ((float) Math.PI * 2F)) * 0.2F;
 
@@ -109,21 +110,31 @@ public class TofuMindModel<T extends TofuMindEntity> extends EntityModel<T> impl
         this.handL.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
     }
 
-    protected RendererModel getArmForSide(HandSide side) {
+    protected ModelRenderer getArmForSide(HandSide side) {
         return side == HandSide.LEFT ? this.handL : this.handR;
     }
 
     public void postRenderArm(float scale, HandSide side) {
-        this.getArmForSide(side).postRender(scale);
-    }
 
-    public RendererModel func_205072_a() {
-        return this.head;
     }
 
     protected HandSide func_217147_a(T p_217147_1_) {
         HandSide handside = p_217147_1_.getPrimaryHand();
         return p_217147_1_.swingingHand == Hand.MAIN_HAND ? handside : handside.opposite();
+    }
+
+    @Override
+    public void translateHand(HandSide sideIn, MatrixStack matrixStackIn) {
+        float f = sideIn == HandSide.RIGHT ? 1.0F : -1.0F;
+        ModelRenderer modelrenderer = this.getArmForSide(sideIn);
+        modelrenderer.rotationPointX += f;
+        modelrenderer.setAnglesAndRotation(matrixStackIn);
+        modelrenderer.rotationPointX -= f;
+    }
+
+    @Override
+    public ModelRenderer getModelHead() {
+        return this.head;
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -137,7 +148,7 @@ public class TofuMindModel<T extends TofuMindEntity> extends EntityModel<T> impl
     /**
      * This is a helper function from Tabula to set the rotation of model parts
      */
-    public void setRotateAngle(RendererModel modelRenderer, float x, float y, float z) {
+    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;

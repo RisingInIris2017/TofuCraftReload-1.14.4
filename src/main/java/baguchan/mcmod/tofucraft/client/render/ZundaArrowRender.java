@@ -13,7 +13,7 @@ public class ZundaArrowRender extends ArrowRenderer<ZundaArrowEntity> {
         super(manager);
     }
 
-    protected ResourceLocation getEntityTexture(ZundaArrowEntity entity) {
+    public ResourceLocation getEntityTexture(ZundaArrowEntity entity) {
         return RES_ARROW;
     }
 }

@@ -6,12 +6,11 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SnowBlock;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
 import net.minecraft.world.lighting.LightEngine;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
@@ -36,7 +35,7 @@ public class TofuGrassBlock extends Block {
         return func_220257_b(p_220256_0_, p_220256_1_, p_220256_2_) && !p_220256_1_.getFluidState(blockpos).isTagged(FluidTags.WATER);
     }
 
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (!worldIn.isRemote) {
             if (!worldIn.isAreaLoaded(pos, 3))
                 return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
@@ -47,7 +46,7 @@ public class TofuGrassBlock extends Block {
                     BlockState blockstate = this.getDefaultState();
 
                     for (int i = 0; i < 4; ++i) {
-                        BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
+                        BlockPos blockpos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
                         if (worldIn.getBlockState(blockpos).getBlock() == TofuBlocks.TOFUTERRAIN && func_220256_c(blockstate, worldIn, blockpos)) {
                             worldIn.setBlockState(blockpos, blockstate);
                         }
@@ -55,13 +54,5 @@ public class TofuGrassBlock extends Block {
                 }
             }
         }
-    }
-
-    public boolean isSolid(BlockState state) {
-        return true;
-    }
-
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 }

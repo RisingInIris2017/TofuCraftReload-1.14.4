@@ -12,7 +12,9 @@ import javax.annotation.Nullable;
 public class TofuChestBlock extends ChestBlock {
 
     public TofuChestBlock(Properties properties) {
-        super(properties);
+        super(properties, () -> {
+            return TofuTileEntitys.TOFUCHEST;
+        });
     }
 
     @Override

@@ -15,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -42,7 +43,7 @@ public class TofuLeavesBlock extends LeavesBlock {
 
     }
 
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         worldIn.setBlockState(pos, updateDistance(state, worldIn, pos), 3);
     }
 
@@ -68,7 +69,7 @@ public class TofuLeavesBlock extends LeavesBlock {
     private static BlockState updateDistance(BlockState state, IWorld worldIn, BlockPos pos) {
         int i = 7;
 
-        try (BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos = BlockPos.PooledMutableBlockPos.retain()) {
+        try (BlockPos.PooledMutable blockpos$pooledmutableblockpos = BlockPos.PooledMutable.retain()) {
             for (Direction direction : Direction.values()) {
                 blockpos$pooledmutableblockpos.setPos(pos).move(direction);
                 i = Math.min(i, getDistance(worldIn.getBlockState(blockpos$pooledmutableblockpos)) + 1);
@@ -95,7 +96,7 @@ public class TofuLeavesBlock extends LeavesBlock {
             if (rand.nextInt(15) == 1) {
                 BlockPos blockpos = pos.down();
                 BlockState blockstate = worldIn.getBlockState(blockpos);
-                if (!blockstate.isSolid() || !blockstate.func_224755_d(worldIn, blockpos, Direction.UP)) {
+                if (!blockstate.isSolid() || !blockstate.isSolidSide(worldIn, blockpos, Direction.UP)) {
                     double d0 = (double) ((float) pos.getX() + rand.nextFloat());
                     double d1 = (double) pos.getY() - 0.05D;
                     double d2 = (double) ((float) pos.getZ() + rand.nextFloat());
@@ -105,9 +106,6 @@ public class TofuLeavesBlock extends LeavesBlock {
         }
     }
 
-    public boolean isSolid(BlockState state) {
-        return false;
-    }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(DISTANCE, PERSISTENT);

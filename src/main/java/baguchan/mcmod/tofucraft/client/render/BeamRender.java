@@ -2,12 +2,8 @@ package baguchan.mcmod.tofucraft.client.render;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.entity.projectile.BeamEntity;
-import com.mojang.blaze3d.platform.GlStateManager;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
@@ -19,8 +15,8 @@ public class BeamRender extends EntityRenderer<BeamEntity> {
         super(renderManager);
     }
 
-    public void doRender(BeamEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
-        this.bindEntityTexture(entity);
+    public void render(BeamEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
+       /* this.bindEntityTexture(entity);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.pushMatrix();
         GlStateManager.disableLighting();
@@ -80,12 +76,12 @@ public class BeamRender extends EntityRenderer<BeamEntity> {
         GlStateManager.disableRescaleNormal();
         GlStateManager.enableLighting();
         GlStateManager.popMatrix();
-        super.doRender(entity, x, y, z, entityYaw, partialTicks);
+        super.render(entity, x, y, z, entityYaw, partialTicks);*/
     }
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(BeamEntity entity) {
+    public ResourceLocation getEntityTexture(BeamEntity entity) {
         return TEXTURES;
     }
 }

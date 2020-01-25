@@ -122,7 +122,7 @@ public class TofuHomingForceEntity extends Entity {
      */
     public void tick() {
         if (!this.world.isRemote && this.world.getDifficulty() == Difficulty.PEACEFUL) {
-            this.world.addParticle(ParticleTypes.EXPLOSION, this.posX, this.posY, this.posZ, 0.0D, 0.2D, 0.0D);
+            this.world.addParticle(ParticleTypes.EXPLOSION, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.2D, 0.0D);
             this.playSound(SoundEvents.ENTITY_SHULKER_BULLET_HIT, 1.0F, 1.0F);
             this.remove();
         } else {
@@ -157,7 +157,7 @@ public class TofuHomingForceEntity extends Entity {
                 } else {
 
                     Vec3d vec3d = this.getMotion();
-                    Vec3d vec3d2 = new Vec3d(target.posX - this.posX, target.posY + (double) target.getEyeHeight() - this.posY, target.posZ - this.posZ);
+                    Vec3d vec3d2 = new Vec3d(target.getPosX() - this.getPosX(), target.getPosY() + (double) target.getEyeHeight() - this.getPosY(), target.getPosZ() - this.getPosZ());
                     Vec3d vec3d3 = vec3d2.normalize().scale(0.5F);
 
                     this.setMotion(MathHelper.clamp((vec3d3.x - vec3d.x) * 0.5D, -0.3F, 0.3F), MathHelper.clamp((vec3d3.y - vec3d.y) * 0.5D, -0.3F, 0.3F), MathHelper.clamp((vec3d3.z - vec3d.z) * 0.5D, -0.3F, 0.3F));
@@ -171,16 +171,16 @@ public class TofuHomingForceEntity extends Entity {
             }
 
             Vec3d vec3d1 = this.getMotion();
-            this.setPosition(this.posX + vec3d1.x, this.posY + vec3d1.y, this.posZ + vec3d1.z);
+            this.setPosition(this.getPosX() + vec3d1.x, this.getPosY() + vec3d1.y, this.getPosZ() + vec3d1.z);
             ProjectileHelper.rotateTowardsMovement(this, 0.5F);
             if (this.world.isRemote) {
-                this.world.addParticle(ParticleTypes.CLOUD, this.posX - vec3d1.x, this.posY - vec3d1.y + 0.15D, this.posZ - vec3d1.z, 0.0D, 0.0D, 0.0D);
+                this.world.addParticle(ParticleTypes.CLOUD, this.getPosX() - vec3d1.x, this.getPosY() - vec3d1.y + 0.15D, this.getPosZ() - vec3d1.z, 0.0D, 0.0D, 0.0D);
             }
 
             if (this.steps > 0) {
                 --this.steps;
             } else {
-                this.world.addParticle(ParticleTypes.EXPLOSION, this.posX, this.posY, this.posZ, 0.0D, 0.2D, 0.0D);
+                this.world.addParticle(ParticleTypes.EXPLOSION, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.2D, 0.0D);
                 this.playSound(SoundEvents.ENTITY_SHULKER_BULLET_HIT, 1.0F, 1.0F);
                 this.remove();
             }
@@ -227,7 +227,7 @@ public class TofuHomingForceEntity extends Entity {
                 }
             }
         } else {
-            ((ServerWorld) this.world).spawnParticle(ParticleTypes.EXPLOSION, this.posX, this.posY, this.posZ, 2, 0.2D, 0.2D, 0.2D, 0.0D);
+            ((ServerWorld) this.world).spawnParticle(ParticleTypes.EXPLOSION, this.getPosX(), this.getPosY(), this.getPosZ(), 2, 0.2D, 0.2D, 0.2D, 0.0D);
             this.playSound(SoundEvents.ENTITY_SHULKER_BULLET_HIT, 1.0F, 1.0F);
         }
 
@@ -247,7 +247,7 @@ public class TofuHomingForceEntity extends Entity {
     public boolean attackEntityFrom(DamageSource source, float amount) {
         if (!this.world.isRemote) {
             this.playSound(SoundEvents.ENTITY_SHULKER_BULLET_HURT, 1.0F, 1.0F);
-            ((ServerWorld) this.world).spawnParticle(ParticleTypes.CRIT, this.posX, this.posY, this.posZ, 15, 0.2D, 0.2D, 0.2D, 0.0D);
+            ((ServerWorld) this.world).spawnParticle(ParticleTypes.CRIT, this.getPosX(), this.getPosY(), this.getPosZ(), 15, 0.2D, 0.2D, 0.2D, 0.0D);
             this.remove();
         }
 

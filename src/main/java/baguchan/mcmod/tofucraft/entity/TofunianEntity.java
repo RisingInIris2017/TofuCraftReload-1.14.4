@@ -211,7 +211,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         }
 
         if (offer.getDoesRewardExp()) {
-            this.world.addEntity(new ExperienceOrbEntity(this.world, this.posX, this.posY + 0.5D, this.posZ, i));
+            this.world.addEntity(new ExperienceOrbEntity(this.world, this.getPosX(), this.getPosY() + 0.5D, this.getPosZ(), i));
         }
     }
 
@@ -599,7 +599,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
                 double d0 = this.rand.nextGaussian() * 0.02D;
                 double d1 = this.rand.nextGaussian() * 0.02D;
                 double d2 = this.rand.nextGaussian() * 0.02D;
-                this.world.addParticle(ParticleTypes.HEART, this.posX + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), this.posY + 0.5D + (double) (this.rand.nextFloat() * this.getHeight()), this.posZ + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), d0, d1, d2);
+                this.world.addParticle(ParticleTypes.HEART, this.getPosX() + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), this.getPosY() + 0.5D + (double) (this.rand.nextFloat() * this.getHeight()), this.getPosZ() + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), d0, d1, d2);
             }
         }
     }
@@ -734,7 +734,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
                 double d0 = this.rand.nextGaussian() * 0.02D;
                 double d1 = this.rand.nextGaussian() * 0.02D;
                 double d2 = this.rand.nextGaussian() * 0.02D;
-                this.world.addParticle(ParticleTypes.HEART, this.posX + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), this.posY + 0.5D + (double) (this.rand.nextFloat() * this.getHeight()), this.posZ + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), d0, d1, d2);
+                this.world.addParticle(ParticleTypes.HEART, this.getPosX() + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), this.getPosY() + 0.5D + (double) (this.rand.nextFloat() * this.getHeight()), this.getPosZ() + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), d0, d1, d2);
             }
         } else {
             super.handleStatusUpdate(id);
@@ -1035,8 +1035,8 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
             BlockPos blockpos = this.tofunian.getTofunainHome();
             if (blockpos != null && TofunianEntity.this.navigator.noPath()) {
                 if (this.func_220846_a(blockpos, 6.0D)) {
-                    Vec3d vec3d = (new Vec3d((double) blockpos.getX() - this.tofunian.posX, (double) blockpos.getY() - this.tofunian.posY, (double) blockpos.getZ() - this.tofunian.posZ)).normalize();
-                    Vec3d vec3d1 = vec3d.scale(10.0D).add(this.tofunian.posX, this.tofunian.posY, this.tofunian.posZ);
+                    Vec3d vec3d = (new Vec3d((double) blockpos.getX() - this.tofunian.getPosX(), (double) blockpos.getY() - this.tofunian.getPosY(), (double) blockpos.getZ() - this.tofunian.getPosZ())).normalize();
+                    Vec3d vec3d1 = vec3d.scale(10.0D).add(this.tofunian.getPosX(), this.tofunian.getPosY(), this.tofunian.getPosZ());
                     TofunianEntity.this.navigator.tryMoveToXYZ(vec3d1.x, vec3d1.y, vec3d1.z, this.speed);
                 } else {
                     TofunianEntity.this.navigator.tryMoveToXYZ((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ(), this.speed);

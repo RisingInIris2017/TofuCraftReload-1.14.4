@@ -4,7 +4,7 @@ import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.client.model.TofuTurretModel;
 import baguchan.mcmod.tofucraft.client.render.layer.GlowLayer;
 import baguchan.mcmod.tofucraft.entity.TofuTurretEntity;
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -22,15 +22,15 @@ public class TofuTurretRender extends MobRenderer<TofuTurretEntity, TofuTurretMo
     }
 
     @Override
-    protected void applyRotations(TofuTurretEntity entityLiving, float ageInTicks, float rotationYaw, float partialTicks) {
-        super.applyRotations(entityLiving, ageInTicks, rotationYaw, partialTicks);
+    protected void applyRotations(TofuTurretEntity entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
+        super.applyRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
 
         float tick = entityLiving.ticksExisted + partialTicks;
 
-        GlStateManager.translatef(0F, -0.1F - MathHelper.sin(tick * 0.12F) * 0.1F, 0F);
+        matrixStackIn.translate(0F, 0.05F - MathHelper.sin(tick * 0.12F) * 0.1F, 0F);
     }
 
-    protected ResourceLocation getEntityTexture(TofuTurretEntity entity) {
+    public ResourceLocation getEntityTexture(TofuTurretEntity entity) {
         return TEXTURES;
     }
 }

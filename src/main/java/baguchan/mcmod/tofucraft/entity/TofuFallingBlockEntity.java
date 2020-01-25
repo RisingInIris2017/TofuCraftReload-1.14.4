@@ -40,9 +40,9 @@ public class TofuFallingBlockEntity extends FallingBlockEntity {
         if (this.fallTile.isAir()) {
             this.remove();
         } else {
-            this.prevPosX = this.posX;
-            this.prevPosY = this.posY;
-            this.prevPosZ = this.posZ;
+            this.prevPosX = this.getPosX();
+            this.prevPosY = this.getPosY();
+            this.prevPosZ = this.getPosZ();
             Block block = this.fallTile.getBlock();
             if (this.fallTime++ == 0) {
                 BlockPos blockpos = new BlockPos(this);
@@ -62,7 +62,7 @@ public class TofuFallingBlockEntity extends FallingBlockEntity {
                 boolean flag1 = flag && this.world.getFluidState(blockpos1).isTagged(FluidTags.WATER);
                 double d0 = this.getMotion().lengthSquared();
                 if (flag && d0 > 1.0D) {
-                    BlockRayTraceResult blockraytraceresult = this.world.rayTraceBlocks(new RayTraceContext(new Vec3d(this.prevPosX, this.prevPosY, this.prevPosZ), new Vec3d(this.posX, this.posY, this.posZ), RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.SOURCE_ONLY, this));
+                    BlockRayTraceResult blockraytraceresult = this.world.rayTraceBlocks(new RayTraceContext(new Vec3d(this.prevPosX, this.prevPosY, this.prevPosZ), new Vec3d(this.getPosX(), this.getPosY(), this.getPosZ()), RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.SOURCE_ONLY, this));
                     if (blockraytraceresult.getType() != RayTraceResult.Type.MISS && this.world.getFluidState(blockraytraceresult.getPos()).isTagged(FluidTags.WATER)) {
                         blockpos1 = blockraytraceresult.getPos();
                         flag1 = true;

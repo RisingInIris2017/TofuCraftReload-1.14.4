@@ -9,7 +9,6 @@ import net.minecraft.block.material.PushReaction;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -19,6 +18,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -54,14 +54,6 @@ public class TofuBerryBlock extends Block implements IGrowable {
         return voxel;
     }
 
-    /**
-     * Gets the render layer this block will render on. SOLID for solid blocks, CUTOUT or CUTOUT_MIPPED for on-off
-     * transparency (glass, reeds), TRANSLUCENT for fully blended transparency (stained glass)
-     */
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
-
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         Direction direction = func_220277_j(state).getOpposite();
         return vaildStem(worldIn, pos.offset(direction), direction.getOpposite());
@@ -80,11 +72,11 @@ public class TofuBerryBlock extends Block implements IGrowable {
         return PushReaction.DESTROY;
     }
 
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (!state.isValidPosition(worldIn, pos)) {
             worldIn.destroyBlock(pos, true);
         } else {
-            if (random.nextInt(3) == 0 && worldIn.isAirBlock(pos.down())) {
+            if (rand.nextInt(3) == 0 && worldIn.isAirBlock(pos.down())) {
                 worldIn.setBlockState(pos, TofuBlocks.TOFUBERRYSTEM.getDefaultState(), 3);
                 worldIn.setBlockState(pos.down(), state, 3);
             }
@@ -115,7 +107,7 @@ public class TofuBerryBlock extends Block implements IGrowable {
     }
 
     @Override
-    public void grow(World worldIn, Random rand, BlockPos pos, BlockState state) {
+    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
         int k = 1;
         int l = 4 + rand.nextInt(3);
 

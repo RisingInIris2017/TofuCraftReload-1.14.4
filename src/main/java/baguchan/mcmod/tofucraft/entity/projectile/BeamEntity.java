@@ -53,7 +53,7 @@ public class BeamEntity extends AbstractFireballEntity {
                     this.applyEnchantments(this.shootingEntity, entity);
                 }
 
-                this.world.createExplosion(this.shootingEntity, this.posX, this.posY, this.posZ, 0.4F, this.isCanBreak ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
+                this.world.createExplosion(this.shootingEntity, this.getPosX(), this.getPosY(), this.getPosZ(), 0.4F, this.isCanBreak ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
 
             } else if (this.shootingEntity == null || !(this.shootingEntity instanceof MobEntity) || net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this.shootingEntity)) {
                 BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) result;

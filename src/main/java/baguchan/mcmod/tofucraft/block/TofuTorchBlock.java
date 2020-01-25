@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -34,7 +33,7 @@ public class TofuTorchBlock extends Block {
     }
 
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        return func_220055_a(worldIn, pos.down(), Direction.UP);
+        return hasEnoughSolidSide(worldIn, pos.down(), Direction.UP);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -46,11 +45,4 @@ public class TofuTorchBlock extends Block {
         worldIn.addParticle(ParticleTypes.FLAME, d0, d1, d2, 0.0D, 0.0D, 0.0D);
     }
 
-    /**
-     * Gets the render layer this block will render on. SOLID for solid blocks, CUTOUT or CUTOUT_MIPPED for on-off
-     * transparency (glass, reeds), TRANSLUCENT for fully blended transparency (stained glass)
-     */
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
 }

@@ -17,7 +17,7 @@ public class EmptyRender extends EntityRenderer<Entity> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(Entity entity) {
+    public ResourceLocation getEntityTexture(Entity entity) {
         return null;
     }
 }

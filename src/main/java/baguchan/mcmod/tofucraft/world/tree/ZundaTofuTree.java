@@ -1,17 +1,18 @@
 package baguchan.mcmod.tofucraft.world.tree;
 
-import baguchan.mcmod.tofucraft.init.TofuBlocks;
-import baguchan.mcmod.tofucraft.world.gen.feature.TofuTreeFeature;
+import baguchan.mcmod.tofucraft.world.gen.DefaultTofuBiomeFeature;
 import net.minecraft.block.trees.Tree;
-import net.minecraft.world.gen.feature.AbstractTreeFeature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.TreeFeatureConfig;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
 public class ZundaTofuTree extends Tree {
     @Nullable
-    protected AbstractTreeFeature<NoFeatureConfig> getTreeFeature(Random random) {
-        return new TofuTreeFeature(NoFeatureConfig::deserialize, false, 4, TofuBlocks.ISHITOFU.getDefaultState(), TofuBlocks.TOFUZUNDALEAVES.getDefaultState(), false);
+    @Override
+    protected ConfiguredFeature<TreeFeatureConfig, ?> func_225546_b_(Random p_225546_1_, boolean p_225546_2_) {
+        return Feature.NORMAL_TREE.func_225566_b_(DefaultTofuBiomeFeature.tofuZundaTree);
     }
 }

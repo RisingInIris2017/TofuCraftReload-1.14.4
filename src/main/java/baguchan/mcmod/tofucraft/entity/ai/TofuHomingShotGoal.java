@@ -59,7 +59,7 @@ public class TofuHomingShotGoal extends Goal {
         if (this.shotTime == 60 || this.shotTime == 80) {
             this.tofuGandlemEntity.playSound(SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, 2.0F, 1.4F);
 
-            ((ServerWorld) this.tofuGandlemEntity.world).spawnParticle(ParticleTypes.CRIT, this.tofuGandlemEntity.posX, this.tofuGandlemEntity.posY, this.tofuGandlemEntity.posZ, 15, 0.2D, 0.2D, 0.2D, 0.0D);
+            ((ServerWorld) this.tofuGandlemEntity.world).spawnParticle(ParticleTypes.CRIT, this.tofuGandlemEntity.getPosX(), this.tofuGandlemEntity.getPosY(), this.tofuGandlemEntity.getPosZ(), 15, 0.2D, 0.2D, 0.2D, 0.0D);
         }
 
         if (this.shotTime <= 20) {

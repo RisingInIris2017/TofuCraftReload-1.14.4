@@ -23,7 +23,7 @@ public class TofunianRender extends MobRenderer<TofunianEntity, TofunianModel> {
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(TofunianEntity entity) {
+    public ResourceLocation getEntityTexture(TofunianEntity entity) {
         String role = "";
         if (entity.getRole() != TofunianEntity.Roles.TOFUNIAN) {
             role = entity.getRole().name().toLowerCase() + "_";

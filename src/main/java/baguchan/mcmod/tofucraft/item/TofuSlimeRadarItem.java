@@ -23,7 +23,7 @@ public class TofuSlimeRadarItem extends Item {
 
         if (flag || playerIn.getHeldItem(handIn).getDamage() <= playerIn.getHeldItem(handIn).getMaxDamage()) {
             if (!worldIn.isRemote) {
-                boolean isSpawnChunk = playerIn.dimension.getModType() == TofuDimensions.TOFUWORLD || TofuSlimeEntity.isSpawnChunk(playerIn.world, playerIn.posX, playerIn.posZ);
+                boolean isSpawnChunk = playerIn.dimension.getModType() == TofuDimensions.TOFUWORLD || TofuSlimeEntity.isSpawnChunk(playerIn.world, playerIn.getPosX(), playerIn.getPosZ());
 
                 if (isSpawnChunk)
                     playerIn.sendMessage(new TranslationTextComponent("tofucraft.radar.result.success", new Object()));

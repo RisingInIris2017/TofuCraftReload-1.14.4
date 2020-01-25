@@ -26,8 +26,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.BossInfo;
-import net.minecraft.world.ServerBossInfo;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerBossInfo;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -53,7 +53,7 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
 
     public TofuGandlemEntity(EntityType<? extends TofuGandlemEntity> type, World p_i48553_2_) {
         super(type, p_i48553_2_);
-        this.moveController = new FlyingStrafeMovementController(this);
+        this.moveController = new FlyingStrafeMovementController(this, 15, true);
         this.experienceValue = 90;
     }
 
@@ -138,7 +138,7 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
 
         LivingEntity target = getAttackTarget();
         Vec3d vec3d = this.getMotion();
-        if (target != null && target.isAlive() && target.posY + (double) target.getEyeHeight() > this.posY + (double) getEyeHeight() + (double) this.heightOffset && this.isAlive()) {
+        if (target != null && target.isAlive() && target.getPosY() + (double) target.getEyeHeight() > this.getPosY() + (double) getEyeHeight() + (double) this.heightOffset && this.isAlive()) {
             this.setMotion(this.getMotion().add(0.0D, ((double) 0.3F - vec3d.y) * (double) 0.3F, 0.0D));
             this.isAirBorne = true;
         }
@@ -196,8 +196,8 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
         return (this.prevClientSideShootingAnimation + (this.clientSideShootingAnimation - this.prevClientSideShootingAnimation) * p_189795_1_) / 6.0F;
     }
 
-    @Override
-    public void fall(float distance, float damageMultiplier) {
+    public boolean func_225503_b_(float p_225503_1_, float p_225503_2_) {
+        return false;
     }
 
     @Override
@@ -234,12 +234,12 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
 
     @Override
     public void attackEntityWithRangedAttack(LivingEntity livingEntity, float v) {
-        double d1 = livingEntity.posX - this.posX;
-        double d2 = livingEntity.getBoundingBox().minY + (double) (livingEntity.getHeight() / 2.0F) - (this.posY + (double) (this.getEyeHeight()));
-        double d3 = livingEntity.posZ - this.posZ;
+        double d1 = livingEntity.getPosX() - this.getPosX();
+        double d2 = livingEntity.getBoundingBox().minY + (double) (livingEntity.getHeight() / 2.0F) - (this.getPosY() + (double) (this.getEyeHeight()));
+        double d3 = livingEntity.getPosZ() - this.getPosZ();
         float f = 0.075F;
         BeamEntity smallfireballentity = new BeamEntity(this.world, this, d1 + this.getRNG().nextGaussian() * (double) f - this.getRNG().nextGaussian() * (double) f, d2, d3 + this.getRNG().nextGaussian() * (double) f - this.getRNG().nextGaussian() * (double) f);
-        smallfireballentity.posY = this.posY + (double) (this.getEyeHeight());
+        smallfireballentity.setPosition(smallfireballentity.getPosX(), this.getPosY() + (double) (this.getEyeHeight()), smallfireballentity.getPosZ());
         smallfireballentity.explosionPower = 1.2F;
 
         this.world.addEntity(smallfireballentity);

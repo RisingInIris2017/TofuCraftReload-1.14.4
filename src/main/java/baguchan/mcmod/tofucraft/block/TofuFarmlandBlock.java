@@ -19,6 +19,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
@@ -62,7 +63,7 @@ public class TofuFarmlandBlock extends Block {
         return SHAPE;
     }
 
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (!state.isValidPosition(worldIn, pos)) {
             turnToDirt(state, worldIn, pos);
         } else {

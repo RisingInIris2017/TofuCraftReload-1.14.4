@@ -15,7 +15,6 @@ import net.minecraft.item.Item;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
@@ -40,11 +39,6 @@ public abstract class FluidSoyMilk extends WaterFluid {
 
     public Item getFilledBucket() {
         return TofuItems.SOYMILK_BUCKET;
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.SOLID;
     }
 
     @OnlyIn(Dist.CLIENT)

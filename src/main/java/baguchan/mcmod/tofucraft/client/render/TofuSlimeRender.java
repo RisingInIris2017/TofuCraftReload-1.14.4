@@ -14,7 +14,7 @@ public class TofuSlimeRender extends SlimeRenderer {
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(SlimeEntity entity) {
+    public ResourceLocation getEntityTexture(SlimeEntity entity) {
         return SLIME_TEXTURES;
     }
 }

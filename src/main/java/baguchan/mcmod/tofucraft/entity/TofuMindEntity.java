@@ -75,7 +75,8 @@ public class TofuMindEntity extends MonsterEntity {
 
 
     @Override
-    public void fall(float distance, float damageMultiplier) {
+    public boolean func_225503_b_(float p_225503_1_, float p_225503_2_) {
+        return false;
     }
 
     @Override

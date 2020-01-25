@@ -60,7 +60,7 @@ public class SoyshotGoal extends Goal {
         if (this.shotTime == 60 || this.shotTime == 80) {
             this.tofuGandlemEntity.playSound(SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, 2.0F, 1.4F);
 
-            ((ServerWorld) this.tofuGandlemEntity.world).spawnParticle(ParticleTypes.CRIT, this.tofuGandlemEntity.posX, this.tofuGandlemEntity.posY, this.tofuGandlemEntity.posZ, 15, 0.2D, 0.2D, 0.2D, 0.0D);
+            ((ServerWorld) this.tofuGandlemEntity.world).spawnParticle(ParticleTypes.CRIT, this.tofuGandlemEntity.getPosX(), this.tofuGandlemEntity.getPosY(), this.tofuGandlemEntity.getPosZ(), 15, 0.2D, 0.2D, 0.2D, 0.0D);
         }
 
         if (this.shotTime <= 20) {
@@ -72,7 +72,7 @@ public class SoyshotGoal extends Goal {
 
                     this.tofuGandlemEntity.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 3.0F, 1.0F / (this.tofuGandlemEntity.getRNG().nextFloat() * 0.4F + 0.8F));
 
-                    projectile.setLocationAndAngles(this.tofuGandlemEntity.posX + vec3d.x * 1.3D, this.tofuGandlemEntity.posY + (this.tofuGandlemEntity.getEyeHeight() / 2), this.tofuGandlemEntity.posZ + vec3d.z * 1.2D, this.tofuGandlemEntity.rotationYaw, this.tofuGandlemEntity.rotationPitch);
+                    projectile.setLocationAndAngles(this.tofuGandlemEntity.getPosX() + vec3d.x * 1.3D, this.tofuGandlemEntity.getPosY() + (this.tofuGandlemEntity.getEyeHeight() / 2), this.tofuGandlemEntity.getPosZ() + vec3d.z * 1.2D, this.tofuGandlemEntity.rotationYaw, this.tofuGandlemEntity.rotationPitch);
 
                     float d0 = (this.tofuGandlemEntity.world.rand.nextFloat() * 16.0F) - 8.0F;
 

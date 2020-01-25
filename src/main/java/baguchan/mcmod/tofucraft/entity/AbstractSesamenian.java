@@ -96,8 +96,8 @@ public abstract class AbstractSesamenian extends MonsterEntity {
             BlockPos blockpos = this.tofunian.getSesameHome();
             if (blockpos != null && AbstractSesamenian.this.navigator.noPath()) {
                 if (this.func_220846_a(blockpos, 6.0D)) {
-                    Vec3d vec3d = (new Vec3d((double) blockpos.getX() - this.tofunian.posX, (double) blockpos.getY() - this.tofunian.posY, (double) blockpos.getZ() - this.tofunian.posZ)).normalize();
-                    Vec3d vec3d1 = vec3d.scale(10.0D).add(this.tofunian.posX, this.tofunian.posY, this.tofunian.posZ);
+                    Vec3d vec3d = (new Vec3d((double) blockpos.getX() - this.tofunian.getPosX(), (double) blockpos.getY() - this.tofunian.getPosY(), (double) blockpos.getZ() - this.tofunian.getPosZ())).normalize();
+                    Vec3d vec3d1 = vec3d.scale(10.0D).add(this.tofunian.getPosX(), this.tofunian.getPosY(), this.tofunian.getPosZ());
                     AbstractSesamenian.this.navigator.tryMoveToXYZ(vec3d1.x, vec3d1.y, vec3d1.z, this.speed);
                 } else {
                     AbstractSesamenian.this.navigator.tryMoveToXYZ((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ(), this.speed);

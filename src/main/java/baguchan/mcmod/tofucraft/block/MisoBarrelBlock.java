@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -24,9 +25,9 @@ public class MisoBarrelBlock extends SimpleBarrelBlock {
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (worldIn.isRemote) {
-            return true;
+            return ActionResultType.PASS;
         } else {
             ItemStack itemHeld = player.getHeldItem(handIn);
             if (state.get(FERM) >= 7 && state.get(SOYSAUCE)) {
@@ -48,7 +49,7 @@ public class MisoBarrelBlock extends SimpleBarrelBlock {
                 }
             }
 
-            return true;
+            return ActionResultType.SUCCESS;
         }
     }
 

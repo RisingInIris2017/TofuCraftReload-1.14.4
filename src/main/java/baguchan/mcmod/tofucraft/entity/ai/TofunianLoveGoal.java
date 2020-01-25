@@ -105,11 +105,11 @@ public class TofunianLoveGoal extends Goal {
             this.tofunianEntity.setGrowingAge(6000);
             this.field_75391_e.setGrowingAge(6000);
             ageableentity.setGrowingAge(-24000);
-            ageableentity.setLocationAndAngles(this.tofunianEntity.posX, this.tofunianEntity.posY, this.tofunianEntity.posZ, 0.0F, 0.0F);
+            ageableentity.setLocationAndAngles(this.tofunianEntity.getPosX(), this.tofunianEntity.getPosY(), this.tofunianEntity.getPosZ(), 0.0F, 0.0F);
             this.world.addEntity(ageableentity);
             this.world.setEntityState(this.tofunianEntity, (byte) 18);
             if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
-                this.world.addEntity(new ExperienceOrbEntity(this.world, this.tofunianEntity.posX, this.tofunianEntity.posY, this.tofunianEntity.posZ, this.tofunianEntity.getRNG().nextInt(7) + 1));
+                this.world.addEntity(new ExperienceOrbEntity(this.world, this.tofunianEntity.getPosX(), this.tofunianEntity.getPosY(), this.tofunianEntity.getPosZ(), this.tofunianEntity.getRNG().nextInt(7) + 1));
             }
 
             this.tofunianEntity.consumeFoods();

@@ -2,7 +2,6 @@ package baguchan.mcmod.tofucraft.block;
 
 import baguchan.mcmod.tofucraft.entity.TofuGandlemEntity;
 import baguchan.mcmod.tofucraft.init.TofuEntitys;
-import baguchan.mcmod.tofucraft.init.TofuParticles;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -10,7 +9,7 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -37,7 +36,7 @@ public class TofuGandlemCoreBlock extends Block {
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         super.animateTick(stateIn, worldIn, pos, rand);
 
-        for (int i = -2; i <= 2; ++i) {
+        /*for (int i = -2; i <= 2; ++i) {
             for (int j = -2; j <= 2; ++j) {
                 if (i > -2 && i < 2 && j == -1) {
                     j = 2;
@@ -55,14 +54,14 @@ public class TofuGandlemCoreBlock extends Block {
                     }
                 }
             }
-        }
+        }*/
 
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (worldIn.isRemote) {
-            return true;
+            return ActionResultType.PASS;
         } else {
             worldIn.destroyBlock(pos, false);
 
@@ -74,7 +73,7 @@ public class TofuGandlemCoreBlock extends Block {
             tofuGandlemEntity.onInitialSpawn(worldIn, worldIn.getDifficultyForLocation(new BlockPos(tofuGandlemEntity)), SpawnReason.MOB_SUMMONED, (ILivingEntityData) null, (CompoundNBT) null);
             worldIn.addEntity(tofuGandlemEntity);
 
-            return true;
+            return ActionResultType.CONSUME;
         }
     }
 
@@ -86,12 +85,4 @@ public class TofuGandlemCoreBlock extends Block {
         return BlockRenderType.MODEL;
     }
 
-    @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
-
-    public boolean isSolid(BlockState state) {
-        return false;
-    }
 }

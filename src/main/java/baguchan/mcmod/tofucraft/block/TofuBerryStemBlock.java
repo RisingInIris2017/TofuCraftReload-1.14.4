@@ -23,6 +23,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -60,14 +61,6 @@ public class TofuBerryStemBlock extends Block {
         return voxel;
     }
 
-    /**
-     * Gets the render layer this block will render on. SOLID for solid blocks, CUTOUT or CUTOUT_MIPPED for on-off
-     * transparency (glass, reeds), TRANSLUCENT for fully blended transparency (stained glass)
-     */
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
-
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         Direction direction = func_220277_j(state).getOpposite();
         return vaildBerry(worldIn, pos.offset(direction), direction.getOpposite());
@@ -86,18 +79,18 @@ public class TofuBerryStemBlock extends Block {
         return PushReaction.DESTROY;
     }
 
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (!state.isValidPosition(worldIn, pos)) {
             worldIn.destroyBlock(pos, true);
         } else if (!state.get(GROW)) {
-            if (random.nextInt(6) == 0) {
+            if (rand.nextInt(6) == 0) {
                 worldIn.setBlockState(pos, state.with(GROW, true), 3);
             }
         }
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         ItemStack itemstack = player.getHeldItem(handIn);
         if (state.get(GROW)) {
             if (!worldIn.isRemote) {
@@ -110,7 +103,7 @@ public class TofuBerryStemBlock extends Block {
                 worldIn.addEntity(itementity);
             }
 
-            return true;
+            return ActionResultType.SUCCESS;
         } else {
             return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
         }

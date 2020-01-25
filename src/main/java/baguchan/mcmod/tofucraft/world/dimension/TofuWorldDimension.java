@@ -8,13 +8,13 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.provider.BiomeProvider;
+import net.minecraft.world.biome.provider.BiomeProviderType;
+import net.minecraft.world.biome.provider.OverworldBiomeProvider;
+import net.minecraft.world.biome.provider.OverworldBiomeProviderSettings;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.OverworldGenSettings;
+import net.minecraft.world.gen.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -22,16 +22,25 @@ import javax.annotation.Nullable;
 
 public class TofuWorldDimension extends Dimension {
     public TofuWorldDimension(final World worldIn, final DimensionType typeIn) {
-        super(worldIn, typeIn);
+        super(worldIn, typeIn, 0.0F);
     }
 
     @Override
     public ChunkGenerator<?> createChunkGenerator() {
 
-        BiomeProvider biomeProvider = new TofuWorldBiomeProvider(this.world, new OverworldGenSettings());
+    /*    TofuWorldChunkGenerator.Config tofusettings = TofuWorldChunkGenerator.Config.createDefault();
 
-        return new TofuWorldChunkGenerator(this.world, biomeProvider, TofuWorldChunkGenerator.Config.createDefault());
+        BiomeProvider biomeProvider = new TofuWorldBiomeProvider(this.world,new OverworldBiomeProviderSettings(this.world.getWorldInfo()));
 
+              return new TofuWorldChunkGenerator(this.world, biomeProvider, TofuWorldChunkGenerator.Config.createDefault());
+*/
+
+        //Still WIP
+        ChunkGeneratorType<OverworldGenSettings, OverworldChunkGenerator> chunkgeneratortype4 = ChunkGeneratorType.SURFACE;
+        OverworldGenSettings overworldgensettings = chunkgeneratortype4.createSettings();
+        BiomeProviderType<OverworldBiomeProviderSettings, OverworldBiomeProvider> biomeprovidertype1 = BiomeProviderType.VANILLA_LAYERED;
+        OverworldBiomeProviderSettings overworldbiomeprovidersettings = biomeprovidertype1.func_226840_a_(this.world.getWorldInfo()).setGeneratorSettings(overworldgensettings);
+        return chunkgeneratortype4.create(this.world, biomeprovidertype1.create(overworldbiomeprovidersettings), overworldgensettings);
     }
 
     /**
@@ -58,8 +67,8 @@ public class TofuWorldDimension extends Dimension {
     @Override
     @Nullable
     public BlockPos findSpawn(int posX, int posZ, boolean checkValid) {
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(posX, 0, posZ);
-        Biome biome = this.world.getBiome(blockpos$mutableblockpos);
+        BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable(posX, 0, posZ);
+        Biome biome = this.world.getBiome(blockpos$mutable);
         BlockState blockstate = biome.getSurfaceBuilderConfig().getTop();
         if (checkValid && !blockstate.getBlock().isIn(BlockTags.VALID_SPAWN)) {
             return null;
@@ -72,14 +81,14 @@ public class TofuWorldDimension extends Dimension {
                 return null;
             } else {
                 for (int j = i + 1; j >= 0; --j) {
-                    blockpos$mutableblockpos.setPos(posX, j, posZ);
-                    BlockState blockstate1 = this.world.getBlockState(blockpos$mutableblockpos);
+                    blockpos$mutable.setPos(posX, j, posZ);
+                    BlockState blockstate1 = this.world.getBlockState(blockpos$mutable);
                     if (!blockstate1.getFluidState().isEmpty()) {
                         break;
                     }
 
                     if (blockstate1.equals(blockstate)) {
-                        return blockpos$mutableblockpos.up().toImmutable();
+                        return blockpos$mutable.up().toImmutable();
                     }
                 }
 

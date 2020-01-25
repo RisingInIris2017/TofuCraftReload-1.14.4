@@ -1,5 +1,9 @@
 package baguchan.mcmod.tofucraft.client.render.layer;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
@@ -16,21 +20,22 @@ public class EyelidLayer<T extends Entity, M extends EntityModel<T>> extends Lay
         TEXTURES = resourceLocation;
     }
 
-    public void render(T entityIn, float p_212842_2_, float p_212842_3_, float partialTick, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        float f3 = entityIn.ticksExisted + partialTick + entityIn.getEntityId();
+    public void render(MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn, T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+        float f3 = entitylivingbaseIn.ticksExisted + partialTicks + entitylivingbaseIn.getEntityId();
 
         //Close Eyelid
-        if (0 > MathHelper.sin(f3 * 0.05F) + MathHelper.sin(f3 * 0.13F) + MathHelper.sin(f3 * 0.7F) + 2.55F || entityIn instanceof LivingEntity && ((LivingEntity) entityIn).isSleeping()) {
-            if (!entityIn.isInvisible()) {
-                this.bindTexture(TEXTURES);
+        if (0 > MathHelper.sin(f3 * 0.05F) + MathHelper.sin(f3 * 0.13F) + MathHelper.sin(f3 * 0.7F) + 2.55F || entitylivingbaseIn instanceof LivingEntity && ((LivingEntity) entitylivingbaseIn).isSleeping()) {
+            if (!entitylivingbaseIn.isInvisible()) {
+                IVertexBuilder ivertexbuilder = bufferIn.getBuffer(RenderType.entityTranslucent(this.getEntityTexture(entitylivingbaseIn)));
 
-                this.getEntityModel().setLivingAnimations(entityIn, p_212842_2_, p_212842_3_, partialTick);
-                this.getEntityModel().render(entityIn, p_212842_2_, p_212842_3_, ageInTicks, netHeadYaw, headPitch, scale);
+                this.getEntityModel().setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTicks);
+                this.getEntityModel().render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
             }
         }
     }
 
-    public boolean shouldCombineTextures() {
-        return true;
+    @Override
+    protected ResourceLocation getEntityTexture(T entityIn) {
+        return TEXTURES;
     }
 }

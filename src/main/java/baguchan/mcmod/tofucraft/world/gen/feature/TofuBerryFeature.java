@@ -24,8 +24,8 @@ public class TofuBerryFeature extends Feature<NoFeatureConfig> {
 
     public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         int i = 0;
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(pos);
-        BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos(pos);
+        BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable(pos);
+        BlockPos.Mutable blockpos$mutableblockpos1 = new BlockPos.Mutable(pos);
 
         if (worldIn.isAirBlock(blockpos$mutableblockpos)) {
             if (TofuBlocks.TOFUBERRYSTEM.getDefaultState().isValidPosition(worldIn, blockpos$mutableblockpos)) {

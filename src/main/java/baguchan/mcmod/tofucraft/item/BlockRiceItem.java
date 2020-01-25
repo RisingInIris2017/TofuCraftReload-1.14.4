@@ -63,7 +63,7 @@ public class BlockRiceItem extends BlockItem {
                 BlockState blockstate = worldIn.getBlockState(blockpos);
                 Material material = blockstate.getMaterial();
                 IFluidState ifluidstate = worldIn.getFluidState(blockpos);
-                if ((ifluidstate.getFluid() == Fluids.WATER || material == Material.ICE) && worldIn.isAirBlock(blockpos1) && (worldIn.getBlockState(blockpos.down()).isIn(BlockTags.SAND) || worldIn.getBlockState(blockpos.down()).isIn(TofuTags.Blocks.TOFUTERRAIN) || worldIn.getBlockState(blockpos.down()).isIn(BlockTags.DIRT_LIKE) || worldIn.getBlockState(blockpos.down()).getBlock() == Blocks.GRAVEL)) {
+                if ((ifluidstate.getFluid() == Fluids.WATER || material == Material.ICE) && worldIn.isAirBlock(blockpos1) && (worldIn.getBlockState(blockpos.down()).isIn(BlockTags.SAND) || worldIn.getBlockState(blockpos.down()).isIn(TofuTags.Blocks.TOFUTERRAIN) || worldIn.getBlockState(blockpos.down()).getBlock() == Blocks.GRASS_BLOCK) || worldIn.getBlockState(blockpos.down()).getBlock() == Blocks.DIRT || worldIn.getBlockState(blockpos.down()).getBlock() == Blocks.GRAVEL) {
 
                     // special case for handling block placement with water lilies
                     net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(worldIn, blockpos1);

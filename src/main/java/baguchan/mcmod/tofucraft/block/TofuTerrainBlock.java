@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DecoratedFeatureConfig;
 import net.minecraft.world.gen.feature.FlowersFeature;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.List;
 import java.util.Random;
@@ -27,7 +28,7 @@ public class TofuTerrainBlock extends Block implements IGrowable {
         return true;
     }
 
-    public void grow(World worldIn, Random rand, BlockPos pos, BlockState state) {
+    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
         BlockPos blockpos = pos.up();
         BlockState blockstate = TofuBlocks.LEEK.getDefaultState();
 
@@ -48,12 +49,13 @@ public class TofuTerrainBlock extends Block implements IGrowable {
 
                     BlockState blockstate1;
                     if (rand.nextInt(8) == 0) {
-                        List<ConfiguredFeature<?>> list = worldIn.getBiome(blockpos1).getFlowers();
+                        List<ConfiguredFeature<?, ?>> list = worldIn.getBiome(blockpos1).getFlowers();
                         if (list.isEmpty()) {
                             break;
                         }
 
-                        blockstate1 = ((FlowersFeature) ((DecoratedFeatureConfig) (list.get(0)).config).feature.feature).getRandomFlower(rand, blockpos1);
+                        ConfiguredFeature<?, ?> configuredfeature = ((DecoratedFeatureConfig) (list.get(0)).config).feature;
+                        blockstate1 = ((FlowersFeature) ((DecoratedFeatureConfig) (list.get(0)).config).feature.feature).func_225562_b_(rand, blockpos1, configuredfeature.config);
                     } else {
                         blockstate1 = blockstate;
                     }
@@ -65,7 +67,7 @@ public class TofuTerrainBlock extends Block implements IGrowable {
                 }
 
                 blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
-                if (worldIn.getBlockState(blockpos1.down()).getBlock() != this || worldIn.getBlockState(blockpos1).func_224756_o(worldIn, blockpos1)) {
+                if (worldIn.getBlockState(blockpos1.down()).getBlock() != this || worldIn.getBlockState(blockpos1).isCollisionShapeOpaque(worldIn, blockpos1)) {
                     break;
                 }
 

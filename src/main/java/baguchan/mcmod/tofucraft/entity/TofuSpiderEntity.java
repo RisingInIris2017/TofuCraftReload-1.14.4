@@ -44,10 +44,10 @@ public class TofuSpiderEntity extends SpiderEntity implements IRangedAttackMob {
         for (int i = 0; i < 4; i++) {
             FukumameEntity snowballentity = new FukumameEntity(this.world, this);
             Vec3d vec3d = this.getLook(1.0F);
-            double d0 = target.posY + (double) target.getEyeHeight();
-            double d1 = target.posX - (this.posX + vec3d.x * 1.2D);
-            double d2 = d0 - snowballentity.posY;
-            double d3 = target.posZ - (this.posZ + vec3d.z * 1.2D);
+            double d0 = target.getPosY() + (double) target.getEyeHeight();
+            double d1 = target.getPosX() - (this.getPosX() + vec3d.x * 1.2D);
+            double d2 = d0 - snowballentity.getPosY();
+            double d3 = target.getPosZ() - (this.getPosZ() + vec3d.z * 1.2D);
             float f = MathHelper.sqrt(d1 * d1 + d3 * d3) * 0.15F;
             snowballentity.shoot(d1, d2 + (double) f, d3, 0.8F, 12.0F);
             this.playSound(SoundEvents.ENTITY_SNOW_GOLEM_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));

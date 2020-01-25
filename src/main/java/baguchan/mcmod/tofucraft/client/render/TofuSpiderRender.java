@@ -3,7 +3,7 @@ package baguchan.mcmod.tofucraft.client.render;
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.client.model.TofuSpiderModel;
 import baguchan.mcmod.tofucraft.entity.TofuSpiderEntity;
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -18,12 +18,13 @@ public class TofuSpiderRender extends MobRenderer<TofuSpiderEntity, TofuSpiderMo
         super(renderManagerIn, new TofuSpiderModel<>(), 0.5F);
     }
 
-    protected void preRenderCallback(TofuSpiderEntity entitylivingbaseIn, float partialTickTime) {
-        GlStateManager.scalef(1.5F, 1.5F, 1.5F);
-        super.preRenderCallback(entitylivingbaseIn, partialTickTime);
+    @Override
+    protected void preRenderCallback(TofuSpiderEntity entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+        matrixStackIn.scale(1.5F, 1.5F, 1.5F);
+        super.preRenderCallback(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }
 
-    protected ResourceLocation getEntityTexture(TofuSpiderEntity entity) {
+    public ResourceLocation getEntityTexture(TofuSpiderEntity entity) {
         return TEXTURES;
     }
 }

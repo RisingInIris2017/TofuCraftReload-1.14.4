@@ -298,8 +298,8 @@ public class TofuBlocks {
         TofuItems.register(registry, new BlockItem(TOFUBERRY, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
 
         TofuItems.register(registry, new BlockItem(SALTPAN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
-        TofuItems.register(registry, new BlockItem(TOFUCHEST, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT).setTEISR(() -> TofuChestItemRender::new)));
-        TofuItems.register(registry, new BlockItem(TOFUBED, (new Item.Properties()).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT).setTEISR(() -> TofuBlockItemRender::new)));
+        TofuItems.register(registry, new BlockItem(TOFUCHEST, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT).setISTER(() -> TofuChestItemRender::new)));
+        TofuItems.register(registry, new BlockItem(TOFUBED, (new Item.Properties()).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT).setISTER(() -> TofuBlockItemRender::new)));
         TofuItems.register(registry, new BlockItem(WHEAT_BOWL, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFUFARMLAND, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
 

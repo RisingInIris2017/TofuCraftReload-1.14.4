@@ -40,7 +40,7 @@ public class TofuWorldChunkGenerator extends NoiseChunkGenerator<TofuWorldChunkG
     public TofuWorldChunkGenerator(World world, BiomeProvider biomeProvider, Config config) {
         super(world, biomeProvider, 4, 8, 256, config, true);
         this.world = world;
-        this.depthNoise = new OctavesNoiseGenerator(this.randomSeed, 16);
+        this.depthNoise = new OctavesNoiseGenerator(this.randomSeed, 15, 0);
     }
 
     @Override
@@ -48,13 +48,8 @@ public class TofuWorldChunkGenerator extends NoiseChunkGenerator<TofuWorldChunkG
         super.generateBiomes(chunk);
     }
 
-    @Override
-    public void generateSurface(IChunk chunkIn) {
-        super.generateSurface(chunkIn);
-    }
-
     protected void makeBedrock(IChunk chunkIn, Random rand) {
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
         int i = chunkIn.getPos().getXStart();
         int j = chunkIn.getPos().getZStart();
         TofuWorldChunkGenerator.Config t = this.getSettings();
@@ -100,42 +95,22 @@ public class TofuWorldChunkGenerator extends NoiseChunkGenerator<TofuWorldChunkG
         }
     }
 
-    protected void fillNoiseColumn(double[] p_222548_1_, int p_222548_2_, int p_222548_3_) {
-        double d0 = (double) 684.412F;
-        double d1 = (double) 684.412F;
-        double d2 = 8.555149841308594D;
-        double d3 = 4.277574920654297D;
-        int i = -10;
-        int j = 3;
-        this.func_222546_a(p_222548_1_, p_222548_2_, p_222548_3_, (double) 684.412F, (double) 684.412F, 8.555149841308594D, 4.277574920654297D, 3, -10);
-    }
-
-
-    protected double func_222545_a(double p_222545_1_, double p_222545_3_, int p_222545_5_) {
-        double d0 = 8.5D;
-        double d1 = ((double) p_222545_5_ - (8.5D + p_222545_1_ * 8.5D / 8.0D * 4.0D)) * 12.0D * 128.0D / 256.0D / p_222545_3_;
-        if (d1 < 0.0D) {
-            d1 *= 4.0D;
-        }
-
-        return d1;
-    }
-
-    protected double[] getBiomeNoiseColumn(int p_222549_1_, int p_222549_2_) {
+    protected double[] getBiomeNoiseColumn(int noiseX, int noiseZ) {
         double[] adouble = new double[2];
         float f = 0.0F;
         float f1 = 0.0F;
         float f2 = 0.0F;
         int i = 2;
-        float f3 = this.biomeProvider.getBiomeAtFactorFour(p_222549_1_, p_222549_2_).getDepth();
+        int j = this.getSeaLevel();
+        float f3 = this.biomeProvider.getNoiseBiome(noiseX, j, noiseZ).getDepth();
 
-        for (int j = -2; j <= 2; ++j) {
-            for (int k = -2; k <= 2; ++k) {
-                Biome biome = this.biomeProvider.getBiomeAtFactorFour(p_222549_1_ + j, p_222549_2_ + k);
+        for (int k = -2; k <= 2; ++k) {
+            for (int l = -2; l <= 2; ++l) {
+                Biome biome = this.biomeProvider.getNoiseBiome(noiseX + k, j, noiseZ + l);
                 float f4 = biome.getDepth();
                 float f5 = biome.getScale();
 
-                float f6 = field_222576_h[j + 2 + (k + 2) * 5] / (f4 + 2.0F);
+                float f6 = field_222576_h[k + 2 + (l + 2) * 5] / (f4 + 2.0F);
                 if (biome.getDepth() > f3) {
                     f6 /= 2.0F;
                 }
@@ -150,13 +125,13 @@ public class TofuWorldChunkGenerator extends NoiseChunkGenerator<TofuWorldChunkG
         f1 = f1 / f2;
         f = f * 0.9F + 0.1F;
         f1 = (f1 * 4.0F - 1.0F) / 8.0F;
-        adouble[0] = (double) f1 + this.func_222574_c(p_222549_1_, p_222549_2_);
+        adouble[0] = (double) f1 + this.getNoiseDepthAt(noiseX, noiseZ);
         adouble[1] = (double) f;
         return adouble;
     }
 
-    private double func_222574_c(int p_222574_1_, int p_222574_2_) {
-        double d0 = this.depthNoise.getValue((double) (p_222574_1_ * 200), 10.0D, (double) (p_222574_2_ * 200), 1.0D, 0.0D, true) / 8000.0D;
+    private double getNoiseDepthAt(int noiseX, int noiseZ) {
+        double d0 = this.depthNoise.getValue((double) (noiseX * 200), 10.0D, (double) (noiseZ * 200), 1.0D, 0.0D, true) * 65535.0D / 8000.0D;
         if (d0 < 0.0D) {
             d0 = -d0 * 0.3D;
         }
@@ -173,6 +148,28 @@ public class TofuWorldChunkGenerator extends NoiseChunkGenerator<TofuWorldChunkG
         }
 
         return d0;
+    }
+
+
+    protected double func_222545_a(double p_222545_1_, double p_222545_3_, int p_222545_5_) {
+        double d0 = 8.5D;
+        double d1 = ((double) p_222545_5_ - (8.5D + p_222545_1_ * 8.5D / 8.0D * 4.0D)) * 12.0D * 128.0D / 256.0D / p_222545_3_;
+        if (d1 < 0.0D) {
+            d1 *= 4.0D;
+        }
+
+        return d1;
+    }
+
+    @Override
+    protected void fillNoiseColumn(double[] noiseColumn, int noiseX, int noiseZ) {
+        double d0 = (double) 684.412F;
+        double d1 = (double) 684.412F;
+        double d2 = 8.555149841308594D;
+        double d3 = 4.277574920654297D;
+        int i = -10;
+        int j = 3;
+        this.func_222546_a(noiseColumn, noiseX, noiseZ, (double) 684.412F, (double) 684.412F, 8.555149841308594D, 4.277574920654297D, 3, -10);
     }
 
     @Override

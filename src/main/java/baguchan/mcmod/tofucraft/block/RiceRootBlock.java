@@ -9,13 +9,12 @@ import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.PlantType;
 
 import javax.annotation.Nullable;
@@ -27,14 +26,14 @@ public class RiceRootBlock extends BushBlock implements net.minecraftforge.commo
     }
 
     @Override
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (!state.isValidPosition(worldIn, pos)) {
             worldIn.destroyBlock(pos, true);
         }
     }
 
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return state.isIn(BlockTags.SAND) || state.isIn(TofuTags.Blocks.TOFUTERRAIN) || state.isIn(BlockTags.DIRT_LIKE) || state.getBlock() == Blocks.GRAVEL;
+        return state.isIn(BlockTags.SAND) || state.isIn(TofuTags.Blocks.TOFUTERRAIN) || state.getBlock() == Blocks.GRASS_BLOCK || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.GRAVEL;
     }
 
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
@@ -58,10 +57,6 @@ public class RiceRootBlock extends BushBlock implements net.minecraftforge.commo
     @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-    }
-
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
     }
 
     public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {

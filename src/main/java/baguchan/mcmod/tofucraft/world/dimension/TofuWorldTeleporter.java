@@ -12,14 +12,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.ColumnPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.server.TicketType;
 
 import javax.annotation.Nullable;
 import java.util.Iterator;
@@ -239,7 +237,7 @@ public class TofuWorldTeleporter extends Teleporter {
 
     @Override
     public boolean makePortal(Entity entity) {
-        return createPortal(this.world, new BlockPos(MathHelper.floor(entity.posX), MathHelper.floor(entity.posY), MathHelper.floor(entity.posZ)), entity);
+        return createPortal(this.world, new BlockPos(MathHelper.floor(entity.getPosX()), MathHelper.floor(entity.getPosY()), MathHelper.floor(entity.getPosZ())), entity);
     }
 
     public static boolean createPortal(World world, BlockPos pos, @Nullable Entity entity) {
@@ -258,7 +256,7 @@ public class TofuWorldTeleporter extends Teleporter {
 
 
         //Bottom layers
-        for (BlockPos basePos : BlockPos.MutableBlockPos.getAllInBoxMutable(pos.add(-2, 0, -2), pos.add(2, 1, 2))) {
+        for (BlockPos basePos : BlockPos.Mutable.getAllInBoxMutable(pos.add(-2, 0, -2), pos.add(2, 1, 2))) {
             world.setBlockState(basePos, snowstate, 2);
         }
 
@@ -279,12 +277,12 @@ public class TofuWorldTeleporter extends Teleporter {
         */
 
         //air
-        for (BlockPos airPos : BlockPos.MutableBlockPos.getAllInBoxMutable(pos.add(-2, 2, -1), pos.add(2, 3, 1))) {
+        for (BlockPos airPos : BlockPos.Mutable.getAllInBoxMutable(pos.add(-2, 2, -1), pos.add(2, 3, 1))) {
             world.setBlockState(airPos, Blocks.AIR.getDefaultState(), 2);
         }
 
         //Portal blocks
-        for (BlockPos portalPos : BlockPos.MutableBlockPos.getAllInBoxMutable(pos.add(-1, 1, -1), pos.add(1, 1, 1))) {
+        for (BlockPos portalPos : BlockPos.Mutable.getAllInBoxMutable(pos.add(-1, 1, -1), pos.add(1, 1, 1))) {
             world.setBlockState(portalPos, portalState, 2);
         }
 
@@ -326,7 +324,7 @@ public class TofuWorldTeleporter extends Teleporter {
                 asupplier[1] = () -> {
                     return columnpos;
                 };
-                this.world.getChunkProvider().func_217222_b(TicketType.PORTAL, new ChunkPos(teleporter$portalposition.field_222267_a), 3, columnpos);
+                //this.world.getChunkProvider().releaseTicket(TicketType.PORTAL, new ChunkPos(teleporter$portalposition.field_222267_a), 3, Unit.INSTANCE);
                 iterator.remove();
             }
         }

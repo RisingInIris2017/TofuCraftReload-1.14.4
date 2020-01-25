@@ -2,10 +2,7 @@ package baguchan.mcmod.tofucraft.entity;
 
 import baguchan.mcmod.tofucraft.entity.ai.TofuCreeperSwellGoal;
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
-import net.minecraft.entity.AreaEffectCloudEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -31,7 +28,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Collection;
 
-public class TofuCreeperEntity extends MonsterEntity {
+public class TofuCreeperEntity extends MonsterEntity implements IChargeableMob {
     private static final DataParameter<Integer> STATE = EntityDataManager.createKey(TofuCreeperEntity.class, DataSerializers.VARINT);
     private static final DataParameter<Boolean> POWERED = EntityDataManager.createKey(TofuCreeperEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> IGNITED = EntityDataManager.createKey(TofuCreeperEntity.class, DataSerializers.BOOLEAN);
@@ -70,14 +67,14 @@ public class TofuCreeperEntity extends MonsterEntity {
         return this.getAttackTarget() == null ? 3 : 3 + (int) (this.getHealth() - 1.0F);
     }
 
-    public void fall(float distance, float damageMultiplier) {
-        super.fall(distance, damageMultiplier);
-        this.timeSinceIgnited = (int) ((float) this.timeSinceIgnited + distance * 1.5F);
+    public boolean func_225503_b_(float p_225503_1_, float p_225503_2_) {
+        this.timeSinceIgnited = (int) ((float) this.timeSinceIgnited + p_225503_1_ * 1.5F);
         if (this.timeSinceIgnited > this.fuseTime - 5) {
             this.timeSinceIgnited = this.fuseTime - 5;
         }
-
+        return super.func_225503_b_(p_225503_1_, p_225503_2_);
     }
+
 
     protected void registerData() {
         super.registerData();
@@ -211,7 +208,7 @@ public class TofuCreeperEntity extends MonsterEntity {
     protected boolean processInteract(PlayerEntity player, Hand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
         if (itemstack.getItem() == Items.FLINT_AND_STEEL) {
-            this.world.playSound(player, this.posX, this.posY, this.posZ, SoundEvents.ITEM_FLINTANDSTEEL_USE, this.getSoundCategory(), 1.0F, this.rand.nextFloat() * 0.4F + 0.8F);
+            this.world.playSound(player, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ITEM_FLINTANDSTEEL_USE, this.getSoundCategory(), 1.0F, this.rand.nextFloat() * 0.4F + 0.8F);
             player.swingArm(hand);
             if (!this.world.isRemote) {
                 this.ignite();
@@ -237,7 +234,7 @@ public class TofuCreeperEntity extends MonsterEntity {
 
             for (int i = 0; i < 10 * tofuAmount; ++i) {
 
-                TofuFallingBlockEntity tofu = new TofuFallingBlockEntity(this.world, this.posX, this.posY, this.posZ, TofuBlocks.KINUTOFU.getDefaultState());
+                TofuFallingBlockEntity tofu = new TofuFallingBlockEntity(this.world, this.getPosX(), this.getPosY(), this.getPosZ(), TofuBlocks.KINUTOFU.getDefaultState());
 
 
                 double d0 = (rand.nextFloat() * 2) - 1.0F;
@@ -249,7 +246,7 @@ public class TofuCreeperEntity extends MonsterEntity {
                 this.world.addEntity(tofu);
             }
 
-            this.world.createExplosion(this, this.posX, this.posY, this.posZ, (float) this.explosionRadius * f, explosion$mode);
+            this.world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), (float) this.explosionRadius * f, explosion$mode);
             this.remove();
             this.spawnLingeringCloud();
         }
@@ -259,7 +256,7 @@ public class TofuCreeperEntity extends MonsterEntity {
     private void spawnLingeringCloud() {
         Collection<EffectInstance> collection = this.getActivePotionEffects();
         if (!collection.isEmpty()) {
-            AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(this.world, this.posX, this.posY, this.posZ);
+            AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(this.world, this.getPosX(), this.getPosY(), this.getPosZ());
             areaeffectcloudentity.setRadius(2.5F);
             areaeffectcloudentity.setRadiusOnUse(-0.5F);
             areaeffectcloudentity.setWaitTime(10);
@@ -294,5 +291,10 @@ public class TofuCreeperEntity extends MonsterEntity {
 
     public void incrementDroppedSkulls() {
         ++this.droppedSkulls;
+    }
+
+    @Override
+    public boolean func_225509_J__() {
+        return this.dataManager.get(POWERED);
     }
 }

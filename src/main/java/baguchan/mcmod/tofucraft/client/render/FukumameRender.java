@@ -2,14 +2,9 @@ package baguchan.mcmod.tofucraft.client.render;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.entity.projectile.FukumameEntity;
-import com.mojang.blaze3d.platform.GlStateManager;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -24,7 +19,7 @@ public class FukumameRender extends EntityRenderer<FukumameEntity> {
     }
 
     public void doRender(FukumameEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
-        this.bindEntityTexture(entity);
+     /*   this.bindEntityTexture(entity);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.pushMatrix();
         GlStateManager.disableLighting();
@@ -87,12 +82,12 @@ public class FukumameRender extends EntityRenderer<FukumameEntity> {
         GlStateManager.disableRescaleNormal();
         GlStateManager.enableLighting();
         GlStateManager.popMatrix();
-        super.doRender(entity, x, y, z, entityYaw, partialTicks);
+        super.doRender(entity, x, y, z, entityYaw, partialTicks);*/
     }
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(FukumameEntity entity) {
+    public ResourceLocation getEntityTexture(FukumameEntity entity) {
         return TEXTURES;
     }
 }

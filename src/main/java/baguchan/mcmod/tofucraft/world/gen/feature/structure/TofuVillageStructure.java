@@ -12,6 +12,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeManager;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -50,21 +51,21 @@ public class TofuVillageStructure extends Structure<NoFeatureConfig> {
     }
 
     @Override
-    public boolean hasStartAt(ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ) {
+    public boolean func_225558_a_(BiomeManager p_225558_1_, ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ, Biome p_225558_6_) {
         ChunkPos chunkpos = this.getStartPositionForPosition(chunkGen, rand, chunkPosX, chunkPosZ, 0, 0);
         if (chunkPosX == chunkpos.x && chunkPosZ == chunkpos.z) {
             BlockPos pos = new BlockPos((chunkPosX << 4) + 8, 0, (chunkPosZ << 4) + 8);
-            return isValid(chunkGen, pos.add(-4, 0, -4)) &&
-                    isValid(chunkGen, pos.add(-4, 0, 4)) &&
-                    isValid(chunkGen, pos.add(4, 0, 4)) &&
-                    isValid(chunkGen, pos.add(4, 0, -4));
+            return isValid(chunkGen, pos.add(-4, 0, -4), p_225558_1_) &&
+                    isValid(chunkGen, pos.add(-4, 0, 4), p_225558_1_) &&
+                    isValid(chunkGen, pos.add(4, 0, 4), p_225558_1_) &&
+                    isValid(chunkGen, pos.add(4, 0, -4), p_225558_1_);
         } else {
             return false;
         }
     }
 
-    private boolean isValid(ChunkGenerator<?> chunkGen, BlockPos pos) {
-        return chunkGen.hasStructure(chunkGen.getBiomeProvider().getBiome(pos), TofuFeatures.TOFUVILLAGE);
+    private boolean isValid(ChunkGenerator<?> chunkGen, BlockPos pos, BiomeManager p_225558_1_) {
+        return chunkGen.hasStructure(p_225558_1_.func_226836_a_(pos), TofuFeatures.TOFUVILLAGE);
     }
 
     @Override
@@ -91,8 +92,8 @@ public class TofuVillageStructure extends Structure<NoFeatureConfig> {
 
     public static class Start extends MarginedStructureStart {
 
-        public Start(Structure<?> p_i51110_1_, int p_i51110_2_, int p_i51110_3_, Biome p_i51110_4_, MutableBoundingBox p_i51110_5_, int p_i51110_6_, long p_i51110_7_) {
-            super(p_i51110_1_, p_i51110_2_, p_i51110_3_, p_i51110_4_, p_i51110_5_, p_i51110_6_, p_i51110_7_);
+        public Start(Structure<?> p_i50460_1_, int p_i50460_2_, int p_i50460_3_, MutableBoundingBox p_i50460_5_, int p_i50460_6_, long p_i50460_7_) {
+            super(p_i50460_1_, p_i50460_2_, p_i50460_3_, p_i50460_5_, p_i50460_6_, p_i50460_7_);
         }
 
         public void init(ChunkGenerator<?> generator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn) {

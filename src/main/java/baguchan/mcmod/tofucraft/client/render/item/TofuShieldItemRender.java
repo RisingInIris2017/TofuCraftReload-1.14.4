@@ -2,10 +2,13 @@ package baguchan.mcmod.tofucraft.client.render.item;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.init.TofuItems;
-import com.mojang.blaze3d.platform.GlStateManager;
-import net.minecraft.client.Minecraft;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.entity.model.ShieldModel;
+import net.minecraft.client.renderer.model.Material;
+import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -14,37 +17,38 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuShieldItemRender extends ItemStackTileEntityRenderer {
-    private final static ResourceLocation ISHI_TEXTURE = new ResourceLocation(TofuCraftCore.MODID, "textures/entity/tofuishi_shield.png");
-    private final static ResourceLocation METAL_TEXTURE = new ResourceLocation(TofuCraftCore.MODID, "textures/entity/tofumetal_shield.png");
+    public static final Material LOCATION_ISHISHIELD_NO_PATTERN = new Material(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(TofuCraftCore.MODID, "textures/entity/tofuishi_shield"));
+    public static final Material LOCATION_METALSHIELD_NO_PATTERN = new Material(AtlasTexture.LOCATION_BLOCKS_TEXTURE, new ResourceLocation(TofuCraftCore.MODID, "textures/entity/tofumetal_shield"));
 
-    private final ShieldModel shieldModel = new ShieldModel(); // TODO model rockshroom
+
+    private final ShieldModel modelShield = new ShieldModel(); // TODO model rockshroom
 
     @Override
-    public void renderByItem(ItemStack stack) {
-        if (stack.getItem() == TofuItems.TOFUISHI_SHIELD) {
-            Minecraft.getInstance().getTextureManager().bindTexture(ISHI_TEXTURE);
-            GlStateManager.pushMatrix();
-            GlStateManager.scalef(1f, -1f, -1f);
-            this.shieldModel.render();
-            if (stack.hasEffect()) {
-                this.renderEffect(this.shieldModel::render);
-            }
-            GlStateManager.popMatrix();
-        } else if (stack.getItem() == TofuItems.TOFUMETAL_SHIELD) {
-            Minecraft.getInstance().getTextureManager().bindTexture(METAL_TEXTURE);
-            GlStateManager.pushMatrix();
-            GlStateManager.scalef(1f, -1f, -1f);
-            this.shieldModel.render();
-            if (stack.hasEffect()) {
-                this.renderEffect(this.shieldModel::render);
-            }
-            GlStateManager.popMatrix();
+    public void render(ItemStack itemStackIn, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+        super.render(itemStackIn, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
+        if (itemStackIn.getItem() == TofuItems.TOFUISHI_SHIELD) {
+            matrixStackIn.push();
+            matrixStackIn.scale(1.0F, -1.0F, -1.0F);
+            Material material = LOCATION_ISHISHIELD_NO_PATTERN;
+            IVertexBuilder ivertexbuilder = material.getSprite().wrapBuffer(ItemRenderer.getBuffer(bufferIn, this.modelShield.getRenderType(material.getAtlasLocation()), false, itemStackIn.hasEffect()));
+            this.modelShield.func_228294_b_().render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
+
+            this.modelShield.func_228293_a_().render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
+
+
+            matrixStackIn.pop();
+        } else if (itemStackIn.getItem() == TofuItems.TOFUMETAL_SHIELD) {
+            matrixStackIn.push();
+            matrixStackIn.scale(1.0F, -1.0F, -1.0F);
+            Material material = LOCATION_METALSHIELD_NO_PATTERN;
+            IVertexBuilder ivertexbuilder = material.getSprite().wrapBuffer(ItemRenderer.getBuffer(bufferIn, this.modelShield.getRenderType(material.getAtlasLocation()), false, itemStackIn.hasEffect()));
+            this.modelShield.func_228294_b_().render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
+
+            this.modelShield.func_228293_a_().render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
+
+
+            matrixStackIn.pop();
         }
     }
 
-    private void renderEffect(Runnable renderModelFunction) {
-        GlStateManager.color3f(0.5019608F, 0.2509804F, 0.8F);
-        Minecraft.getInstance().getTextureManager().bindTexture(ItemRenderer.RES_ITEM_GLINT);
-        ItemRenderer.renderEffect(Minecraft.getInstance().getTextureManager(), renderModelFunction, 1);
-    }
 }

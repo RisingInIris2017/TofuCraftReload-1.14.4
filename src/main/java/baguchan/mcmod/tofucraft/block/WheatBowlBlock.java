@@ -17,6 +17,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
@@ -31,9 +32,9 @@ public class WheatBowlBlock extends Block {
         this.setDefaultState(this.stateContainer.getBaseState().with(STAT, Stat.EMPTY).with(LEVEL, 0));
     }
 
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (worldIn.isRemote) {
-            return true;
+            return ActionResultType.PASS;
         } else {
             ItemStack itemHeld = player.getHeldItem(handIn);
             Stat stat = this.getStat(state);
@@ -71,19 +72,19 @@ public class WheatBowlBlock extends Block {
             }
 
 
-            return true;
+            return ActionResultType.SUCCESS;
         }
     }
 
     @Override
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
 
         Stat stat = getStat(state);
 
         if (stat == Stat.KOUJIBASE) {
             float f = this.calcWarmth(worldIn, pos);
 
-            if (f > 0.0F && random.nextInt((int) (27.0F / f) + 1) == 0) {
+            if (f > 0.0F && rand.nextInt((int) (27.0F / f) + 1) == 0) {
                 worldIn.setBlockState(pos, state.with(STAT, Stat.KOUJI), 2);
             }
         }
@@ -129,11 +130,6 @@ public class WheatBowlBlock extends Block {
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return WHEATBOWL_AABB;
-    }
-
-    @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
     }
 
     public static enum Stat implements IStringSerializable {

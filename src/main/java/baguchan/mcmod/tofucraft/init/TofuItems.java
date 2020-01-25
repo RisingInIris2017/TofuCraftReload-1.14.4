@@ -103,9 +103,7 @@ public class TofuItems {
     public static final Item TOFUCOW_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUCOW, 0xEBE8E8, 0xA3A3A3, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUFISH_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUFISH, 0xEBE8E8, 0x3a3e3f, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUCHINGER_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUCHINGER, 0xEBE8E8, 0xB3B3B3, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item GRILLDER_SPAWNEGG = new SpawnEggItem(TofuEntitys.GRILLDER, 0xEBE8E8, 0xdea65d, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUSPIDER_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUSPIDER, 0xEBE8E8, 0x2E2E2E, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item TOFUEAGLE_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUEAGLE, 0xebaf35, 0xeaeae4, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUCREEPER_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUCREEPER, 0xefeedf, 0x82817b, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUTURRET_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUTURRET, 0xe5e0bd, 0x9cd6f5, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUMIND_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUMIND, 0xe5e0bd, 0x9cd6f5, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -166,8 +164,8 @@ public class TofuItems {
     public static final Item ZUNDAARROW = new ZundaArrowItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item BUGLE = new BugleItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
-    public static final Item TOFUISHI_SHIELD = new TofuShieldItem(new Item.Properties().maxDamage(320).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item TOFUMETAL_SHIELD = new TofuShieldItem(new Item.Properties().maxDamage(450).setTEISR(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUISHI_SHIELD = new TofuShieldItem(new Item.Properties().maxDamage(320).setISTER(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUMETAL_SHIELD = new TofuShieldItem(new Item.Properties().maxDamage(450).setISTER(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item TOFUFORCE_CORE = new TofuForceCoreItem(new Item.Properties().maxDamage(340).group(TofuItemGroup.TOFUCRAFT));
 
@@ -269,9 +267,7 @@ public class TofuItems {
         register(registry, TOFUCOW_SPAWNEGG, "tofucow_spawnegg");
         register(registry, TOFUFISH_SPAWNEGG, "tofufish_spawnegg");
         register(registry, TOFUCHINGER_SPAWNEGG, "tofuchinger_spawnegg");
-        register(registry, GRILLDER_SPAWNEGG, "grillder_spawnegg");
         register(registry, TOFUSPIDER_SPAWNEGG, "tofuspider_spawnegg");
-        register(registry, TOFUEAGLE_SPAWNEGG, "tofueagle_spawnegg");
         register(registry, TOFUCREEPER_SPAWNEGG, "tofucreeper_spawnegg");
         register(registry, TOFUTURRET_SPAWNEGG, "tofuturret_spawnegg");
         register(registry, TOFUMIND_SPAWNEGG, "tofumind_spawnegg");

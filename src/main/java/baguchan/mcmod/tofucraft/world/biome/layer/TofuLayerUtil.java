@@ -1,6 +1,5 @@
 package baguchan.mcmod.tofucraft.world.biome.layer;
 
-import com.google.common.collect.ImmutableList;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.gen.IExtendedNoiseRandom;
 import net.minecraft.world.gen.LazyAreaLayerContext;
@@ -26,7 +25,7 @@ public class TofuLayerUtil {
         return iareafactory;
     }
 
-    public static <T extends IArea, C extends IExtendedNoiseRandom<T>> ImmutableList<IAreaFactory<T>> buildTofuProcedure(WorldType worldTypeIn, OverworldGenSettings settings, LongFunction<C> contextFactory) {
+    public static <T extends IArea, C extends IExtendedNoiseRandom<T>> IAreaFactory<T> buildTofuProcedure(WorldType worldTypeIn, OverworldGenSettings settings, LongFunction<C> contextFactory) {
         IAreaFactory<T> iareafactory = TofuLayer.INSTANCE.apply(contextFactory.apply(1L));
         iareafactory = ZoomLayer.FUZZY.apply(contextFactory.apply(2000L), iareafactory);
         iareafactory = AddIslandLayer.INSTANCE.apply(contextFactory.apply(1L), iareafactory);
@@ -73,8 +72,8 @@ public class TofuLayerUtil {
 
         lvt_8_1_ = SmoothLayer.INSTANCE.apply((IExtendedNoiseRandom) contextFactory.apply(1000L), lvt_8_1_);
         lvt_8_1_ = MixRiverLayer.INSTANCE.apply((IExtendedNoiseRandom) contextFactory.apply(100L), lvt_8_1_, lvt_7_1_);
-        IAreaFactory<T> iareafactory5 = VoroniZoomLayer.INSTANCE.apply(contextFactory.apply(10L), lvt_8_1_);
-        return ImmutableList.of(lvt_8_1_, iareafactory5, lvt_8_1_);
+
+        return lvt_8_1_;
     }
 
     private static <T extends IArea, C extends IExtendedNoiseRandom<T>> IAreaFactory<T> getBiomeLayer(WorldType worldType, IAreaFactory<T> parentLayer, OverworldGenSettings settings, LongFunction<C> contextFactory) {
@@ -85,15 +84,12 @@ public class TofuLayerUtil {
         return parentLayer;
     }
 
-    public static Layer[] buildTofuProcedure(long seed, WorldType typeIn, OverworldGenSettings settings) {
+    public static Layer buildTofuProcedure(long seed, WorldType typeIn, OverworldGenSettings settings) {
         int i = 25;
-        ImmutableList<IAreaFactory<LazyArea>> immutablelist = buildTofuProcedure(typeIn, settings, (p_215737_2_) -> {
-            return new LazyAreaLayerContext(25, seed, p_215737_2_);
+        IAreaFactory<LazyArea> iareafactory = buildTofuProcedure(typeIn, settings, (p_227473_2_) -> {
+            return new LazyAreaLayerContext(25, seed, p_227473_2_);
         });
-        Layer layer = new Layer(immutablelist.get(0));
-        Layer layer1 = new Layer(immutablelist.get(1));
-        Layer layer2 = new Layer(immutablelist.get(2));
-        return new Layer[]{layer, layer1, layer2};
+        return new Layer(iareafactory);
     }
 
     public static int getModdedBiomeSize(WorldType worldType, int original) {

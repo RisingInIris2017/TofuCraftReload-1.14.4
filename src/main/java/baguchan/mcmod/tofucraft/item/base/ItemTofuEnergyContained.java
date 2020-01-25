@@ -4,7 +4,6 @@ import baguchan.mcmod.tofucraft.api.tfenergy.ITofuEnergy;
 import baguchan.mcmod.tofucraft.api.tfenergy.TofuNetwork;
 import baguchan.mcmod.tofucraft.tileentity.base.TileEntitySenderBase;
 import baguchan.mcmod.tofucraft.utils.NBTUtil;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
@@ -43,7 +42,7 @@ public class ItemTofuEnergyContained extends Item implements IEnergyExtractable,
     }
 
     private boolean getShowState(ItemStack stack) {
-        return !Minecraft.getInstance().player.isSneaking() && getEnergy(stack) != 0;
+        return getEnergy(stack) != 0;
     }
 
     @Override
@@ -110,7 +109,7 @@ public class ItemTofuEnergyContained extends Item implements IEnergyExtractable,
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
         if (!worldIn.isRemote && getEnergy(stack) < getEnergyMax(stack)) {
-            BlockPos entityPos = new BlockPos(entityIn.posX, entityIn.posY, entityIn.posZ);
+            BlockPos entityPos = new BlockPos(entityIn.getPosX(), entityIn.getPosY(), entityIn.getPosZ());
             List<TileEntity> list = TofuNetwork.toTiles(TofuNetwork.Instance.getExtractableWithinRadius(
                     worldIn, entityPos, 64));
             if (!list.isEmpty()) {

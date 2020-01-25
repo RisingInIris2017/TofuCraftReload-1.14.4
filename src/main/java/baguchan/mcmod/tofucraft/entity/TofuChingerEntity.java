@@ -102,7 +102,7 @@ public class TofuChingerEntity extends MonsterEntity {
 
     protected void setChingerSize(int size, boolean resetHealth) {
         this.dataManager.set(SIZE, size);
-        this.setPosition(this.posX, this.posY, this.posZ);
+        this.setPosition(this.getPosX(), this.getPosY(), this.getPosZ());
         this.recalculateSize();
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((double) (12.0D + 2.0F * size));
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) (0.25F + 0.005F * (float) size));

@@ -1,7 +1,6 @@
 package baguchan.mcmod.tofucraft.entity.ai;
 
 import baguchan.mcmod.tofucraft.entity.TofuGandlemEntity;
-import baguchan.mcmod.tofucraft.init.TofuParticles;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.util.math.BlockPos;
@@ -49,7 +48,7 @@ public abstract class CastingGoal extends Goal {
                     for (int k = 0; k <= 2; ++k) {
                         BlockPos blockpos = this.tofuGandlemEntity.getPosition().add(i, k, j);
 
-                        this.tofuGandlemEntity.world.addParticle(TofuParticles.TOFUPORTAL, (double) this.tofuGandlemEntity.getPosition().getX() + 0.5D, (double) this.tofuGandlemEntity.getPosition().getY() + 0.25D, (double) this.tofuGandlemEntity.getPosition().getZ() + 0.5D, (double) ((float) i + this.tofuGandlemEntity.getRNG().nextFloat()) - 0.5D, (double) ((float) k - this.tofuGandlemEntity.getRNG().nextFloat() - 1.0F), (double) ((float) j + this.tofuGandlemEntity.getRNG().nextFloat()) - 0.5D);
+                        //this.tofuGandlemEntity.world.addParticle(TofuParticles.TOFUPORTAL, (double) this.tofuGandlemEntity.getPosition().getX() + 0.5D, (double) this.tofuGandlemEntity.getPosition().getY() + 0.25D, (double) this.tofuGandlemEntity.getPosition().getZ() + 0.5D, (double) ((float) i + this.tofuGandlemEntity.getRNG().nextFloat()) - 0.5D, (double) ((float) k - this.tofuGandlemEntity.getRNG().nextFloat() - 1.0F), (double) ((float) j + this.tofuGandlemEntity.getRNG().nextFloat()) - 0.5D);
 
                     }
                 }

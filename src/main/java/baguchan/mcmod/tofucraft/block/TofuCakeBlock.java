@@ -10,6 +10,7 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -39,18 +40,18 @@ public class TofuCakeBlock extends Block {
         return SHAPES[state.get(BITES)];
     }
 
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (!worldIn.isRemote) {
             return this.eatCake(worldIn, pos, state, player);
         } else {
             ItemStack itemstack = player.getHeldItem(handIn);
-            return this.eatCake(worldIn, pos, state, player) || itemstack.isEmpty();
+            return this.eatCake(worldIn, pos, state, player);
         }
     }
 
-    private boolean eatCake(IWorld worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+    private ActionResultType eatCake(IWorld worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!player.canEat(false)) {
-            return false;
+            return ActionResultType.FAIL;
         } else {
             player.addStat(Stats.EAT_CAKE_SLICE);
             player.getFoodStats().addStats(this.foodLevel, this.foodSaturation);
@@ -61,7 +62,7 @@ public class TofuCakeBlock extends Block {
                 worldIn.removeBlock(pos, false);
             }
 
-            return true;
+            return ActionResultType.SUCCESS;
         }
     }
 

@@ -10,8 +10,8 @@ import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.math.MathHelper;
 
 public class FlyingStrafeMovementController extends FlyingMovementController {
-    public FlyingStrafeMovementController(MobEntity p_i47418_1_) {
-        super(p_i47418_1_);
+    public FlyingStrafeMovementController(MobEntity p_i47418_1_, int p_i225710_2_, boolean p_i225710_3_) {
+        super(p_i47418_1_, p_i225710_2_, p_i225710_3_);
     }
 
     public void tick() {
@@ -36,7 +36,7 @@ public class FlyingStrafeMovementController extends FlyingMovementController {
             PathNavigator pathnavigator = this.mob.getNavigator();
             if (pathnavigator != null) {
                 NodeProcessor nodeprocessor = pathnavigator.getNodeProcessor();
-                if (nodeprocessor != null && nodeprocessor.getPathNodeType(this.mob.world, MathHelper.floor(this.mob.posX + (double) f7), MathHelper.floor(this.mob.posY), MathHelper.floor(this.mob.posZ + (double) f8)) != PathNodeType.WALKABLE) {
+                if (nodeprocessor != null && nodeprocessor.getPathNodeType(this.mob.world, MathHelper.floor(this.mob.getPosX() + (double) f7), MathHelper.floor(this.mob.getPosY()), MathHelper.floor(this.mob.getPosZ() + (double) f8)) != PathNodeType.WALKABLE) {
                     this.moveForward = 1.0F;
                     this.moveStrafe = 0.0F;
                     f1 = f;

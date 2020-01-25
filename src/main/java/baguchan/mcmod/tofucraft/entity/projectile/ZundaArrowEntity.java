@@ -65,7 +65,7 @@ public class ZundaArrowEntity extends AbstractArrowEntity {
     public void tick() {
         super.tick();
         if (this.world.isRemote && !this.inGround) {
-            this.world.addParticle(ParticleTypes.INSTANT_EFFECT, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+            this.world.addParticle(ParticleTypes.INSTANT_EFFECT, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.0D, 0.0D);
         }
 
     }

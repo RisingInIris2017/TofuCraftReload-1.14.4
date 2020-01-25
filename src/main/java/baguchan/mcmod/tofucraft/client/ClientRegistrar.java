@@ -1,21 +1,13 @@
 package baguchan.mcmod.tofucraft.client;
 
 import baguchan.mcmod.tofucraft.client.render.*;
-import baguchan.mcmod.tofucraft.client.render.tileentity.TofuBedBlockRenderer;
-import baguchan.mcmod.tofucraft.client.render.tileentity.TofuChestBlockRenderer;
-import baguchan.mcmod.tofucraft.entity.*;
-import baguchan.mcmod.tofucraft.entity.projectile.BeamEntity;
-import baguchan.mcmod.tofucraft.entity.projectile.FukumameEntity;
-import baguchan.mcmod.tofucraft.entity.projectile.TofuHomingForceEntity;
-import baguchan.mcmod.tofucraft.entity.projectile.ZundaArrowEntity;
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
-import baguchan.mcmod.tofucraft.tileentity.TofuBedTileEntity;
-import baguchan.mcmod.tofucraft.tileentity.TofuChestTileEntity;
+import baguchan.mcmod.tofucraft.init.TofuEntitys;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.FallingBlockRenderer;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
@@ -23,30 +15,28 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 public class ClientRegistrar {
 
     public static void renderEntity() {
-        RenderingRegistry.registerEntityRenderingHandler(TofunianEntity.class, TofunianRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(TofuSlimeEntity.class, TofuSlimeRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(TofuCowEntity.class, TofuCowRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(TofuFishEntity.class, TofuFishRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(TofuChingerEntity.class, TofuChingerRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(GrillderEntity.class, GrillderRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(TofuSpiderEntity.class, TofuSpiderRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(TofuEagleEntity.class, TofuEagleRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(TofuCreeperEntity.class, TofuCreeperRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(TofuTurretEntity.class, TofuTurretRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(TofuMindEntity.class, TofuMindRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(TofuGandlemEntity.class, TofuGandlemRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(SesamenianEntity.class, SesamenianRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.TOFUNIAN, TofunianRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.TOFUSLIME, TofuSlimeRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.TOFUCOW, TofuCowRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.TOFUFISH, TofuFishRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.TOFUCHINGER, TofuChingerRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.TOFUSPIDER, TofuSpiderRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.TOFUCREEPER, TofuCreeperRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.TOFUTURRET, TofuTurretRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.TOFUMIND, TofuMindRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.TOFUGANDLEM, TofuGandlemRender::new);
 
 
-        RenderingRegistry.registerEntityRenderingHandler(FukumameEntity.class, FukumameRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ZundaArrowEntity.class, ZundaArrowRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(BeamEntity.class, BeamRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(TofuHomingForceEntity.class, EmptyRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.FUKUMAME, FukumameRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.ZUNDAARROW, ZundaArrowRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.BEAM, BeamRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.TOFU_HOMING_FORCE, EmptyRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.TOFU_FALLING_BLOCK, FallingBlockRenderer::new);
     }
 
     public static void renderTileEntity() {
-        ClientRegistry.bindTileEntitySpecialRenderer(TofuChestTileEntity.class, new TofuChestBlockRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TofuBedTileEntity.class, new TofuBedBlockRenderer());
+        //ClientRegistry.bindTileEntityRenderer(TofuTileEntitys.TOFUCHEST, TofuChestBlockRenderer::new);
+        //ClientRegistry.bindTileEntityRenderer(TofuTileEntitys.TOFUBED, TofuBedBlockRenderer::new);
     }
 
     public static void renderBlockColor() {

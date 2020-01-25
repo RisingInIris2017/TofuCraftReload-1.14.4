@@ -26,7 +26,7 @@ public class StackableBowlItem extends Item {
         } else {
             if (entityLiving instanceof PlayerEntity) {
                 if (!((PlayerEntity) entityLiving).inventory.addItemStackToInventory(bowl)) {
-                    worldIn.addEntity(new ItemEntity(worldIn, (double) entityLiving.posX, (double) entityLiving.posY + 0.5D, (double) entityLiving.posZ, bowl));
+                    worldIn.addEntity(new ItemEntity(worldIn, (double) entityLiving.getPosX(), (double) entityLiving.getPosY() + 0.5D, (double) entityLiving.getPosZ(), bowl));
                 }
             }
 

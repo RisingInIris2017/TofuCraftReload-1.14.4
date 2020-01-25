@@ -34,7 +34,7 @@ public class GoToBedGoal extends MoveToBlockGoal {
     public boolean shouldContinueExecuting() {
         BlockPos blockpos = new BlockPos(destinationBlock.getX(), destinationBlock.getY(), destinationBlock.getZ());
 
-        return !this.creature.world.isDaytime() && (creature.posY > (double) blockpos.getY() + 0.4D && blockpos.withinDistance(creature.getPositionVec(), 1.14D) && this.creature.isSleeping() && this.creature.getBedPosition().isPresent());
+        return !this.creature.world.isDaytime() && (creature.getPosY() > (double) blockpos.getY() + 0.4D && blockpos.withinDistance(creature.getPositionVec(), 1.14D) && this.creature.isSleeping() && this.creature.getBedPosition().isPresent());
     }
 
 

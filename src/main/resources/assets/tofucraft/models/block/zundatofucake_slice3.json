@@ -2,7 +2,7 @@
   "parent": "block/cake_slice3",
   "textures": {
     "particle": "tofucraft:blocks/zundatofucake_side",
-    "bottom": "tofucraft:blocks/zundatofucake_bottom",
+    "bottom": "tofucraft:blocks/tofucake_bottom",
     "top": "tofucraft:blocks/zundatofucake_top",
     "side": "tofucraft:blocks/zundatofucake_side",
     "inside": "tofucraft:blocks/zundatofucake_inner"

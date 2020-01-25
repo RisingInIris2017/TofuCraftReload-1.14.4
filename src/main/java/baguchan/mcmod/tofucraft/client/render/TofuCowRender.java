@@ -1,7 +1,6 @@
 package baguchan.mcmod.tofucraft.client.render;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
-import baguchan.mcmod.tofucraft.client.render.layer.TofuCowPlantLayer;
 import baguchan.mcmod.tofucraft.entity.TofuCowEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -16,10 +15,9 @@ public class TofuCowRender extends MobRenderer<TofuCowEntity, CowModel<TofuCowEn
 
     public TofuCowRender(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new CowModel<>(), 0.7F);
-        this.addLayer(new TofuCowPlantLayer<>(this));
     }
 
-    protected ResourceLocation getEntityTexture(TofuCowEntity entity) {
+    public ResourceLocation getEntityTexture(TofuCowEntity entity) {
         return COW_TEXTURES;
     }
 }
