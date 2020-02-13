@@ -7,6 +7,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.play.server.*;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.Direction;
@@ -22,6 +24,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -172,55 +175,59 @@ public class TofuPortalBlock extends Block {
     }
 
     public Entity changePlayerDimension(DimensionType destination, ServerPlayerEntity serverPlayerEntity) {
-        /*if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(serverPlayerEntity, destination)) return null;
+        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(serverPlayerEntity, destination)) return null;
         serverPlayerEntity.invulnerableDimensionChange = true;
         DimensionType dimensiontype = serverPlayerEntity.dimension;
 
         ServerWorld serverworld = serverPlayerEntity.server.getWorld(dimensiontype);
         serverPlayerEntity.dimension = destination;
         ServerWorld serverworld1 = serverPlayerEntity.server.getWorld(destination);
-
-        TofuWorldTeleporter frostteleporter = new TofuWorldTeleporter(serverworld1);
-
-        WorldInfo worldinfo = serverPlayerEntity.world.getWorldInfo();
-        serverPlayerEntity.connection.sendPacket(new SRespawnPacket(destination, WorldInfo.func_227498_c_(worldinfo.getSeed()),worldinfo.getGenerator(), serverPlayerEntity.interactionManager.getGameType()));
+        WorldInfo worldinfo = serverworld1.getWorldInfo();
+        net.minecraftforge.fml.network.NetworkHooks.sendDimensionDataPacket(serverPlayerEntity.connection.netManager, serverPlayerEntity);
+        serverPlayerEntity.connection.sendPacket(new SRespawnPacket(destination, WorldInfo.byHashing(worldinfo.getSeed()), worldinfo.getGenerator(), serverPlayerEntity.interactionManager.getGameType()));
         serverPlayerEntity.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo.isDifficultyLocked()));
         PlayerList playerlist = serverPlayerEntity.server.getPlayerList();
         playerlist.updatePermissionLevel(serverPlayerEntity);
         serverworld.removeEntity(serverPlayerEntity, true); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no matching invalidate call.
         serverPlayerEntity.revive();
-        double d0 = serverPlayerEntity.getPosX();
-        double d1 = serverPlayerEntity.getPosY();
-        double d2 = serverPlayerEntity.getPosZ();
-        float f = serverPlayerEntity.rotationPitch;
-        float f1 = serverPlayerEntity.rotationYaw;
-        double d3 = 8.0D;
-        float f2 = f1;
-        serverworld.getProfiler().startSection("moving");
-        double moveFactor = serverworld.getDimension().getMovementFactor() / serverworld1.getDimension().getMovementFactor();
-        d0 *= moveFactor;
-        d2 *= moveFactor;
+        TofuWorldTeleporter tofuteleporter = new TofuWorldTeleporter(serverworld1);
 
-        serverPlayerEntity.setLocationAndAngles(d0, d1, d2, f1, f);
-        serverworld.getProfiler().endSection();
-        serverworld.getProfiler().startSection("placing");
-        double d7 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minX() + 16.0D);
-        double d4 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minZ() + 16.0D);
-        double d5 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxX() - 16.0D);
-        double d6 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxZ() - 16.0D);
-        d0 = MathHelper.clamp(d0, d7, d5);
-        d2 = MathHelper.clamp(d2, d4, d6);
-        serverPlayerEntity.setLocationAndAngles(d0, d1, d2, f1, f);
-        if (!frostteleporter.func_222268_a(serverPlayerEntity, f2)) {
-            frostteleporter.makePortal(serverPlayerEntity);
-            frostteleporter.func_222268_a(serverPlayerEntity, f2);
-        }
+        Entity e = tofuteleporter.placeEntity(serverPlayerEntity, serverworld, serverworld1, serverPlayerEntity.rotationYaw, spawnPortal -> {//Forge: Start vanilla logic
+            double d0 = serverPlayerEntity.getPosX();
+            double d1 = serverPlayerEntity.getPosY();
+            double d2 = serverPlayerEntity.getPosZ();
+            float f = serverPlayerEntity.rotationPitch;
+            float f1 = serverPlayerEntity.rotationYaw;
+            double d3 = 8.0D;
+            float f2 = f1;
+            serverworld.getProfiler().startSection("moving");
+            double moveFactor = serverworld.getDimension().getMovementFactor() / serverworld1.getDimension().getMovementFactor();
+            d0 *= moveFactor;
+            d2 *= moveFactor;
 
+            serverPlayerEntity.setLocationAndAngles(d0, d1, d2, f1, f);
+            serverworld.getProfiler().endSection();
+            serverworld.getProfiler().startSection("placing");
+            double d7 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minX() + 16.0D);
+            double d4 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minZ() + 16.0D);
+            double d5 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxX() - 16.0D);
+            double d6 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxZ() - 16.0D);
+            d0 = MathHelper.clamp(d0, d7, d5);
+            d2 = MathHelper.clamp(d2, d4, d6);
+            serverPlayerEntity.setLocationAndAngles(d0, d1, d2, f1, f);
+            if (spawnPortal && !tofuteleporter.placeInPortal(serverPlayerEntity, f2)) {
+                tofuteleporter.makePortal(serverPlayerEntity);
+                tofuteleporter.placeInPortal(serverPlayerEntity, f2);
+            }
 
-        serverworld.getProfiler().endSection();
-        serverPlayerEntity.setWorld(serverworld1);
-        serverworld1.func_217447_b(serverPlayerEntity);
-        serverPlayerEntity.connection.setPlayerLocation(serverPlayerEntity.getPosX(), serverPlayerEntity.getPosY(), serverPlayerEntity.getPosZ(), f1, f);
+            serverworld.getProfiler().endSection();
+            serverPlayerEntity.setWorld(serverworld1);
+            serverworld1.func_217447_b(serverPlayerEntity);
+            serverPlayerEntity.connection.setPlayerLocation(serverPlayerEntity.getPosX(), serverPlayerEntity.getPosY(), serverPlayerEntity.getPosZ(), f1, f);
+            return serverPlayerEntity;//forge: this is part of the ITeleporter patch
+        });//Forge: End vanilla logic
+        if (e != serverPlayerEntity)
+            throw new java.lang.IllegalArgumentException(String.format("Teleporter %s returned not the player entity but instead %s, expected PlayerEntity %s", tofuteleporter, e, this));
         serverPlayerEntity.interactionManager.setWorld(serverworld1);
         serverPlayerEntity.connection.sendPacket(new SPlayerAbilitiesPacket(serverPlayerEntity.abilities));
         playerlist.sendWorldInfo(serverPlayerEntity, serverworld1);
@@ -236,8 +243,7 @@ public class TofuPortalBlock extends Block {
         serverPlayerEntity.lastFoodLevel = -1;
         net.minecraftforge.fml.hooks.BasicEventHooks.firePlayerChangedDimensionEvent(serverPlayerEntity, dimensiontype, destination);
         return serverPlayerEntity;
-*/
-        return null;
+
     }
 
     @Nullable
@@ -249,7 +255,7 @@ public class TofuPortalBlock extends Block {
             ServerWorld serverworld = minecraftserver.getWorld(dimensiontype);
             ServerWorld serverworld1 = minecraftserver.getWorld(destination);
 
-            TofuWorldTeleporter frostteleporter = new TofuWorldTeleporter(serverworld1);
+            TofuWorldTeleporter tofuteleporter = new TofuWorldTeleporter(serverworld1);
             entity.dimension = destination;
             entity.detach();
             entity.world.getProfiler().startSection("reposition");
@@ -276,7 +282,7 @@ public class TofuPortalBlock extends Block {
             Entity entity2 = entity.getType().create(serverworld1);
             if (entity2 != null) {
                 entity2.copyDataFromOld(entity);
-                frostteleporter.func_222268_a(entity2, entity2.rotationYaw);
+                tofuteleporter.placeInPortal(entity2, entity2.rotationYaw);
                 entity2.setMotion(vec3d);
                 serverworld1.func_217460_e(entity2);
                 entity.remove();

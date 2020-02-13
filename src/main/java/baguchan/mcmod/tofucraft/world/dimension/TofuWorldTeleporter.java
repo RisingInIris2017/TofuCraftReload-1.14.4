@@ -35,7 +35,7 @@ public class TofuWorldTeleporter extends Teleporter {
     }
 
 
-    public boolean func_222268_a(Entity entity, float rotationYaw) {
+    public boolean placeInPortal(Entity entity, float rotationYaw) {
         ColumnPos columnpos = new ColumnPos(entity.getPosition());
 
         double distance = -1.0D;

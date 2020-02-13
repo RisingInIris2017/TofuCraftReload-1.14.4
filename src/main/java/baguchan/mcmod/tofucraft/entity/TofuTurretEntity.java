@@ -81,7 +81,7 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
     }
 
     @Override
-    public boolean func_225503_b_(float p_225503_1_, float p_225503_2_) {
+    public boolean onLivingFall(float p_225503_1_, float p_225503_2_) {
         return false;
     }
 

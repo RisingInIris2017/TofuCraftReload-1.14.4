@@ -169,7 +169,7 @@ public class TofuWorldChunkGenerator extends NoiseChunkGenerator<TofuWorldChunkG
         double d3 = 4.277574920654297D;
         int i = -10;
         int j = 3;
-        this.func_222546_a(noiseColumn, noiseX, noiseZ, (double) 684.412F, (double) 684.412F, 8.555149841308594D, 4.277574920654297D, 3, -10);
+        this.calcNoiseColumn(noiseColumn, noiseX, noiseZ, (double) 684.412F, (double) 684.412F, 8.555149841308594D, 4.277574920654297D, 3, -10);
     }
 
     @Override

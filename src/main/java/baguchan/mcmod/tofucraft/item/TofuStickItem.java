@@ -23,7 +23,9 @@ public class TofuStickItem extends Item {
                 if (!context.getPlayer().isCreative()) {
                     context.getItem().shrink(1);
                 }
+                return ActionResultType.SUCCESS;
             }
+
         }
         return super.onItemUse(context);
     }

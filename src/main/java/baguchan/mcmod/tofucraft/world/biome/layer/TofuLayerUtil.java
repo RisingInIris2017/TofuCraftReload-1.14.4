@@ -1,5 +1,7 @@
 package baguchan.mcmod.tofucraft.world.biome.layer;
 
+import baguchan.mcmod.tofucraft.init.TofuBiomes;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.gen.IExtendedNoiseRandom;
 import net.minecraft.world.gen.LazyAreaLayerContext;
@@ -26,7 +28,7 @@ public class TofuLayerUtil {
     }
 
     public static <T extends IArea, C extends IExtendedNoiseRandom<T>> IAreaFactory<T> buildTofuProcedure(WorldType worldTypeIn, OverworldGenSettings settings, LongFunction<C> contextFactory) {
-        IAreaFactory<T> iareafactory = TofuLayer.INSTANCE.apply(contextFactory.apply(1L));
+        IAreaFactory<T> iareafactory = IslandLayer.INSTANCE.apply(contextFactory.apply(1L));
         iareafactory = ZoomLayer.FUZZY.apply(contextFactory.apply(2000L), iareafactory);
         iareafactory = AddIslandLayer.INSTANCE.apply(contextFactory.apply(1L), iareafactory);
         iareafactory = ZoomLayer.NORMAL.apply(contextFactory.apply(2001L), iareafactory);
@@ -78,7 +80,7 @@ public class TofuLayerUtil {
 
     private static <T extends IArea, C extends IExtendedNoiseRandom<T>> IAreaFactory<T> getBiomeLayer(WorldType worldType, IAreaFactory<T> parentLayer, OverworldGenSettings settings, LongFunction<C> contextFactory) {
 
-        parentLayer = (new TofuBiomeLayer(worldType, settings)).apply(contextFactory.apply(200L), parentLayer);
+        parentLayer = (new TofuBiomeLayer(worldType, settings.getBiomeId())).apply(contextFactory.apply(200L), parentLayer);
         parentLayer = LayerUtil.repeat(1000L, ZoomLayer.NORMAL, parentLayer, 2, contextFactory);
         parentLayer = EdgeBiomeLayer.INSTANCE.apply(contextFactory.apply(1000L), parentLayer);
         return parentLayer;
@@ -96,5 +98,9 @@ public class TofuLayerUtil {
         net.minecraftforge.event.terraingen.WorldTypeEvent.BiomeSize event = new net.minecraftforge.event.terraingen.WorldTypeEvent.BiomeSize(worldType, original);
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
         return event.getNewSize();
+    }
+
+    protected static boolean isRiver(int biomeIn) {
+        return biomeIn == Registry.BIOME.getId(TofuBiomes.TOFU_RIVER);
     }
 }

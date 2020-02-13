@@ -65,7 +65,7 @@ public class TofuVillageStructure extends Structure<NoFeatureConfig> {
     }
 
     private boolean isValid(ChunkGenerator<?> chunkGen, BlockPos pos, BiomeManager p_225558_1_) {
-        return chunkGen.hasStructure(p_225558_1_.func_226836_a_(pos), TofuFeatures.TOFUVILLAGE);
+        return chunkGen.hasStructure(p_225558_1_.getBiome(pos), TofuFeatures.TOFUVILLAGE);
     }
 
     @Override

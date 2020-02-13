@@ -196,7 +196,7 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
         return (this.prevClientSideShootingAnimation + (this.clientSideShootingAnimation - this.prevClientSideShootingAnimation) * p_189795_1_) / 6.0F;
     }
 
-    public boolean func_225503_b_(float p_225503_1_, float p_225503_2_) {
+    public boolean onLivingFall(float p_225503_1_, float p_225503_2_) {
         return false;
     }
 

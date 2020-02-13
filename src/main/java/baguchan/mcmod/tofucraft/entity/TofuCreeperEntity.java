@@ -67,12 +67,12 @@ public class TofuCreeperEntity extends MonsterEntity implements IChargeableMob {
         return this.getAttackTarget() == null ? 3 : 3 + (int) (this.getHealth() - 1.0F);
     }
 
-    public boolean func_225503_b_(float p_225503_1_, float p_225503_2_) {
+    public boolean onLivingFall(float p_225503_1_, float p_225503_2_) {
         this.timeSinceIgnited = (int) ((float) this.timeSinceIgnited + p_225503_1_ * 1.5F);
         if (this.timeSinceIgnited > this.fuseTime - 5) {
             this.timeSinceIgnited = this.fuseTime - 5;
         }
-        return super.func_225503_b_(p_225503_1_, p_225503_2_);
+        return super.onLivingFall(p_225503_1_, p_225503_2_);
     }
 
 

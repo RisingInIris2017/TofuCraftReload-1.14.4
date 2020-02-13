@@ -8,13 +8,12 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.provider.BiomeProviderType;
-import net.minecraft.world.biome.provider.OverworldBiomeProvider;
 import net.minecraft.world.biome.provider.OverworldBiomeProviderSettings;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.gen.*;
+import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -27,20 +26,9 @@ public class TofuWorldDimension extends Dimension {
 
     @Override
     public ChunkGenerator<?> createChunkGenerator() {
-
-    /*    TofuWorldChunkGenerator.Config tofusettings = TofuWorldChunkGenerator.Config.createDefault();
-
-        BiomeProvider biomeProvider = new TofuWorldBiomeProvider(this.world,new OverworldBiomeProviderSettings(this.world.getWorldInfo()));
-
-              return new TofuWorldChunkGenerator(this.world, biomeProvider, TofuWorldChunkGenerator.Config.createDefault());
-*/
+        return new TofuWorldChunkGenerator(this.world, new TofuWorldBiomeProvider(this.world, new OverworldBiomeProviderSettings(this.world.getWorldInfo())), TofuWorldChunkGenerator.Config.createDefault());
 
         //Still WIP
-        ChunkGeneratorType<OverworldGenSettings, OverworldChunkGenerator> chunkgeneratortype4 = ChunkGeneratorType.SURFACE;
-        OverworldGenSettings overworldgensettings = chunkgeneratortype4.createSettings();
-        BiomeProviderType<OverworldBiomeProviderSettings, OverworldBiomeProvider> biomeprovidertype1 = BiomeProviderType.VANILLA_LAYERED;
-        OverworldBiomeProviderSettings overworldbiomeprovidersettings = biomeprovidertype1.func_226840_a_(this.world.getWorldInfo()).setGeneratorSettings(overworldgensettings);
-        return chunkgeneratortype4.create(this.world, biomeprovidertype1.create(overworldbiomeprovidersettings), overworldgensettings);
     }
 
     /**

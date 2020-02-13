@@ -12,7 +12,7 @@ import java.util.Random;
 public class ZundaTofuTree extends Tree {
     @Nullable
     @Override
-    protected ConfiguredFeature<TreeFeatureConfig, ?> func_225546_b_(Random p_225546_1_, boolean p_225546_2_) {
-        return Feature.NORMAL_TREE.func_225566_b_(DefaultTofuBiomeFeature.tofuZundaTree);
+    protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random p_225546_1_, boolean p_225546_2_) {
+        return Feature.NORMAL_TREE.withConfiguration(DefaultTofuBiomeFeature.tofuZundaTree);
     }
 }
