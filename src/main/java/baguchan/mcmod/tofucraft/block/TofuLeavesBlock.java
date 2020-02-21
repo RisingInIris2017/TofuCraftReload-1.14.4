@@ -35,7 +35,7 @@ public class TofuLeavesBlock extends LeavesBlock {
         return state.get(DISTANCE) == 7 && !state.get(PERSISTENT);
     }
 
-    public void randomTick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
         if (!state.get(PERSISTENT) && state.get(DISTANCE) == 7) {
             spawnDrops(state, worldIn, pos);
             worldIn.removeBlock(pos, false);

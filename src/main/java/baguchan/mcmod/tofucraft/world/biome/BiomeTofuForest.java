@@ -13,7 +13,7 @@ public class BiomeTofuForest extends BiomeTofuBase {
     public BiomeTofuForest() {
         super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, TofuSurfaceBuilder.TOFUDEFAULT_CONFIG).precipitation(RainType.RAIN).category(Category.FOREST).depth(0.15F).scale(0.25F).temperature(0.7F).downfall(0.8F).waterColor(0xc7d8e8).waterFogColor(0xa7c2ff).parent(null));
         this.addStructure(TofuFeatures.TOFUCASTLE.withConfiguration(new NoFeatureConfig()));
-        //DefaultTofuBiomeFeature.addManyTofuFlowers(this);
+        DefaultTofuBiomeFeature.addTofuFlowers(this);
         DefaultTofuBiomeFeature.addTofuForestTrees(this);
         /*DefaultTofuBiomeFeature.addLeeks(this);*/
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(TofuEntitys.TOFUCOW, 10, 4, 4));

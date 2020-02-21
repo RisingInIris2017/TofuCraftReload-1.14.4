@@ -1,22 +1,13 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "textures": {
-      "top": "tofucraft:blocks/blocktofumetal",
-      "bottom": "#top",
-      "side": "#top",
-      "all": "#top"
-    }
-  },
   "variants": {
     "type=bottom": {
-      "model": "block/slab"
+      "model": "tofucraft:block/tofuslab_metal"
     },
     "type=top": {
-      "model": "block/slab_top"
+      "model": "tofucraft:block/tofuslab_metal_top"
     },
     "type=double": {
-      "model": "block/cube_all"
+      "model": "tofucraft:block/blocktofumetal"
     }
   }
 }

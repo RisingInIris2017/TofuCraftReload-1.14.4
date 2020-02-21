@@ -1,80 +1,28 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "block/farmland"
-  },
   "variants": {
     "moisture=0": {
-      "model": "block/farmland",
-      "textures": {
-        "particle": "tofucraft:blocks/blocktofumomen",
-        "dirt": "tofucraft:blocks/blocktofumomen",
-        "top": "tofucraft:blocks/tofufarmland_dry"
-      }
+      "model": "tofucraft:block/tofu_farmland"
     },
     "moisture=1": {
-      "model": "block/farmland",
-      "textures": {
-        "particle": "tofucraft:blocks/blocktofumomen",
-        "dirt": "tofucraft:blocks/blocktofumomen",
-        "top": "tofucraft:blocks/tofufarmland_dry"
-      }
+      "model": "tofucraft:block/tofu_farmland"
     },
     "moisture=2": {
-      "model": "block/farmland",
-      "textures": {
-        "particle": "tofucraft:blocks/blocktofumomen",
-        "dirt": "tofucraft:blocks/blocktofumomen",
-        "top": "tofucraft:blocks/tofufarmland_dry"
-      }
+      "model": "tofucraft:block/tofu_farmland"
     },
     "moisture=3": {
-      "model": "block/farmland",
-      "textures": {
-        "particle": "tofucraft:blocks/blocktofumomen",
-        "dirt": "tofucraft:blocks/blocktofumomen",
-        "top": "tofucraft:blocks/tofufarmland_dry"
-      }
+      "model": "tofucraft:block/tofu_farmland"
     },
     "moisture=4": {
-      "model": "block/farmland",
-      "textures": {
-        "particle": "tofucraft:blocks/blocktofumomen",
-        "dirt": "tofucraft:blocks/blocktofumomen",
-        "top": "tofucraft:blocks/tofufarmland_dry"
-      }
+      "model": "tofucraft:block/tofu_farmland"
     },
     "moisture=5": {
-      "model": "block/farmland",
-      "textures": {
-        "particle": "tofucraft:blocks/blocktofumomen",
-        "dirt": "tofucraft:blocks/blocktofumomen",
-        "top": "tofucraft:blocks/tofufarmland_dry"
-      }
+      "model": "tofucraft:block/tofu_farmland"
     },
     "moisture=6": {
-      "model": "block/farmland",
-      "textures": {
-        "particle": "tofucraft:blocks/blocktofumomen",
-        "dirt": "tofucraft:blocks/blocktofumomen",
-        "top": "tofucraft:blocks/tofufarmland_dry"
-      }
+      "model": "tofucraft:block/tofu_farmland"
     },
     "moisture=7": {
-      "model": "block/farmland",
-      "textures": {
-        "particle": "tofucraft:blocks/blocktofumomen",
-        "dirt": "tofucraft:blocks/blocktofumomen",
-        "top": "tofucraft:blocks/tofufarmland_wet"
-      }
-    },
-    "inventory": {
-      "model": "block/farmland",
-      "textures": {
-        "particle": "tofucraft:blocks/blocktofumomen",
-        "dirt": "tofucraft:blocks/blocktofumomen",
-        "top": "tofucraft:blocks/tofufarmland_dry"
-      }
+      "model": "tofucraft:block/tofu_farmland_wet"
     }
   }
 }
