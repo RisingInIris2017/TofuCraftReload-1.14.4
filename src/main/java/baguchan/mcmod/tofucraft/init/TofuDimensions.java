@@ -2,6 +2,8 @@ package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.world.dimension.TofuWorldDimension;
+import io.netty.buffer.Unpooled;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.Dimension;
@@ -29,13 +31,13 @@ public class TofuDimensions {
 
     @SubscribeEvent
     public static void registerDimensions(RegisterDimensionsEvent event) {
-        DimensionManager.registerDimension(new ResourceLocation(TofuCraftCore.MODID, "tofuworld"), TOFUWORLD, null, true);
+
     }
 
     @SubscribeEvent
     public static void register(RegistryEvent.Register<ModDimension> registry) {
         registry.getRegistry().register(TOFUWORLD);
-
+        DimensionManager.registerDimension(new ResourceLocation(TofuCraftCore.MODID, "tofuworld"), TOFUWORLD, new PacketBuffer(Unpooled.buffer()), true);
     }
 
 }
