@@ -1,218 +1,207 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "textures": {
-      "top": "tofucraft:blocks/blocktofumetal",
-      "bottom": "#top",
-      "side": "#top"
-    }
-  },
   "variants": {
-    "inventory": {
-      "model": "block/stairs"
-    },
     "facing=east,half=bottom,shape=straight": {
-      "model": "block/stairs"
+      "model": "tofucraft:block/tofustair_metal"
     },
     "facing=west,half=bottom,shape=straight": {
-      "model": "block/stairs",
+      "model": "tofucraft:block/tofustair_metal",
       "y": 180,
       "uvlock": true
     },
     "facing=south,half=bottom,shape=straight": {
-      "model": "block/stairs",
+      "model": "tofucraft:block/tofustair_metal",
       "y": 90,
       "uvlock": true
     },
     "facing=north,half=bottom,shape=straight": {
-      "model": "block/stairs",
+      "model": "tofucraft:block/tofustair_metal",
       "y": 270,
       "uvlock": true
     },
     "facing=east,half=bottom,shape=outer_right": {
-      "model": "block/outer_stairs"
+      "model": "tofucraft:block/outer_tofustair_metal"
     },
     "facing=west,half=bottom,shape=outer_right": {
-      "model": "block/outer_stairs",
+      "model": "tofucraft:block/outer_tofustair_metal",
       "y": 180,
       "uvlock": true
     },
     "facing=south,half=bottom,shape=outer_right": {
-      "model": "block/outer_stairs",
+      "model": "tofucraft:block/outer_tofustair_metal",
       "y": 90,
       "uvlock": true
     },
     "facing=north,half=bottom,shape=outer_right": {
-      "model": "block/outer_stairs",
+      "model": "tofucraft:block/outer_tofustair_metal",
       "y": 270,
       "uvlock": true
     },
     "facing=east,half=bottom,shape=outer_left": {
-      "model": "block/outer_stairs",
+      "model": "tofucraft:block/outer_tofustair_metal",
       "y": 270,
       "uvlock": true
     },
     "facing=west,half=bottom,shape=outer_left": {
-      "model": "block/outer_stairs",
+      "model": "tofucraft:block/outer_tofustair_metal",
       "y": 90,
       "uvlock": true
     },
     "facing=south,half=bottom,shape=outer_left": {
-      "model": "block/outer_stairs"
+      "model": "tofucraft:block/outer_tofustair_metal"
     },
     "facing=north,half=bottom,shape=outer_left": {
-      "model": "block/outer_stairs",
+      "model": "tofucraft:block/outer_tofustair_metal",
       "y": 180,
       "uvlock": true
     },
     "facing=east,half=bottom,shape=inner_right": {
-      "model": "block/inner_stairs"
+      "model": "tofucraft:block/inner_tofustair_metal"
     },
     "facing=west,half=bottom,shape=inner_right": {
-      "model": "block/inner_stairs",
+      "model": "tofucraft:block/inner_tofustair_metal",
       "y": 180,
       "uvlock": true
     },
     "facing=south,half=bottom,shape=inner_right": {
-      "model": "block/inner_stairs",
+      "model": "tofucraft:block/inner_tofustair_metal",
       "y": 90,
       "uvlock": true
     },
     "facing=north,half=bottom,shape=inner_right": {
-      "model": "block/inner_stairs",
+      "model": "tofucraft:block/inner_tofustair_metal",
       "y": 270,
       "uvlock": true
     },
     "facing=east,half=bottom,shape=inner_left": {
-      "model": "block/inner_stairs",
+      "model": "tofucraft:block/inner_tofustair_metal",
       "y": 270,
       "uvlock": true
     },
     "facing=west,half=bottom,shape=inner_left": {
-      "model": "block/inner_stairs",
+      "model": "tofucraft:block/inner_tofustair_metal",
       "y": 90,
       "uvlock": true
     },
     "facing=south,half=bottom,shape=inner_left": {
-      "model": "block/inner_stairs"
+      "model": "tofucraft:block/inner_tofustair_metal"
     },
     "facing=north,half=bottom,shape=inner_left": {
-      "model": "block/inner_stairs",
+      "model": "tofucraft:block/inner_tofustair_metal",
       "y": 180,
       "uvlock": true
     },
     "facing=east,half=top,shape=straight": {
-      "model": "block/stairs",
+      "model": "tofucraft:block/tofustair_metal",
       "x": 180,
       "uvlock": true
     },
     "facing=west,half=top,shape=straight": {
-      "model": "block/stairs",
+      "model": "tofucraft:block/tofustair_metal",
       "x": 180,
       "y": 180,
       "uvlock": true
     },
     "facing=south,half=top,shape=straight": {
-      "model": "block/stairs",
+      "model": "tofucraft:block/tofustair_metal",
       "x": 180,
       "y": 90,
       "uvlock": true
     },
     "facing=north,half=top,shape=straight": {
-      "model": "block/stairs",
+      "model": "tofucraft:block/tofustair_metal",
       "x": 180,
       "y": 270,
       "uvlock": true
     },
     "facing=east,half=top,shape=outer_right": {
-      "model": "block/outer_stairs",
+      "model": "tofucraft:block/outer_tofustair_metal",
       "x": 180,
       "uvlock": true
     },
     "facing=west,half=top,shape=outer_right": {
-      "model": "block/outer_stairs",
+      "model": "tofucraft:block/outer_tofustair_metal",
       "x": 180,
       "y": 180,
       "uvlock": true
     },
     "facing=south,half=top,shape=outer_right": {
-      "model": "block/outer_stairs",
+      "model": "tofucraft:block/outer_tofustair_metal",
       "x": 180,
       "y": 90,
       "uvlock": true
     },
     "facing=north,half=top,shape=outer_right": {
-      "model": "block/outer_stairs",
+      "model": "tofucraft:block/outer_tofustair_metal",
       "x": 180,
       "y": 270,
       "uvlock": true
     },
     "facing=east,half=top,shape=outer_left": {
-      "model": "block/outer_stairs",
+      "model": "tofucraft:block/outer_tofustair_metal",
       "x": 180,
       "y": 90,
       "uvlock": true
     },
     "facing=west,half=top,shape=outer_left": {
-      "model": "block/outer_stairs",
+      "model": "tofucraft:block/outer_tofustair_metal",
       "x": 180,
       "y": 270,
       "uvlock": true
     },
     "facing=south,half=top,shape=outer_left": {
-      "model": "block/outer_stairs",
+      "model": "tofucraft:block/outer_tofustair_metal",
       "x": 180,
       "y": 180,
       "uvlock": true
     },
     "facing=north,half=top,shape=outer_left": {
-      "model": "block/outer_stairs",
+      "model": "tofucraft:block/outer_tofustair_metal",
       "x": 180,
       "uvlock": true
     },
     "facing=east,half=top,shape=inner_right": {
-      "model": "block/inner_stairs",
+      "model": "tofucraft:block/inner_tofustair_metal",
       "x": 180,
       "uvlock": true
     },
     "facing=west,half=top,shape=inner_right": {
-      "model": "block/inner_stairs",
+      "model": "tofucraft:block/inner_tofustair_metal",
       "x": 180,
       "y": 180,
       "uvlock": true
     },
     "facing=south,half=top,shape=inner_right": {
-      "model": "block/inner_stairs",
+      "model": "tofucraft:block/inner_tofustair_metal",
       "x": 180,
       "y": 90,
       "uvlock": true
     },
     "facing=north,half=top,shape=inner_right": {
-      "model": "block/inner_stairs",
+      "model": "tofucraft:block/inner_tofustair_metal",
       "x": 180,
       "y": 270,
       "uvlock": true
     },
     "facing=east,half=top,shape=inner_left": {
-      "model": "block/inner_stairs",
+      "model": "tofucraft:block/inner_tofustair_metal",
       "x": 180,
       "y": 90,
       "uvlock": true
     },
     "facing=west,half=top,shape=inner_left": {
-      "model": "block/inner_stairs",
+      "model": "tofucraft:block/inner_tofustair_metal",
       "x": 180,
       "y": 270,
       "uvlock": true
     },
     "facing=south,half=top,shape=inner_left": {
-      "model": "block/inner_stairs",
+      "model": "tofucraft:block/inner_tofustair_metal",
       "x": 180,
       "y": 180,
       "uvlock": true
     },
     "facing=north,half=top,shape=inner_left": {
-      "model": "block/inner_stairs",
+      "model": "tofucraft:block/inner_tofustair_metal",
       "x": 180,
       "uvlock": true
     }

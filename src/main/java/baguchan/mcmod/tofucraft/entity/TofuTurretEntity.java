@@ -23,7 +23,7 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
 
     public TofuTurretEntity(EntityType<? extends TofuTurretEntity> p_i48553_1_, World p_i48553_2_) {
         super(p_i48553_1_, p_i48553_2_);
-        this.moveController = new FlyingStrafeMovementController(this, 20, true);
+        this.moveController = new FlyingStrafeMovementController(this, 20, false);
     }
 
     protected void registerGoals() {

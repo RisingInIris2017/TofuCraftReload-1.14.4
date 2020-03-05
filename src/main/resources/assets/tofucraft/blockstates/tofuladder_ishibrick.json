@@ -1,55 +1,26 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "minecraft:block/ladder",
-    "transform": "forge:default-item"
-  },
   "variants": {
     "facing=north": [
       {
-        "model": "block/ladder",
-        "textures": {
-          "particle": "tofucraft:blocks/tofuladder_ishibrick",
-          "texture": "tofucraft:blocks/tofuladder_ishibrick"
-        }
+        "model": "tofucraft:block/tofuladder_ishibrick"
       }
     ],
     "facing=east": [
       {
-        "model": "block/ladder",
-        "textures": {
-          "particle": "tofucraft:blocks/tofuladder_ishibrick",
-          "texture": "tofucraft:blocks/tofuladder_ishibrick"
-        },
+        "model": "tofucraft:block/tofuladder_ishibrick",
         "y": 90
       }
     ],
     "facing=west": [
       {
-        "model": "block/ladder",
-        "textures": {
-          "particle": "tofucraft:blocks/tofuladder_ishibrick",
-          "texture": "tofucraft:blocks/tofuladder_ishibrick"
-        },
+        "model": "tofucraft:block/tofuladder_ishibrick",
         "y": 270
       }
     ],
     "facing=south": [
       {
-        "model": "block/ladder",
-        "textures": {
-          "particle": "tofucraft:blocks/tofuladder_ishibrick",
-          "texture": "tofucraft:blocks/tofuladder_ishibrick"
-        },
+        "model": "tofucraft:block/tofuladder_ishibrick",
         "y": 180
-      }
-    ],
-    "inventory": [
-      {
-        "model": "builtin/generated",
-        "textures": {
-          "layer0": "tofucraft:blocks/tofuladder_ishibrick"
-        }
       }
     ]
   }

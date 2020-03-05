@@ -1,64 +1,34 @@
 {
-   "forge_marker" : 1,
-   "defaults" : {
-      "textures" : {
-         "particle" : "tofucraft:blocks/barrel/barrel_bottom",
-         "up" : "tofucraft:blocks/barrel/barrel_top",
-         "down" : "tofucraft:blocks/barrel/barrel_bottom",
-         "west" : "tofucraft:blocks/barrel/barrelmiso_side",
-         "north" : "tofucraft:blocks/barrel/barrelmiso_side",
-         "east" : "tofucraft:blocks/barrel/barrelmiso_side",
-         "south" : "tofucraft:blocks/barrel/barrelmiso_side"
-      }
-   },
    "variants" : {
       "ferm=0" : {
-         "model": "block/cube_all"
+         "model": "tofucraft:block/barrelmiso"
       },
       "ferm=1" : {
-         "model": "block/cube_all"
+         "model": "tofucraft:block/barrelmiso"
       },
       "ferm=2" : {
-         "model": "block/cube_all"
+         "model": "tofucraft:block/barrelmiso"
       },
       "ferm=3" : {
-         "model": "block/cube_all"
+         "model": "tofucraft:block/barrelmiso"
       },
       "ferm=4" : {
-         "model": "block/cube_all"
+         "model": "tofucraft:block/barrelmiso"
       },
       "ferm=5" : {
-         "model": "block/cube_all"
+         "model": "tofucraft:block/barrelmiso"
       },
       "ferm=6" : {
-         "model": "block/cube_all"
+         "model": "tofucraft:block/barrelmiso"
       },
       "ferm=7" : {
-         "model": "block/cube_all",
-         "textures" : {
-            "particle" : "tofucraft:blocks/barrel/barrel_bottom_fin",
-            "up" : "tofucraft:blocks/barrel/barrel_top_fin",
-            "down" : "tofucraft:blocks/barrel/barrel_bottom_fin",
-            "west" : "tofucraft:blocks/barrel/barrelmiso_side_fin",
-            "north" : "tofucraft:blocks/barrel/barrelmiso_side_fin",
-            "east" : "tofucraft:blocks/barrel/barrelmiso_side_fin",
-            "south" : "tofucraft:blocks/barrel/barrelmiso_side_fin"
-         }
+         "model": "tofucraft:block/barrelmiso_fin"
       },
       "ferm=8" : {
-         "model": "block/cube_all",
-         "textures" : {
-            "particle" : "tofucraft:blocks/barrel/barrel_bottom_fin",
-            "up" : "tofucraft:blocks/barrel/barrel_top_fin",
-            "down" : "tofucraft:blocks/barrel/barrel_bottom_fin",
-            "west" : "tofucraft:blocks/barrel/barrelmiso_side_fin",
-            "north" : "tofucraft:blocks/barrel/barrelmiso_side_fin",
-            "east" : "tofucraft:blocks/barrel/barrelmiso_side_fin",
-            "south" : "tofucraft:blocks/barrel/barrelmiso_side_fin"
-         }
+         "model": "tofucraft:block/barrelmiso_fin"
       },
       "inventory" : {
-         "model": "block/cube_all"
+         "model": "tofucraft:block/barrelmiso"
       }
    }
 }

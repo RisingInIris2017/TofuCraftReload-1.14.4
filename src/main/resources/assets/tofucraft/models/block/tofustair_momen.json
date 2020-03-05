@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "tofucraft:blocks/blocktofumomen",
+    "top": "tofucraft:blocks/blocktofumomen",
+    "side": "tofucraft:blocks/blocktofumomen"
+  }
+}

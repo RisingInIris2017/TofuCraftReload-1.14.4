@@ -1,15 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "textures": {
-      "torch": "tofucraft:blocks/tofutorch_zunda",
-      "layer0": "#torch"
-    },
-    "transform": "forge:default-item"
-  },
   "variants": {
     "": {
-      "model": "block/torch"
+      "model": "tofucraft:block/tofutorch_zunda"
     }
   }
 }

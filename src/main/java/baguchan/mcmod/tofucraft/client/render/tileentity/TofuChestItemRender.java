@@ -6,13 +6,17 @@ import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class TofuChestItemRender extends ItemStackTileEntityRenderer {
     private final TofuChestTileEntity chest = new TofuChestTileEntity();
 
 
     @Override
     public void render(ItemStack itemStackIn, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        TileEntityRendererDispatcher.instance.renderNullable(chest, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
+        super.render(itemStackIn, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
+        TileEntityRendererDispatcher.instance.renderNullable(this.chest, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
     }
 }

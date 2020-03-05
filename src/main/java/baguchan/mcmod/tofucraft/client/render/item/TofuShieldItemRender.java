@@ -19,7 +19,7 @@ public class TofuShieldItemRender extends ItemStackTileEntityRenderer {
     private final static ResourceLocation METAL_TEXTURE = new ResourceLocation(TofuCraftCore.MODID, "textures/entity/tofumetal_shield.png");
 
 
-    private final ShieldModel modelShield = new ShieldModel(); // TODO model rockshroom
+    private final ShieldModel modelShield = new ShieldModel();
 
     @Override
     public void render(ItemStack itemStackIn, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {

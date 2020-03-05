@@ -1,19 +1,30 @@
 package baguchan.mcmod.tofucraft.client;
 
+import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.client.render.*;
+import baguchan.mcmod.tofucraft.client.render.tileentity.TofuBedBlockRenderer;
+import baguchan.mcmod.tofucraft.client.render.tileentity.TofuChestBlockRenderer;
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.init.TofuEntitys;
+import baguchan.mcmod.tofucraft.init.TofuTileEntitys;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.entity.FallingBlockRenderer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 @OnlyIn(Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = TofuCraftCore.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientRegistrar {
 
     public static void renderEntity() {
@@ -37,8 +48,8 @@ public class ClientRegistrar {
     }
 
     public static void renderTileEntity() {
-        //ClientRegistry.bindTileEntityRenderer(TofuTileEntitys.TOFUCHEST, TofuChestBlockRenderer::new);
-        //ClientRegistry.bindTileEntityRenderer(TofuTileEntitys.TOFUBED, TofuBedBlockRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(TofuTileEntitys.TOFUCHEST, TofuChestBlockRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(TofuTileEntitys.TOFUBED, TofuBedBlockRenderer::new);
     }
 
     public static void renderBlock() {
@@ -74,10 +85,16 @@ public class ClientRegistrar {
         RenderTypeLookup.setRenderLayer(TofuBlocks.TOFUBERRY, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(TofuBlocks.TOFUBERRYSTEM, RenderType.cutout());
 
-        RenderTypeLookup.setRenderLayer(TofuBlocks.TOFUDOOR_KINU, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(TofuBlocks.TOFUDOOR_MOMEN, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(TofuBlocks.TOFUDOOR_ISHI, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(TofuBlocks.TOFUDOOR_METAL, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TofuBlocks.TOFUDOOR_KINU, RenderType.cutoutMipped());
+        RenderTypeLookup.setRenderLayer(TofuBlocks.TOFUDOOR_MOMEN, RenderType.cutoutMipped());
+        RenderTypeLookup.setRenderLayer(TofuBlocks.TOFUDOOR_ISHI, RenderType.cutoutMipped());
+        RenderTypeLookup.setRenderLayer(TofuBlocks.TOFUDOOR_METAL, RenderType.cutoutMipped());
+
+        RenderTypeLookup.setRenderLayer(TofuBlocks.TOFULADDER_KINU, RenderType.cutoutMipped());
+        RenderTypeLookup.setRenderLayer(TofuBlocks.TOFULADDER_MOMEN, RenderType.cutoutMipped());
+        RenderTypeLookup.setRenderLayer(TofuBlocks.TOFULADDER_ISHI, RenderType.cutoutMipped());
+        RenderTypeLookup.setRenderLayer(TofuBlocks.TOFULADDER_ISHIBRICK, RenderType.cutoutMipped());
+        RenderTypeLookup.setRenderLayer(TofuBlocks.TOFULADDER_METAL, RenderType.cutoutMipped());
 
         RenderTypeLookup.setRenderLayer(TofuBlocks.TOFUPORTAL, RenderType.translucent());
     }
@@ -86,5 +103,19 @@ public class ClientRegistrar {
         ClientRegistrar.renderEntity();
         ClientRegistrar.renderTileEntity();
         ClientRegistrar.renderBlock();
+    }
+
+    @SubscribeEvent
+
+    public static void onTextureStitch(TextureStitchEvent.Pre event) {
+        if (event.getMap().getBasePath().equals(Atlases.CHEST_ATLAS)) {
+            event.addSprite(new ResourceLocation(TofuCraftCore.MODID, "entity/chest/tofuchest"));
+            event.addSprite(new ResourceLocation(TofuCraftCore.MODID, "entity/chest/tofuchest_left"));
+            event.addSprite(new ResourceLocation(TofuCraftCore.MODID, "entity/chest/tofuchest_right"));
+        }
+
+        if (event.getMap().getBasePath().equals(Atlases.BED_ATLAS)) {
+            event.addSprite(TofuBedBlockRenderer.TEXTURES);
+        }
     }
 }

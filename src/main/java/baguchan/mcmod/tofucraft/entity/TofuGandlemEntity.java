@@ -53,7 +53,7 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
 
     public TofuGandlemEntity(EntityType<? extends TofuGandlemEntity> type, World p_i48553_2_) {
         super(type, p_i48553_2_);
-        this.moveController = new FlyingStrafeMovementController(this, 15, true);
+        this.moveController = new FlyingStrafeMovementController(this, 15, false);
         this.experienceValue = 90;
     }
 

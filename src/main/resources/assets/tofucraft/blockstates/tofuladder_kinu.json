@@ -1,55 +1,26 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "minecraft:block/ladder",
-    "transform": "forge:default-item"
-  },
   "variants": {
     "facing=north": [
       {
-        "model": "block/ladder",
-        "textures": {
-          "particle": "tofucraft:blocks/tofuladder_kinu",
-          "texture": "tofucraft:blocks/tofuladder_kinu"
-        }
+        "model": "tofucraft:block/tofuladder_kinu"
       }
     ],
     "facing=east": [
       {
-        "model": "block/ladder",
-        "textures": {
-          "particle": "tofucraft:blocks/tofuladder_kinu",
-          "texture": "tofucraft:blocks/tofuladder_kinu"
-        },
+        "model": "tofucraft:block/tofuladder_kinu",
         "y": 90
       }
     ],
     "facing=west": [
       {
-        "model": "block/ladder",
-        "textures": {
-          "particle": "tofucraft:blocks/tofuladder_kinu",
-          "texture": "tofucraft:blocks/tofuladder_kinu"
-        },
+        "model": "tofucraft:block/tofuladder_kinu",
         "y": 270
       }
     ],
     "facing=south": [
       {
-        "model": "block/ladder",
-        "textures": {
-          "particle": "tofucraft:blocks/tofuladder_kinu",
-          "texture": "tofucraft:blocks/tofuladder_kinu"
-        },
+        "model": "tofucraft:block/tofuladder_kinu",
         "y": 180
-      }
-    ],
-    "inventory": [
-      {
-        "model": "builtin/generated",
-        "textures": {
-          "layer0": "tofucraft:blocks/tofuladder_kinu"
-        }
       }
     ]
   }

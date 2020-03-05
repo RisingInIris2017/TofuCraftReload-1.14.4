@@ -6,6 +6,7 @@ import baguchan.mcmod.tofucraft.tileentity.TofuBedTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Vector3f;
@@ -22,8 +23,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuBedBlockRenderer extends TileEntityRenderer<TofuBedTileEntity> {
-    private static final ResourceLocation TEXTURES = new ResourceLocation(TofuCraftCore.MODID, "textures/entity/tofubed.png");
-    public static final Material DEFAULT_TEXTURE = new Material(TEXTURES, new ResourceLocation(TofuCraftCore.MODID, "textures/entity/tofubed"));
+    public static final ResourceLocation TEXTURES = new ResourceLocation(TofuCraftCore.MODID, "entity/tofubed");
+    private static final Material DEFAULT_TEXTURE = new Material(Atlases.BED_ATLAS, new ResourceLocation(TofuCraftCore.MODID, "textures/entity/tofubed"));
 
     private final ModelRenderer field_228843_a_;
     private final ModelRenderer field_228844_c_;
