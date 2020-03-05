@@ -61,8 +61,10 @@ public class TofuBlock extends Block implements IGrowable {
     @Override
     public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
         if (this.getBlock() == TofuBlocks.KINUTOFU) {
-            super.onFallenUpon(worldIn, pos, entityIn, fallDistance * 0.75F);
-            worldIn.destroyBlock(pos, true);
+            super.onFallenUpon(worldIn, pos, entityIn, fallDistance * 0.65F);
+            if (entityIn.getType().getSize().height * entityIn.getType().getSize().width > 0.48F) {
+                worldIn.destroyBlock(pos, true);
+            }
         } else {
             super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
         }
