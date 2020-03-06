@@ -42,11 +42,11 @@ public class TofuLayerUtil {
         iareafactory = ZoomLayer.NORMAL.apply(contextFactory.apply(2002L), iareafactory);
         iareafactory = ZoomLayer.NORMAL.apply(contextFactory.apply(2003L), iareafactory);
         iareafactory = repeat(1000L, ZoomLayer.NORMAL, iareafactory, 0, contextFactory);
-        int i = 4;
+        int i = 5;
         int j = i;
 
         if (worldTypeIn == WorldType.LARGE_BIOMES) {
-            i = 6;
+            i = 7;
         }
 
         i = getModdedBiomeSize(worldTypeIn, i);

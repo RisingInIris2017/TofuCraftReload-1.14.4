@@ -4,6 +4,7 @@ import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.world.biome.*;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -17,6 +18,7 @@ import static net.minecraftforge.common.BiomeDictionary.Type.MOUNTAIN;
 @Mod.EventBusSubscriber(modid = TofuCraftCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TofuBiomes {
     public static List<Biome> tofubiome = new ArrayList<Biome>();
+    public static List<BiomeManager.BiomeEntry> entryTofuBiome = new ArrayList<BiomeManager.BiomeEntry>();
 
     public static final Biome TOFU_FOREST = new BiomeTofuForest();
     public static final Biome TOFUZUNDA_SWAMP = new BiomeZundaTofuSwamp();
@@ -41,6 +43,13 @@ public class TofuBiomes {
         tofubiome.add(ZUNDATOFU_PLAIN);
         tofubiome.add(TOFU_MOUNTAIN);
         tofubiome.add(TOFU_RIVER);
+
+        entryTofuBiome.add(new BiomeManager.BiomeEntry(TOFU_FOREST, 10));
+        entryTofuBiome.add(new BiomeManager.BiomeEntry(TOFUZUNDA_SWAMP, 6));
+        entryTofuBiome.add(new BiomeManager.BiomeEntry(TOFU_PLAIN, 10));
+        entryTofuBiome.add(new BiomeManager.BiomeEntry(ZUNDATOFU_PLAIN, 8));
+        entryTofuBiome.add(new BiomeManager.BiomeEntry(TOFU_MOUNTAIN, 6));
+
 
         registerBiomeTypes();
     }

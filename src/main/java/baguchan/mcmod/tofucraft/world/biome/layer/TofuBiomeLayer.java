@@ -1,7 +1,6 @@
 package baguchan.mcmod.tofucraft.world.biome.layer;
 
 import baguchan.mcmod.tofucraft.init.TofuBiomes;
-import baguchan.mcmod.tofucraft.world.dimension.TofuWorldBiomeProvider;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biomes;
@@ -26,24 +25,7 @@ public class TofuBiomeLayer implements IC0Transformer {
     private static final int TAIGA = Registry.BIOME.getId(Biomes.TAIGA);
     private static final int SNOWY_TAIGA = Registry.BIOME.getId(Biomes.SNOWY_TAIGA);
     private final int field_227472_v_;
-    @SuppressWarnings("unchecked")
-    private java.util.List<net.minecraftforge.common.BiomeManager.BiomeEntry>[] biomes = new java.util.ArrayList[net.minecraftforge.common.BiomeManager.BiomeType.values().length];
-
     public TofuBiomeLayer(WorldType p_i225882_1_, int p_i225882_2_) {
-        for (net.minecraftforge.common.BiomeManager.BiomeType type : net.minecraftforge.common.BiomeManager.BiomeType.values()) {
-            com.google.common.collect.ImmutableList<net.minecraftforge.common.BiomeManager.BiomeEntry> biomesToAdd = net.minecraftforge.common.BiomeManager.getBiomes(type);
-            int idx = type.ordinal();
-
-            if (biomes[idx] == null)
-                biomes[idx] = new java.util.ArrayList<net.minecraftforge.common.BiomeManager.BiomeEntry>();
-            if (biomesToAdd != null) biomes[idx].addAll(biomesToAdd);
-        }
-
-        int desertIdx = net.minecraftforge.common.BiomeManager.BiomeType.DESERT.ordinal();
-
-        TofuWorldBiomeProvider.biomes.forEach((biome -> {
-            biomes[desertIdx].add(new net.minecraftforge.common.BiomeManager.BiomeEntry(biome, 10));
-        }));
 
         this.field_227472_v_ = p_i225882_2_;
     }
@@ -86,8 +68,9 @@ public class TofuBiomeLayer implements IC0Transformer {
     }
 
     protected net.minecraftforge.common.BiomeManager.BiomeEntry getWeightedBiomeEntry(net.minecraftforge.common.BiomeManager.BiomeType type, INoiseRandom context) {
-        java.util.List<net.minecraftforge.common.BiomeManager.BiomeEntry> biomeList = biomes[type.ordinal()];
-
-        return (net.minecraftforge.common.BiomeManager.BiomeEntry) net.minecraft.util.WeightedRandom.getRandomItem(biomeList, context.random(12 / 10) * 10);
+        java.util.List<net.minecraftforge.common.BiomeManager.BiomeEntry> biomeList = TofuBiomes.entryTofuBiome;
+        int totalWeight = net.minecraft.util.WeightedRandom.getTotalWeight(biomeList);
+        int weight = net.minecraftforge.common.BiomeManager.isTypeListModded(type) ? context.random(totalWeight) : context.random(totalWeight / 10) * 10;
+        return (net.minecraftforge.common.BiomeManager.BiomeEntry) net.minecraft.util.WeightedRandom.getRandomItem(biomeList, weight);
     }
 }
