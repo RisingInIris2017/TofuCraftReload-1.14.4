@@ -87,8 +87,7 @@ public class TofuBiomeLayer implements IC0Transformer {
 
     protected net.minecraftforge.common.BiomeManager.BiomeEntry getWeightedBiomeEntry(net.minecraftforge.common.BiomeManager.BiomeType type, INoiseRandom context) {
         java.util.List<net.minecraftforge.common.BiomeManager.BiomeEntry> biomeList = biomes[type.ordinal()];
-        int totalWeight = net.minecraft.util.WeightedRandom.getTotalWeight(biomeList);
-        int weight = net.minecraftforge.common.BiomeManager.isTypeListModded(type) ? context.random(totalWeight) : context.random(totalWeight / 10) * 10;
-        return (net.minecraftforge.common.BiomeManager.BiomeEntry) net.minecraft.util.WeightedRandom.getRandomItem(biomeList, weight);
+
+        return (net.minecraftforge.common.BiomeManager.BiomeEntry) net.minecraft.util.WeightedRandom.getRandomItem(biomeList, context.random(12 / 10) * 10);
     }
 }
