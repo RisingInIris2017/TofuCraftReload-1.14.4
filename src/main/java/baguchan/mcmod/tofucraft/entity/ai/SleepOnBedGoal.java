@@ -10,11 +10,11 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 
-public class GoToBedGoal extends MoveToBlockGoal {
+public class SleepOnBedGoal extends MoveToBlockGoal {
     private final CreatureEntity creature;
     private int sleepTick;
 
-    public GoToBedGoal(CreatureEntity housecreature, double speed) {
+    public SleepOnBedGoal(CreatureEntity housecreature, double speed) {
         super(housecreature, speed, 14);
         this.creature = housecreature;
     }
@@ -23,7 +23,7 @@ public class GoToBedGoal extends MoveToBlockGoal {
      * Returns whether the EntityAIBase should begin execution.
      */
     public boolean shouldExecute() {
-        return !this.creature.isBeingRidden() && this.creature.world.getDimension().isSurfaceWorld() && !this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && super.shouldExecute();
+        return !this.creature.isBeingRidden() && !this.creature.isSleeping() && this.creature.world.getDimension().isSurfaceWorld() && !this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && super.shouldExecute();
     }
 
     protected int getRunDelay(CreatureEntity creatureIn) {
@@ -32,16 +32,14 @@ public class GoToBedGoal extends MoveToBlockGoal {
 
     @Override
     public boolean shouldContinueExecuting() {
-        BlockPos blockpos = new BlockPos(destinationBlock.getX(), destinationBlock.getY(), destinationBlock.getZ());
-
-        return !this.creature.world.isDaytime() && (creature.getPosY() > (double) blockpos.getY() + 0.4D && blockpos.withinDistance(creature.getPositionVec(), 1.14D) && this.creature.isSleeping() && this.creature.getBedPosition().isPresent());
+        return !this.creature.isSleeping() && this.creature.getAttackTarget() == null;
     }
 
 
 
     public void resetTask() {
         super.resetTask();
-        this.creature.wakeUp();
+
     }
 
     /*

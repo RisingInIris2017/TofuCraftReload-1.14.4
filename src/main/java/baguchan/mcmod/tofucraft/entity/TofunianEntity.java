@@ -496,6 +496,9 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     }
 
     protected void registerGoals() {
+
+        //Sleep AI is still proglem because tofuworld's time line is breaking
+        //this.goalSelector.addGoal(0, new WakeUpGoal(this));
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D) {
             @Override
@@ -511,7 +514,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         });
         this.goalSelector.addGoal(2, new TradeWithPlayerGoal(this));
         this.goalSelector.addGoal(2, new LookAtCustomerGoal(this));
-        this.goalSelector.addGoal(3, new GoToBedGoal(this, 1.1D));
+        //this.goalSelector.addGoal(3, new SleepOnBedGoal(this, 1.1D));
         this.goalSelector.addGoal(4, new MoveToHomeGoal(this, 30D, 1.10D));
         this.goalSelector.addGoal(5, new TofunianLoveGoal(this, 0.85D));
         this.goalSelector.addGoal(6, new InterestJobBlockGoal(this, 1.0D));
