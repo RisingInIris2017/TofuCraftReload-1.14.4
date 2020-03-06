@@ -477,7 +477,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         }
 
         if (tryFind) {
-            int range = 20;
+            int range = 18;
 
             for (int x = -range; x <= range; x++) {
                 for (int y = -range / 2; y <= range / 2; y++) {
@@ -1008,7 +1008,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         public boolean shouldExecute() {
             BlockPos blockpos = this.tofunian.getTofunainHome();
             if (!this.tofunian.world.isDaytime() && this.tofunian.world.getDimension().isSurfaceWorld()) {
-                return blockpos != null && this.func_220846_a(blockpos, this.distance * 0.35F);
+                return blockpos != null && this.func_220846_a(blockpos, this.distance);
             } else {
                 return blockpos != null && this.func_220846_a(blockpos, this.distance);
             }
