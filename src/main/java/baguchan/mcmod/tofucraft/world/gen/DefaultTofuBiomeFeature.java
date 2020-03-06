@@ -55,7 +55,7 @@ public class DefaultTofuBiomeFeature {
     }
 
     public static void addTofuSwampZundaTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TofuFeatures.TOFUTREE.withConfiguration(tofutree).func_227228_a_(Placement.COUNT_EXTRA_HEIGHTMAP.func_227446_a_(new AtSurfaceWithExtraConfig(4, 0.1F, 1))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TofuFeatures.ZUNDATOFUTREE.withConfiguration(tofuZundaTree).func_227228_a_(Placement.COUNT_EXTRA_HEIGHTMAP.func_227446_a_(new AtSurfaceWithExtraConfig(4, 0.1F, 1))));
     }
 
     public static void addTofuBerry(Biome biomeIn) {
@@ -67,7 +67,7 @@ public class DefaultTofuBiomeFeature {
     }
 
     public static void addLeeks(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(LEEK).func_227228_a_(Placement.COUNT_HEIGHTMAP_32.func_227446_a_(new FrequencyConfig(7))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(LEEK).func_227228_a_(Placement.COUNT_HEIGHTMAP_32.func_227446_a_(new FrequencyConfig(2))));
     }
 
 

@@ -11,6 +11,9 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.ArrayList;
 import java.util.List;
 
+import static net.minecraftforge.common.BiomeDictionary.Type.HILLS;
+import static net.minecraftforge.common.BiomeDictionary.Type.MOUNTAIN;
+
 @Mod.EventBusSubscriber(modid = TofuCraftCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TofuBiomes {
     public static List<Biome> tofubiome = new ArrayList<Biome>();
@@ -43,7 +46,7 @@ public class TofuBiomes {
     }
 
     public static void registerBiomeTypes() {
-        BiomeDictionary.addTypes(TOFU_MOUNTAIN, BiomeDictionary.Type.MOUNTAIN);
+        BiomeDictionary.addTypes(TOFU_MOUNTAIN, MOUNTAIN, HILLS);
         BiomeDictionary.addTypes(TOFU_PLAIN, BiomeDictionary.Type.PLAINS);
         BiomeDictionary.addTypes(ZUNDATOFU_PLAIN, BiomeDictionary.Type.PLAINS);
         BiomeDictionary.addTypes(TOFU_FOREST, BiomeDictionary.Type.FOREST);

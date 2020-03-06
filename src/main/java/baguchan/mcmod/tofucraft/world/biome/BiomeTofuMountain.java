@@ -7,7 +7,7 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 
 public class BiomeTofuMountain extends BiomeTofuBase {
     public BiomeTofuMountain() {
-        super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, TofuSurfaceBuilder.TOFUDEFAULT_CONFIG).precipitation(RainType.RAIN).category(Category.PLAINS).depth(0.2F).scale(1.55F).temperature(0.8F).downfall(0.4F).waterColor(0xc7d8e8).waterFogColor(0xa7c2ff).parent(null));
+        super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, TofuSurfaceBuilder.TOFUDEFAULT_CONFIG).precipitation(RainType.RAIN).category(Category.EXTREME_HILLS).depth(0.2F).scale(1.55F).temperature(0.2F).downfall(0.4F).waterColor(0xc7d8e8).waterFogColor(0xa7c2ff).parent(null));
         DefaultTofuBiomeFeature.addTofuNormalTrees(this);
         DefaultTofuBiomeFeature.addTofuBerry(this);
     }

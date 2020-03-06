@@ -135,8 +135,12 @@ public class TofuCowEntity extends CowEntity {
                 this.setTofuCowType(Type.LEEK);
             }
         } else {
-            if (worldIn.getRandom().nextInt(8) == 0) {
-                this.setTofuCowType(Type.BROWN);
+            if (biome == TofuBiomes.ZUNDATOFU_PLAIN || biome == TofuBiomes.TOFUZUNDA_SWAMP) {
+                if (worldIn.getRandom().nextInt(8) == 0) {
+                    this.setTofuCowType(Type.NONE);
+                } else {
+                    this.setTofuCowType(Type.ZUNDA);
+                }
             }
         }
 
@@ -156,7 +160,7 @@ public class TofuCowEntity extends CowEntity {
     public static enum Type {
         NONE("none", Blocks.AIR.getDefaultState()),
         LEEK("leek", TofuBlocks.LEEK.getDefaultState()),
-        BROWN("brown", Blocks.BROWN_MUSHROOM.getDefaultState());
+        ZUNDA("zunda", Blocks.AIR.getDefaultState());
 
         private final String name;
         private final BlockState renderState;

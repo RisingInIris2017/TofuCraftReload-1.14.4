@@ -1,25 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "minecraft:block/cross",
-    "transform": "forge:default-item"
-  },
   "variants": {
-    "": [
-      {
-        "model": "block/cross",
-        "textures": {
-          "cross": "tofucraft:blocks/blockleek"
-        }
-      }
-    ],
-    "inventory": [
-      {
-        "model": "builtin/generated",
-        "textures": {
-          "layer0": "tofucraft:blocks/blockleek"
-        }
-      }
-    ]
+    "": {
+      "model": "tofucraft:block/blockleek"
+    }
   }
 }
