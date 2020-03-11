@@ -2,6 +2,8 @@ package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.entity.*;
+import baguchan.mcmod.tofucraft.entity.multipart.ZundamaEntity;
+import baguchan.mcmod.tofucraft.entity.multipart.ZunsyEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.BeamEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.TofuHomingForceEntity;
@@ -32,10 +34,12 @@ public class TofuEntitys {
     public static final EntityType<TofuSpiderEntity> TOFUSPIDER = EntityType.Builder.create(TofuSpiderEntity::new, TOFU_MONSTER).setShouldReceiveVelocityUpdates(true).size(1.2F, 0.7F).build(prefix("tofuspider"));
     public static final EntityType<TofuCreeperEntity> TOFUCREEPER = EntityType.Builder.create(TofuCreeperEntity::new, TOFU_MONSTER).setShouldReceiveVelocityUpdates(true).size(0.6F, 1.7F).build(prefix("tofueagle"));
 
-
     public static final EntityType<TofuTurretEntity> TOFUTURRET = EntityType.Builder.create(TofuTurretEntity::new, TOFU_MONSTER).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.5F).build(prefix("tofuturret"));
     public static final EntityType<TofuMindEntity> TOFUMIND = EntityType.Builder.create(TofuMindEntity::new, TOFU_MONSTER).setShouldReceiveVelocityUpdates(true).size(0.6F, 1.6F).build(prefix("tofumind"));
     public static final EntityType<TofuGandlemEntity> TOFUGANDLEM = EntityType.Builder.create(TofuGandlemEntity::new, TOFU_MONSTER).setShouldReceiveVelocityUpdates(true).size(0.6F, 2.05F).build(prefix("tofugandlem"));
+
+    public static final EntityType<ZunsyEntity> ZUNSY = EntityType.Builder.create(ZunsyEntity::new, EntityClassification.CREATURE).setShouldReceiveVelocityUpdates(true).size(0.6F, 0.6F).build(prefix("zunsy"));
+    public static final EntityType<ZundamaEntity> ZUNDAMA = EntityType.Builder.<ZundamaEntity>create(ZundamaEntity::new, EntityClassification.CREATURE).setShouldReceiveVelocityUpdates(true).disableSummoning().size(0.6F, 0.6F).build(prefix("zundama"));
 
 
     public static final EntityType<FukumameEntity> FUKUMAME = EntityType.Builder.<FukumameEntity>create(FukumameEntity::new, EntityClassification.MISC).setTrackingRange(4).setCustomClientFactory(FukumameEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(0.4F, 0.4F).build(prefix("fukumame"));
@@ -58,6 +62,10 @@ public class TofuEntitys {
         event.getRegistry().register(TOFUTURRET.setRegistryName("tofuturret"));
         event.getRegistry().register(TOFUMIND.setRegistryName("tofumind"));
         event.getRegistry().register(TOFUGANDLEM.setRegistryName("tofugandlem"));
+
+        event.getRegistry().register(ZUNSY.setRegistryName("zunsy"));
+        event.getRegistry().register(ZUNDAMA.setRegistryName("zundama"));
+
         event.getRegistry().register(FUKUMAME.setRegistryName("fukumame"));
         event.getRegistry().register(ZUNDAARROW.setRegistryName("zunda_arrow"));
         event.getRegistry().register(BEAM.setRegistryName("beam"));

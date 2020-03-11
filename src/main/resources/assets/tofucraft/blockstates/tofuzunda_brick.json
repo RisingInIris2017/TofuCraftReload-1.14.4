@@ -1,13 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "textures": {
-      "all": "tofucraft:blocks/tofuzunda_brick"
-    }
-  },
   "variants": {
     "": {
-      "model": "block/cube_all"
+      "model": "tofucraft:block/tofuzunda_brick"
     }
   }
 }

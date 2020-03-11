@@ -18,7 +18,7 @@ public class BiomeTofuForest extends BiomeTofuBase {
         /*DefaultTofuBiomeFeature.addLeeks(this);*/
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(TofuEntitys.TOFUCOW, 10, 4, 4));
 
-        this.addSpawn(TofuEntitys.TOFU_MONSTER, new SpawnListEntry(TofuEntitys.TOFUCHINGER, 40, 2, 3));
+        this.addSpawn(TofuEntitys.TOFU_MONSTER, new SpawnListEntry(TofuEntitys.TOFUCHINGER, 20, 2, 3));
     }
 
 }
