@@ -83,6 +83,7 @@ public class TofuItems {
     public static final Item SOYMILK_BUCKET = new BucketItem(TofuFluids.SOYMILK, (new Item.Properties()).containerItem(Items.BUCKET).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item SALT = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item MORIJIO = new MorijioItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item BITTERN = new BitternItem(new Item.Properties().containerItem(Items.GLASS_BOTTLE).group(TofuItemGroup.TOFUCRAFT));
     public static final Item LEEK = new BlockNamedItem(TofuBlocks.LEEKCROP, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
@@ -107,7 +108,7 @@ public class TofuItems {
     public static final Item TOFUCREEPER_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUCREEPER, 0xefeedf, 0x82817b, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUTURRET_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUTURRET, 0xe5e0bd, 0x9cd6f5, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUMIND_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUMIND, 0xe5e0bd, 0x9cd6f5, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item ZUNSY_SPAWNEGG = new SpawnEggItem(TofuEntitys.ZUNSY, 0xe5e0bd, 0x9cd6f5, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ZUNSY_SPAWNEGG = new SpawnEggItem(TofuEntitys.ZUNSY, 0xc3e8b7, 0xefeedf, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
 
     public static final Item ARMOR_KINUHELMET = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.HEAD, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -170,7 +171,7 @@ public class TofuItems {
     public static final Item TOFUMETAL_SHIELD = new TofuShieldItem(new Item.Properties().maxDamage(450).setISTER(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item TOFUFORCE_CORE = new TofuForceCoreItem(new Item.Properties().maxDamage(340).group(TofuItemGroup.TOFUCRAFT));
-
+    public static final Item TOFUGAUNTLET = new TofuGauntletItem(new Item.Properties().maxDamage(520).group(TofuItemGroup.TOFUCRAFT));
 
 
     public static void register(RegistryEvent.Register<Item> registry, Item item, String id) {
@@ -252,6 +253,7 @@ public class TofuItems {
 
         register(registry, SOYMILK_BUCKET, "bucketsoymilk");
         register(registry, SALT, "salt");
+        register(registry, MORIJIO, "morijio");
         register(registry, BITTERN, "bittern_bottle");
         register(registry, LEEK, "leek");
         register(registry, KOUJIBASE, "koujibase");
@@ -325,6 +327,7 @@ public class TofuItems {
         register(registry, TOFUISHI_SHIELD, "tofuishi_shield");
         register(registry, TOFUMETAL_SHIELD, "tofumetal_shield");
         register(registry, TOFUFORCE_CORE, "tofuforce_core");
+        register(registry, TOFUGAUNTLET, "tofu_gauntlet");
 
         ComposterBlock.CHANCES.put(SEEDS_SOYBEAN, 0.3F);
         ComposterBlock.CHANCES.put(EDAMAME, 0.35F);

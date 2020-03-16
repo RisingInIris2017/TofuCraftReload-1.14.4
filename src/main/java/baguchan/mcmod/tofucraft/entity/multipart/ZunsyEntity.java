@@ -12,6 +12,8 @@ import net.minecraft.nbt.ListNBT;
 import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -28,19 +30,20 @@ public class ZunsyEntity extends CreatureEntity {
     private int heightOffsetUpdateTime;
     public List<ZundamaEntity> listZundama = Lists.newArrayList();
 
-    public ZunsyEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
+    public ZunsyEntity(EntityType<? extends ZunsyEntity> type, World worldIn) {
         super(type, worldIn);
         this.moveController = new FlyingStrafeMovementController(this, 15, false);
     }
 
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
-        //this.goalSelector.addGoal(2, new RangedStrafeAttackGoal<>(this, 1.0D, 65, 20F));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, TofuChingerEntity.class, 8.0F, 1.1D, 1.22D));
+        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0D, true));
         this.goalSelector.addGoal(4, new WaterAvoidingRandomFlyingGoal(this, 0.95D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setCallsForHelp());
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, TofuChingerEntity.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
     }
 
     protected void registerAttributes() {
@@ -50,8 +53,20 @@ public class ZunsyEntity extends CreatureEntity {
         this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(26.0D);
         this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(4.0D);
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.65D);
-        //this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
+        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.6D);
+        this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
+    }
+
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return SoundEvents.ENTITY_SLIME_HURT;
+    }
+
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_SLIME_DEATH;
+    }
+
+    public int getTalkInterval() {
+        return 120;
     }
 
     @Nullable
@@ -107,6 +122,22 @@ public class ZunsyEntity extends CreatureEntity {
             }
 
             compound.put("Zundamas", listnbt);
+        }
+    }
+
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        if (this.isInvisible()) {
+            return false;
+        } else {
+
+            if (source.isProjectile() && amount < 4.0F) {
+                return false;
+            } else if (source.isProjectile()) {
+                return super.attackEntityFrom(source, amount * 0.25F);
+            }
+
+            return super.attackEntityFrom(source, amount);
         }
     }
 

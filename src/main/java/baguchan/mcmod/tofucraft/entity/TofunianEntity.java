@@ -520,7 +520,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         this.goalSelector.addGoal(6, new InterestJobBlockGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new RestockTradeGoal(this, 1.05D));
         this.goalSelector.addGoal(7, new CookingTofuGoal(this, 1.0D));
-        this.goalSelector.addGoal(7, new CropHarvestGoal(this, 1.0D));
+        this.goalSelector.addGoal(7, new CropHarvestGoal(this, 0.95D));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.9D));
         this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
         this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
@@ -604,6 +604,13 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
                 double d2 = this.rand.nextGaussian() * 0.02D;
                 this.world.addParticle(ParticleTypes.HEART, this.getPosX() + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), this.getPosY() + 0.5D + (double) (this.rand.nextFloat() * this.getHeight()), this.getPosZ() + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), d0, d1, d2);
             }
+        }
+    }
+
+    public void tick() {
+        super.tick();
+        if (this.getShakeHeadTicks() > 0) {
+            this.setShakeHeadTicks(this.getShakeHeadTicks() - 1);
         }
     }
 

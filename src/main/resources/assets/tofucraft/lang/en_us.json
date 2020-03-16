@@ -49,6 +49,7 @@
   "item.tofucraft.kinakomanju": "Kinako Manju",
   "item.tofucraft.zundamanju": "Zunda Manju",
   "item.tofucraft.salt": "Salt",
+  "item.tofucraft.morijio": "Morijio",
   "item.tofucraft.bittern_bottle": "Bittern Bottle",
   "item.tofucraft.leek": "Leek",
   "item.tofucraft.koujibase": "Kouji Base",
@@ -72,6 +73,8 @@
   "item.tofucraft.tofucreeper_spawnegg": "TofuCreeper SpawnEgg",
   "item.tofucraft.tofuturret_spawnegg": "TofuTurret SpawnEgg",
   "item.tofucraft.tofumind_spawnegg": "TofuMind SpawnEgg",
+  "item.tofucraft.zunsy_spawnegg": "Zunsy SpawnEgg",
+
   "item.tofucraft.armorkinuhelmet": "TofuKinu Helmet",
   "item.tofucraft.armorkinuchestplate": "TofuKinu Chestplate",
   "item.tofucraft.armorkinuleggins": "TofuKinu Leggins",
@@ -119,6 +122,7 @@
   "item.tofucraft.tofuishi_shield": "TofuIshi Shield",
   "item.tofucraft.tofumetal_shield": "TofuMetal Shield",
   "item.tofucraft.tofuforce_core": "TofuForce Core",
+  "item.tofucraft.tofu_gauntlet": "Tofu Gauntlet",
 
   "block.tofucraft.rice": "Rice",
   "block.tofucraft.rice_root": "Rice Root",
@@ -214,6 +218,9 @@
   "entity.tofucraft.tofuturret": "Tofu Turret",
   "entity.tofucraft.tofumind": "Tofu Mind",
   "entity.tofucraft.tofugandlem": "Tofu Gandlem",
+  "entity.tofucraft.zunsy": "Zunsy",
+  "entity.tofucraft.zundama": "Zundama",
+
   "entity.tofucraft.fukumame": "Fukumame",
   "entity.tofucraft.tofu_homing_force": "Tofu Homing Force",
   "subtitles.entity.tofunian.idle": "tofunian's murmur",
@@ -245,5 +252,8 @@
   "tooltip.tofucraft.energy": "TofuForce, Energy: %d/%d",
   "tooltip.tofucraft.tofuforce.broken": "Broken",
   "death.attack.tofucraft.tofuforce": "%1$s was slain by %2$s s TofuForce",
-  "death.attack.tofucraft.tofuforce.item": "%1$s was slain by %2$s using TofuForce with %3$s"
+  "death.attack.tofucraft.tofuforce.item": "%1$s was slain by %2$s using TofuForce with %3$s",
+  "item.tofucraft.tofu_gauntlet.mode": "Mode",
+  "item.tofucraft.tofu_gauntlet.soyshot": "Soy Shot",
+  "item.tofucraft.tofu_gauntlet.homing_shot": "Homing Shot"
 }

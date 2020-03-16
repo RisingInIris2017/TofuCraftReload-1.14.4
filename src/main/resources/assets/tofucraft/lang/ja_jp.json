@@ -49,6 +49,7 @@
   "item.tofucraft.kinakomanju": "きなこまんじゅう",
   "item.tofucraft.zundamanju": "ずんだまんじゅう",
   "item.tofucraft.salt": "塩",
+  "item.tofucraft.morijio": "盛り塩",
   "item.tofucraft.bittern_bottle": "にがりが入った瓶",
   "item.tofucraft.leek": "葱",
   "item.tofucraft.koujibase": "麹の種",
@@ -72,6 +73,7 @@
   "item.tofucraft.tofucreeper_spawnegg": "トーフクリーパーのスポーンエッグ",
   "item.tofucraft.tofuturret_spawnegg": "トーフタレットのスポーンエッグ",
   "item.tofucraft.tofumind_spawnegg": "トーフマインドのスポーンエッグ",
+  "item.tofucraft.zunsy_spawnegg": "ズンシィのスポーンエッグ",
 
   "item.tofucraft.armorkinuhelmet": "絹豆腐のヘルメット",
   "item.tofucraft.armorkinuchestplate": "絹豆腐のチェストプレート",
@@ -120,6 +122,7 @@
   "item.tofucraft.tofuishi_shield": "石豆腐のシールド",
   "item.tofucraft.tofumetal_shield": "鋼豆腐のシールド",
   "item.tofucraft.tofuforce_core": "トーフフォースコア",
+  "item.tofucraft.tofu_gauntlet": "Tofu Gauntlet",
 
   "block.tofucraft.rice": "米",
   "block.tofucraft.rice_root": "米の根っこ",
@@ -212,6 +215,9 @@
   "entity.tofucraft.tofuturret": "トーフタレット",
   "entity.tofucraft.tofumind": "トーフマインド",
   "entity.tofucraft.tofugandlem": "トーフガンドレム",
+  "entity.tofucraft.zunsy": "ズンシィ",
+  "entity.tofucraft.zundama": "ずんだま",
+
   "entity.tofucraft.fukumame": "福豆",
   "entity.tofucraft.tofu_homing_force": "トーフホーミングフォース",
 
@@ -241,5 +247,8 @@
   "tooltip.tofucraft.energy": "トーフフォースエネルギー: %d/%d",
   "tooltip.tofucraft.tofuforce.broken": "破損",
   "death.attack.tofucraft.tofuforce": "%1$s は %2$s のトーフフォースにやられた",
-  "death.attack.tofucraft.tofuforce.item": "%1$s は %2$s の %3$s　を使ったトーフフォースにやられた"
+  "death.attack.tofucraft.tofuforce.item": "%1$s は %2$s の %3$s　を使ったトーフフォースにやられた",
+  "item.tofucraft.tofu_gauntlet.mode": "モード",
+  "item.tofucraft.tofu_gauntlet.soyshot": "ソイショット",
+  "item.tofucraft.tofu_gauntlet.homing_shot": "ホーミングショット"
 }

@@ -25,6 +25,8 @@ public class RestockTradeGoal extends MoveToBlockGoal {
      * Returns whether the EntityAIBase should begin execution.
      */
     public boolean shouldExecute() {
+        //return !this.creature.isBeingRidden() && this.creature.isStockOut() && this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && super.shouldExecute();
+        //DayTime is useless...
         return !this.creature.isBeingRidden() && this.creature.isStockOut() && this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && super.shouldExecute();
     }
 

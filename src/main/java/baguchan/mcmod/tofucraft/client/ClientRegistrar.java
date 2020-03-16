@@ -43,6 +43,7 @@ public class ClientRegistrar {
         RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.ZUNDAMA, ZundamaRender::new);
 
 
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.MORIJIO, MorijioRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.FUKUMAME, FukumameRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.ZUNDAARROW, ZundaArrowRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.BEAM, BeamRender::new);
@@ -109,7 +110,6 @@ public class ClientRegistrar {
     }
 
     @SubscribeEvent
-
     public static void onTextureStitch(TextureStitchEvent.Pre event) {
         if (event.getMap().getBasePath().equals(Atlases.CHEST_ATLAS)) {
             event.addSprite(new ResourceLocation(TofuCraftCore.MODID, "entity/chest/tofuchest"));

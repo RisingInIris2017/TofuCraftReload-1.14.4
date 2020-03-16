@@ -29,7 +29,7 @@ public class FukumameItem extends Item {
                 FukumameEntity fukumamelentity = new FukumameEntity(worldIn, playerIn);
                 float d0 = (worldIn.rand.nextFloat() * 20.0F) - 10.0F;
 
-                fukumamelentity.shoot(playerIn, playerIn.rotationPitch + d0 * 0.25F, playerIn.rotationYaw + d0, 0.0F, 1.5F, 0.8F);
+                fukumamelentity.shoot(playerIn, playerIn.rotationPitch + d0 * 0.25F, playerIn.rotationYaw + d0, 0.0F, 1.2F, 0.1F);
                 worldIn.addEntity(fukumamelentity);
             }
         }

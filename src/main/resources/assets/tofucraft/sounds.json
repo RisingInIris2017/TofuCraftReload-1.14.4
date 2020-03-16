@@ -25,5 +25,12 @@
       "tofucraft:tofunian/tofunian_ambient"
     ],
     "subtitle": "subtitles.entity.tofunian.idle"
+  },
+  "mob.tofunian.no": {
+    "category": "neutral",
+    "sounds": [
+      "tofucraft:tofunian/tofunian_no"
+    ],
+    "subtitle": "subtitles.entity.tofunian.no"
   }
 }

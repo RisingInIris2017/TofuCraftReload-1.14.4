@@ -1,5 +1,6 @@
 package baguchan.mcmod.tofucraft.entity;
 
+import baguchan.mcmod.tofucraft.entity.multipart.ZunsyEntity;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -42,6 +43,7 @@ public class TofuChingerEntity extends MonsterEntity {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setCallsForHelp());
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, TofunianEntity.class, 10, true, false, (Predicate<LivingEntity>) null));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, TofuSlimeEntity.class, 10, true, false, (Predicate<LivingEntity>) null));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ZunsyEntity.class, 40, true, false, (Predicate<LivingEntity>) null));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, TofuFishEntity.class, 10, true, true, (Predicate<LivingEntity>) null));
     }
 

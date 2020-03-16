@@ -15,6 +15,8 @@ import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.HandSide;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -36,6 +38,19 @@ public class ZundamaEntity extends LivingEntity {
         this.dataManager.register(TRACK, false);
     }
 
+    //This entity Part has Health
+    protected void registerAttributes() {
+        super.registerAttributes();
+        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6.0D);
+    }
+
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return SoundEvents.ENTITY_SLIME_HURT;
+    }
+
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_SLIME_DEATH;
+    }
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
@@ -83,8 +98,14 @@ public class ZundamaEntity extends LivingEntity {
         if (this.isInvisible()) {
             return false;
         } else {
-            if (source == DamageSource.DROWN || source == DamageSource.IN_WALL) {
+            if (source == DamageSource.DROWN || isTrack() && source == DamageSource.IN_WALL) {
                 return false;
+            }
+
+            if (source.isProjectile() && amount < 4.0F) {
+                return false;
+            } else if (source.isProjectile()) {
+                return super.attackEntityFrom(source, amount * 0.25F);
             }
 
             return super.attackEntityFrom(source, amount);
@@ -121,12 +142,6 @@ public class ZundamaEntity extends LivingEntity {
     @Override
     public void tick() {
         super.tick();
-    }
-
-    //This entity Part has Health
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
     }
 
     @Override

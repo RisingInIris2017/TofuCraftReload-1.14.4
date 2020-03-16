@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = TofuCraftCore.MODID)
 public final class TofuSounds {
     public static final SoundEvent TOFUNIAN_YES = createEvent("mob.tofunian.yes");
+    public static final SoundEvent TOFUNIAN_NO = createEvent("mob.tofunian.no");
     public static final SoundEvent TOFUNIAN_AMBIENT = createEvent("mob.tofunian.ambient");
     public static final SoundEvent TOFUBUGLE = createEvent("tofubugle");
 
@@ -26,6 +27,7 @@ public final class TofuSounds {
     @SubscribeEvent
     public static void registerSounds(RegistryEvent.Register<SoundEvent> evt) {
         evt.getRegistry().register(TOFUNIAN_YES);
+        evt.getRegistry().register(TOFUNIAN_NO);
         evt.getRegistry().register(TOFUNIAN_AMBIENT);
         evt.getRegistry().register(TOFUBUGLE);
     }

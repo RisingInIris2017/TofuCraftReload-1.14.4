@@ -4,6 +4,7 @@ import baguchan.mcmod.tofucraft.entity.TofunianEntity;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.HandSide;
+import net.minecraft.util.math.MathHelper;
 
 public class TofunianModel extends BipedModel<TofunianEntity> {
 
@@ -59,6 +60,15 @@ public class TofunianModel extends BipedModel<TofunianEntity> {
     public void render(TofunianEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
         float f6 = 12.0f;
+
+        boolean flag = entityIn.getShakeHeadTicks() > 0;
+
+        if (flag) {
+            this.bipedHead.rotateAngleZ = 0.3F * MathHelper.sin(0.45F * ageInTicks);
+            this.bipedHead.rotateAngleX = 0.4F;
+        } else {
+            this.bipedHead.rotateAngleZ = 0.0F;
+        }
 
         this.bipedBody.rotationPointY = 14.0F;
         this.bipedRightArm.rotationPointZ = 0.0F;
