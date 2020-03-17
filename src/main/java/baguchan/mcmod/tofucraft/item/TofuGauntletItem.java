@@ -1,11 +1,14 @@
 package baguchan.mcmod.tofucraft.item;
 
 import baguchan.mcmod.tofucraft.entity.projectile.FukumameEntity;
+import baguchan.mcmod.tofucraft.entity.projectile.TofuHomingForceEntity;
+import baguchan.mcmod.tofucraft.item.base.ItemTofuEnergyContained;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
+import net.minecraft.item.UseAction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
@@ -20,7 +23,7 @@ import net.minecraftforge.common.util.Constants;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class TofuGauntletItem extends Item {
+public class TofuGauntletItem extends ItemTofuEnergyContained {
     public TofuGauntletItem(Properties group) {
         super(group);
     }
@@ -29,10 +32,40 @@ public class TofuGauntletItem extends Item {
         return stack.getDamage() < stack.getMaxDamage() - 1;
     }
 
-    /**
-     * Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see
-     * {@link #onItemUse}.
-     */
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.BOW;
+    }
+
+    public int getUseDuration(ItemStack stack) {
+        return 72000;
+    }
+
+    @Override
+    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
+        super.onPlayerStoppedUsing(stack, worldIn, entityLiving, timeLeft);
+
+        if (entityLiving.getLastAttackedEntity() != null) {
+            if (entityLiving instanceof PlayerEntity && !((PlayerEntity) entityLiving).isCreative()) {
+                if (getEnergy(stack) >= 10) {
+                    drain(stack, 10, false);
+                    ((PlayerEntity) entityLiving).getCooldownTracker().setCooldown(stack.getItem(), 50);
+                } else {
+                    stack.damageItem(1, entityLiving, (p_220009_1_) -> {
+                        p_220009_1_.sendBreakAnimation(entityLiving.getActiveHand());
+                    });
+
+                    ((PlayerEntity) entityLiving).getCooldownTracker().setCooldown(stack.getItem(), 80);
+                }
+            }
+
+            entityLiving.playSound(SoundEvents.ENTITY_WITHER_SHOOT, 3.0F, 1.0F / (entityLiving.getRNG().nextFloat() * 0.4F + 0.8F));
+
+            for (int i = 0; i < 1; i++) {
+                entityLiving.world.addEntity(new TofuHomingForceEntity(entityLiving.world, entityLiving, entityLiving.getLastAttackedEntity()));
+            }
+        }
+    }
+
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
 
@@ -43,15 +76,20 @@ public class TofuGauntletItem extends Item {
         } else {
             if (mode == Mode.SOYSHOT) {
                 if (!playerIn.abilities.isCreativeMode) {
-                    itemstack.damageItem(1, playerIn, (p_220009_1_) -> {
-                        p_220009_1_.sendBreakAnimation(playerIn.getActiveHand());
-                    });
+
+                    if (getEnergy(itemstack) >= 5) {
+                        drain(itemstack, 5, false);
+                    } else {
+                        itemstack.damageItem(1, playerIn, (p_220009_1_) -> {
+                            p_220009_1_.sendBreakAnimation(playerIn.getActiveHand());
+                        });
+                    }
                 }
 
                 worldIn.playSound((PlayerEntity) null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-                playerIn.getCooldownTracker().setCooldown(this, 8);
+                playerIn.getCooldownTracker().setCooldown(this, 10);
                 if (!worldIn.isRemote) {
-                    for (int i = 0; i < 5; i++) {
+                    for (int i = 0; i < 8; i++) {
                         FukumameEntity fukumamelentity = new FukumameEntity(worldIn, playerIn);
                         float d0 = (worldIn.rand.nextFloat() * 18.0F) - 9.0F;
 
@@ -63,7 +101,8 @@ public class TofuGauntletItem extends Item {
                 playerIn.addStat(Stats.ITEM_USED.get(this));
                 return ActionResult.func_226249_b_(itemstack);
             } else {
-                return ActionResult.func_226251_d_(itemstack);
+                playerIn.setActiveHand(handIn);
+                return ActionResult.func_226249_b_(itemstack);
             }
         }
     }
@@ -104,6 +143,15 @@ public class TofuGauntletItem extends Item {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
         tooltip.add(getModeMessage(stack));
+    }
+
+    public Rarity getRarity(ItemStack stack) {
+        return Rarity.RARE;
+    }
+
+    @Override
+    public int getEnergyMax(ItemStack inst) {
+        return 6000;
     }
 
     public enum Mode {

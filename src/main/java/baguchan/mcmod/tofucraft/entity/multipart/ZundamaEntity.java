@@ -20,6 +20,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
 public class ZundamaEntity extends LivingEntity {
@@ -151,6 +152,27 @@ public class ZundamaEntity extends LivingEntity {
 
     @Override
     protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
+    }
+
+    public void checkDespawn() {
+        if (this.world.getDifficulty() == Difficulty.PEACEFUL) {
+            this.remove();
+        } else {
+            Entity entity = this.world.getClosestPlayer(this, -1.0D);
+            if (entity != null) {
+                double d0 = entity.getDistanceSq(this);
+                if (d0 > 16384.0D) {
+                    this.remove();
+                }
+
+                if (this.idleTime > 600 && this.rand.nextInt(800) == 0 && d0 > 1024.0D) {
+                    this.remove();
+                } else if (d0 < 1024.0D) {
+                    this.idleTime = 0;
+                }
+            }
+
+        }
     }
 
     /**

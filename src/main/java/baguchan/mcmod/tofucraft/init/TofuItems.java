@@ -171,7 +171,7 @@ public class TofuItems {
     public static final Item TOFUMETAL_SHIELD = new TofuShieldItem(new Item.Properties().maxDamage(450).setISTER(() -> TofuShieldItemRender::new).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item TOFUFORCE_CORE = new TofuForceCoreItem(new Item.Properties().maxDamage(340).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item TOFUGAUNTLET = new TofuGauntletItem(new Item.Properties().maxDamage(520).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item TOFUGAUNTLET = new TofuGauntletItem(new Item.Properties().maxDamage(320).group(TofuItemGroup.TOFUCRAFT));
 
 
     public static void register(RegistryEvent.Register<Item> registry, Item item, String id) {

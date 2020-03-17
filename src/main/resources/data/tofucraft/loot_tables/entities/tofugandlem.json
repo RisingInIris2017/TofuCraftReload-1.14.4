@@ -71,6 +71,22 @@
           "name": "tofucraft:tofuforce_core"
         }
       ]
+    },
+    {
+      "name": "tofu_gauntlet",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{tf_energy: 6000}"
+            }
+          ],
+          "name": "tofucraft:tofu_gauntlet"
+        }
+      ]
     }
   ]
 }
