@@ -3,6 +3,7 @@ package baguchan.mcmod.tofucraft.init;
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.world.gen.DefaultTofuBiomeFeature;
 import baguchan.mcmod.tofucraft.world.gen.feature.TofuBerryFeature;
+import baguchan.mcmod.tofucraft.world.gen.feature.TofuBuildingFeature;
 import baguchan.mcmod.tofucraft.world.gen.feature.TofuOreFeature;
 import baguchan.mcmod.tofucraft.world.gen.feature.ZundaMushroomFeature;
 import baguchan.mcmod.tofucraft.world.gen.feature.config.TofuOreConfig;
@@ -35,8 +36,11 @@ public class TofuFeatures {
     });
 
     public static final Feature<NoFeatureConfig> ZUNDAMUSHROOM_BIG = new ZundaMushroomFeature(NoFeatureConfig::deserialize, 9, 9, new ResourceLocation[]{
-            new ResourceLocation(TofuCraftCore.MODID, "mushroom/mushroom_zunda_big")
+            new ResourceLocation(TofuCraftCore.MODID, "mushroom/mushroom_zunda_big"),
+            new ResourceLocation(TofuCraftCore.MODID, "mushroom/mushroom_zunda_big2")
     });
+
+    public static final Feature<NoFeatureConfig> TOFU_BUILDING = new TofuBuildingFeature(NoFeatureConfig::deserialize);
 
     public static final Feature<TreeFeatureConfig> TOFUTREE = new TreeFeature(TofuFeatures::deserializeTofu);
     public static final Feature<TreeFeatureConfig> ZUNDATOFUTREE = new TreeFeature(TofuFeatures::deserializeZundaTofu);
@@ -60,6 +64,7 @@ public class TofuFeatures {
     @SubscribeEvent
     public static void register(RegistryEvent.Register<Feature<?>> registry) {
         //registry.getRegistry().register(TOFUFLOWER.setRegistryName("tofuflower"));
+        registry.getRegistry().register(TOFU_BUILDING.setRegistryName("tofu_building"));
         registry.getRegistry().register(TOFUTREE.setRegistryName("tofutree"));
         registry.getRegistry().register(ZUNDATOFUTREE.setRegistryName("zunda_tofutree"));
         registry.getRegistry().register(ZUNDAMUSHROOM_SMALL.setRegistryName("zundamushroom_small"));

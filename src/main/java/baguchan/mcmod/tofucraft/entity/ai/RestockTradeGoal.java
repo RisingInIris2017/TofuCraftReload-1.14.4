@@ -1,6 +1,7 @@
 package baguchan.mcmod.tofucraft.entity.ai;
 
 import baguchan.mcmod.tofucraft.entity.TofunianEntity;
+import baguchan.mcmod.tofucraft.utils.WorldUtils;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -27,7 +28,7 @@ public class RestockTradeGoal extends MoveToBlockGoal {
     public boolean shouldExecute() {
         //return !this.creature.isBeingRidden() && this.creature.isStockOut() && this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && super.shouldExecute();
         //DayTime is useless...
-        return !this.creature.isBeingRidden() && this.creature.isStockOut() && this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && super.shouldExecute();
+        return !this.creature.isBeingRidden() && this.creature.isStockOut() && WorldUtils.isDaytime(this.creature.world) && this.creature.getAttackTarget() == null && super.shouldExecute();
     }
 
     protected int getRunDelay(CreatureEntity creatureIn) {

@@ -78,6 +78,7 @@ public class ClientRegistrar {
         RenderTypeLookup.setRenderLayer(TofuBlocks.LEEK, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(TofuBlocks.LEEKCROP, RenderType.cutout());
 
+        RenderTypeLookup.setRenderLayer(TofuBlocks.ZUNDATOFU_MUSHROOM, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(TofuBlocks.TOFUSAPLING, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(TofuBlocks.ZUNDATOFUSAPLING, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(TofuBlocks.TOFUFLOWER, RenderType.cutout());

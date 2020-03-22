@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "P",
+    "P"
+  ],
+  "key": {
+    "P": [
+      {
+        "item": "tofucraft:tofustem_planks"
+      }
+    ]
+  },
+  "result": {
+    "item": "tofucraft:tofuwood_stick",
+    "count": 4
+  }
+}

@@ -1,5 +1,6 @@
 package baguchan.mcmod.tofucraft.entity.ai;
 
+import baguchan.mcmod.tofucraft.utils.WorldUtils;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -23,7 +24,7 @@ public class SleepOnBedGoal extends MoveToBlockGoal {
      * Returns whether the EntityAIBase should begin execution.
      */
     public boolean shouldExecute() {
-        return !this.creature.isBeingRidden() && !this.creature.isSleeping() && this.creature.world.getDimension().isSurfaceWorld() && !this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && super.shouldExecute();
+        return !this.creature.isBeingRidden() && !this.creature.isSleeping() && this.creature.world.getDimension().isSurfaceWorld() && !WorldUtils.isDaytime(this.creature.world) && this.creature.getAttackTarget() == null && super.shouldExecute();
     }
 
     protected int getRunDelay(CreatureEntity creatureIn) {

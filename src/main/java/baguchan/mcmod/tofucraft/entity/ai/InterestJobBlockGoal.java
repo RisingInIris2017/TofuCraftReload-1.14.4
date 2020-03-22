@@ -1,6 +1,7 @@
 package baguchan.mcmod.tofucraft.entity.ai;
 
 import baguchan.mcmod.tofucraft.entity.TofunianEntity;
+import baguchan.mcmod.tofucraft.utils.WorldUtils;
 import net.minecraft.block.*;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
@@ -18,9 +19,7 @@ public class InterestJobBlockGoal extends MoveToBlockGoal {
     }
 
     public boolean shouldExecute() {
-        //return !this.creature.isBeingRidden() && !this.creature.isChild() && this.creature.isNitwit() && this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && this.creature.world.rand.nextInt(20) == 0 && super.shouldExecute();
-        //DayTime is useless...
-        return !this.creature.isBeingRidden() && !this.creature.isChild() && this.creature.isNitwit() && this.creature.getAttackTarget() == null && this.creature.world.rand.nextInt(20) == 0 && super.shouldExecute();
+        return !this.creature.isBeingRidden() && !this.creature.isChild() && this.creature.isNitwit() && WorldUtils.isDaytime(this.creature.world) && this.creature.getAttackTarget() == null && this.creature.world.rand.nextInt(20) == 0 && super.shouldExecute();
     }
 
     protected int getRunDelay(CreatureEntity creatureIn) {
@@ -31,7 +30,7 @@ public class InterestJobBlockGoal extends MoveToBlockGoal {
     public boolean shouldContinueExecuting() {
         BlockPos blockpos = new BlockPos(destinationBlock.getX(), destinationBlock.getY(), destinationBlock.getZ());
 
-        return this.creature.world.isDaytime() && this.creature.isNitwit() & super.shouldContinueExecuting();
+        return WorldUtils.isDaytime(this.creature.world) && this.creature.isNitwit() & super.shouldContinueExecuting();
     }
 
 

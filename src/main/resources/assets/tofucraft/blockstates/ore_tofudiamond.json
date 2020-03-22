@@ -1,16 +1,7 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "textures": {
-      "all": "tofucraft:blocks/ore_tofudiamond"
-    }
-  },
   "variants": {
     "": {
-      "model": "block/cube_all"
-    },
-    "inventory": {
-      "model": "block/cube_all"
+      "model": "tofucraft:block/ore_tofudiamond"
     }
   }
 }

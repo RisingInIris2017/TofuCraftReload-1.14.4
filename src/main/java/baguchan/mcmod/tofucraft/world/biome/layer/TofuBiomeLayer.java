@@ -36,7 +36,7 @@ public class TofuBiomeLayer implements IC0Transformer {
         } else {
             int i = (value & 3840) >> 8;
             value = value & -3841;
-            if (!TofuLayerUtil.isRiver(value) && value != MUSHROOM_FIELDS) {
+            if (value != MUSHROOM_FIELDS) {
                 switch (value) {
                     case 1:
                         /*if (i > 0) {
@@ -59,7 +59,7 @@ public class TofuBiomeLayer implements IC0Transformer {
                     case 4:
                         return Registry.BIOME.getId(getWeightedBiomeEntry(net.minecraftforge.common.BiomeManager.BiomeType.ICY, context).biome);
                     default:
-                        return Registry.BIOME.getId(TofuBiomes.TOFU_RIVER);
+                        return Registry.BIOME.getId(getWeightedBiomeEntry(net.minecraftforge.common.BiomeManager.BiomeType.WARM, context).biome);
                 }
             } else {
                 return value;
@@ -70,7 +70,7 @@ public class TofuBiomeLayer implements IC0Transformer {
     protected net.minecraftforge.common.BiomeManager.BiomeEntry getWeightedBiomeEntry(net.minecraftforge.common.BiomeManager.BiomeType type, INoiseRandom context) {
         java.util.List<net.minecraftforge.common.BiomeManager.BiomeEntry> biomeList = TofuBiomes.entryTofuBiome;
         int totalWeight = net.minecraft.util.WeightedRandom.getTotalWeight(biomeList);
-        int weight = net.minecraftforge.common.BiomeManager.isTypeListModded(type) ? context.random(totalWeight) : context.random(totalWeight / 10) * 10;
+        int weight = context.random(totalWeight);
         return (net.minecraftforge.common.BiomeManager.BiomeEntry) net.minecraft.util.WeightedRandom.getRandomItem(biomeList, weight);
     }
 }

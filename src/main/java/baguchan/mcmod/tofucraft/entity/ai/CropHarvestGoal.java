@@ -3,6 +3,7 @@ package baguchan.mcmod.tofucraft.entity.ai;
 import baguchan.mcmod.tofucraft.entity.TofunianEntity;
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.init.TofuItems;
+import baguchan.mcmod.tofucraft.utils.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -39,11 +40,11 @@ public class CropHarvestGoal extends MoveToBlockGoal {
             this.wantsToHarvest = true;
         }
 
-        return this.creature.world.isDaytime() && this.tofunian.getRole() == TofunianEntity.Roles.TOFUCOCK && super.shouldExecute();
+        return WorldUtils.isDaytime(this.creature.world) && this.tofunian.getRole() == TofunianEntity.Roles.TOFUCOCK && super.shouldExecute();
     }
 
     public boolean shouldContinueExecuting() {
-        return this.creature.world.isDaytime() && (this.canHarvest || this.canPlant) && super.shouldContinueExecuting();
+        return WorldUtils.isDaytime(this.creature.world) && (this.canHarvest || this.canPlant) && super.shouldContinueExecuting();
     }
 
     public void tick() {

@@ -16,7 +16,7 @@ import java.util.Set;
 public class TofuWorldBiomeProvider extends BiomeProvider {
     private final World world;
     private final Layer genBiomes;
-    public static final Set<Biome> biomes = ImmutableSet.of(TofuBiomes.TOFU_FOREST, TofuBiomes.TOFUZUNDA_SWAMP, TofuBiomes.TOFU_PLAIN, TofuBiomes.ZUNDATOFU_PLAIN, TofuBiomes.TOFU_MOUNTAIN);
+    public static final Set<Biome> biomes = ImmutableSet.of(TofuBiomes.TOFU_FOREST, TofuBiomes.TOFUZUNDA_SWAMP, TofuBiomes.TOFU_PLAIN, TofuBiomes.ZUNDATOFU_PLAIN, TofuBiomes.ZUNDATOFU_FUNGIFOREST, TofuBiomes.TOFU_MOUNTAIN, TofuBiomes.TOFU_RIVER);
 
     public TofuWorldBiomeProvider(World world, OverworldBiomeProviderSettings settingsProvider) {
         super(biomes);

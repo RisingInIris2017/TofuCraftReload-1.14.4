@@ -24,6 +24,8 @@ public class TofuBiomes {
     public static final Biome TOFUZUNDA_SWAMP = new BiomeZundaTofuSwamp();
     public static final Biome TOFU_PLAIN = new BiomeTofuPlain();
     public static final Biome ZUNDATOFU_PLAIN = new BiomeZundaTofuPlain();
+    public static final Biome ZUNDATOFU_FUNGIFOREST = new BiomeZundaTofuFungiForest();
+    public static final Biome TOFU_BUILDING = new BiomeTofuBuilding();
     public static final Biome TOFU_MOUNTAIN = new BiomeTofuMountain();
     public static final Biome TOFU_RIVER = new BiomeTofuRiver();
 
@@ -34,6 +36,8 @@ public class TofuBiomes {
         event.getRegistry().register(TOFUZUNDA_SWAMP.setRegistryName("tofuzunda_forest"));
         event.getRegistry().register(TOFU_PLAIN.setRegistryName("tofu_plain"));
         event.getRegistry().register(ZUNDATOFU_PLAIN.setRegistryName("zundatofu_plain"));
+        event.getRegistry().register(ZUNDATOFU_FUNGIFOREST.setRegistryName("zundatofu_fungiforest"));
+        event.getRegistry().register(TOFU_BUILDING.setRegistryName("tofu_building"));
         event.getRegistry().register(TOFU_MOUNTAIN.setRegistryName("tofu_mountain"));
         event.getRegistry().register(TOFU_RIVER.setRegistryName("tofu_river"));
 
@@ -41,6 +45,7 @@ public class TofuBiomes {
         tofubiome.add(TOFUZUNDA_SWAMP);
         tofubiome.add(TOFU_PLAIN);
         tofubiome.add(ZUNDATOFU_PLAIN);
+        tofubiome.add(ZUNDATOFU_FUNGIFOREST);
         tofubiome.add(TOFU_MOUNTAIN);
         tofubiome.add(TOFU_RIVER);
 
@@ -48,6 +53,8 @@ public class TofuBiomes {
         entryTofuBiome.add(new BiomeManager.BiomeEntry(TOFUZUNDA_SWAMP, 6));
         entryTofuBiome.add(new BiomeManager.BiomeEntry(TOFU_PLAIN, 10));
         entryTofuBiome.add(new BiomeManager.BiomeEntry(ZUNDATOFU_PLAIN, 8));
+        entryTofuBiome.add(new BiomeManager.BiomeEntry(ZUNDATOFU_FUNGIFOREST, 8));
+        //entryTofuBiome.add(new BiomeManager.BiomeEntry(TOFU_BUILDING, 12));
         entryTofuBiome.add(new BiomeManager.BiomeEntry(TOFU_MOUNTAIN, 6));
 
 
@@ -59,7 +66,9 @@ public class TofuBiomes {
         BiomeDictionary.addTypes(TOFU_PLAIN, BiomeDictionary.Type.PLAINS);
         BiomeDictionary.addTypes(ZUNDATOFU_PLAIN, BiomeDictionary.Type.PLAINS);
         BiomeDictionary.addTypes(TOFU_FOREST, BiomeDictionary.Type.FOREST);
+        BiomeDictionary.addTypes(ZUNDATOFU_FUNGIFOREST, BiomeDictionary.Type.FOREST);
         BiomeDictionary.addTypes(TOFUZUNDA_SWAMP, BiomeDictionary.Type.SWAMP);
+        BiomeDictionary.addTypes(TOFU_BUILDING, BiomeDictionary.Type.FOREST);
         BiomeDictionary.addTypes(TOFU_RIVER, BiomeDictionary.Type.RIVER);
     }
 }

@@ -1,6 +1,7 @@
 package baguchan.mcmod.tofucraft.entity.ai;
 
 import baguchan.mcmod.tofucraft.entity.TofunianEntity;
+import baguchan.mcmod.tofucraft.utils.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -21,7 +22,7 @@ public class CookingTofuGoal extends MoveToBlockGoal {
     }
 
     public boolean shouldExecute() {
-        return !this.creature.isBeingRidden() && !this.creature.isChild() && this.creature.getRole() == TofunianEntity.Roles.TOFUCOCK && this.creature.world.isDaytime() && this.creature.getAttackTarget() == null && this.creature.world.rand.nextInt(160) == 0 && this.creature.canCookItem() && super.shouldExecute();
+        return !this.creature.isBeingRidden() && !this.creature.isChild() && this.creature.getRole() == TofunianEntity.Roles.TOFUCOCK && WorldUtils.isDaytime(this.creature.world) && this.creature.getAttackTarget() == null && this.creature.world.rand.nextInt(160) == 0 && this.creature.canCookItem() && super.shouldExecute();
     }
 
     protected int getRunDelay(CreatureEntity creatureIn) {
@@ -30,7 +31,7 @@ public class CookingTofuGoal extends MoveToBlockGoal {
 
     @Override
     public boolean shouldContinueExecuting() {
-        return this.creature.world.isDaytime() && this.creature.getRole() == TofunianEntity.Roles.TOFUCOCK && this.creature.canKeepCookItem();
+        return WorldUtils.isDaytime(this.creature.world) && this.creature.getRole() == TofunianEntity.Roles.TOFUCOCK && this.creature.canKeepCookItem();
     }
 
 

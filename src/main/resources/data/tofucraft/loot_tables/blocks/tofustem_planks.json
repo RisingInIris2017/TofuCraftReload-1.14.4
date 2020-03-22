@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tofucraft:tofustem"
+          "name": "tofucraft:tofustem_planks"
         }
       ],
       "conditions": [

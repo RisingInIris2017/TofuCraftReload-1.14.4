@@ -5,6 +5,7 @@ import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.init.TofuEntitys;
 import baguchan.mcmod.tofucraft.init.TofuItems;
 import baguchan.mcmod.tofucraft.init.TofuSounds;
+import baguchan.mcmod.tofucraft.utils.WorldUtils;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
@@ -498,7 +499,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     protected void registerGoals() {
 
         //Sleep AI is still proglem because tofuworld's time line is breaking
-        //this.goalSelector.addGoal(0, new WakeUpGoal(this));
+        this.goalSelector.addGoal(0, new WakeUpGoal(this));
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D) {
             @Override
@@ -514,7 +515,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         });
         this.goalSelector.addGoal(2, new TradeWithPlayerGoal(this));
         this.goalSelector.addGoal(2, new LookAtCustomerGoal(this));
-        //this.goalSelector.addGoal(3, new SleepOnBedGoal(this, 1.1D));
+        this.goalSelector.addGoal(3, new SleepOnBedGoal(this, 1.1D));
         this.goalSelector.addGoal(4, new MoveToHomeGoal(this, 30D, 1.10D));
         this.goalSelector.addGoal(5, new TofunianLoveGoal(this, 0.85D));
         this.goalSelector.addGoal(6, new InterestJobBlockGoal(this, 1.0D));
@@ -1017,7 +1018,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
         public boolean shouldExecute() {
             BlockPos blockpos = this.tofunian.getTofunainHome();
-            if (!this.tofunian.world.isDaytime() && this.tofunian.world.getDimension().isSurfaceWorld()) {
+            if (!WorldUtils.isDaytime(this.tofunian.world) && this.tofunian.world.getDimension().isSurfaceWorld()) {
                 return blockpos != null && this.func_220846_a(blockpos, this.distance);
             } else {
                 return blockpos != null && this.func_220846_a(blockpos, this.distance);
@@ -1033,7 +1034,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         private boolean moveHome() {
             BlockPos blockpos = this.tofunian.getTofunainHome();
 
-            if (!this.tofunian.world.isDaytime() && this.tofunian.world.getDimension().isSurfaceWorld()) {
+            if (!WorldUtils.isDaytime(this.tofunian.world) && this.tofunian.world.getDimension().isSurfaceWorld()) {
                 return this.func_220846_a(blockpos, this.distance * 0.2F);
             } else {
                 return this.func_220846_a(blockpos, this.distance * 0.75F);

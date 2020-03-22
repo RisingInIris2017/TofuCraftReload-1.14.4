@@ -89,7 +89,9 @@ public class TofuBlocks {
     public static final Block TOFUDOOR_METAL = new TofuDoorBlock(Block.Properties.from(METALTOFU).notSolid());
 
     //TERRAIN
+    public static final Block ZUNDATOFU_MUSHROOM = new TofuMushroomBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.0F, 0.6F).lightValue(3).doesNotBlockMovement().tickRandomly().sound(SoundType.PLANT));
     public static final Block TOFUSTEM = new RotatedPillarBlock(Block.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 5.0F).sound(SoundType.WOOD));
+    public static final Block TOFUSTEM_PLANK = new Block(Block.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 5.0F).sound(SoundType.WOOD));
     public static final Block TOFUTERRAIN = new TofuTerrainBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.45F, 0.85F).sound(SoundType.SNOW));
     public static final Block TOFUISHI_TERRAIN = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
     public static final Block ZUNDATOFUTERRAIN = new TofuGrassBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).tickRandomly().hardnessAndResistance(0.5F, 0.9F).sound(SoundType.SNOW));
@@ -191,7 +193,9 @@ public class TofuBlocks {
         registry.getRegistry().register(TOFUDOOR_ISHI.setRegistryName("tofudoor_ishi"));
         registry.getRegistry().register(TOFUDOOR_METAL.setRegistryName("tofudoor_metal"));
         //terrain
+        registry.getRegistry().register(ZUNDATOFU_MUSHROOM.setRegistryName("zundatofu_mushroom"));
         registry.getRegistry().register(TOFUSTEM.setRegistryName("tofustem"));
+        registry.getRegistry().register(TOFUSTEM_PLANK.setRegistryName("tofustem_planks"));
         registry.getRegistry().register(TOFUTERRAIN.setRegistryName("tofu_terrain"));
         registry.getRegistry().register(TOFUISHI_TERRAIN.setRegistryName("tofuishi_terrain"));
         registry.getRegistry().register(ZUNDATOFUTERRAIN.setRegistryName("zundatofu_terrain"));
@@ -284,7 +288,9 @@ public class TofuBlocks {
         TofuItems.register(registry, new TallBlockItem(TOFUDOOR_ISHI, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new TallBlockItem(TOFUDOOR_METAL, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
 
+        TofuItems.register(registry, new BlockItem(ZUNDATOFU_MUSHROOM, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFUSTEM, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        TofuItems.register(registry, new BlockItem(TOFUSTEM_PLANK, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFUTERRAIN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFUISHI_TERRAIN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(ZUNDATOFUTERRAIN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
