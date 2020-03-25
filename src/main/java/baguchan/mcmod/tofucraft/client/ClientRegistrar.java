@@ -119,7 +119,7 @@ public class ClientRegistrar {
         }
 
         if (event.getMap().getBasePath().equals(Atlases.BED_ATLAS)) {
-            event.addSprite(TofuBedBlockRenderer.TEXTURES);
+            event.addSprite(new ResourceLocation(TofuCraftCore.MODID, "entity/tofubed"));
         }
     }
 }

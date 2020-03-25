@@ -25,7 +25,7 @@ import static baguchan.mcmod.tofucraft.TofuCraftCore.MODID;
 public class TofuEntitys {
     public static final EntityClassification TOFU_MONSTER = EntityClassification.create("tofu_monster", "tofu_monster", 22, false, false);
 
-    public static final EntityType<TofunianEntity> TOFUNIAN = EntityType.Builder.create(TofunianEntity::new, EntityClassification.CREATURE).setShouldReceiveVelocityUpdates(true).size(0.6F, 1.2F).build(prefix("tofunian"));
+    public static final EntityType<TofunianEntity> TOFUNIAN = EntityType.Builder.create(TofunianEntity::new, EntityClassification.CREATURE).setShouldReceiveVelocityUpdates(true).size(0.6F, 1.15F).build(prefix("tofunian"));
 
     public static final EntityType<TofuSlimeEntity> TOFUSLIME = EntityType.Builder.create(TofuSlimeEntity::new, TOFU_MONSTER).setShouldReceiveVelocityUpdates(true).size(2.04F, 2.04F).build(prefix("tofuslime"));
     public static final EntityType<TofuCowEntity> TOFUCOW = EntityType.Builder.create(TofuCowEntity::new, EntityClassification.CREATURE).setShouldReceiveVelocityUpdates(true).size(0.9F, 1.4F).build(prefix("tofucow"));

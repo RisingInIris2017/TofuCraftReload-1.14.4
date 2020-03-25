@@ -23,8 +23,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuBedBlockRenderer extends TileEntityRenderer<TofuBedTileEntity> {
-    public static final ResourceLocation TEXTURES = new ResourceLocation(TofuCraftCore.MODID, "entity/tofubed");
-    private static final Material DEFAULT_TEXTURE = new Material(Atlases.BED_ATLAS, new ResourceLocation(TofuCraftCore.MODID, "textures/entity/tofubed"));
+    private static final Material DEFAULT_TEXTURE = new Material(Atlases.BED_ATLAS, new ResourceLocation(TofuCraftCore.MODID, "entity/tofubed"));
 
     private final ModelRenderer field_228843_a_;
     private final ModelRenderer field_228844_c_;
