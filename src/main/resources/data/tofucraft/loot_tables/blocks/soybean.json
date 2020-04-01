@@ -50,7 +50,7 @@
               "enchantment": "minecraft:fortune",
               "formula": "minecraft:binomial_with_bonus_count",
               "parameters": {
-                "extra": 4,
+                "extra": 8,
                 "probability": 0.5714286
               }
             }
@@ -79,7 +79,7 @@
               "enchantment": "minecraft:fortune",
               "formula": "minecraft:binomial_with_bonus_count",
               "parameters": {
-                "extra": 3,
+                "extra": 6,
                 "probability": 0.5714286
               }
             }
