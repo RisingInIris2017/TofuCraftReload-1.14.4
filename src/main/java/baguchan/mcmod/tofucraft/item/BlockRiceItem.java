@@ -47,14 +47,14 @@ public class BlockRiceItem extends BlockItem {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
         RayTraceResult raytraceresult = rayTrace(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
         if (raytraceresult.getType() == RayTraceResult.Type.MISS) {
-            return ActionResult.func_226250_c_(itemstack);
+            return ActionResult.resultPass(itemstack);
         } else {
             if (raytraceresult.getType() == RayTraceResult.Type.BLOCK) {
                 BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) raytraceresult;
                 BlockPos blockpos = blockraytraceresult.getPos();
                 Direction direction = blockraytraceresult.getFace();
                 if (!worldIn.isBlockModifiable(playerIn, blockpos) || !playerIn.canPlayerEdit(blockpos.offset(direction), direction, itemstack)) {
-                    return ActionResult.func_226251_d_(itemstack);
+                    return ActionResult.resultFail(itemstack);
                 }
 
                 BlockPos blockpos1 = blockpos.up();
@@ -69,7 +69,7 @@ public class BlockRiceItem extends BlockItem {
                     worldIn.setBlockState(blockpos1, TofuBlocks.RICE.getDefaultState(), 11);
                     if (net.minecraftforge.event.ForgeEventFactory.onBlockPlace(playerIn, blocksnapshot, net.minecraft.util.Direction.UP)) {
                         blocksnapshot.restore(true, false);
-                        return ActionResult.func_226251_d_(itemstack);
+                        return ActionResult.resultFail(itemstack);
                     }
 
                     if (playerIn instanceof ServerPlayerEntity) {
@@ -82,11 +82,11 @@ public class BlockRiceItem extends BlockItem {
 
                     playerIn.addStat(Stats.ITEM_USED.get(this));
                     worldIn.playSound(playerIn, blockpos, SoundEvents.BLOCK_LILY_PAD_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    return ActionResult.func_226248_a_(itemstack);
+                    return ActionResult.resultSuccess(itemstack);
                 }
             }
 
-            return ActionResult.func_226251_d_(itemstack);
+            return ActionResult.resultFail(itemstack);
         }
     }
 }

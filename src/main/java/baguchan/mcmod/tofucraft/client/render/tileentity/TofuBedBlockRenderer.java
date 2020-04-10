@@ -80,7 +80,7 @@ public class TofuBedBlockRenderer extends TileEntityRenderer<TofuBedTileEntity> 
         p_228847_1_.translate(0.5D, 0.5D, 0.5D);
         p_228847_1_.rotate(Vector3f.ZP.rotationDegrees(180.0F + p_228847_4_.getHorizontalAngle()));
         p_228847_1_.translate(-0.5D, -0.5D, -0.5D);
-        IVertexBuilder ivertexbuilder = p_228847_5_.getBuffer(p_228847_2_, RenderType::entitySolid);
+        IVertexBuilder ivertexbuilder = p_228847_5_.getBuffer(p_228847_2_, RenderType::getEntitySolid);
         this.field_228843_a_.render(p_228847_1_, ivertexbuilder, p_228847_6_, p_228847_7_);
         this.field_228844_c_.render(p_228847_1_, ivertexbuilder, p_228847_6_, p_228847_7_);
         this.field_228845_d_[0].render(p_228847_1_, ivertexbuilder, p_228847_6_, p_228847_7_);

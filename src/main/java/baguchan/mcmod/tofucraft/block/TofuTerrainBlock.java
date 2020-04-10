@@ -55,7 +55,7 @@ public class TofuTerrainBlock extends Block implements IGrowable {
                         }
 
                         ConfiguredFeature<?, ?> configuredfeature = ((DecoratedFeatureConfig) (list.get(0)).config).feature;
-                        blockstate1 = ((FlowersFeature) ((DecoratedFeatureConfig) (list.get(0)).config).feature.feature).func_225562_b_(rand, blockpos1, configuredfeature.config);
+                        blockstate1 = ((FlowersFeature) ((DecoratedFeatureConfig) (list.get(0)).config).feature.feature).getFlowerToPlace(rand, blockpos1, configuredfeature.config);
                     } else {
                         blockstate1 = blockstate;
                     }

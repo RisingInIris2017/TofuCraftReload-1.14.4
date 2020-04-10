@@ -13,7 +13,7 @@ public class ZundamaModel<T extends LivingEntity> extends EntityModel<T> {
     public ModelRenderer gel;
 
     public ZundamaModel() {
-        super(RenderType::entityTranslucent);
+        super(RenderType::getEntityTranslucent);
         this.textureWidth = 64;
         this.textureHeight = 32;
         this.core = new ModelRenderer(this, 0, 0);
@@ -31,7 +31,7 @@ public class ZundamaModel<T extends LivingEntity> extends EntityModel<T> {
     }
 
     @Override
-    public void render(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 
     }
 

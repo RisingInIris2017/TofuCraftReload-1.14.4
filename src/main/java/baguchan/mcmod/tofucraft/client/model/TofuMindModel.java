@@ -53,8 +53,9 @@ public class TofuMindModel<T extends TofuMindEntity> extends SegmentedModel<T> i
     public Iterable<ModelRenderer> getParts() {
         return ImmutableList.of(this.body);
     }
+
     @Override
-    public void render(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.rotateAngleY = netHeadYaw * ((float) Math.PI / 180F);
 
         this.head.rotateAngleX = headPitch * ((float) Math.PI / 180F);
@@ -128,7 +129,7 @@ public class TofuMindModel<T extends TofuMindEntity> extends SegmentedModel<T> i
         float f = sideIn == HandSide.RIGHT ? 1.0F : -1.0F;
         ModelRenderer modelrenderer = this.getArmForSide(sideIn);
         modelrenderer.rotationPointX += f;
-        modelrenderer.setAnglesAndRotation(matrixStackIn);
+        modelrenderer.translateRotate(matrixStackIn);
         modelrenderer.rotationPointX -= f;
     }
 

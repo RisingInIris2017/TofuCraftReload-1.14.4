@@ -61,7 +61,7 @@ public class TofuGandlemModel<T extends TofuGandlemEntity> extends SegmentedMode
     }
 
     @Override
-    public void render(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.rotateAngleY = netHeadYaw * ((float) Math.PI / 180F);
 
         this.head.rotateAngleX = headPitch * ((float) Math.PI / 180F);

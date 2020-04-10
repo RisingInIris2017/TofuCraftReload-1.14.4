@@ -72,7 +72,7 @@ public class TofuGauntletItem extends ItemTofuEnergyContained {
         Mode mode = Mode.byItemStack(itemstack);
 
         if (!isUsable(itemstack)) {
-            return ActionResult.func_226251_d_(itemstack);
+            return ActionResult.resultFail(itemstack);
         } else {
             if (mode == Mode.SOYSHOT) {
                 if (!playerIn.abilities.isCreativeMode) {
@@ -99,10 +99,10 @@ public class TofuGauntletItem extends ItemTofuEnergyContained {
                 }
 
                 playerIn.addStat(Stats.ITEM_USED.get(this));
-                return ActionResult.func_226249_b_(itemstack);
+                return ActionResult.resultSuccess(itemstack);
             } else {
                 playerIn.setActiveHand(handIn);
-                return ActionResult.func_226249_b_(itemstack);
+                return ActionResult.resultSuccess(itemstack);
             }
         }
     }

@@ -57,8 +57,8 @@ public class TofunianModel extends BipedModel<TofunianEntity> {
     }
 
     @Override
-    public void render(TofunianEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+    public void setRotationAngles(TofunianEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        super.setRotationAngles(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
         float f6 = 12.0f;
 
         boolean flag = entityIn.getShakeHeadTicks() > 0;

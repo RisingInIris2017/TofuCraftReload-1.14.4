@@ -51,8 +51,9 @@ public class TofuChingerModel<T extends TofuChingerEntity> extends SegmentedMode
     public Iterable<ModelRenderer> getParts() {
         return ImmutableList.of(this.body);
     }
+
     @Override
-    public void render(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         float f = ageInTicks - (float) entityIn.ticksExisted;
         float f1 = entityIn.getEatingAnimationScale(f);
         f1 = f1 * f1;

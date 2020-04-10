@@ -29,7 +29,7 @@ public class MorijioModel<T extends MorijioEntity> extends SegmentedModel<T> {
         this.base.addChild(this.shape3);
     }
 
-    public void render(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     }
 
     public Iterable<ModelRenderer> getParts() {

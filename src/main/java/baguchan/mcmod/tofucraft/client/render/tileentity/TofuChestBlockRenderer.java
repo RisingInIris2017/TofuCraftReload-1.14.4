@@ -102,7 +102,7 @@ public class TofuChestBlockRenderer extends TileEntityRenderer<TofuChestTileEnti
             f1 = 1.0F - f1 * f1 * f1;
             int i = icallbackwrapper.apply(new DualBrightnessCallback<>()).applyAsInt(combinedLightIn);
             Material material = getChestMaterial(tileEntityIn, chesttype);
-            IVertexBuilder ivertexbuilder = material.getBuffer(bufferIn, RenderType::entityCutout);
+            IVertexBuilder ivertexbuilder = material.getBuffer(bufferIn, RenderType::getEntityCutout);
             if (flag1) {
                 if (chesttype == ChestType.LEFT) {
                     this.func_228871_a_(matrixStackIn, ivertexbuilder, this.field_228868_h_, this.field_228870_j_, this.field_228869_i_, f1, i, combinedOverlayIn);

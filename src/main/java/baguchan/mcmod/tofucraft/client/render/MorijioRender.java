@@ -29,9 +29,9 @@ public class MorijioRender extends EntityRenderer<MorijioEntity> {
         matrixStackIn.scale(-1.0F, -1.0F, 1.0F);
         matrixStackIn.translate(0.0F, -1.5F, 0.0F);
 
-        this.model.render(entityIn, 0, 0.0F, 0.0F, entityIn.rotationYaw, entityIn.rotationPitch);
+        this.model.setRotationAngles(entityIn, 0, 0.0F, 0.0F, entityIn.rotationYaw, entityIn.rotationPitch);
         IVertexBuilder ivertexbuilder = bufferIn.getBuffer(this.model.getRenderType(MORIJIO));
-        this.model.render(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.DEFAULT_LIGHT, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.model.render(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         matrixStackIn.pop();
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 

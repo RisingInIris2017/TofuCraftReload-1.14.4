@@ -26,10 +26,10 @@ public class EyelidLayer<T extends Entity, M extends EntityModel<T>> extends Lay
         //Close Eyelid
         if (0 > MathHelper.sin(f3 * 0.05F) + MathHelper.sin(f3 * 0.13F) + MathHelper.sin(f3 * 0.7F) + 2.55F || entitylivingbaseIn instanceof LivingEntity && ((LivingEntity) entitylivingbaseIn).isSleeping()) {
             if (!entitylivingbaseIn.isInvisible()) {
-                IVertexBuilder ivertexbuilder = bufferIn.getBuffer(RenderType.entityTranslucent(this.getEntityTexture(entitylivingbaseIn)));
+                IVertexBuilder ivertexbuilder = bufferIn.getBuffer(RenderType.getEntityTranslucent(this.getEntityTexture(entitylivingbaseIn)));
 
                 this.getEntityModel().setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTicks);
-                this.getEntityModel().render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+                this.getEntityModel().setRotationAngles(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
             }
         }
     }

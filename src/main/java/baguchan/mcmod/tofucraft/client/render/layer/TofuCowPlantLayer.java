@@ -42,7 +42,7 @@ public class TofuCowPlantLayer<T extends TofuCowEntity> extends LayerRenderer<T,
             blockrendererdispatcher.renderBlock(blockstate, matrixStackIn, bufferIn, packedLightIn, i);
             matrixStackIn.pop();
             matrixStackIn.push();
-            this.getEntityModel().getHead().setAnglesAndRotation(matrixStackIn);
+            this.getEntityModel().getHead().translateRotate(matrixStackIn);
             matrixStackIn.translate(0.0D, (double) -0.7F, (double) -0.2F);
             matrixStackIn.rotate(Vector3f.YP.rotationDegrees(-78.0F));
             matrixStackIn.scale(-1.0F, -1.0F, 1.0F);

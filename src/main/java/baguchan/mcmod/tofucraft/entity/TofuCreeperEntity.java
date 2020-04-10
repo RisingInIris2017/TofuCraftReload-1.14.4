@@ -298,7 +298,7 @@ public class TofuCreeperEntity extends MonsterEntity implements IChargeableMob {
     }
 
     @Override
-    public boolean func_225509_J__() {
+    public boolean isCharged() {
         return this.dataManager.get(POWERED);
     }
 }

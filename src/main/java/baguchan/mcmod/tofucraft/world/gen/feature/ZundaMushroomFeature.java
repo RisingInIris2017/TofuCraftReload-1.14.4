@@ -266,7 +266,10 @@ public class ZundaMushroomFeature extends Feature<NoFeatureConfig> {
         }
 
         @Override
-        public boolean func_225521_a_(BlockPos p_225521_1_, boolean p_225521_2_, @Nullable Entity p_225521_3_) {
+        public boolean destroyBlock(BlockPos blockPos, boolean b, @Nullable Entity entity) {
+            if (super.destroyBlock(blockPos, b)) {
+                return true;
+            }
             return false;
         }
 

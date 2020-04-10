@@ -222,7 +222,7 @@ public class TofuPortalBlock extends Block {
 
             serverworld.getProfiler().endSection();
             serverPlayerEntity.setWorld(serverworld1);
-            serverworld1.func_217447_b(serverPlayerEntity);
+            serverworld1.addDuringPortalTeleport(serverPlayerEntity);
             serverPlayerEntity.connection.setPlayerLocation(serverPlayerEntity.getPosX(), serverPlayerEntity.getPosY(), serverPlayerEntity.getPosZ(), f1, f);
             return serverPlayerEntity;//forge: this is part of the ITeleporter patch
         });//Forge: End vanilla logic
@@ -284,7 +284,7 @@ public class TofuPortalBlock extends Block {
                 entity2.copyDataFromOld(entity);
                 tofuteleporter.placeInPortal(entity2, entity2.rotationYaw);
                 entity2.setMotion(vec3d);
-                serverworld1.func_217460_e(entity2);
+                serverworld1.addFromAnotherDimension(entity2);
                 entity.remove();
             }
 

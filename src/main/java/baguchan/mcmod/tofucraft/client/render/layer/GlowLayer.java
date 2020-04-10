@@ -16,6 +16,6 @@ public class GlowLayer<T extends Entity, M extends EntityModel<T>> extends Abstr
     }
 
     public RenderType getRenderType() {
-        return RenderType.eyes(TEXTURES);
+        return RenderType.getEyes(TEXTURES);
     }
 }

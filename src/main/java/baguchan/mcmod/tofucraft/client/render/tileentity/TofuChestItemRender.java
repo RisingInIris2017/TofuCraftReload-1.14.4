@@ -17,6 +17,6 @@ public class TofuChestItemRender extends ItemStackTileEntityRenderer {
     @Override
     public void render(ItemStack itemStackIn, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
         super.render(itemStackIn, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
-        TileEntityRendererDispatcher.instance.renderNullable(this.chest, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
+        TileEntityRendererDispatcher.instance.renderItem(this.chest, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
     }
 }
