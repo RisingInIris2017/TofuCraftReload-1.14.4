@@ -615,6 +615,14 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         }
     }
 
+    private void shakeHead() {
+        this.setShakeHeadTicks(40);
+        if (!this.world.isRemote()) {
+            this.playSound(TofuSounds.TOFUNIAN_NO, this.getSoundVolume(), this.getSoundPitch());
+        }
+
+    }
+
     public void setInLove(int inLove) {
         this.inLove = inLove;
     }
@@ -840,6 +848,10 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
                         this.displayMerchantGui(player);
                     }
                     return true;
+                } else {
+                    if (!this.world.isRemote) {
+                        this.shakeHead();
+                    }
                 }
                 return super.processInteract(player, hand);
             } else {
@@ -913,8 +925,9 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         return TofuSounds.TOFUNIAN_AMBIENT;
     }
 
+    @Override
     protected SoundEvent getVillagerYesNoSound(boolean getYesSound) {
-        return getYesSound ? TofuSounds.TOFUNIAN_YES : null;
+        return getYesSound ? TofuSounds.TOFUNIAN_YES : TofuSounds.TOFUNIAN_NO;
     }
 
     @Override
