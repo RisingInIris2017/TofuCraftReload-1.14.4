@@ -10,6 +10,7 @@ import net.minecraft.block.TallGrassBlock;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -95,7 +96,7 @@ public class TofuCraftCore {
 
     @SubscribeEvent
     public void onCheckSpawnEvent(LivingSpawnEvent.CheckSpawn event) {
-        if (event.getEntityLiving().getType().getClassification() == EntityClassification.MONSTER) {
+        if (event.getEntityLiving().getType().getClassification() == EntityClassification.MONSTER || event.getEntityLiving() instanceof IMob) {
             List<MorijioEntity> list = event.getWorld().getEntitiesWithinAABB(MorijioEntity.class, event.getEntityLiving().getBoundingBox().expand(48.0D, 20.0D, 48.0D));
 
             if (list.size() > 0) {
