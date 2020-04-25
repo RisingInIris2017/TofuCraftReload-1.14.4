@@ -28,7 +28,7 @@ public class TofuVillagers {
     private static Method blockStatesInjector = ObfuscationReflectionHelper.findMethod(PointOfInterestType.class, "func_221052_a", PointOfInterestType.class);
 
     public static PointOfInterestType SALTPAN = new PointOfInterestType("tofu_craftsman", PointOfInterestType.getAllStates(TofuBlocks.SALTPAN.getBlock()), 1, 1);
-    public static VillagerProfession TOFU_CRAFTSMAN = new VillagerProfession("tofu_craftsman", SALTPAN, ImmutableSet.of(), ImmutableSet.of(), SoundEvents.ENTITY_VILLAGER_WORK_CLERIC);
+    public static VillagerProfession TOFU_CRAFTSMAN = new VillagerProfession("tofu_craftsman", SALTPAN, ImmutableSet.of(), ImmutableSet.of(), SoundEvents.ENTITY_VILLAGER_WORK_LEATHERWORKER);
 
     @SubscribeEvent
     public static void registerPointOfInterest(RegistryEvent.Register<PointOfInterestType> register) {
