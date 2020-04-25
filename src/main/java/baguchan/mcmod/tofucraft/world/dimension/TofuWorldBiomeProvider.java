@@ -21,7 +21,7 @@ public class TofuWorldBiomeProvider extends BiomeProvider {
     public TofuWorldBiomeProvider(World world, OverworldBiomeProviderSettings settingsProvider) {
         super(biomes);
         this.world = world;
-        this.genBiomes = TofuLayerUtil.buildTofuProcedure(settingsProvider.func_226850_a_(), settingsProvider.func_226851_b_(), settingsProvider.getGeneratorSettings());
+        this.genBiomes = TofuLayerUtil.buildTofuProcedure(settingsProvider.getSeed(), settingsProvider.getWorldType(), settingsProvider.getGeneratorSettings());
     }
 
     public Biome getNoiseBiome(int x, int y, int z) {

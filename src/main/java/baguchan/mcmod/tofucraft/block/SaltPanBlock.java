@@ -144,7 +144,7 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
                     worldIn.setBlockState(pos, state.with(STAT, Stat.EMPTY), 3);
                     return ActionResultType.SUCCESS;
                 } else if (stat == Stat.SALT) {
-                    ItemStack salt = new ItemStack(TofuItems.SALT, 1);
+                    ItemStack salt = new ItemStack(TofuItems.SALT, 1 + worldIn.rand.nextInt(2));
 
                     float f = 0.7F;
                     double d0 = (double) (worldIn.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;

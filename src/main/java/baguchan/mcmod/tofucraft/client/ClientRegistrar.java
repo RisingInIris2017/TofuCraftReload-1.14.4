@@ -4,10 +4,13 @@ import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.client.render.*;
 import baguchan.mcmod.tofucraft.client.render.tileentity.TofuBedBlockRenderer;
 import baguchan.mcmod.tofucraft.client.render.tileentity.TofuChestBlockRenderer;
+import baguchan.mcmod.tofucraft.client.screen.SaltFurnaceScreen;
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
+import baguchan.mcmod.tofucraft.init.TofuContainers;
 import baguchan.mcmod.tofucraft.init.TofuEntitys;
 import baguchan.mcmod.tofucraft.init.TofuTileEntitys;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -108,6 +111,8 @@ public class ClientRegistrar {
         ClientRegistrar.renderEntity();
         ClientRegistrar.renderTileEntity();
         ClientRegistrar.renderBlock();
+
+        ScreenManager.registerFactory(TofuContainers.SALT_FURNACE, SaltFurnaceScreen::new);
     }
 
     @SubscribeEvent

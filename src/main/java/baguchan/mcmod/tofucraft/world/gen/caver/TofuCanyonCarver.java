@@ -31,7 +31,7 @@ public class TofuCanyonCarver extends CanyonWorldCarver {
         } else {
             p_225556_3_.set(i);
             p_225556_5_.setPos(p_225556_11_, p_225556_14_, p_225556_12_);
-            if (this.func_222706_a(p_225556_1_.getBlockState(p_225556_5_))) {
+            if (this.isCarvable(p_225556_1_.getBlockState(p_225556_5_))) {
                 BlockState blockstate;
                 if (p_225556_14_ <= 13) {
                     blockstate = TofuBlocks.SOYMILK.getDefaultState();

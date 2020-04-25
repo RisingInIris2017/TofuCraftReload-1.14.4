@@ -110,6 +110,8 @@ public class TofuBlocks {
     //Util block
     public static final TofuPortalBlock TOFUPORTAL = new TofuPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().harvestTool(ToolType.PICKAXE).hardnessAndResistance(-1.0F, 3000000.0F).lightValue(10).sound(SoundType.GLASS));
     public static final Block SALTPAN = new SaltPanBlock(Block.Properties.create(Material.WOOD).tickRandomly().harvestTool(ToolType.AXE).hardnessAndResistance(1.0F).sound(SoundType.WOOD).notSolid());
+    public static final Block SALT_FURNACE = new SaltFurnaceBlock(Block.Properties.create(Material.ROCK).tickRandomly().harvestTool(ToolType.PICKAXE).hardnessAndResistance(3.5F).lightValue(13).sound(SoundType.STONE));
+    public static final Block SALT_CAULDRON = new SaltCauldronBlock(Block.Properties.create(Material.IRON).tickRandomly().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F).sound(SoundType.METAL).notSolid());
     public static final Block POTTED_TOFUFLOWER = new FlowerPotBlock(TOFUFLOWER, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F).notSolid());
     public static final Block POTTED_TOFUSAPLING = new FlowerPotBlock(TOFUSAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F).notSolid());
     public static final Block POTTED_ZUNDATOFUSAPLING = new FlowerPotBlock(ZUNDATOFUSAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F).notSolid());
@@ -212,6 +214,8 @@ public class TofuBlocks {
         //Util block
         registry.getRegistry().register(TOFUPORTAL.setRegistryName("tofuportal"));
         registry.getRegistry().register(SALTPAN.setRegistryName("blocksaltpan"));
+        registry.getRegistry().register(SALT_FURNACE.setRegistryName("salt_furnace"));
+        registry.getRegistry().register(SALT_CAULDRON.setRegistryName("salt_cauldron"));
         registry.getRegistry().register(POTTED_TOFUFLOWER.setRegistryName("potted_tofuflower"));
         registry.getRegistry().register(POTTED_TOFUSAPLING.setRegistryName("potted_tofusapling"));
         registry.getRegistry().register(POTTED_ZUNDATOFUSAPLING.setRegistryName("potted_zunda_tofusapling"));
@@ -304,6 +308,7 @@ public class TofuBlocks {
         TofuItems.register(registry, new BlockItem(TOFUBERRY, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
 
         TofuItems.register(registry, new BlockItem(SALTPAN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        TofuItems.register(registry, new BlockItem(SALT_FURNACE, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFUCHEST, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT).setISTER(() -> TofuChestItemRender::new)));
         TofuItems.register(registry, new BlockItem(TOFUBED, (new Item.Properties()).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT).setISTER(() -> TofuBlockItemRender::new)));
         TofuItems.register(registry, new BlockItem(WHEAT_BOWL, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
