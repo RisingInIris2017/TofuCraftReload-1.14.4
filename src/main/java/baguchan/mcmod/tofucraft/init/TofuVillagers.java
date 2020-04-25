@@ -48,7 +48,7 @@ public class TofuVillagers {
         DesertVillagePools.init();
         TaigaVillagePools.init();
         for (String biome : new String[]{"plains", "snowy", "savanna", "desert", "taiga"})
-            addToPool(new ResourceLocation("village/" + biome + "/houses"), new ResourceLocation(TofuCraftCore.MODID, "village/tofu_craftsman_house_" + biome + "_1"), 5);
+            addToPool(new ResourceLocation("village/" + biome + "/houses"), new ResourceLocation(TofuCraftCore.MODID, "village/tofu_craftsman_house_" + biome + "_1"), 3);
         try {
             blockStatesInjector.invoke(null, SALTPAN);
         } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {

@@ -15,19 +15,19 @@ import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = TofuCraftCore.MODID)
 public class LootEvents {
-    private static final Set<ResourceLocation> SHIPWRECK_LOOT = Sets.newHashSet(LootTables.CHESTS_SHIPWRECK_SUPPLY);
+    private static final Set<ResourceLocation> SHIPWRECK_LOOT = Sets.newHashSet(LootTables.CHESTS_SHIPWRECK_TREASURE);
     private static final Set<ResourceLocation> TEMPLE_LOOT = Sets.newHashSet(LootTables.CHESTS_JUNGLE_TEMPLE);
 
 
     @SubscribeEvent
     public static void onInjectLoot(LootTableLoadEvent event) {
         if (SHIPWRECK_LOOT.contains(event.getName())) {
-            LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(TofuCraftCore.MODID, "injections/tofustick_structures")).weight(1).quality(2)).name("tofustick_structure").build();
+            LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(TofuCraftCore.MODID, "injections/tofustick_structures")).weight(1).quality(1)).name("tofustick_structure").build();
             event.getTable().addPool(pool);
         }
 
         if (TEMPLE_LOOT.contains(event.getName())) {
-            LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(TofuCraftCore.MODID, "injections/tofustick_structures")).weight(1).quality(2)).name("tofustick_structure").build();
+            LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(TofuCraftCore.MODID, "injections/tofustick_structures")).weight(1).quality(1)).name("tofustick_structure").build();
             event.getTable().addPool(pool);
         }
     }
