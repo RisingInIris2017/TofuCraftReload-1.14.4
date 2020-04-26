@@ -23,7 +23,7 @@ public class TofuTrades {
     @SubscribeEvent
     public static void onWandererTradesEvent(WandererTradesEvent event) {
         List<VillagerTrades.ITrade> trades = event.getGenericTrades();
-        trades.add(new ItemsForEmeraldsTrade(TofuItems.TOFUSTICK, 1, 8, 4, 1));
+        trades.add(new ItemsForEmeraldsTrade(TofuItems.TOFUSTICK, 8, 1, 4, 1));
     }
 
 
@@ -63,17 +63,11 @@ public class TofuTrades {
     public static class ItemsForEmeraldsTrade implements ITrade {
 
         private final ItemStack itemstack;
-
         private final int stackSize;
-
         private final int recievedSize;
-
         private final int maxUses;
-
         private final int givenExp;
-
         private final float priceMultiplier;
-
 
         public ItemsForEmeraldsTrade(Block block, int stackSize, int recievedSize, int maxUses, int givenExp) {
 

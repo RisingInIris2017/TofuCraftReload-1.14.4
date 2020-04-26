@@ -19,7 +19,6 @@ public class LootEvents {
     private static final Set<ResourceLocation> SHIPWRECK_LOOT = Sets.newHashSet(LootTables.CHESTS_SHIPWRECK_TREASURE);
     private static final Set<ResourceLocation> TEMPLE_LOOT = Sets.newHashSet(LootTables.CHESTS_JUNGLE_TEMPLE);
 
-
     @SubscribeEvent
     public static void onInjectLoot(LootTableLoadEvent event) {
         if (SHIPWRECK_LOOT.contains(event.getName())) {
