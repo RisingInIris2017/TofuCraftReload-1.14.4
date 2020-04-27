@@ -500,6 +500,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
         //Sleep AI is still proglem because tofuworld's time line is breaking
         this.goalSelector.addGoal(0, new WakeUpGoal(this));
+        this.goalSelector.addGoal(0, new DoSleepingGoal());
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D) {
             @Override
@@ -1071,6 +1072,20 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
         private boolean func_220846_a(BlockPos p_220846_1_, double p_220846_2_) {
             return !p_220846_1_.withinDistance(this.tofunian.getPositionVec(), p_220846_2_);
+        }
+    }
+
+    class DoSleepingGoal extends Goal {
+        public DoSleepingGoal() {
+            this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+        }
+
+        /**
+         * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+         * method as well.
+         */
+        public boolean shouldExecute() {
+            return TofunianEntity.this.isSleeping();
         }
     }
 }
