@@ -23,7 +23,7 @@ public class TofunianRender extends MobRenderer<TofunianEntity, TofunianModel> {
             public void render(MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn, TofunianEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
                 matrixStackIn.push();
 
-                matrixStackIn.translate(0.0D, -1.0D, 0.0D);
+                matrixStackIn.translate(0.0D, -0.25D, 0.0D);
 
                 super.render(matrixStackIn, bufferIn, packedLightIn, entitylivingbaseIn, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch);
 
