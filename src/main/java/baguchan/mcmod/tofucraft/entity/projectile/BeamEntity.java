@@ -22,7 +22,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 public class BeamEntity extends AbstractFireballEntity {
     public boolean isCanBreak = false;
-    public float explosionPower = 0.6F;
+    public float explosionPower = 0.5F;
 
     public BeamEntity(EntityType<? extends BeamEntity> p_i50160_1_, World p_i50160_2_) {
         super(p_i50160_1_, p_i50160_2_);

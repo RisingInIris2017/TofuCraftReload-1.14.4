@@ -38,6 +38,7 @@ public class TofuHomingForceEntity extends Entity {
     @Nullable
     private UUID targetUniqueId;
     private BlockPos targetBlockPos;
+    public float damage = 4.0F;
 
     public TofuHomingForceEntity(EntityType<? extends TofuHomingForceEntity> p_i50161_1_, World p_i50161_2_) {
         super(p_i50161_1_, p_i50161_2_);
@@ -89,6 +90,7 @@ public class TofuHomingForceEntity extends Entity {
             compound.put("Target", compoundnbt1);
         }
 
+        compound.putFloat("Damage", this.damage);
 
         compound.putInt("Steps", this.steps);
     }
@@ -111,6 +113,9 @@ public class TofuHomingForceEntity extends Entity {
             this.targetBlockPos = new BlockPos(compoundnbt1.getInt("X"), compoundnbt1.getInt("Y"), compoundnbt1.getInt("Z"));
         }
 
+        if (compound.contains("Damage")) {
+            this.damage = compound.getFloat("Damage");
+        }
     }
 
     protected void registerData() {
@@ -218,12 +223,12 @@ public class TofuHomingForceEntity extends Entity {
     protected void bulletHit(RayTraceResult result) {
         if (result.getType() == RayTraceResult.Type.ENTITY) {
             Entity entity = ((EntityRayTraceResult) result).getEntity();
-            boolean flag = entity.attackEntityFrom(TofuDamageSource.causeTofuForceDamage(this, this.owner).setProjectile(), 5.0F);
+            boolean flag = entity.attackEntityFrom(TofuDamageSource.causeTofuForceDamage(this, this.owner).setProjectile(), damage);
             if (flag) {
                 this.applyEnchantments(this.owner, entity);
                 if (entity instanceof LivingEntity) {
-                    ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.SLOWNESS, 400));
-                    ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.WEAKNESS, 200));
+                    ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.SLOWNESS, 100 * getCharge((int) damage)));
+                    ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.WEAKNESS, 40 * getCharge((int) damage)));
                 }
             }
         } else {
@@ -232,6 +237,14 @@ public class TofuHomingForceEntity extends Entity {
         }
 
         this.remove();
+    }
+
+    private static int getCharge(int damage) {
+        if (damage > 4) {
+            damage = 4;
+        }
+
+        return damage;
     }
 
     /**

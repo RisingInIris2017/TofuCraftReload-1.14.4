@@ -103,7 +103,6 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
                     new VillagerTrades.ITrade[]{
                             new TradeForItem(TofuBlocks.ISHITOFU_BRICK, 12, 4, 12),
                             new TradeForItem(TofuItems.TOFUCOOKIE, 9, 6, 10),
-                            new TradeForZundaRuby(TofuBlocks.TOFUBERRY, 16, 6, 14)
                     }, 3,
                     new VillagerTrades.ITrade[]{
                             new TradeForZundaRuby(TofuItems.EDAMAME, 26, 6, 14),
@@ -586,9 +585,6 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     @Override
     protected void onGrowingAdult() {
         super.onGrowingAdult();
-        if (this.rand.nextInt(5) == 0) {
-            setRole(Roles.GUARD);
-        }
         updateTofunianState();
     }
 
@@ -947,6 +943,11 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
             }
         } else {
             rollDiceChild();
+
+            int chance = 10;
+            if (chance >= this.world.rand.nextInt(100)) {
+                setRole(Roles.GUARD);
+            }
         }
 
         updateTofunianState();
@@ -973,8 +974,6 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         TofunianEntity entityvillager = TofuEntitys.TOFUNIAN.create(world);
 
         entityvillager.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entityvillager)), SpawnReason.BREEDING, null, null);
-
-        updateTofunianState();
 
         return entityvillager;
     }

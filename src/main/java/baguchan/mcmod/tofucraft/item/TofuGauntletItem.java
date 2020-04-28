@@ -5,6 +5,7 @@ import baguchan.mcmod.tofucraft.entity.projectile.TofuHomingForceEntity;
 import baguchan.mcmod.tofucraft.item.base.ItemTofuEnergyContained;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
@@ -15,6 +16,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -44,6 +46,8 @@ public class TofuGauntletItem extends ItemTofuEnergyContained {
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
         super.onPlayerStoppedUsing(stack, worldIn, entityLiving, timeLeft);
 
+        int i = this.getUseDuration(stack) - timeLeft;
+
         if (entityLiving.getLastAttackedEntity() != null) {
             if (entityLiving instanceof PlayerEntity && !((PlayerEntity) entityLiving).isCreative()) {
                 if (getEnergy(stack) >= 10) {
@@ -54,16 +58,56 @@ public class TofuGauntletItem extends ItemTofuEnergyContained {
                         p_220009_1_.sendBreakAnimation(entityLiving.getActiveHand());
                     });
 
-                    ((PlayerEntity) entityLiving).getCooldownTracker().setCooldown(stack.getItem(), 80);
+                    ((PlayerEntity) entityLiving).getCooldownTracker().setCooldown(stack.getItem(), 60);
                 }
             }
 
             entityLiving.playSound(SoundEvents.ENTITY_WITHER_SHOOT, 3.0F, 1.0F / (entityLiving.getRNG().nextFloat() * 0.4F + 0.8F));
 
-            for (int i = 0; i < 1; i++) {
-                entityLiving.world.addEntity(new TofuHomingForceEntity(entityLiving.world, entityLiving, entityLiving.getLastAttackedEntity()));
+            TofuHomingForceEntity forceEntity = new TofuHomingForceEntity(entityLiving.world, entityLiving, entityLiving.getLastAttackedEntity());
+
+            forceEntity.damage = 2.0F + getCharge(i, stack) * 4.0F;
+
+            entityLiving.world.addEntity(forceEntity);
+        } else {
+
+            List<LivingEntity> list = worldIn.getEntitiesWithinAABB(LivingEntity.class, (new AxisAlignedBB((double) entityLiving.getPosX(), (double) entityLiving.getPosY(), (double) entityLiving.getPosZ(), (double) entityLiving.getPosX(), (double) entityLiving.getPosY(), (double) entityLiving.getPosZ())).grow(24.0D, 8.0F, 24.0D), (p_205033_0_) -> {
+                return p_205033_0_ != entityLiving && p_205033_0_ instanceof IMob;
+            });
+
+            if (!list.isEmpty()) {
+                if (entityLiving instanceof PlayerEntity && !((PlayerEntity) entityLiving).isCreative()) {
+                    if (getEnergy(stack) >= 10) {
+                        drain(stack, 10, false);
+                        ((PlayerEntity) entityLiving).getCooldownTracker().setCooldown(stack.getItem(), 50);
+                    } else {
+                        stack.damageItem(1, entityLiving, (p_220009_1_) -> {
+                            p_220009_1_.sendBreakAnimation(entityLiving.getActiveHand());
+                        });
+
+                        ((PlayerEntity) entityLiving).getCooldownTracker().setCooldown(stack.getItem(), 60);
+                    }
+                }
+
+                entityLiving.playSound(SoundEvents.ENTITY_WITHER_SHOOT, 3.0F, 1.0F / (entityLiving.getRNG().nextFloat() * 0.4F + 0.8F));
+
+                TofuHomingForceEntity forceEntity = new TofuHomingForceEntity(entityLiving.world, entityLiving, list.get(worldIn.rand.nextInt(list.size())));
+
+                forceEntity.damage = 2.0F + getCharge(i, stack) * 4.0F;
+
+                entityLiving.world.addEntity(forceEntity);
             }
+
         }
+    }
+
+    private static float getCharge(int useTime, ItemStack stack) {
+        float f = (float) useTime / 20F;
+        if (f > 1.0F) {
+            f = 1.0F;
+        }
+
+        return f;
     }
 
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
@@ -71,39 +115,50 @@ public class TofuGauntletItem extends ItemTofuEnergyContained {
 
         Mode mode = Mode.byItemStack(itemstack);
 
-        if (!isUsable(itemstack)) {
-            return ActionResult.resultFail(itemstack);
-        } else {
-            if (mode == Mode.SOYSHOT) {
-                if (!playerIn.abilities.isCreativeMode) {
-
-                    if (getEnergy(itemstack) >= 5) {
-                        drain(itemstack, 5, false);
-                    } else {
-                        itemstack.damageItem(1, playerIn, (p_220009_1_) -> {
-                            p_220009_1_.sendBreakAnimation(playerIn.getActiveHand());
-                        });
-                    }
-                }
-
-                worldIn.playSound((PlayerEntity) null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-                playerIn.getCooldownTracker().setCooldown(this, 10);
-                if (!worldIn.isRemote) {
-                    for (int i = 0; i < 8; i++) {
-                        FukumameEntity fukumamelentity = new FukumameEntity(worldIn, playerIn);
-                        float d0 = (worldIn.rand.nextFloat() * 18.0F) - 9.0F;
-
-                        fukumamelentity.shoot(playerIn, playerIn.rotationPitch + d0 * 0.25F, playerIn.rotationYaw + d0, 0.0F, 1.5F, 0.8F);
-                        worldIn.addEntity(fukumamelentity);
-                    }
-                }
-
-                playerIn.addStat(Stats.ITEM_USED.get(this));
-                return ActionResult.resultSuccess(itemstack);
+        if (!playerIn.isShiftKeyDown()) {
+            if (!isUsable(itemstack)) {
+                return ActionResult.resultFail(itemstack);
             } else {
-                playerIn.setActiveHand(handIn);
-                return ActionResult.resultSuccess(itemstack);
+                if (mode == Mode.SOYSHOT) {
+                    if (!playerIn.abilities.isCreativeMode) {
+
+                        if (getEnergy(itemstack) >= 5) {
+                            drain(itemstack, 5, false);
+                        } else {
+                            itemstack.damageItem(1, playerIn, (p_220009_1_) -> {
+                                p_220009_1_.sendBreakAnimation(playerIn.getActiveHand());
+                            });
+                        }
+                    }
+
+                    worldIn.playSound((PlayerEntity) null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+                    playerIn.getCooldownTracker().setCooldown(this, 10);
+                    if (!worldIn.isRemote) {
+                        for (int i = 0; i < 8; i++) {
+                            FukumameEntity fukumamelentity = new FukumameEntity(worldIn, playerIn);
+                            float d0 = (worldIn.rand.nextFloat() * 18.0F) - 9.0F;
+
+                            fukumamelentity.shoot(playerIn, playerIn.rotationPitch + d0 * 0.25F, playerIn.rotationYaw + d0, 0.0F, 1.5F, 0.8F);
+                            worldIn.addEntity(fukumamelentity);
+                        }
+                    }
+
+                    playerIn.addStat(Stats.ITEM_USED.get(this));
+                    return ActionResult.resultSuccess(itemstack);
+                } else {
+                    playerIn.setActiveHand(handIn);
+                    return ActionResult.resultSuccess(itemstack);
+                }
             }
+        } else {
+            toggleBowMode(itemstack);
+
+            playerIn.playSound(SoundEvents.UI_BUTTON_CLICK, 0.5F, 1.75F);
+
+            if (playerIn.world.isRemote) {
+                ((PlayerEntity) playerIn).sendStatusMessage(getModeMessage(itemstack), true);
+            }
+            return ActionResult.resultSuccess(itemstack);
         }
     }
 
@@ -116,19 +171,6 @@ public class TofuGauntletItem extends ItemTofuEnergyContained {
         nbt.putInt("Mode", next.getType());
 
         return next;
-    }
-
-    @Override
-    public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
-        toggleBowMode(stack);
-
-        entity.playSound(SoundEvents.UI_BUTTON_CLICK, 0.5F, 1.75F);
-
-        if (entity.world.isRemote && entity instanceof PlayerEntity) {
-            ((PlayerEntity) entity).sendStatusMessage(getModeMessage(stack), true);
-        }
-
-        return false;
     }
 
     public ITextComponent getModeMessage(ItemStack stack) {

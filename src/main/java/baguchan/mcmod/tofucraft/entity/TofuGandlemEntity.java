@@ -101,7 +101,7 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(400.0D);
         this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(8.0D);
         this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40.0D);
-        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.65D);
+        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.6D);
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.26F);
     }
 
@@ -217,7 +217,7 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount) {
         if (source.isExplosion() || source.isFireDamage()) {
-            return super.attackEntityFrom(source, amount * 0.85F);
+            return super.attackEntityFrom(source, amount * 0.75F);
         } else {
             return super.attackEntityFrom(source, amount);
         }
@@ -240,7 +240,7 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
         float f = 0.075F;
         BeamEntity smallfireballentity = new BeamEntity(this.world, this, d1 + this.getRNG().nextGaussian() * (double) f - this.getRNG().nextGaussian() * (double) f, d2, d3 + this.getRNG().nextGaussian() * (double) f - this.getRNG().nextGaussian() * (double) f);
         smallfireballentity.setPosition(smallfireballentity.getPosX(), this.getPosY() + (double) (this.getEyeHeight()), smallfireballentity.getPosZ());
-        smallfireballentity.explosionPower = 1.2F;
+        smallfireballentity.explosionPower = 1.0F;
 
         this.world.addEntity(smallfireballentity);
     }

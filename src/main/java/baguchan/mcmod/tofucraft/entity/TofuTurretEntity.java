@@ -113,7 +113,7 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
         float f = 0.075F;
         BeamEntity smallfireballentity = new BeamEntity(this.world, this, d1 + this.getRNG().nextGaussian() * (double) f - this.getRNG().nextGaussian() * (double) f, d2, d3 + this.getRNG().nextGaussian() * (double) f - this.getRNG().nextGaussian() * (double) f);
         smallfireballentity.setPosition(smallfireballentity.getPosX(), this.getPosY() + (double) (this.getEyeHeight()), smallfireballentity.getPosZ());
-        smallfireballentity.explosionPower = 1.2F;
+        smallfireballentity.explosionPower = 0.75F;
 
         this.world.addEntity(smallfireballentity);
     }
