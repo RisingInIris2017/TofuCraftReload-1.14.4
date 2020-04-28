@@ -31,27 +31,25 @@ public class TofuMindModel<T extends TofuMindEntity> extends SegmentedModel<T> i
         this.balanceCore.setRotationPoint(0.0F, 10.0F, 0.0F);
         this.balanceCore.addBox(-2.5F, 0.0F, -2.5F, 5, 5, 5, 0.0F);
         this.handL = new ModelRenderer(this, 14, 18);
-        this.handL.setRotationPoint(5.0F, 2.0F, 0.0F);
-        this.handL.addBox(-0.5F, 0.0F, -2.0F, 3, 9, 4, 0.0F);
+        this.handL.setRotationPoint(5.0F, 11.0F, 0.0F);
+        this.handL.addBox(-0.5F, -2.0F, -2.0F, 3, 9, 4, 0.0F);
         this.body = new ModelRenderer(this, 0, 0);
         this.body.setRotationPoint(0.0F, 8.0F, 0.0F);
         this.body.addBox(-5.0F, 0.0F, -3.0F, 10, 12, 6, 0.0F);
         this.handR = new ModelRenderer(this, 0, 18);
-        this.handR.setRotationPoint(-5.0F, 2.0F, 0.0F);
-        this.handR.addBox(-2.5F, 0.0F, -2.0F, 3, 9, 4, 0.0F);
+        this.handR.setRotationPoint(-5.0F, 11.0F, 0.0F);
+        this.handR.addBox(-2.5F, -2.0F, -2.0F, 3, 9, 4, 0.0F);
         this.head = new ModelRenderer(this, 32, 0);
         this.head.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
         this.body.addChild(this.core);
         this.body.addChild(this.balanceCore);
-        this.body.addChild(this.handL);
-        this.body.addChild(this.handR);
         this.body.addChild(this.head);
     }
 
     @Override
     public Iterable<ModelRenderer> getParts() {
-        return ImmutableList.of(this.body);
+        return ImmutableList.of(this.body, this.handR, this.handL);
     }
 
     @Override
@@ -77,7 +75,7 @@ public class TofuMindModel<T extends TofuMindEntity> extends SegmentedModel<T> i
 
         if (this.swingProgress > 0.0F) {
             HandSide enumhandside = this.func_217147_a(entityIn);
-            ModelRenderer modelrenderer = this.getArmForSide(enumhandside);
+            ModelRenderer modelrenderer = this.getArm(enumhandside);
             float f1 = this.swingProgress;
             this.body.rotateAngleY = MathHelper.sin(MathHelper.sqrt(f1) * ((float) Math.PI * 2F)) * 0.2F;
 
@@ -111,12 +109,8 @@ public class TofuMindModel<T extends TofuMindEntity> extends SegmentedModel<T> i
         this.handL.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
     }
 
-    protected ModelRenderer getArmForSide(HandSide side) {
+    protected ModelRenderer getArm(HandSide side) {
         return side == HandSide.LEFT ? this.handL : this.handR;
-    }
-
-    public void postRenderArm(float scale, HandSide side) {
-
     }
 
     protected HandSide func_217147_a(T p_217147_1_) {
@@ -124,13 +118,8 @@ public class TofuMindModel<T extends TofuMindEntity> extends SegmentedModel<T> i
         return p_217147_1_.swingingHand == Hand.MAIN_HAND ? handside : handside.opposite();
     }
 
-    @Override
     public void translateHand(HandSide sideIn, MatrixStack matrixStackIn) {
-        float f = sideIn == HandSide.RIGHT ? 1.0F : -1.0F;
-        ModelRenderer modelrenderer = this.getArmForSide(sideIn);
-        modelrenderer.rotationPointX += f;
-        modelrenderer.translateRotate(matrixStackIn);
-        modelrenderer.rotationPointX -= f;
+        this.getArm(sideIn).translateRotate(matrixStackIn);
     }
 
     @Override

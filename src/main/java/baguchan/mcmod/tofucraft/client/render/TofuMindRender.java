@@ -19,7 +19,7 @@ public class TofuMindRender extends MobRenderer<TofuMindEntity, TofuMindModel<To
 
     public TofuMindRender(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new TofuMindModel<>(), 0.5F);
-        this.addLayer(new HeldItemLayer<TofuMindEntity, TofuMindModel<TofuMindEntity>>(this));
+        this.addLayer(new HeldItemLayer<>(this));
         this.addLayer(new GlowLayer<>(this, new ResourceLocation(TofuCraftCore.MODID, "textures/mob/tofumind/tofumind_eye.png")));
     }
 
