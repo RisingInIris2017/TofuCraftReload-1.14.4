@@ -674,7 +674,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
     //when tofunian have enough foods
     public boolean canAbondonItems() {
-        return this.func_213751_ew() >= 32;
+        return this.func_213751_ew() >= 42;
     }
 
     public boolean wantsMoreFood() {
