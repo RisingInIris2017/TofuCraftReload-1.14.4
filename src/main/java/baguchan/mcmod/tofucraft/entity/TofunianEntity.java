@@ -68,10 +68,11 @@ import java.util.stream.Collectors;
 
 public class TofunianEntity extends AbstractVillagerEntity implements IReputationTracking {
     private static final DataParameter<String> ROLE = EntityDataManager.createKey(TofunianEntity.class, DataSerializers.STRING);
-    private static final Set<Item> FOOD = ImmutableSet.of(TofuItems.SEEDS_SOYBEAN, TofuItems.TOFUGRILD, TofuItems.TOFUCOOKIE, TofuItems.TOFUMOMEN);
-    private static final Map<Item, Integer> field_213788_bA = ImmutableMap.of(TofuItems.SEEDS_SOYBEAN, 1, TofuItems.TOFUGRILD, 2, TofuItems.TOFUCOOKIE, 2, TofuItems.TOFUMOMEN, 1);
-    private static final Map<Item, Integer> canCookItems = ImmutableMap.of(TofuItems.SEEDS_SOYBEAN, 1);
-    public static final List<Item> cookedItem = Lists.newArrayList(TofuItems.TOFUGRILD, TofuItems.TOFUCOOKIE);
+    private static final Set<Item> SEED = ImmutableSet.of(TofuItems.SEEDS_SOYBEAN);
+    private static final Set<Item> FOOD = ImmutableSet.of(TofuItems.TOFUGRILD, TofuItems.TOFUCOOKIE, TofuItems.TOFUMOMEN, TofuItems.HIYAYAKKO);
+    private static final Map<Item, Integer> field_213788_bA = ImmutableMap.of(TofuItems.HIYAYAKKO, 2, TofuItems.TOFUGRILD, 2, TofuItems.TOFUCOOKIE, 3, TofuItems.TOFUMOMEN, 1);
+    private static final Map<Item, Integer> canCookItems = ImmutableMap.of(TofuItems.SEEDS_SOYBEAN, 2, TofuItems.TOFUMOMEN, 1);
+    public static final List<Item> cookedItem = Lists.newArrayList(TofuItems.TOFUGRILD, TofuItems.HIYAYAKKO);
 
 
     private int inLove;
@@ -89,8 +90,6 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
     public static Predicate<Entity> ENEMY_PREDICATE =
             input -> (input instanceof ZombieEntity || input instanceof AbstractIllagerEntity || input instanceof VexEntity || input instanceof TofuChingerEntity);
-    private boolean isAISetupFinished = false;
-
 
     public Int2ObjectMap<VillagerTrades.ITrade[]> getOfferMap() {
         Int2ObjectMap<VillagerTrades.ITrade[]> offers = null;
@@ -515,16 +514,17 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         });
         this.goalSelector.addGoal(2, new TradeWithPlayerGoal(this));
         this.goalSelector.addGoal(2, new LookAtCustomerGoal(this));
-        this.goalSelector.addGoal(3, new SleepOnBedGoal(this, 1.1D));
-        this.goalSelector.addGoal(4, new MoveToHomeGoal(this, 30D, 1.10D));
-        this.goalSelector.addGoal(5, new TofunianLoveGoal(this, 0.85D));
-        this.goalSelector.addGoal(6, new InterestJobBlockGoal(this, 1.0D));
-        this.goalSelector.addGoal(6, new RestockTradeGoal(this, 1.05D));
-        this.goalSelector.addGoal(7, new CookingTofuGoal(this, 1.0D));
-        this.goalSelector.addGoal(7, new CropHarvestGoal(this, 0.95D));
-        this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.9D));
-        this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
-        this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
+        this.goalSelector.addGoal(2, new EatOffhandFoodGoal<>(this));
+        this.goalSelector.addGoal(4, new SleepOnBedGoal(this, 1.1D));
+        this.goalSelector.addGoal(5, new MoveToHomeGoal(this, 30D, 1.10D));
+        this.goalSelector.addGoal(6, new TofunianLoveGoal(this, 0.85D));
+        this.goalSelector.addGoal(7, new InterestJobBlockGoal(this, 1.0D));
+        this.goalSelector.addGoal(7, new RestockTradeGoal(this, 1.05D));
+        this.goalSelector.addGoal(8, new CookingTofuGoal(this, 1.0D));
+        this.goalSelector.addGoal(8, new CropHarvestGoal(this, 0.95D));
+        this.goalSelector.addGoal(9, new WaterAvoidingRandomWalkingGoal(this, 0.9D));
+        this.goalSelector.addGoal(10, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
+        this.goalSelector.addGoal(11, new LookAtGoal(this, MobEntity.class, 8.0F));
         this.goalSelector.addGoal(1, new AvoidEntityGoal(this, ZombieEntity.class, 8.0F, 1.2D, 1.25D) {
             @Override
             public boolean shouldExecute() {
@@ -628,7 +628,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     protected void updateEquipmentIfNeeded(ItemEntity itemEntity) {
         ItemStack itemstack = itemEntity.getItem();
         Item item = itemstack.getItem();
-        if (this.func_223717_b(item)) {
+        if (this.isTofuniansFood(item) || this.isSeed(item)) {
             Inventory inventory = this.getVillagerInventory();
             boolean flag = false;
 
@@ -664,7 +664,11 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         }
     }
 
-    public boolean func_223717_b(Item p_223717_1_) {
+    public boolean isSeed(Item p_223717_1_) {
+        return SEED.contains(p_223717_1_);
+    }
+
+    public boolean isTofuniansFood(Item p_223717_1_) {
         return FOOD.contains(p_223717_1_);
     }
 
@@ -696,7 +700,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     }
 
     public boolean canKeepCookItem() {
-        return this.canCookItemCount() > 16 && this.func_213751_ew() < 128;
+        return this.canCookItemCount() > 30 && this.func_213751_ew() < 128;
     }
 
     //When tofunian make child,consume foods
@@ -719,6 +723,19 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
                 }
             }
         }
+    }
+
+    public ItemStack findFoods() {
+
+        for (int i = 0; i < this.getVillagerInventory().getSizeInventory(); ++i) {
+            ItemStack itemstack = this.getVillagerInventory().getStackInSlot(i);
+            if (!itemstack.isEmpty()) {
+                if (isTofuniansFood(itemstack.getItem())) {
+                    return itemstack;
+                }
+            }
+        }
+        return ItemStack.EMPTY;
     }
 
     public void cookingFood() {
@@ -915,6 +932,10 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
             this.gossip.func_220916_a(target.getUniqueID(), GossipType.MAJOR_NEGATIVE, 25);
         }
 
+    }
+
+    public GossipManager getGossip() {
+        return gossip;
     }
 
     @Override
