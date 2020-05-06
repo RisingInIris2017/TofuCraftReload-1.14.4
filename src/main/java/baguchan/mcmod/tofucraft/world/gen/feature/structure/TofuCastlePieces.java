@@ -120,7 +120,7 @@ public class TofuCastlePieces {
         public boolean func_225577_a_(IWorld worldIn, ChunkGenerator<?> p_225577_2_, Random randomIn, MutableBoundingBox structureBoundingBoxIn, ChunkPos chunkPos) {
             PlacementSettings placementsettings = (new PlacementSettings()).setRotation(this.field_207616_e).setMirror(Mirror.NONE).setCenterOffset(TofuCastlePieces.structurePos.get(this.field_207615_d)).addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK);
             BlockPos blockpos = TofuCastlePieces.structurePos.get(this.field_207615_d);
-            BlockPos blockpos1 = this.templatePosition.add(Template.transformedBlockPos(placementsettings, new BlockPos(blockpos.getX(), 0, blockpos.getZ())));
+            BlockPos blockpos1 = this.templatePosition;
             int i = worldIn.getHeight(Heightmap.Type.WORLD_SURFACE_WG, blockpos1.getX(), blockpos1.getZ());
             BlockPos blockpos2 = this.templatePosition;
             this.templatePosition = this.templatePosition.add(0, i - 90 - 1, 0);

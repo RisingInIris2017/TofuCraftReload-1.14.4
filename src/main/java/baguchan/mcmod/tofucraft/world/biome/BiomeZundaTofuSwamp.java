@@ -13,8 +13,5 @@ public class BiomeZundaTofuSwamp extends BiomeTofuBase {
         DefaultTofuBiomeFeature.addTofuSwampZundaTrees(this);
         DefaultTofuBiomeFeature.addTofuFlowers(this);
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(TofuEntitys.TOFUCOW, 10, 4, 4));
-        this.addSpawn(TofuEntitys.TOFU_MONSTER, new SpawnListEntry(TofuEntitys.ZUNSY, 20, 2, 3));
-
     }
-
 }

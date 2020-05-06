@@ -44,8 +44,7 @@ public class TofuCastleStructure extends Structure<NoFeatureConfig> {
     public boolean func_225558_a_(BiomeManager p_225558_1_, ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ, Biome p_225558_6_) {
         ChunkPos chunkpos = this.getStartPositionForPosition(chunkGen, rand, chunkPosX, chunkPosZ, 0, 0);
         if (chunkPosX == chunkpos.x && chunkPosZ == chunkpos.z) {
-            Biome biome = p_225558_1_.getBiome(new BlockPos(chunkPosX * 16 + 9, 0, chunkPosZ * 16 + 9));
-            if (chunkGen.hasStructure(biome, TofuFeatures.TOFUCASTLE)) {
+            if (chunkGen.hasStructure(p_225558_6_, TofuFeatures.TOFUCASTLE)) {
 
                 return true;
             }
