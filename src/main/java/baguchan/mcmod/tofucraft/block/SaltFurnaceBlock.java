@@ -45,6 +45,9 @@ public class SaltFurnaceBlock extends ContainerBlock {
                         worldIn.setBlockState(pos.up(), TofuBlocks.SALT_CAULDRON.getDefaultState().with(CauldronBlock.LEVEL, level), 2);
                     }
                 }
+            } else if (worldIn.getBlockState(pos.up()).isAir(worldIn, pos.up())) {
+                worldIn.setBlockState(pos.up(), Blocks.FIRE.getDefaultState(), 2);
+                worldIn.playSound(null, pos, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.5F, 1.0F);
             }
         }
     }
