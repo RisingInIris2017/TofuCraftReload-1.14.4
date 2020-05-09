@@ -463,7 +463,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
             BlockState state = world.getBlockState(tofunainHome);
 
-            if (this.getDistanceSq(tofunainHome.getX(), tofunainHome.getY(), tofunainHome.getZ()) > 1800F) {
+            if (this.getDistanceSq(tofunainHome.getX(), tofunainHome.getY(), tofunainHome.getZ()) > 2400F) {
                 tofunainHome = null;
 
                 tryFind = true;
@@ -476,7 +476,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         }
 
         if (tryFind) {
-            int range = 18;
+            int range = 16;
 
             for (int x = -range; x <= range; x++) {
                 for (int y = -range / 2; y <= range / 2; y++) {
@@ -516,7 +516,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         this.goalSelector.addGoal(2, new LookAtCustomerGoal(this));
         this.goalSelector.addGoal(2, new EatOffhandFoodGoal<>(this));
         this.goalSelector.addGoal(4, new SleepOnBedGoal(this, 1.1D));
-        this.goalSelector.addGoal(5, new MoveToHomeGoal(this, 30D, 1.10D));
+        this.goalSelector.addGoal(5, new MoveToHomeGoal(this, 35D, 1.10D));
         this.goalSelector.addGoal(6, new TofunianLoveGoal(this, 0.85D));
         this.goalSelector.addGoal(7, new InterestJobBlockGoal(this, 1.0D));
         this.goalSelector.addGoal(7, new RestockTradeGoal(this, 1.05D));
@@ -678,7 +678,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     }
 
     public boolean wantsMoreFood() {
-        return this.func_213751_ew() < 12;
+        return this.func_213751_ew() < 42;
     }
 
     private int func_213751_ew() {

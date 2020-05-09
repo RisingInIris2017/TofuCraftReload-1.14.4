@@ -24,6 +24,8 @@ public class DrinkItem extends Item {
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
         PlayerEntity playerentity = entityLiving instanceof PlayerEntity ? (PlayerEntity) entityLiving : null;
 
+        applyFoodEffects(stack, worldIn, entityLiving);
+
         if (playerentity == null || !playerentity.abilities.isCreativeMode) {
             stack.shrink(1);
         }
@@ -45,7 +47,6 @@ public class DrinkItem extends Item {
                 playerentity.inventory.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
             }
         }
-        applyFoodEffects(stack, worldIn, entityLiving);
 
         return stack;
     }
