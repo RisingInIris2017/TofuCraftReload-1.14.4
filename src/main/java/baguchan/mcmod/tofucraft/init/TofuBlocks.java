@@ -3,6 +3,7 @@ package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.block.*;
+import baguchan.mcmod.tofucraft.block.crop.*;
 import baguchan.mcmod.tofucraft.client.render.item.TofuBlockItemRender;
 import baguchan.mcmod.tofucraft.client.render.tileentity.TofuChestItemRender;
 import baguchan.mcmod.tofucraft.world.tree.TofuTree;
@@ -24,7 +25,9 @@ public class TofuBlocks {
 
     public static final Block SOYMILK = new TofuFluidBlock(TofuFluids.SOYMILK, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops());
     public static final Block SOYBEAN = new SoyBeanCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
+    public static final Block SOYBEAN_NETHER = new SoyBeanNetherCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
     public static final Block LEEKCROP = new LeekCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
+
     public static final Block RICE = new RiceCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
     public static final Block RICE_ROOT = new RiceRootBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
 
@@ -134,6 +137,7 @@ public class TofuBlocks {
         //Terrain
         registry.getRegistry().register(SOYMILK.setRegistryName("soymilk"));
         registry.getRegistry().register(SOYBEAN.setRegistryName("soybean"));
+        registry.getRegistry().register(SOYBEAN_NETHER.setRegistryName("soybean_nether"));
         registry.getRegistry().register(LEEKCROP.setRegistryName("blockleek_crop"));
         registry.getRegistry().register(RICE.setRegistryName("rice"));
         registry.getRegistry().register(RICE_ROOT.setRegistryName("rice_root"));

@@ -1,4 +1,4 @@
-package baguchan.mcmod.tofucraft.block;
+package baguchan.mcmod.tofucraft.block.crop;
 
 import baguchan.mcmod.tofucraft.init.TofuTags;
 import net.minecraft.block.BlockState;
