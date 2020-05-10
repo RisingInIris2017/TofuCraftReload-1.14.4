@@ -82,6 +82,7 @@ public class TofuItems {
     public static final Item ZUNDAMANJU = new Item(new Item.Properties().food(TofuFoods.ZUNDAMANJU).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item SOYMILK_BUCKET = new BucketItem(TofuFluids.SOYMILK, (new Item.Properties()).containerItem(Items.BUCKET).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOYMILK_HELL_BUCKET = new BucketItem(TofuFluids.SOYMILK_HELL, (new Item.Properties()).containerItem(Items.BUCKET).maxStackSize(1).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item SALT = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item MORIJIO = new MorijioItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -252,6 +253,7 @@ public class TofuItems {
         register(registry, ZUNDAMANJU, "zundamanju");
 
         register(registry, SOYMILK_BUCKET, "bucketsoymilk");
+        register(registry, SOYMILK_HELL_BUCKET, "bucketsoymilk_hell");
         register(registry, SALT, "salt");
         register(registry, MORIJIO, "morijio");
         register(registry, BITTERN, "bittern_bottle");
