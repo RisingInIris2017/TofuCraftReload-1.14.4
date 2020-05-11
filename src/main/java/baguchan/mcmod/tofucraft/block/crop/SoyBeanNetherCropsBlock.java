@@ -29,6 +29,7 @@ public class SoyBeanNetherCropsBlock extends BushBlock implements IGrowable {
         super(builder);
         this.setDefaultState(this.stateContainer.getBaseState().with(this.getAgeProperty(), Integer.valueOf(0)));
     }
+    
 
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return state.getBlock() == Blocks.SOUL_SAND;
