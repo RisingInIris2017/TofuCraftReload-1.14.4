@@ -37,11 +37,13 @@ public class TofuMushroomBlock extends BushBlock implements IGrowable {
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
 
 
-        if (worldIn.getLight(pos) < 9 && rand.nextInt(50) == 0) {
-            func_226940_a_(worldIn, pos, state, rand);
+        if (rand.nextInt(40) == 0) {
+            if (func_226940_a_(worldIn, pos, state, rand)) {
+                addNewMushroom(state, worldIn, pos, rand);
+            }
         }
 
-        if (rand.nextInt(25) == 0) {
+        if (rand.nextInt(20) == 0) {
             addNewMushroom(state, worldIn, pos, rand);
         }
     }
@@ -107,7 +109,9 @@ public class TofuMushroomBlock extends BushBlock implements IGrowable {
 
     @Override
     public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-        func_226940_a_(worldIn, pos, state, rand);
+        if (func_226940_a_(worldIn, pos, state, rand)) {
+            addNewMushroom(state, worldIn, pos, rand);
+        }
         //addNewMushroom(state,worldIn,pos,rand);
     }
 

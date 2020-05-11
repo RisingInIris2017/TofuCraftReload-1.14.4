@@ -6,6 +6,7 @@
   "item.tofucraft.tofudiamond": "Diamond Tofu",
   "item.tofucraft.tofudiamondnugget": "Diamond TofuNugget",
   "item.tofucraft.tofugrilled": "Grilled Tofu",
+  "item.tofucraft.tofuhell": "Hell Tofu",
   "item.tofucraft.tofuzunda": "Zunda Tofu",
   "item.tofucraft.tofuminced": "Minced Tofu",
 
@@ -134,6 +135,7 @@
   "block.tofucraft.blocktofumetal": "MetalTofu Block",
   "block.tofucraft.blocktofudiamond": "DiamondTofu Block",
   "block.tofucraft.blocktofugrilled": "GrilledTofu Block",
+  "block.tofucraft.blocktofuhell": "HellTofu Block",
   "block.tofucraft.blocktofuzunda": "ZundaTofu Block",
   "block.tofucraft.blocktofuzunda_ishi": "ZundaTofuIshi Block",
   "block.tofucraft.blocktofuminced": "MincedTofu Block",
@@ -179,6 +181,7 @@
   "block.tofucraft.tofudoor_metal": "TofuDoor Metal",
   "block.tofucraft.zundatofu_mushroom": "Zunda Tofu Mushroom",
   "block.tofucraft.tofustem": "Tofu Stem",
+  "block.tofucraft.tofustem_cache": "Tofu Stem Cache",
   "block.tofucraft.tofustem_planks": "Tofu Stem Planks",
   "block.tofucraft.blocksaltpan": "SaltPan",
   "block.tofucraft.salt_furnace": "Salt Furnace",

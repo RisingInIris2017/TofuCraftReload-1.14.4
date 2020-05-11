@@ -79,7 +79,39 @@ public class BitternItem extends Item {
                     }
 
                     playerIn.addStat(Stats.ITEM_USED.get(this));
-                    worldIn.playSound(playerIn, blockpos, SoundEvents.BLOCK_LILY_PAD_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    worldIn.playSound(playerIn, blockpos, SoundEvents.BLOCK_SNOW_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
+                } else if ((ifluidstate.getFluid() == TofuFluids.SOYMILK_HELL)) {
+
+                    // special case for handling block placement with water lilies
+                    net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(worldIn, blockpos);
+                    worldIn.setBlockState(blockpos, TofuBlocks.HELLTOFU.getDefaultState(), 11);
+                    if (net.minecraftforge.event.ForgeEventFactory.onBlockPlace(playerIn, blocksnapshot, net.minecraft.util.Direction.UP)) {
+                        blocksnapshot.restore(true, false);
+                        return new ActionResult<ItemStack>(ActionResultType.FAIL, itemstack);
+                    }
+
+                    if (playerIn instanceof ServerPlayerEntity) {
+                        CriteriaTriggers.CONSUME_ITEM.trigger((ServerPlayerEntity) playerIn, itemstack);
+                    }
+
+                    ItemStack itemHeld = playerIn.getHeldItem(handIn);
+                    ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE);
+
+                    if (!playerIn.abilities.isCreativeMode) {
+                        if (itemHeld.getCount() == 1) {
+                            playerIn.setHeldItem(handIn, bottle);
+                        } else {
+                            if (!playerIn.inventory.addItemStackToInventory(bottle)) {
+                                worldIn.addEntity(new ItemEntity(worldIn, (double) blockpos.getX() + 0.5D, (double) blockpos.getY() + 1.5D, (double) blockpos.getZ() + 0.5D, bottle));
+                            }
+
+                            itemHeld.shrink(1);
+                        }
+                    }
+
+                    playerIn.addStat(Stats.ITEM_USED.get(this));
+                    worldIn.playSound(playerIn, blockpos, SoundEvents.BLOCK_SNOW_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
                     return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
                 }
             }

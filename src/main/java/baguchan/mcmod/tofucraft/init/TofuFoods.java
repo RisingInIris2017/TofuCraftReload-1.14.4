@@ -9,6 +9,7 @@ public class TofuFoods {
     public static final Food TOFUMOMEN = new Food.Builder().hunger(2).saturation(0.15f).fastToEat().build();
     public static final Food TOFUISHI = new Food.Builder().hunger(2).saturation(0.2f).fastToEat().build();
     public static final Food TOFUGRILD = new Food.Builder().hunger(3).saturation(0.25f).fastToEat().build();
+    public static final Food TOFUHELL = new Food.Builder().hunger(2).saturation(0.16f).fastToEat().effect(new EffectInstance(Effects.FIRE_RESISTANCE, 600), 1.0F).build();
     public static final Food COOKEDTOFU = new Food.Builder().hunger(4).saturation(0.3f).fastToEat().build();
     public static final Food TOFUFISH = new Food.Builder().hunger(2).saturation(0.15f).build();
     public static final Food COOKEDTOFUFISH = new Food.Builder().hunger(4).saturation(0.35f).build();

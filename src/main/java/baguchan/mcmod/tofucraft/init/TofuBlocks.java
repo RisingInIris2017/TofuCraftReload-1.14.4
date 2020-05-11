@@ -38,6 +38,7 @@ public class TofuBlocks {
     public static final Block METALTOFU = new Block(Block.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).hardnessAndResistance(4.0F, 7.5F).sound(SoundType.METAL));
     public static final Block DIAMONDTOFU = new Block(Block.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).harvestLevel(2).hardnessAndResistance(5.0F, 8.0F).sound(SoundType.METAL));
     public static final Block GRILLEDTOFU = new Block(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.25F, 0.5F).sound(SoundType.SNOW));
+    public static final Block HELLTOFU = new Block(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.25F, 0.5F).sound(SoundType.SNOW));
     public static final Block ZUNDATOFU = new TofuBlock(Block.Properties.create(TofuMaterial.TOFU).tickRandomly().harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.25F, 0.5F).sound(SoundType.SNOW));
     public static final Block ZUNDAISHITOFU = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
     public static final Block MINCEDTOFU = new FallingBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F, 0.9F).sound(SoundType.GROUND));
@@ -95,6 +96,7 @@ public class TofuBlocks {
     //TERRAIN
     public static final Block ZUNDATOFU_MUSHROOM = new TofuMushroomBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.0F, 0.6F).lightValue(3).doesNotBlockMovement().tickRandomly().sound(SoundType.PLANT));
     public static final Block TOFUSTEM = new RotatedPillarBlock(Block.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 5.0F).sound(SoundType.WOOD));
+    public static final Block TOFUSTEM_CACHE = new TofuStemCache(Block.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 5.0F).tickRandomly().sound(SoundType.WOOD));
     public static final Block TOFUSTEM_PLANK = new Block(Block.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 5.0F).sound(SoundType.WOOD));
     public static final Block TOFUTERRAIN = new TofuTerrainBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.45F, 0.85F).sound(SoundType.SNOW));
     public static final Block TOFUISHI_TERRAIN = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
@@ -149,6 +151,7 @@ public class TofuBlocks {
         registry.getRegistry().register(METALTOFU.setRegistryName("blocktofumetal"));
         registry.getRegistry().register(DIAMONDTOFU.setRegistryName("blocktofudiamond"));
         registry.getRegistry().register(GRILLEDTOFU.setRegistryName("blocktofugrilled"));
+        registry.getRegistry().register(HELLTOFU.setRegistryName("blocktofuhell"));
         registry.getRegistry().register(ZUNDATOFU.setRegistryName("blocktofuzunda"));
         registry.getRegistry().register(ZUNDAISHITOFU.setRegistryName("blocktofuzunda_ishi"));
         registry.getRegistry().register(MINCEDTOFU.setRegistryName("blocktofuminced"));
@@ -203,6 +206,7 @@ public class TofuBlocks {
         //terrain
         registry.getRegistry().register(ZUNDATOFU_MUSHROOM.setRegistryName("zundatofu_mushroom"));
         registry.getRegistry().register(TOFUSTEM.setRegistryName("tofustem"));
+        registry.getRegistry().register(TOFUSTEM_CACHE.setRegistryName("tofustem_cache"));
         registry.getRegistry().register(TOFUSTEM_PLANK.setRegistryName("tofustem_planks"));
         registry.getRegistry().register(TOFUTERRAIN.setRegistryName("tofu_terrain"));
         registry.getRegistry().register(TOFUISHI_TERRAIN.setRegistryName("tofuishi_terrain"));
@@ -250,6 +254,7 @@ public class TofuBlocks {
         TofuItems.register(registry, new BlockItem(METALTOFU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(DIAMONDTOFU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(GRILLEDTOFU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
+        TofuItems.register(registry, new BlockItem(HELLTOFU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(ZUNDATOFU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(ZUNDAISHITOFU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(MINCEDTOFU, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));

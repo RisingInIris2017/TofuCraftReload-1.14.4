@@ -69,7 +69,7 @@ public class ZundaMushroomFeature extends Feature<NoFeatureConfig> {
             return false;
         }
 
-        template.addBlocksToWorld(world, origin.add(blockpos.down()), placementsettings, 2 | 16);
+        template.addBlocksToWorld(world, origin.add(blockpos), placementsettings, 2 | 16);
 
         return true;
     }

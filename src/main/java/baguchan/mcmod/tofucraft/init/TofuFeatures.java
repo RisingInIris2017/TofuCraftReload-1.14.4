@@ -11,9 +11,10 @@ import baguchan.mcmod.tofucraft.world.gen.feature.structure.TofuCastleStructure;
 import baguchan.mcmod.tofucraft.world.gen.feature.structure.TofuVillageStructure;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
-import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.TreeFeature;
+import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,8 +22,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = TofuCraftCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TofuFeatures {
-    public static final BlockClusterFeatureConfig SOYBEAN_HELL_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(TofuBlocks.SOYBEAN_NETHER.getDefaultState()), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
-
 /*
     public static final Feature<NoFeatureConfig> TOFUFLOWER = new FlowersFeature(NoFeatureConfig::deserialize) {
         @Override
@@ -33,7 +32,8 @@ public class TofuFeatures {
 */
 
     public static final Feature<NoFeatureConfig> ZUNDAMUSHROOM_SMALL = new ZundaMushroomFeature(NoFeatureConfig::deserialize, 7, 7, new ResourceLocation[]{
-            new ResourceLocation(TofuCraftCore.MODID, "mushroom/mushroom_zunda_small")
+            new ResourceLocation(TofuCraftCore.MODID, "mushroom/mushroom_zunda_small"),
+            new ResourceLocation(TofuCraftCore.MODID, "mushroom/mushroom_zunda_cache_small")
     });
 
     public static final Feature<NoFeatureConfig> ZUNDAMUSHROOM_BIG = new ZundaMushroomFeature(NoFeatureConfig::deserialize, 9, 9, new ResourceLocation[]{

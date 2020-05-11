@@ -6,6 +6,7 @@
   "item.tofucraft.tofudiamond": "金剛豆腐",
   "item.tofucraft.tofudiamondnugget": "金剛豆腐のナゲット",
   "item.tofucraft.tofugrilled": "焼き豆腐",
+  "item.tofucraft.tofuhell": "地獄豆腐",
   "item.tofucraft.tofuzunda": "ずんだ豆腐",
   "item.tofucraft.tofuminced": "そぼろ豆腐",
 
@@ -134,6 +135,7 @@
   "block.tofucraft.blocktofumetal": "鋼豆腐ブロック",
   "block.tofucraft.blocktofudiamond": "金剛豆腐ブロック",
   "block.tofucraft.blocktofugrilled": "焼き豆腐ブロック",
+  "block.tofucraft.blocktofuhell": "地獄豆腐ブロック",
   "block.tofucraft.blocktofuzunda": "ずんだ豆腐ブロック",
   "block.tofucraft.blocktofuzunda_ishi": "ずんだ石豆腐ブロック",
   "block.tofucraft.blocktofuminced": "そぼろ豆腐ブロック",
@@ -179,6 +181,7 @@
   "block.tofucraft.tofudoor_metal": "鋼豆腐のドア",
   "block.tofucraft.zundatofu_mushroom": "ずんだ豆腐マッシュルーム",
   "block.tofucraft.tofustem": "豆腐の茎",
+  "block.tofucraft.tofustem_cache": "穴の開いた豆腐の茎",
   "block.tofucraft.tofustem_planks": "豆腐の茎の板",
   "block.tofucraft.blocksaltpan": "塩田",
   "block.tofucraft.salt_furnace": "製塩かまど",
