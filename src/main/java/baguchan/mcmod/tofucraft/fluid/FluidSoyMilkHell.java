@@ -65,7 +65,7 @@ public abstract class FluidSoyMilkHell extends WaterFluid {
     }
 
     public BlockState getBlockState(IFluidState state) {
-        return TofuBlocks.SOYMILK.getDefaultState().with(FlowingFluidBlock.LEVEL, Integer.valueOf(getLevelFromState(state)));
+        return TofuBlocks.SOYMILK_HELL.getDefaultState().with(FlowingFluidBlock.LEVEL, Integer.valueOf(getLevelFromState(state)));
     }
 
     public boolean isEquivalentTo(Fluid fluidIn) {

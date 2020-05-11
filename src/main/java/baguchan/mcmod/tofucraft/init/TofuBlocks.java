@@ -24,6 +24,7 @@ import net.minecraftforge.fml.common.Mod;
 public class TofuBlocks {
 
     public static final Block SOYMILK = new TofuFluidBlock(TofuFluids.SOYMILK, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops());
+    public static final Block SOYMILK_HELL = new TofuFluidBlock(TofuFluids.SOYMILK_HELL, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops());
     public static final Block SOYBEAN = new SoyBeanCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
     public static final Block SOYBEAN_NETHER = new SoyBeanNetherCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
     public static final Block LEEKCROP = new LeekCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
@@ -136,6 +137,7 @@ public class TofuBlocks {
     public static void registerBlocks(RegistryEvent.Register<Block> registry) {
         //Terrain
         registry.getRegistry().register(SOYMILK.setRegistryName("soymilk"));
+        registry.getRegistry().register(SOYMILK_HELL.setRegistryName("soymilk_hell"));
         registry.getRegistry().register(SOYBEAN.setRegistryName("soybean"));
         registry.getRegistry().register(SOYBEAN_NETHER.setRegistryName("soybean_nether"));
         registry.getRegistry().register(LEEKCROP.setRegistryName("blockleek_crop"));

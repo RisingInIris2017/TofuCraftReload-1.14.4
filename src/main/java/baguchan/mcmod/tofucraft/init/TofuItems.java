@@ -361,6 +361,8 @@ public class TofuItems {
             }
         };
         DispenserBlock.registerDispenseBehavior(SOYMILK_BUCKET, idispenseitembehavior);
+        DispenserBlock.registerDispenseBehavior(SOYMILK_HELL_BUCKET, idispenseitembehavior);
+
 
         IDispenseItemBehavior bitternItemBehavior = new DefaultDispenseItemBehavior() {
             private final DefaultDispenseItemBehavior field_218405_b = new DefaultDispenseItemBehavior();
