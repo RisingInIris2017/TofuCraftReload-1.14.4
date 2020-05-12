@@ -65,7 +65,7 @@ public class ZundaMushroomFeature extends Feature<NoFeatureConfig> {
 
         BlockPos blockpos = template.transformedBlockPos(placementsettings, new BlockPos(-offsetX / 2, 0, -offsetZ / 2));
 
-        if (!isSoil(world, origin.add(blockpos).down()) || !world.isAirBlock(origin.add(blockpos))) {
+        if (!isSoil(world, origin.down()) || !world.isAirBlock(origin)) {
             return false;
         }
 
