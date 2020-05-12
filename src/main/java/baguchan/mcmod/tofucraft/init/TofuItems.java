@@ -164,6 +164,7 @@ public class TofuItems {
     public static final Item TOFUDIAMONDSHOVEL = new ShovelItem(TofuItemTier.TOFUDIAMOND, 1.5F, -2.9F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item TOFUHOE = new TofuHoeItem(new Item.Properties().maxDamage(280).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ZUNDABOW = new ZundaBowItem(new Item.Properties().maxDamage(420).group(TofuItemGroup.TOFUCRAFT));
     public static final Item ZUNDAARROW = new ZundaArrowItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item BUGLE = new BugleItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUWOOD_STICK = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -323,6 +324,7 @@ public class TofuItems {
         register(registry, TOFUDIAMONDSHOVEL, "tooldiamondshovel");
 
         register(registry, TOFUHOE, "tofuhoe");
+        register(registry, ZUNDABOW, "zundabow");
         register(registry, ZUNDAARROW, "zunda_arrow");
         register(registry, BUGLE, "bugle");
         register(registry, TOFUWOOD_STICK, "tofuwood_stick");

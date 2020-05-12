@@ -39,7 +39,7 @@ import java.util.List;
 public class ZundaArrowEntity extends AbstractArrowEntity {
     private IntOpenHashSet field_213878_az;
     private List<Entity> field_213875_aA;
-    private int duration = 200;
+    private int duration = 100;
 
     public ZundaArrowEntity(EntityType<? extends ZundaArrowEntity> p_i50158_1_, World p_i50158_2_) {
         super(p_i50158_1_, p_i50158_2_);
@@ -224,6 +224,13 @@ public class ZundaArrowEntity extends AbstractArrowEntity {
         compound.putInt("Duration", this.duration);
     }
 
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
 
     @OnlyIn(Dist.CLIENT)
     @Override
