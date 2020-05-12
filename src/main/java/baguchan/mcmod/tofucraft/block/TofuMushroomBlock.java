@@ -90,9 +90,14 @@ public class TofuMushroomBlock extends BushBlock implements IGrowable {
         }
 
         if (configuredfeature.place(p_226940_1_, p_226940_1_.getChunkProvider().getChunkGenerator(), p_226940_4_, p_226940_2_)) {
-            return true;
+            if (p_226940_1_.getBlockState(p_226940_2_).isAir()) {
+                p_226940_1_.setBlockState(p_226940_2_, TofuBlocks.ZUNDATOFU_MUSHROOM.getDefaultState(), 2);
+                return false;
+            } else {
+                return true;
+            }
         } else {
-            p_226940_1_.setBlockState(p_226940_2_, this.getDefaultState(), 3);
+            p_226940_1_.setBlockState(p_226940_2_, TofuBlocks.ZUNDATOFU_MUSHROOM.getDefaultState(), 2);
             return false;
         }
     }
