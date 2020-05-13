@@ -1,14 +1,22 @@
 package baguchan.mcmod.tofucraft.entity;
 
+import baguchan.mcmod.tofucraft.init.TofuBiomes;
 import baguchan.mcmod.tofucraft.init.TofuDimensions;
 import baguchan.mcmod.tofucraft.init.TofuItems;
+import baguchan.mcmod.tofucraft.init.TofuLootTables;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
@@ -25,12 +33,61 @@ import net.minecraft.world.storage.loot.LootTables;
 import java.util.Random;
 
 public class TofuSlimeEntity extends SlimeEntity {
+    private static final DataParameter<Boolean> WEAK = EntityDataManager.createKey(TofuSlimeEntity.class, DataSerializers.BOOLEAN);
+
     public TofuSlimeEntity(EntityType<? extends TofuSlimeEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
+    protected void registerData() {
+        super.registerData();
+        this.getDataManager().register(WEAK, false);
+    }
+
+    public void tick() {
+        if (!this.world.isRemote && this.isAlive()) {
+            if (!isWeak() && this.world.getBiome(this.getPosition()) == TofuBiomes.ZUNDATOFU_FUNGIFOREST) {
+                setWeak(true);
+            } else if (isWeak() && this.world.getBiome(this.getPosition()) != TofuBiomes.ZUNDATOFU_FUNGIFOREST) {
+                setWeak(false);
+            }
+        }
+
+        super.tick();
+    }
+
+    public void livingTick() {
+        if (this.isAlive()) {
+            boolean flag = this.isWeak();
+            if (flag) {
+                if (this.ticksExisted % 100 == 0) {
+                    attackEntityFrom(DamageSource.STARVE, 2.0F);
+                }
+
+                if (getActivePotionEffect(Effects.WEAKNESS) == null) {
+                    addPotionEffect(new EffectInstance(Effects.WEAKNESS, 100));
+                }
+            }
+        }
+
+        super.livingTick();
+    }
+
+
+    public boolean isWeak() {
+        return this.getDataManager().get(WEAK);
+    }
+
+    public void setWeak(boolean weak) {
+        this.getDataManager().set(WEAK, weak);
+    }
+
     protected ResourceLocation getLootTable() {
-        return this.getSlimeSize() == 1 ? this.getType().getLootTable() : LootTables.EMPTY;
+        if (isWeak()) {
+            return this.getSlimeSize() == 1 ? TofuLootTables.weak_tofuslime : LootTables.EMPTY;
+        } else {
+            return this.getSlimeSize() == 1 ? this.getType().getLootTable() : LootTables.EMPTY;
+        }
     }
 
     public static boolean spawnHandle(EntityType<TofuSlimeEntity> p_223366_0_, IWorld p_223366_1_, SpawnReason reason, BlockPos p_223366_3_, Random randomIn) {
