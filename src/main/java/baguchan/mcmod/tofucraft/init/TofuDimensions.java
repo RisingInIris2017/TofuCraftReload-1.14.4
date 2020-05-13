@@ -27,7 +27,7 @@ public class TofuDimensions {
 
     }.setRegistryName(new ResourceLocation(TofuCraftCore.MODID, "tofuworld"));
 
-    private static final ResourceLocation TOFUWORLD_ID = new ResourceLocation(TofuCraftCore.MODID, "tofuworld");
+    public static final ResourceLocation TOFUWORLD_ID = new ResourceLocation(TofuCraftCore.MODID, "tofuworld");
 
     @SubscribeEvent
     public static void registerDimensions(RegisterDimensionsEvent event) {

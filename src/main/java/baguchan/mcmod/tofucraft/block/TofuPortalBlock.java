@@ -93,16 +93,8 @@ public class TofuPortalBlock extends Block {
 
             if (entityIn.dimension.getModType() == TofuDimensions.TOFUWORLD) {
                 if (server != null && entityIn.timeUntilPortal <= 0) {
-
-
                     PlayerList playerList = server.getPlayerList();
-
-
                     DimensionType warptype = DimensionType.OVERWORLD;
-
-
-                    TofuWorldTeleporter teleporter = new TofuWorldTeleporter(server.getWorld(warptype));
-
 
                     entityIn.timeUntilPortal = entityIn.getPortalCooldown();
 
@@ -138,10 +130,7 @@ public class TofuPortalBlock extends Block {
                     PlayerList playerList = server.getPlayerList();
 
 
-                    DimensionType warptype = DimensionType.byName(TofuDimensions.TOFUWORLD.getRegistryName());
-
-                    TofuWorldTeleporter teleporter = new TofuWorldTeleporter(server.getWorld(warptype));
-
+                    DimensionType warptype = DimensionType.byName(TofuDimensions.TOFUWORLD_ID);
 
                     entityIn.timeUntilPortal = entityIn.getPortalCooldown();
 
