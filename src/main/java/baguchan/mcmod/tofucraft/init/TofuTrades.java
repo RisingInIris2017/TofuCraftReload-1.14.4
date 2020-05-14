@@ -42,21 +42,21 @@ public class TofuTrades {
         List<VillagerTrades.ITrade> master = event.getTrades().get(5);
 
         if (event.getType() == TofuVillagers.TOFU_CRAFTSMAN) {
-            novice.add(new EmeraldsForItemsTrade(Items.GLASS_BOTTLE, 4, 1, 8, 4));
-            novice.add(new EmeraldsForItemsTrade(TofuItems.SEEDS_SOYBEAN, 18, 1, 8, 3));
+            novice.add(new EmeraldsForItemsTrade(Items.GLASS_BOTTLE, 4, 1, 8, 3));
+            novice.add(new EmeraldsForItemsTrade(TofuItems.SEEDS_SOYBEAN, 18, 1, 8, 2));
 
-            apprentice.add(new EmeraldsForItemsTrade(TofuItems.TOFUISHI, 18, 1, 8, 20));
+            apprentice.add(new ItemsForEmeraldsTrade(TofuItems.TOFUGRILD, 1, 12, 8, 18));
             apprentice.add(new EmeraldsForItemsTrade(TofuItems.TOFUMOMEN, 26, 1, 8, 16));
 
-            journeyman.add(new ItemsForEmeraldsTrade(TofuItems.TOFUMETAL_SHIELD, 1, 1, 6, 22));
-            journeyman.add(new ItemsForEmeraldsTrade(TofuItems.ARMOR_METALBOOTS, 3, 1, 8, 24));
-            journeyman.add(new ItemsForEmeraldsTrade(TofuItems.ARMOR_METALCHESTPLATE, 6, 1, 8, 26));
-            journeyman.add(new ItemsForEmeraldsTrade(TofuItems.ARMOR_METALLEGGINS, 5, 1, 8, 25));
+            journeyman.add(new ItemsForEmeraldsTrade(TofuItems.TOFUMETAL_SHIELD, 1, 1, 4, 22));
+            journeyman.add(new ItemsForEmeraldsTrade(TofuItems.ARMOR_METALBOOTS, 3, 1, 6, 23));
+            journeyman.add(new ItemsForEmeraldsTrade(TofuItems.ARMOR_METALCHESTPLATE, 6, 1, 6, 24));
+            journeyman.add(new ItemsForEmeraldsTrade(TofuItems.ARMOR_METALLEGGINS, 5, 1, 6, 23));
 
-            expert.add(new ItemsForEmeraldsTrade(TofuItems.BREWED_SOYMILK_ANNIN_BOTTLE, 3, 1, 8, 30));
-            expert.add(new ItemsForEmeraldsTrade(TofuItems.BREWED_SOYMILK_APPLE_BOTTLE, 2, 1, 8, 30));
+            expert.add(new ItemsForEmeraldsTrade(TofuItems.BREWED_SOYMILK_ANNIN_BOTTLE, 3, 1, 4, 30));
+            expert.add(new ItemsForEmeraldsTrade(TofuItems.BREWED_SOYMILK_APPLE_BOTTLE, 2, 1, 4, 30));
 
-            master.add(new ItemsForEmeraldsTrade(TofuItems.MORIJIO, 8, 1, 1, 20));
+            master.add(new ItemsForEmeraldsTrade(TofuItems.MORIJIO, 8, 1, 3, 20));
         }
     }
 
