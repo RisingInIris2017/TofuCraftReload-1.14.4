@@ -17,6 +17,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -50,6 +51,11 @@ public class SaltFurnaceBlock extends ContainerBlock {
                 worldIn.playSound(null, pos, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.5F, 1.0F);
             }
         }
+    }
+
+    @Override
+    public int tickRate(IWorldReader worldIn) {
+        return 5;
     }
 
     public TileEntity createNewTileEntity(IBlockReader worldIn) {
