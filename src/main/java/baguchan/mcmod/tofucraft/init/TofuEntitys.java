@@ -43,6 +43,7 @@ public class TofuEntitys {
     public static final EntityType<BeamEntity> BEAM = EntityType.Builder.<BeamEntity>create(BeamEntity::new, EntityClassification.MISC).setTrackingRange(4).setCustomClientFactory(BeamEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.5F).build(prefix("beam"));
     public static final EntityType<TofuHomingForceEntity> TOFU_HOMING_FORCE = EntityType.Builder.<TofuHomingForceEntity>create(TofuHomingForceEntity::new, EntityClassification.MISC).setTrackingRange(40).setCustomClientFactory(TofuHomingForceEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.5F).build(prefix("tofu_homing_force"));
     public static final EntityType<TofuFallingBlockEntity> TOFU_FALLING_BLOCK = EntityType.Builder.<TofuFallingBlockEntity>create(TofuFallingBlockEntity::new, EntityClassification.MISC).setTrackingRange(4).setCustomClientFactory(TofuFallingBlockEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(1.0F, 1.0F).build(prefix("tofu_falling_block"));
+    public static final EntityType<SoySplashEntity> SOY_SPLASH = EntityType.Builder.<SoySplashEntity>create(SoySplashEntity::new, EntityClassification.MISC).setTrackingRange(12).setCustomClientFactory(SoySplashEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(1.0F, 1.0F).build(prefix("soy_splash"));
 
 
     @SubscribeEvent
@@ -66,6 +67,7 @@ public class TofuEntitys {
         event.getRegistry().register(BEAM.setRegistryName("beam"));
         event.getRegistry().register(TOFU_HOMING_FORCE.setRegistryName("tofu_homing_force"));
         event.getRegistry().register(TOFU_FALLING_BLOCK.setRegistryName("tofu_falling_block"));
+        event.getRegistry().register(SOY_SPLASH.setRegistryName("soy_splash"));
 
         EntitySpawnPlacementRegistry.register(TOFUCOW, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TofuAnimalEntity::spawnHandle);
         EntitySpawnPlacementRegistry.register(TOFUSLIME, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TofuSlimeEntity::spawnHandle);
