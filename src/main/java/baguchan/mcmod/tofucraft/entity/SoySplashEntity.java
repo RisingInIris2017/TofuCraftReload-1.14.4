@@ -28,6 +28,8 @@ public class SoySplashEntity extends Entity {
     private static final DataParameter<Boolean> FLOATING = EntityDataManager.createKey(SoySplashEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Float> FLOAT_HEIGHT = EntityDataManager.createKey(SoySplashEntity.class, DataSerializers.FLOAT);
     private static final DataParameter<Float> SPLASH_POWER = EntityDataManager.createKey(SoySplashEntity.class, DataSerializers.FLOAT);
+    private static final DataParameter<Integer> MAX_HEIGHT = EntityDataManager.createKey(SoySplashEntity.class, DataSerializers.VARINT);
+
 
 
     public SoySplashEntity(EntityType<?> entityTypeIn, World worldIn) {
@@ -45,18 +47,26 @@ public class SoySplashEntity extends Entity {
         this.dataManager.register(FLOATING, false);
         this.dataManager.register(FLOAT_HEIGHT, 0F);
         this.dataManager.register(SPLASH_POWER, 0F);
+        this.dataManager.register(MAX_HEIGHT, 6);
     }
 
     @Override
     protected void readAdditional(CompoundNBT compound) {
         this.setFloating(compound.getBoolean("Floating"));
         this.setFloatHeight(compound.getFloat("FloatHeight"));
+
+        if (compound.contains("MaxHeight")) {
+            this.setMaxHeight(compound.getInt("MaxHeight"));
+        } else {
+            this.setMaxHeight(6);
+        }
     }
 
     @Override
     protected void writeAdditional(CompoundNBT compound) {
         compound.putBoolean("Floating", this.isFloating());
         compound.putFloat("FloatHeight", this.getFloatHeight());
+        compound.putFloat("MaxHeight", this.getMaxHeight());
     }
 
     public boolean isFloating() {
@@ -83,6 +93,15 @@ public class SoySplashEntity extends Entity {
         this.dataManager.set(SPLASH_POWER, power);
     }
 
+    public int getMaxHeight() {
+        return this.dataManager.get(MAX_HEIGHT);
+    }
+
+    public void setMaxHeight(int height) {
+        this.dataManager.set(MAX_HEIGHT, height);
+    }
+
+
     public void recalculateSize() {
         double d0 = this.getPosX();
         double d1 = this.getPosY();
@@ -104,7 +123,7 @@ public class SoySplashEntity extends Entity {
     public void tick() {
         super.tick();
 
-        this.setFloatHeight(MathHelper.clamp(this.getFloatHeight() + getSplashPower(), 0.0F, 6.0F));
+        this.setFloatHeight(MathHelper.clamp(this.getFloatHeight() + getSplashPower(), 0.0F, this.getMaxHeight()));
         if (this.isFloating()) {
             this.setSplashPower(MathHelper.clamp(this.getSplashPower() + 0.01F, -0.75F, 0.8F));
         } else {
@@ -117,8 +136,7 @@ public class SoySplashEntity extends Entity {
         }
 
         if (this.ticksExisted % 80 == 0) {
-            //max float height is 6
-            if (this.isFloating() && this.getFloatHeight() >= 6.0F) {
+            if (this.isFloating() && this.getFloatHeight() >= this.getMaxHeight()) {
                 setFloating(false);
             } else if (!isFloating() && this.getFloatHeight() <= 0.0F) {
                 this.remove();

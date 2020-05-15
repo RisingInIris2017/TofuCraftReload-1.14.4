@@ -24,7 +24,7 @@ public class SoySplashRenderer extends EntityRenderer<SoySplashEntity> {
     @Override
     public void render(SoySplashEntity splash, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
         //max float height is 6
-        int alpha = (int) (splash.getFloatHeight() / 6 * 192);
+        int alpha = (int) (splash.getFloatHeight() / splash.getMaxHeight() * 192);
 
         if (0 < alpha) {
             matrixStackIn.push();
@@ -67,8 +67,8 @@ public class SoySplashRenderer extends EntityRenderer<SoySplashEntity> {
             this.pointBuilder(posMatrix, normalMatrix, builder, -topWidth, 0, -topWidth, alpha, 0.0F, 0.15625F);
 
             //body2
-            length = (int) (1 * splash.getFloatHeight() * 6);
-            topWidth = 14;
+            length = (int) (1 * splash.getFloatHeight() * 10);
+            topWidth = 12;
             bottomWidth = 6;
             //front2
             this.pointBuilder(posMatrix, normalMatrix, builder, -bottomWidth, -length, bottomWidth, alpha, 0.0F, 0.0F);
@@ -91,6 +91,36 @@ public class SoySplashRenderer extends EntityRenderer<SoySplashEntity> {
             this.pointBuilder(posMatrix, normalMatrix, builder, -topWidth, 0, topWidth, alpha, 0.0F, 0.15625F);
             this.pointBuilder(posMatrix, normalMatrix, builder, -topWidth, 0, -topWidth, alpha, 0.5F, 0.15625F);
             //main2
+            this.pointBuilder(posMatrix, normalMatrix, builder, -topWidth, 0, topWidth, alpha, 0.0F, 0.0F);
+            this.pointBuilder(posMatrix, normalMatrix, builder, topWidth, 0, topWidth, alpha, 0.5F, 0.0F);
+            this.pointBuilder(posMatrix, normalMatrix, builder, topWidth, 0, -topWidth, alpha, 0.5F, 0.15625F);
+            this.pointBuilder(posMatrix, normalMatrix, builder, -topWidth, 0, -topWidth, alpha, 0.0F, 0.15625F);
+
+            //body3
+            length = (int) (1 * splash.getFloatHeight() * 6);
+            topWidth = 16;
+            bottomWidth = 8;
+            //front3
+            this.pointBuilder(posMatrix, normalMatrix, builder, -bottomWidth, -length, bottomWidth, alpha, 0.0F, 0.0F);
+            this.pointBuilder(posMatrix, normalMatrix, builder, bottomWidth, -length, bottomWidth, alpha, 0.5F, 0.0F);
+            this.pointBuilder(posMatrix, normalMatrix, builder, topWidth, 0, topWidth, alpha, 0.5F, 0.15625F);
+            this.pointBuilder(posMatrix, normalMatrix, builder, -topWidth, 0, topWidth, alpha, 0.0F, 0.15625F);
+            //back3
+            this.pointBuilder(posMatrix, normalMatrix, builder, bottomWidth, -length, -bottomWidth, alpha, 0.5F, 0.0F);
+            this.pointBuilder(posMatrix, normalMatrix, builder, -bottomWidth, -length, -bottomWidth, alpha, 0.0F, 0.0F);
+            this.pointBuilder(posMatrix, normalMatrix, builder, -topWidth, 0, -topWidth, alpha, 0.0F, 0.15625F);
+            this.pointBuilder(posMatrix, normalMatrix, builder, topWidth, 0, -topWidth, alpha, 0.5F, 0.15625F);
+            //right3
+            this.pointBuilder(posMatrix, normalMatrix, builder, bottomWidth, -length, bottomWidth, alpha, 0.0F, 0.0F);
+            this.pointBuilder(posMatrix, normalMatrix, builder, bottomWidth, -length, -bottomWidth, alpha, 0.5F, 0.0F);
+            this.pointBuilder(posMatrix, normalMatrix, builder, topWidth, 0, -topWidth, alpha, 0.5F, 0.15625F);
+            this.pointBuilder(posMatrix, normalMatrix, builder, topWidth, 0, topWidth, alpha, 0.0F, 0.15625F);
+            //left3
+            this.pointBuilder(posMatrix, normalMatrix, builder, -bottomWidth, -length, -bottomWidth, alpha, 0.5F, 0.0F);
+            this.pointBuilder(posMatrix, normalMatrix, builder, -bottomWidth, -length, bottomWidth, alpha, 0.0F, 0.0F);
+            this.pointBuilder(posMatrix, normalMatrix, builder, -topWidth, 0, topWidth, alpha, 0.0F, 0.15625F);
+            this.pointBuilder(posMatrix, normalMatrix, builder, -topWidth, 0, -topWidth, alpha, 0.5F, 0.15625F);
+            //main3
             this.pointBuilder(posMatrix, normalMatrix, builder, -topWidth, 0, topWidth, alpha, 0.0F, 0.0F);
             this.pointBuilder(posMatrix, normalMatrix, builder, topWidth, 0, topWidth, alpha, 0.5F, 0.0F);
             this.pointBuilder(posMatrix, normalMatrix, builder, topWidth, 0, -topWidth, alpha, 0.5F, 0.15625F);
