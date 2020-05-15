@@ -149,8 +149,10 @@ public class SoySplashEntity extends Entity {
                 if (!(entity instanceof SoySplashEntity) && !entity.noClip) {
                     entity.onGround = true;
                     entity.fallDistance = 0.0F;
-                    if (this.getSplashPower() >= 0.0F) {
+                    if (this.getSplashPower() >= 0.3F) {
                         entity.setMotion(entity.getMotion().x, ((double) this.getSplashPower() - entity.getMotion().y) * (double) this.getSplashPower(), entity.getMotion().z);
+                    } else {
+                        entity.setMotion(entity.getMotion().x, ((double) 0.3F - entity.getMotion().y) * (double) 0.3F, entity.getMotion().z);
                     }
                 }
             }
