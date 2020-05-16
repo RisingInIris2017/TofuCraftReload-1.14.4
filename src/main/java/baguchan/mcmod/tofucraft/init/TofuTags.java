@@ -22,7 +22,6 @@ public class TofuTags {
 
     public static class Items {
 
-        public static final Tag<Item> SOYBEANS = tag("soybeans");
         public static final Tag<Item> TOFU = tag("tofu");
 
 

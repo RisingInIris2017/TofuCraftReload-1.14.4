@@ -20,26 +20,32 @@ public class LootEvents {
     private static final Set<ResourceLocation> TEMPLE_LOOT = Sets.newHashSet(LootTables.CHESTS_JUNGLE_TEMPLE);
     private static final Set<ResourceLocation> NETHER_BRIDGE_LOOT = Sets.newHashSet(LootTables.CHESTS_NETHER_BRIDGE);
 
+    private static ResourceLocation tall_grass_drops = new ResourceLocation("minecraft", "blocks/tall_grass");
+
     @SubscribeEvent
     public static void onInjectLoot(LootTableLoadEvent event) {
         if (SHIPWRECK_LOOT.contains(event.getName())) {
-            LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(TofuCraftCore.MODID, "injections/tofustick_structures")).weight(1).quality(1)).name("tofustick_structure").build();
+            LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(TofuCraftCore.MODID, "injections/tofustick_ship"))).name("tofustick_ship").build();
             event.getTable().addPool(pool);
         }
 
         if (RUIN_LOOT.contains(event.getName())) {
-            LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(TofuCraftCore.MODID, "injections/tofustick_structures")).weight(1).quality(1)).name("tofustick_structure").build();
+            LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(TofuCraftCore.MODID, "injections/tofustick_ruin"))).name("tofustick_ruin").build();
             event.getTable().addPool(pool);
         }
 
         if (TEMPLE_LOOT.contains(event.getName())) {
-            LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(TofuCraftCore.MODID, "injections/tofustick_structures")).weight(1).quality(1)).name("tofustick_structure").build();
+            LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(TofuCraftCore.MODID, "injections/tofustick_temple"))).name("tofustick_temple").build();
             event.getTable().addPool(pool);
         }
 
         if (NETHER_BRIDGE_LOOT.contains(event.getName())) {
-            LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(TofuCraftCore.MODID, "injections/soybean_fortress")).weight(1).quality(1)).name("soybean_fortress").build();
+            LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(TofuCraftCore.MODID, "injections/soybean_fortress"))).name("soybean_fortress").build();
             event.getTable().addPool(pool);
+        }
+
+        if (event.getName().equals(tall_grass_drops)) {
+
         }
     }
 }

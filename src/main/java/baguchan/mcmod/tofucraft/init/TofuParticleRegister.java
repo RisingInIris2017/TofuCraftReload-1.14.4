@@ -1,6 +1,8 @@
 package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
+import baguchan.mcmod.tofucraft.client.particle.TofuPortalParticle;
+import net.minecraft.client.Minecraft;
 import net.minecraft.particles.ParticleType;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -12,11 +14,11 @@ public class TofuParticleRegister {
 
     @SubscribeEvent
     public static void registerParticleFactory(final ParticleFactoryRegisterEvent event) {
-        //Minecraft.getInstance().particles.registerFactory(TofuParticles.TOFUPORTAL, TofuPortalParticle.Factory::new);
+        Minecraft.getInstance().particles.registerFactory(TofuParticles.TOFUPORTAL, TofuPortalParticle.Factory::new);
     }
 
     @SubscribeEvent
     public static void registerParticles(final RegistryEvent.Register<ParticleType<?>> event) {
-        //event.getRegistry().register(TofuParticles.TOFUPORTAL.setRegistryName("tofuportal"));
+        event.getRegistry().register(TofuParticles.TOFUPORTAL.setRegistryName("tofuportal"));
     }
 }
