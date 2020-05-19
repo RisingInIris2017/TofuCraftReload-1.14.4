@@ -7,13 +7,13 @@
   ],
   "key": {
     "W": {
-      "tag": "forge:wheat"
+      "tag": "forge:crops/wheat"
     },
     "S": {
       "item": "minecraft:sugar"
     },
     "E": {
-      "tag": "forge:egg"
+      "tag": "forge:eggs"
     },
     "T": {
       "item": "tofucraft:tofukinu"
