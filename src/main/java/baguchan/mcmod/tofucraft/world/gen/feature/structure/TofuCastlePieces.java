@@ -2,6 +2,7 @@ package baguchan.mcmod.tofucraft.world.gen.feature.structure;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.block.TofuChestBlock;
+import baguchan.mcmod.tofucraft.entity.TofuGandlemEntity;
 import baguchan.mcmod.tofucraft.entity.TofuMindEntity;
 import baguchan.mcmod.tofucraft.entity.TofuTurretEntity;
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
@@ -112,6 +113,14 @@ public class TofuCastlePieces {
                 entitymind.moveToBlockPosAndAngles(pos, 0.0F, 0.0F);
                 entitymind.onInitialSpawn(world, world.getDifficultyForLocation(new BlockPos(entitymind)), SpawnReason.STRUCTURE, (ILivingEntityData) null, (CompoundNBT) null);
                 world.addEntity(entitymind);
+                world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+            } else if (function.equals("Boss")) {
+                TofuGandlemEntity entitygandlem = TofuEntitys.TOFUGANDLEM.create(world.getWorld());
+                entitygandlem.enablePersistence();
+                entitygandlem.setSleep(true);
+                entitygandlem.moveToBlockPosAndAngles(pos, 0.0F, 0.0F);
+                entitygandlem.onInitialSpawn(world, world.getDifficultyForLocation(new BlockPos(entitygandlem)), SpawnReason.STRUCTURE, (ILivingEntityData) null, (CompoundNBT) null);
+                world.addEntity(entitygandlem);
                 world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
             }
         }

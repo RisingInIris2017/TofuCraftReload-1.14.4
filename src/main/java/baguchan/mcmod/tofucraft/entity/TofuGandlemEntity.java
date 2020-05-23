@@ -3,6 +3,7 @@ package baguchan.mcmod.tofucraft.entity;
 import baguchan.mcmod.tofucraft.entity.ai.*;
 import baguchan.mcmod.tofucraft.entity.movement.FlyingStrafeMovementController;
 import baguchan.mcmod.tofucraft.entity.projectile.BeamEntity;
+import baguchan.mcmod.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.mcmod.tofucraft.init.TofuCreatureAttribute;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -21,19 +22,23 @@ import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.BossInfo;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.EnumSet;
 
 public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob {
+    private static final DataParameter<Boolean> SLEEP = EntityDataManager.createKey(TofuGandlemEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> CASTING = EntityDataManager.createKey(TofuGandlemEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> SHOOTING = EntityDataManager.createKey(TofuGandlemEntity.class, DataSerializers.BOOLEAN);
 
@@ -54,13 +59,23 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
     public TofuGandlemEntity(EntityType<? extends TofuGandlemEntity> type, World p_i48553_2_) {
         super(type, p_i48553_2_);
         this.moveController = new FlyingStrafeMovementController(this, 15, false);
-        this.experienceValue = 90;
+        this.experienceValue = 100;
+        this.bossInfo.setVisible(false);
     }
 
     protected void registerData() {
         super.registerData();
+        this.dataManager.register(SLEEP, false);
         this.dataManager.register(CASTING, false);
         this.dataManager.register(SHOOTING, false);
+    }
+
+    public boolean isSleep() {
+        return this.dataManager.get(SLEEP);
+    }
+
+    public void setSleep(boolean isSleep) {
+        this.dataManager.set(SLEEP, isSleep);
     }
 
     public boolean isCasting() {
@@ -80,6 +95,7 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
     }
 
     protected void registerGoals() {
+        this.goalSelector.addGoal(0, new DoNothingGoal());
         this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(2, new TofuHomingShotGoal(this));
         this.goalSelector.addGoal(3, new SoyshotGoal(this));
@@ -114,12 +130,21 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
         return flyingpathnavigator;
     }
 
+    @Override
+    public void writeAdditional(CompoundNBT compound) {
+        super.writeAdditional(compound);
+
+        compound.putBoolean("Sleep", this.isSleep());
+    }
+
     public void readAdditional(CompoundNBT compound) {
         super.readAdditional(compound);
+
+        this.setSleep(compound.getBoolean("Sleep"));
+
         if (this.hasCustomName()) {
             this.bossInfo.setName(this.getDisplayName());
         }
-
     }
 
     public void setCustomName(@Nullable ITextComponent name) {
@@ -129,26 +154,36 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
 
     @Override
     protected void updateAITasks() {
-        --this.heightOffsetUpdateTime;
 
-        if (this.heightOffsetUpdateTime <= 0) {
-            this.heightOffsetUpdateTime = 100;
-            this.heightOffset = 0.5f + (float) this.rand.nextGaussian() * 3f;
+        if (!this.isSleep()) {
+            --this.heightOffsetUpdateTime;
+
+            if (this.heightOffsetUpdateTime <= 0) {
+                this.heightOffsetUpdateTime = 100;
+                this.heightOffset = 0.5f + (float) this.rand.nextGaussian() * 3f;
+            }
+
+            LivingEntity target = getAttackTarget();
+            Vec3d vec3d = this.getMotion();
+            if (target != null && target.isAlive() && target.getPosY() + (double) target.getEyeHeight() > this.getPosY() + (double) getEyeHeight() + (double) this.heightOffset && this.isAlive()) {
+                this.setMotion(this.getMotion().add(0.0D, ((double) 0.3F - vec3d.y) * (double) 0.3F, 0.0D));
+                this.isAirBorne = true;
+            }
+
+            if (!this.onGround && vec3d.y < 0.0D) {
+                this.setMotion(vec3d.mul(1.0D, 0.6D, 1.0D));
+            }
+
+            if (!this.bossInfo.isVisible()) {
+                this.bossInfo.setVisible(true);
+            }
+
+            super.updateAITasks();
+        } else {
+            if (this.bossInfo.isVisible()) {
+                this.bossInfo.setVisible(false);
+            }
         }
-
-        LivingEntity target = getAttackTarget();
-        Vec3d vec3d = this.getMotion();
-        if (target != null && target.isAlive() && target.getPosY() + (double) target.getEyeHeight() > this.getPosY() + (double) getEyeHeight() + (double) this.heightOffset && this.isAlive()) {
-            this.setMotion(this.getMotion().add(0.0D, ((double) 0.3F - vec3d.y) * (double) 0.3F, 0.0D));
-            this.isAirBorne = true;
-        }
-
-        if (!this.onGround && vec3d.y < 0.0D) {
-            this.setMotion(vec3d.mul(1.0D, 0.6D, 1.0D));
-        }
-
-
-        super.updateAITasks();
 
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
     }
@@ -216,6 +251,21 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
 
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount) {
+        if (this.isSleep() && source.getTrueSource() instanceof LivingEntity) {
+            if (this.world.getDifficulty() != Difficulty.PEACEFUL) {
+                this.playSound(SoundEvents.ENTITY_WITHER_SPAWN, 2.0F, 1.0F);
+                this.setSleep(false);
+            }
+            return false;
+        } else if (isSleep()) {
+            return false;
+        }
+
+        if (source.getImmediateSource() instanceof FukumameEntity) {
+            return false;
+        }
+
+
         if (source.isExplosion() || source.isFireDamage()) {
             return super.attackEntityFrom(source, amount * 0.75F);
         } else {
@@ -234,6 +284,7 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
 
     @Override
     public void attackEntityWithRangedAttack(LivingEntity livingEntity, float v) {
+        this.playSound(SoundEvents.ENTITY_BLAZE_SHOOT, 1.2F, 1.0F);
         double d1 = livingEntity.getPosX() - this.getPosX();
         double d2 = livingEntity.getBoundingBox().minY + (double) (livingEntity.getHeight() / 2.0F) - (this.getPosY() + (double) (this.getEyeHeight()));
         double d3 = livingEntity.getPosZ() - this.getPosZ();
@@ -281,5 +332,19 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
     @Override
     public boolean isNonBoss() {
         return false;
+    }
+
+    class DoNothingGoal extends Goal {
+        public DoNothingGoal() {
+            this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
+        }
+
+        /**
+         * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+         * method as well.
+         */
+        public boolean shouldExecute() {
+            return TofuGandlemEntity.this.isSleep();
+        }
     }
 }

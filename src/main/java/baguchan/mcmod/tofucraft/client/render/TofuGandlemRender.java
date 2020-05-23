@@ -2,7 +2,7 @@ package baguchan.mcmod.tofucraft.client.render;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.client.model.TofuGandlemModel;
-import baguchan.mcmod.tofucraft.client.render.layer.GlowLayer;
+import baguchan.mcmod.tofucraft.client.render.layer.TofuGandlemGlowLayer;
 import baguchan.mcmod.tofucraft.entity.TofuGandlemEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -20,7 +20,7 @@ public class TofuGandlemRender extends MobRenderer<TofuGandlemEntity, TofuGandle
 
     public TofuGandlemRender(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new TofuGandlemModel<>(), 0.5F);
-        this.addLayer(new GlowLayer<>(this, new ResourceLocation(TofuCraftCore.MODID, "textures/mob/tofugandlem/tofugandlem_eye.png")));
+        this.addLayer(new TofuGandlemGlowLayer<>(this, new ResourceLocation(TofuCraftCore.MODID, "textures/mob/tofugandlem/tofugandlem_eye.png")));
     }
 
     @Override
@@ -29,7 +29,9 @@ public class TofuGandlemRender extends MobRenderer<TofuGandlemEntity, TofuGandle
 
         float tick = entityLiving.ticksExisted + partialTicks;
 
-        matrixStackIn.translate(0F, 0.05F - MathHelper.sin(tick * 0.12F) * 0.1F, 0F);
+        if (!entityLiving.isSleep()) {
+            matrixStackIn.translate(0F, 0.05F - MathHelper.sin(tick * 0.12F) * 0.1F, 0F);
+        }
     }
 
     public ResourceLocation getEntityTexture(TofuGandlemEntity entity) {

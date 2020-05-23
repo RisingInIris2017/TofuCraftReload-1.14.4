@@ -12,6 +12,7 @@ import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -107,6 +108,7 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
 
     @Override
     public void attackEntityWithRangedAttack(LivingEntity livingEntity, float v) {
+        this.playSound(SoundEvents.ENTITY_BLAZE_SHOOT, 1.2F, 1.0F);
         double d1 = livingEntity.getPosX() - this.getPosX();
         double d2 = livingEntity.getBoundingBox().minY + (double) (livingEntity.getHeight() / 2.0F) - (this.getPosY() + (double) (this.getEyeHeight()));
         double d3 = livingEntity.getPosZ() - this.getPosZ();
@@ -126,6 +128,11 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
         } else {
             return false;
         }
+    }
+
+    @Override
+    protected boolean isDespawnPeaceful() {
+        return false;
     }
 
     public CreatureAttribute getCreatureAttribute() {
