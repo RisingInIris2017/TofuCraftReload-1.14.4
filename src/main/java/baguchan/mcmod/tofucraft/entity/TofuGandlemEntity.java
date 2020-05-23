@@ -183,6 +183,10 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
             if (this.bossInfo.isVisible()) {
                 this.bossInfo.setVisible(false);
             }
+
+            if (this.world.getDifficulty() == Difficulty.PEACEFUL && !this.isSleep()) {
+                this.setSleep(true);
+            }
         }
 
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
