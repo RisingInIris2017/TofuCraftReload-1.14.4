@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "tofucraft:blocks/blocktofumetal"
+    "all": "tofucraft:block/blocktofumetal"
   }
 }

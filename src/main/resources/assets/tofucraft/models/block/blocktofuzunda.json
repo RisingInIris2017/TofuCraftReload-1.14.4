@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "tofucraft:blocks/blocktofuzunda"
+    "all": "tofucraft:block/blocktofuzunda"
   }
 }

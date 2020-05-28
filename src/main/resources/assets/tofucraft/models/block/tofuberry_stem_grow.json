@@ -2,9 +2,9 @@
   "credit": "Made with Blockbench",
   "parent": "block/block",
   "textures": {
-    "1": "tofucraft:blocks/yubagrass_bottom",
-    "2": "tofucraft:blocks/blocktofukinu",
-    "particle": "tofucraft:blocks/blocktofukinu"
+    "1": "tofucraft:block/yubagrass_bottom",
+    "2": "tofucraft:block/blocktofukinu",
+    "particle": "tofucraft:block/blocktofukinu"
   },
   "elements": [
     {

@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "tofucraft:blocks/tofuishi_terrain"
+    "all": "tofucraft:block/tofuishi_terrain"
   }
 }

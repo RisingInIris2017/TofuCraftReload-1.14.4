@@ -9,7 +9,7 @@
       {
         "model": "cross",
         "textures": {
-          "cross": "tofucraft:blocks/yubagrass_bottom"
+          "cross": "tofucraft:block/yubagrass_bottom"
         }
       }
     ],
@@ -17,7 +17,7 @@
       {
         "model": "cross",
         "textures": {
-          "cross": "tofucraft:blocks/yubagrass_top"
+          "cross": "tofucraft:block/yubagrass_top"
         }
       }
     ],
@@ -25,7 +25,7 @@
       {
         "model": "builtin/generated",
         "textures": {
-          "layer0": "tofucraft:blocks/yubagrass_top"
+          "layer0": "tofucraft:block/yubagrass_top"
         }
       }
     ]

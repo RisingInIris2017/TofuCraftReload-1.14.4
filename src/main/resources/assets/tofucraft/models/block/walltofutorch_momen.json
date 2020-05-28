@@ -1,6 +1,6 @@
 {
   "parent": "block/torch_wall",
   "textures": {
-    "torch": "tofucraft:blocks/tofutorch_momen"
+    "torch": "tofucraft:block/tofutorch_momen"
   }
 }

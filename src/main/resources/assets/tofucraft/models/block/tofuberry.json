@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "0": "tofucraft:blocks/blocktofukinu",
-    "1": "tofucraft:blocks/yubagrass_bottom",
-    "particle": "tofucraft:blocks/blocktofukinu"
+    "0": "tofucraft:block/blocktofukinu",
+    "1": "tofucraft:block/yubagrass_bottom",
+    "particle": "tofucraft:block/blocktofukinu"
   },
   "elements": [
     {

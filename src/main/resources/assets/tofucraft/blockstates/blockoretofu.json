@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "all": "tofucraft:blocks/blockoretofu"
+      "all": "tofucraft:block/blockoretofu"
     }
   },
   "variants": {

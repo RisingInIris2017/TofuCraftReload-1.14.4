@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "tofucraft:blocks/tofutorch_metal"
+    "layer0": "tofucraft:block/tofutorch_metal"
   }
 }

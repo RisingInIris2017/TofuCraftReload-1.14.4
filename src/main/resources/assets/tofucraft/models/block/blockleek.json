@@ -1,6 +1,6 @@
 {
   "parent": "block/cross",
   "textures": {
-    "cross": "tofucraft:blocks/blockleek"
+    "cross": "tofucraft:block/blockleek"
   }
 }

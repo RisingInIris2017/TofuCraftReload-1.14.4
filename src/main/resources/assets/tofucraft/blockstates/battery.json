@@ -2,13 +2,13 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "particle": "tofucraft:blocks/tfmachine_battery",
-      "up": "tofucraft:blocks/tfmachine_battery_top",
-      "down": "tofucraft:blocks/tfmachine_battery_top",
-      "west": "tofucraft:blocks/tfmachine_battery",
-      "north": "tofucraft:blocks/tfmachine_battery",
-      "east": "tofucraft:blocks/tfmachine_battery",
-      "south": "tofucraft:blocks/tfmachine_battery"
+      "particle": "tofucraft:block/tfmachine_battery",
+      "up": "tofucraft:block/tfmachine_battery_top",
+      "down": "tofucraft:block/tfmachine_battery_top",
+      "west": "tofucraft:block/tfmachine_battery",
+      "north": "tofucraft:block/tfmachine_battery",
+      "east": "tofucraft:block/tfmachine_battery",
+      "south": "tofucraft:block/tfmachine_battery"
     }
   },
   "variants": {

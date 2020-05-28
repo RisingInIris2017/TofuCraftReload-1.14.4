@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "tofucraft:blocks/sapling_tofu"
+    "layer0": "tofucraft:block/sapling_tofu"
   }
 }

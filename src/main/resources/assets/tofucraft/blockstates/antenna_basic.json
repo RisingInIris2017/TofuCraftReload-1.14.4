@@ -9,7 +9,7 @@
       {
         "model": "cross",
         "textures": {
-          "cross": "tofucraft:blocks/antenna_basic"
+          "cross": "tofucraft:block/antenna_basic"
         }
       }
     ],
@@ -17,7 +17,7 @@
       {
         "model": "builtin/generated",
         "textures": {
-          "layer0": "tofucraft:blocks/antenna_basic"
+          "layer0": "tofucraft:block/antenna_basic"
         }
       }
     ]

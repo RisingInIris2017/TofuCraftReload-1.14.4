@@ -3,7 +3,7 @@
   "parent": "block/block",
   "textures": {
     "0": "block/hay_block_top",
-    "1": "tofucraft:blocks/wheat_bowl_koujibase",
+    "1": "tofucraft:block/wheat_bowl_koujibase",
     "particle": "block/hay_block_top"
   },
   "elements": [

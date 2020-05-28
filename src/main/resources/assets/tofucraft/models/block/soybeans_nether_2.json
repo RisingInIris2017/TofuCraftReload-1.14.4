@@ -1,6 +1,6 @@
 {
     "parent": "block/crop",
     "textures": {
-        "crop": "tofucraft:blocks/soybean_hell_2"
+        "crop": "tofucraft:block/soybean_hell_2"
     }
 }

@@ -13,6 +13,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -51,6 +52,10 @@ public class TofuCraftCore {
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    public static ResourceLocation prefix(String name) {
+        return new ResourceLocation(TofuCraftCore.MODID, name);
     }
 
     private void setup(final FMLCommonSetupEvent event) {

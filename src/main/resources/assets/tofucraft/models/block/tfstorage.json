@@ -1,9 +1,9 @@
 {
   "credit": "Made with Blockbench",
   "textures": {
-    "side": "tofucraft:blocks/tfmachine_side",
-    "front": "tofucraft:blocks/tfstorage_front",
-    "particle": "tofucraft:blocks/tfmachine_side"
+    "side": "tofucraft:block/tfmachine_side",
+    "front": "tofucraft:block/tfstorage_front",
+    "particle": "tofucraft:block/tfmachine_side"
   },
   "elements": [
     {

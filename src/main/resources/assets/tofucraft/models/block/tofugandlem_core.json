@@ -1,8 +1,8 @@
 {
   "credit": "Made with Blockbench",
   "textures": {
-    "0": "tofucraft:blocks/tofugandlem_core",
-    "particle": "tofucraft:blocks/tofugandlem_core"
+    "0": "tofucraft:block/tofugandlem_core",
+    "particle": "tofucraft:block/tofugandlem_core"
   },
   "elements": [
     {

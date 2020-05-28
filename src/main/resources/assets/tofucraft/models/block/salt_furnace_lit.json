@@ -1,9 +1,9 @@
 {
   "parent": "block/orientable",
   "textures": {
-    "top": "tofucraft:blocks/salt_furnace_top_lit",
-    "front": "tofucraft:blocks/salt_furnace_front_lit",
-    "side": "tofucraft:blocks/salt_furnace_side",
-    "bottom": "tofucraft:blocks/salt_furnace_bottom"
+    "top": "tofucraft:block/salt_furnace_top_lit",
+    "front": "tofucraft:block/salt_furnace_front_lit",
+    "side": "tofucraft:block/salt_furnace_side",
+    "bottom": "tofucraft:block/salt_furnace_bottom"
   }
 }

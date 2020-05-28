@@ -9,7 +9,7 @@
       {
         "model": "cross",
         "textures": {
-          "cross": "tofucraft:blocks/sapling_apricot"
+          "cross": "tofucraft:block/sapling_apricot"
         }
       }
     ],
@@ -17,7 +17,7 @@
       {
         "model": "builtin/generated",
         "textures": {
-          "layer0": "tofucraft:blocks/sapling_apricot"
+          "layer0": "tofucraft:block/sapling_apricot"
         }
       }
     ]

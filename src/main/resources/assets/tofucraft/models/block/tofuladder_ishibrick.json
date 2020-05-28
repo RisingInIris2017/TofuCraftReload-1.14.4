@@ -1,8 +1,8 @@
 {
   "ambientocclusion": false,
   "textures": {
-    "particle": "tofucraft:blocks/tofuladder_ishibrick",
-    "texture": "tofucraft:blocks/tofuladder_ishibrick"
+    "particle": "tofucraft:block/tofuladder_ishibrick",
+    "texture": "tofucraft:block/tofuladder_ishibrick"
   },
   "elements": [
     {

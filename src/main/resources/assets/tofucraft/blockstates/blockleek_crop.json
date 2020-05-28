@@ -7,25 +7,25 @@
     "age=0": {
       "model": "block/crop",
       "textures": {
-        "crop": "tofucraft:blocks/blockleek_stage1"
+        "crop": "tofucraft:block/blockleek_stage1"
       }
     },
     "age=1": {
       "model": "block/crop",
       "textures": {
-        "crop": "tofucraft:blocks/blockleek_stage2"
+        "crop": "tofucraft:block/blockleek_stage2"
       }
     },
     "age=2": {
       "model": "block/crop",
       "textures": {
-        "crop": "tofucraft:blocks/blockleek_stage2"
+        "crop": "tofucraft:block/blockleek_stage2"
       }
     },
     "age=3": {
       "model": "block/crop",
       "textures": {
-        "crop": "tofucraft:blocks/blockleek"
+        "crop": "tofucraft:block/blockleek"
       }
     }
   }

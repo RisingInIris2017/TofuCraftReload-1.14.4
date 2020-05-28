@@ -2,13 +2,13 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "particle": "tofucraft:blocks/nattobed_top",
-      "up": "tofucraft:blocks/nattobed_top",
-      "down": "tofucraft:blocks/nattobed_top",
-      "west": "tofucraft:blocks/nattobed_side",
-      "north": "tofucraft:blocks/nattobed_side",
-      "east": "tofucraft:blocks/nattobed_side",
-      "south": "tofucraft:blocks/nattobed_side"
+      "particle": "tofucraft:block/nattobed_top",
+      "up": "tofucraft:block/nattobed_top",
+      "down": "tofucraft:block/nattobed_top",
+      "west": "tofucraft:block/nattobed_side",
+      "north": "tofucraft:block/nattobed_side",
+      "east": "tofucraft:block/nattobed_side",
+      "south": "tofucraft:block/nattobed_side"
     }
   },
   "variants": {
@@ -36,13 +36,13 @@
     "ferm=7": {
       "model": "cube_all",
       "textures": {
-        "particle": "tofucraft:blocks/nattobed_top_fin",
-        "up": "tofucraft:blocks/nattobed_top_fin",
-        "down": "tofucraft:blocks/nattobed_top_fin",
-        "west": "tofucraft:blocks/nattobed_side_fin",
-        "north": "tofucraft:blocks/nattobed_side_fin",
-        "east": "tofucraft:blocks/nattobed_side_fin",
-        "south": "tofucraft:blocks/nattobed_side_fin"
+        "particle": "tofucraft:block/nattobed_top_fin",
+        "up": "tofucraft:block/nattobed_top_fin",
+        "down": "tofucraft:block/nattobed_top_fin",
+        "west": "tofucraft:block/nattobed_side_fin",
+        "north": "tofucraft:block/nattobed_side_fin",
+        "east": "tofucraft:block/nattobed_side_fin",
+        "south": "tofucraft:block/nattobed_side_fin"
       }
     },
     "inventory": {

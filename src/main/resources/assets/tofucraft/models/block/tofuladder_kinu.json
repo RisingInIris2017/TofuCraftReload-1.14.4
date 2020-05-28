@@ -1,8 +1,8 @@
 {
   "ambientocclusion": false,
   "textures": {
-    "particle": "tofucraft:blocks/tofuladder_kinu",
-    "texture": "tofucraft:blocks/tofuladder_kinu"
+    "particle": "tofucraft:block/tofuladder_kinu",
+    "texture": "tofucraft:block/tofuladder_kinu"
   },
   "elements": [
     {

@@ -1,8 +1,8 @@
 {
   "parent": "block/template_farmland",
   "textures": {
-    "particle": "tofucraft:blocks/blocktofumomen",
-    "dirt": "tofucraft:blocks/blocktofumomen",
-    "top": "tofucraft:blocks/tofufarmland_dry"
+    "particle": "tofucraft:block/blocktofumomen",
+    "dirt": "tofucraft:block/blocktofumomen",
+    "top": "tofucraft:block/tofufarmland_dry"
   }
 }

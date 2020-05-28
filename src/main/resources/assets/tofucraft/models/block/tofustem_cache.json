@@ -1,9 +1,9 @@
 {
   "parent": "block/orientable",
   "textures": {
-    "top": "tofucraft:blocks/tofustem_top",
-    "front": "tofucraft:blocks/tofustem_cache",
-    "side": "tofucraft:blocks/tofustem",
-    "bottom": "tofucraft:blocks/tofustem_top"
+    "top": "tofucraft:block/tofustem_top",
+    "front": "tofucraft:block/tofustem_cache",
+    "side": "tofucraft:block/tofustem",
+    "bottom": "tofucraft:block/tofustem_top"
   }
 }

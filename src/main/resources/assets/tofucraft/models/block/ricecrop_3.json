@@ -1,6 +1,6 @@
 {
     "parent": "block/crop",
     "textures": {
-        "crop": "tofucraft:blocks/ricecrop_3"
+        "crop": "tofucraft:block/ricecrop_3"
     }
 }

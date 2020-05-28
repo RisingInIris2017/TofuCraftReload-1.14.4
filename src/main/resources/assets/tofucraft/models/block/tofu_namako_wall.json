@@ -1,7 +1,7 @@
 {
   "parent": "block/block",
   "textures": {
-    "cross": "tofucraft:blocks/blocktofumomen",
+    "cross": "tofucraft:block/blocktofumomen",
     "particle": "#cross"
   },
   "elements": [

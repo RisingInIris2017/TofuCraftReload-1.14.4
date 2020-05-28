@@ -50,21 +50,21 @@ public class TofuBlocks {
     public static final Block CONCRETE_POWDER_TOFU = new ConcretePowderBlock(CONCRETE_TOFU, Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F, 0.9F).sound(SoundType.SAND));
     public static final Block MOMEN_TOFUNAMAKO_WALL = new TofuNamakoWallBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F, 0.9F).doesNotBlockMovement().sound(SoundType.STONE));
     //Stair
-    public static final Block TOFUSTAIR_KINU = new StairsBlock(KINUTOFU::getDefaultState, Block.Properties.from(KINUTOFU));
-    public static final Block TOFUSTAIR_MOMEN = new StairsBlock(MOMENTOFU::getDefaultState, Block.Properties.from(MOMENTOFU));
-    public static final Block TOFUSTAIR_ISHI = new StairsBlock(ISHITOFU::getDefaultState, Block.Properties.from(ISHITOFU));
-    public static final Block TOFUSTAIR_METAL = new StairsBlock(METALTOFU::getDefaultState, Block.Properties.from(METALTOFU));
-    public static final Block TOFUSTAIR_ZUNDA = new StairsBlock(ZUNDATOFU::getDefaultState, Block.Properties.from(ZUNDATOFU));
-    public static final Block TOFUSTAIR_ZUNDABRICK = new StairsBlock(ZUNDATOFU_BRICK::getDefaultState, Block.Properties.from(ZUNDATOFU_BRICK));
-    public static final Block TOFUSTAIR_ISHIBRICK = new StairsBlock(ISHITOFU_BRICK::getDefaultState, Block.Properties.from(ISHITOFU_BRICK));
+    public static final StairsBlock TOFUSTAIR_KINU = new StairsBlock(KINUTOFU::getDefaultState, Block.Properties.from(KINUTOFU));
+    public static final StairsBlock TOFUSTAIR_MOMEN = new StairsBlock(MOMENTOFU::getDefaultState, Block.Properties.from(MOMENTOFU));
+    public static final StairsBlock TOFUSTAIR_ISHI = new StairsBlock(ISHITOFU::getDefaultState, Block.Properties.from(ISHITOFU));
+    public static final StairsBlock TOFUSTAIR_METAL = new StairsBlock(METALTOFU::getDefaultState, Block.Properties.from(METALTOFU));
+    public static final StairsBlock TOFUSTAIR_ZUNDA = new StairsBlock(ZUNDATOFU::getDefaultState, Block.Properties.from(ZUNDATOFU));
+    public static final StairsBlock TOFUSTAIR_ZUNDABRICK = new StairsBlock(ZUNDATOFU_BRICK::getDefaultState, Block.Properties.from(ZUNDATOFU_BRICK));
+    public static final StairsBlock TOFUSTAIR_ISHIBRICK = new StairsBlock(ISHITOFU_BRICK::getDefaultState, Block.Properties.from(ISHITOFU_BRICK));
     //Slab
-    public static final Block TOFUSLAB_KINU = new SlabBlock(Block.Properties.from(KINUTOFU));
-    public static final Block TOFUSLAB_MOMEN = new SlabBlock(Block.Properties.from(MOMENTOFU));
-    public static final Block TOFUSLAB_ISHI = new SlabBlock(Block.Properties.from(ISHITOFU));
-    public static final Block TOFUSLAB_METAL = new SlabBlock(Block.Properties.from(METALTOFU));
-    public static final Block TOFUSLAB_ZUNDA = new SlabBlock(Block.Properties.from(ZUNDATOFU));
-    public static final Block TOFUSLAB_ZUNDABRICK = new SlabBlock(Block.Properties.from(ZUNDATOFU_BRICK));
-    public static final Block TOFUSLAB_ISHIBRICK = new SlabBlock(Block.Properties.from(ISHITOFU_BRICK));
+    public static final SlabBlock TOFUSLAB_KINU = new SlabBlock(Block.Properties.from(KINUTOFU));
+    public static final SlabBlock TOFUSLAB_MOMEN = new SlabBlock(Block.Properties.from(MOMENTOFU));
+    public static final SlabBlock TOFUSLAB_ISHI = new SlabBlock(Block.Properties.from(ISHITOFU));
+    public static final SlabBlock TOFUSLAB_METAL = new SlabBlock(Block.Properties.from(METALTOFU));
+    public static final SlabBlock TOFUSLAB_ZUNDA = new SlabBlock(Block.Properties.from(ZUNDATOFU));
+    public static final SlabBlock TOFUSLAB_ZUNDABRICK = new SlabBlock(Block.Properties.from(ZUNDATOFU_BRICK));
+    public static final SlabBlock TOFUSLAB_ISHIBRICK = new SlabBlock(Block.Properties.from(ISHITOFU_BRICK));
     //torch
     public static final Block TOFUTORCH_KINU = new TofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 0.5F).lightValue(14).doesNotBlockMovement().sound(SoundType.SNOW));
     public static final Block TOFUTORCH_MOMEN = new TofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 0.5F).lightValue(14).doesNotBlockMovement().sound(SoundType.SNOW));
@@ -158,7 +158,7 @@ public class TofuBlocks {
         //Building
         registry.getRegistry().register(ISHITOFU_BRICK.setRegistryName("tofuishi_brick"));
         registry.getRegistry().register(ZUNDATOFU_BRICK.setRegistryName("tofuzunda_brick"));
-        registry.getRegistry().register(ZUNDATOFU_SMOOTHBRICK.setRegistryName("tofuzunda_smoothbrick"));
+        registry.getRegistry().register(ZUNDATOFU_SMOOTHBRICK.setRegistryName("tofuzunda_smooth_brick"));
         registry.getRegistry().register(CONCRETE_TOFU.setRegistryName("concrete_tofu"));
         registry.getRegistry().register(CONCRETE_POWDER_TOFU.setRegistryName("concrete_powder_tofu"));
         registry.getRegistry().register(MOMEN_TOFUNAMAKO_WALL.setRegistryName("momen_tofu_namako_wall"));

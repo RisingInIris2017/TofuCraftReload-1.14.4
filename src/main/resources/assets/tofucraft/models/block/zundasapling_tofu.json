@@ -1,6 +1,6 @@
 {
   "parent": "block/cross",
   "textures": {
-    "cross": "tofucraft:blocks/zundasapling_tofu"
+    "cross": "tofucraft:block/zundasapling_tofu"
   }
 }

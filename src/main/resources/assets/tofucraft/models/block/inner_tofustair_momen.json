@@ -1,8 +1,8 @@
 {
   "parent": "block/inner_stairs",
   "textures": {
-    "bottom": "tofucraft:blocks/blocktofumomen",
-    "top": "tofucraft:blocks/blocktofumomen",
-    "side": "tofucraft:blocks/blocktofumomen"
+    "bottom": "tofucraft:block/blocktofumomen",
+    "top": "tofucraft:block/blocktofumomen",
+    "side": "tofucraft:block/blocktofumomen"
   }
 }
