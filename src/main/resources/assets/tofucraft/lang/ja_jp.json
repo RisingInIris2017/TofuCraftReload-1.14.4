@@ -140,14 +140,14 @@
   "block.tofucraft.blocktofuzunda": "ずんだ豆腐ブロック",
   "block.tofucraft.blocktofuzunda_ishi": "ずんだ石豆腐ブロック",
   "block.tofucraft.blocktofuminced": "そぼろ豆腐ブロック",
-
   "block.tofucraft.tofuishi_brick": "豆腐石レンガブロック",
   "block.tofucraft.tofuzunda_brick": "ずんだ豆腐レンガブロック",
-  "block.tofucraft.tofuzunda_smoothbrick": "滑らかなずんだ豆腐レンガブロック",
+  "block.tofucraft.tofuishi_smooth_brick": "滑らかな豆腐石レンガブロック",
+  "block.tofucraft.tofuishi_chiseled_brick": "模様入り豆腐石レンガブロック",
+  "block.tofucraft.tofuzunda_smooth_brick": "滑らかなずんだ豆腐レンガブロック",
   "block.tofucraft.concrete_tofu": "トーフコンクリート",
   "block.tofucraft.concrete_powder_tofu": "トーフコンクリートパウダー",
   "block.tofucraft.momen_tofu_namako_wall": "木綿のトーフナマコ壁",
-
   "block.tofucraft.tofustair_kinu": "絹豆腐の階段",
   "block.tofucraft.tofustair_momen": "木綿豆腐の階段",
   "block.tofucraft.tofustair_ishi": "石豆腐の階段",
