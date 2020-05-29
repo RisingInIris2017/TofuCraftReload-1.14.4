@@ -41,7 +41,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
@@ -848,9 +847,6 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
             itemstack.interactWithEntity(player, this, hand);
             return true;
         } else if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
-            if (hand == Hand.MAIN_HAND) {
-                player.addStat(Stats.TALKED_TO_VILLAGER);
-            }
 
             if (this.getOffers().isEmpty()) {
                 if (!this.isNitwit() && !this.canGuard()) {
@@ -866,8 +862,8 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
                     if (!this.world.isRemote) {
                         this.shakeHead();
                     }
+                    return super.processInteract(player, hand);
                 }
-                return super.processInteract(player, hand);
             } else {
                 if (!this.world.isRemote) {
                     this.setCustomer(player);
