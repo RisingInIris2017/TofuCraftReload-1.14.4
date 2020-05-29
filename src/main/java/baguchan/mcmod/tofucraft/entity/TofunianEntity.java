@@ -192,7 +192,6 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
                 this.addTrades(merchantoffers, avillagertrades$itrade, 2);
             }
-
         }
     }
 
@@ -768,6 +767,13 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
                 double d2 = this.rand.nextGaussian() * 0.02D;
                 this.world.addParticle(ParticleTypes.HEART, this.getPosX() + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), this.getPosY() + 0.5D + (double) (this.rand.nextFloat() * this.getHeight()), this.getPosZ() + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), d0, d1, d2);
             }
+        } else if (id == 13) {
+            for (int i = 0; i < 7; ++i) {
+                double d0 = this.rand.nextGaussian() * 0.02D;
+                double d1 = this.rand.nextGaussian() * 0.02D;
+                double d2 = this.rand.nextGaussian() * 0.02D;
+                this.world.addParticle(ParticleTypes.ANGRY_VILLAGER, this.getPosX() + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), this.getPosY() + 0.5D + (double) (this.rand.nextFloat() * this.getHeight()), this.getPosZ() + (double) (this.rand.nextFloat() * this.getWidth() * 2.0F) - (double) this.getWidth(), d0, d1, d2);
+            }
         } else {
             super.handleStatusUpdate(id);
         }
@@ -783,6 +789,17 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         } else {
             return this.canAbondonItems() && otherTofunian.canAbondonItems();
         }
+    }
+
+    public void setRevengeTarget(@Nullable LivingEntity livingBase) {
+        if (livingBase != null && this.world instanceof ServerWorld) {
+            ((ServerWorld) this.world).updateReputation(IReputationType.VILLAGER_HURT, livingBase, this);
+            if (this.isAlive() && livingBase instanceof PlayerEntity) {
+                this.world.setEntityState(this, (byte) 13);
+            }
+        }
+
+        super.setRevengeTarget(livingBase);
     }
 
     @Override
@@ -835,6 +852,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
             return false;
         } else {
             this.inLove = 0;
+            this.world.setEntityState(this, (byte) 13);
             return super.attackEntityFrom(source, amount);
         }
     }

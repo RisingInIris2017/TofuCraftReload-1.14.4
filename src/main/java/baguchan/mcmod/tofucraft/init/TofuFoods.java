@@ -49,5 +49,6 @@ public class TofuFoods {
     public static final Food YAKIONIGIRI_SHOYU = new Food.Builder().hunger(4).saturation(0.36f).build();
     public static final Food KINAKOMANJU = new Food.Builder().hunger(3).saturation(0.20f).fastToEat().build();
     public static final Food ZUNDAMANJU = new Food.Builder().hunger(3).saturation(0.24f).fastToEat().build();
+    public static final Food NETHERMANJU = new Food.Builder().hunger(4).saturation(0.25f).fastToEat().effect(new EffectInstance(Effects.FIRE_RESISTANCE, 600), 1.0F).build();
 
 }

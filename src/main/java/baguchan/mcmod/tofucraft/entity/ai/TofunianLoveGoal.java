@@ -44,6 +44,7 @@ public class TofunianLoveGoal extends Goal {
     @Override
     public void startExecuting() {
         this.tofunianEntity.setInLove(120);
+        this.world.setEntityState(this.tofunianEntity, (byte) 13);
     }
 
     /**
@@ -98,6 +99,7 @@ public class TofunianLoveGoal extends Goal {
         if (cancelled) {
             this.tofunianEntity.setGrowingAge(6000);
             this.field_75391_e.setGrowingAge(6000);
+            this.world.setEntityState(this.tofunianEntity, (byte) 13);
             return;
         }
         if (ageableentity != null) {

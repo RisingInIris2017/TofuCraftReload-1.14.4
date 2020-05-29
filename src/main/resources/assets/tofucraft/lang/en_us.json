@@ -51,6 +51,7 @@
   "item.tofucraft.yakionigiri_shoyu": "Yakionigiri Shoyu",
   "item.tofucraft.kinakomanju": "Kinako Manju",
   "item.tofucraft.zundamanju": "Zunda Manju",
+  "item.tofucraft.nethermanju": "Nether Manju",
   "item.tofucraft.salt": "Salt",
   "item.tofucraft.morijio": "Morijio",
   "item.tofucraft.bittern_bottle": "Bittern Bottle",
@@ -76,7 +77,6 @@
   "item.tofucraft.tofucreeper_spawnegg": "TofuCreeper SpawnEgg",
   "item.tofucraft.tofuturret_spawnegg": "TofuTurret SpawnEgg",
   "item.tofucraft.tofumind_spawnegg": "TofuMind SpawnEgg",
-  "item.tofucraft.zunsy_spawnegg": "Zunsy SpawnEgg",
 
   "item.tofucraft.armorkinuhelmet": "TofuKinu Helmet",
   "item.tofucraft.armorkinuchestplate": "TofuKinu Chestplate",
