@@ -864,7 +864,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         if (flag) {
             itemstack.interactWithEntity(player, this, hand);
             return true;
-        } else if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG && this.isAlive() && !this.hasCustomer() && !this.isChild()) {
+        } else if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG && this.isAlive() && !this.hasCustomer() && !this.isChild() && !this.isSleeping() && !player.func_226563_dT_()) {
 
             if (this.getOffers().isEmpty()) {
                 if (!this.isNitwit() && !this.canGuard()) {
@@ -878,7 +878,9 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
                     return true;
                 } else {
                     if (!this.world.isRemote) {
-                        this.shakeHead();
+                        if (hand == Hand.MAIN_HAND) {
+                            this.shakeHead();
+                        }
                     }
                     return super.processInteract(player, hand);
                 }
