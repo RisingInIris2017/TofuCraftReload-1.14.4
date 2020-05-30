@@ -522,7 +522,8 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         this.goalSelector.addGoal(8, new CropHarvestGoal(this, 0.95D));
         this.goalSelector.addGoal(9, new WaterAvoidingRandomWalkingGoal(this, 0.9D));
         this.goalSelector.addGoal(10, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
-        this.goalSelector.addGoal(11, new LookAtGoal(this, MobEntity.class, 8.0F));
+        this.goalSelector.addGoal(11, new LookAndPassGoal(this, MobEntity.class, 3.5F));
+        this.goalSelector.addGoal(12, new LookAtGoal(this, MobEntity.class, 8.0F));
         this.goalSelector.addGoal(1, new AvoidEntityGoal(this, ZombieEntity.class, 8.0F, 1.2D, 1.25D) {
             @Override
             public boolean shouldExecute() {
@@ -855,6 +856,11 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
             this.world.setEntityState(this, (byte) 13);
             return super.attackEntityFrom(source, amount);
         }
+    }
+
+    @Override
+    public boolean canAttack(EntityType<?> typeIn) {
+        return super.canAttack(typeIn) && typeIn != TofuEntitys.TOFUNIAN;
     }
 
     @Override
