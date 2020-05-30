@@ -439,13 +439,15 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         }
 
 
-        findHome(false);
-
         if (this.getGrowingAge() != 0) {
             this.inLove = 0;
         }
 
-        super.updateAITasks();
+        if (!isSleeping()) {
+            findHome(false);
+
+            super.updateAITasks();
+        }
     }
 
     private void findHome(boolean force) {
@@ -513,17 +515,17 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         this.goalSelector.addGoal(2, new TradeWithPlayerGoal(this));
         this.goalSelector.addGoal(2, new LookAtCustomerGoal(this));
         this.goalSelector.addGoal(2, new EatOffhandFoodGoal<>(this));
-        this.goalSelector.addGoal(4, new SleepOnBedGoal(this, 1.1D));
-        this.goalSelector.addGoal(5, new MoveToHomeGoal(this, 35D, 1.10D));
-        this.goalSelector.addGoal(6, new TofunianLoveGoal(this, 0.85D));
-        this.goalSelector.addGoal(7, new InterestJobBlockGoal(this, 1.0D));
-        this.goalSelector.addGoal(7, new RestockTradeGoal(this, 1.05D));
-        this.goalSelector.addGoal(8, new CookingTofuGoal(this, 1.0D));
-        this.goalSelector.addGoal(8, new CropHarvestGoal(this, 0.95D));
-        this.goalSelector.addGoal(9, new WaterAvoidingRandomWalkingGoal(this, 0.9D));
+        this.goalSelector.addGoal(3, new SleepOnBedGoal(this, 1.1D));
+        this.goalSelector.addGoal(4, new MoveToHomeGoal(this, 35D, 1.10D));
+        this.goalSelector.addGoal(5, new TofunianLoveGoal(this, 0.85D));
+        this.goalSelector.addGoal(6, new InterestJobBlockGoal(this, 1.0D));
+        this.goalSelector.addGoal(6, new RestockTradeGoal(this, 1.05D));
+        this.goalSelector.addGoal(7, new CookingTofuGoal(this, 1.0D));
+        this.goalSelector.addGoal(7, new CropHarvestGoal(this, 0.95D));
+        this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.9D));
+        this.goalSelector.addGoal(9, new LookAndPassGoal(this, LivingEntity.class, 3.5F));
         this.goalSelector.addGoal(10, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
-        this.goalSelector.addGoal(11, new LookAndPassGoal(this, MobEntity.class, 3.5F));
-        this.goalSelector.addGoal(12, new LookAtGoal(this, MobEntity.class, 8.0F));
+        this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
         this.goalSelector.addGoal(1, new AvoidEntityGoal(this, ZombieEntity.class, 8.0F, 1.2D, 1.25D) {
             @Override
             public boolean shouldExecute() {
@@ -586,7 +588,6 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         super.onGrowingAdult();
         updateTofunianState();
     }
-
 
     @Override
     public void livingTick() {
