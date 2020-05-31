@@ -443,11 +443,9 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
             this.inLove = 0;
         }
 
-        if (!isSleeping()) {
-            findHome(false);
+        findHome(false);
 
-            super.updateAITasks();
-        }
+        super.updateAITasks();
     }
 
     private void findHome(boolean force) {
