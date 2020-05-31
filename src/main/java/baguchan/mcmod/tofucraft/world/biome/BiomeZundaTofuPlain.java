@@ -4,7 +4,6 @@ import baguchan.mcmod.tofucraft.init.TofuEntitys;
 import baguchan.mcmod.tofucraft.init.TofuFeatures;
 import baguchan.mcmod.tofucraft.init.TofuSurfaceBuilder;
 import baguchan.mcmod.tofucraft.world.gen.DefaultTofuBiomeFeature;
-import net.minecraft.entity.EntityClassification;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 
@@ -21,7 +20,6 @@ public class BiomeZundaTofuPlain extends BiomeTofuBase {
         this.addSpawn(TofuEntitys.TOFU_MONSTER, new SpawnListEntry(TofuEntitys.TOFUSLIME, 60, 1, 1));
         this.addSpawn(TofuEntitys.TOFU_MONSTER, new SpawnListEntry(TofuEntitys.TOFUSPIDER, 30, 1, 2));
         this.addSpawn(TofuEntitys.TOFU_MONSTER, new SpawnListEntry(TofuEntitys.TOFUCREEPER, 5, 1, 2));
-        this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(TofuEntitys.TOFUFISH, 10, 2, 3));
 
     }
 }

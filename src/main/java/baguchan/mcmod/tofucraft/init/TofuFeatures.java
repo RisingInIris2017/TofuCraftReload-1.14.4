@@ -3,9 +3,8 @@ package baguchan.mcmod.tofucraft.init;
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.world.gen.DefaultTofuBiomeFeature;
 import baguchan.mcmod.tofucraft.world.gen.feature.TofuBerryFeature;
-import baguchan.mcmod.tofucraft.world.gen.feature.TofuBuildingFeature;
 import baguchan.mcmod.tofucraft.world.gen.feature.TofuOreFeature;
-import baguchan.mcmod.tofucraft.world.gen.feature.ZundaMushroomFeature;
+import baguchan.mcmod.tofucraft.world.gen.feature.TofuTemplateFeature;
 import baguchan.mcmod.tofucraft.world.gen.feature.config.TofuOreConfig;
 import baguchan.mcmod.tofucraft.world.gen.feature.structure.TofuCastleStructure;
 import baguchan.mcmod.tofucraft.world.gen.feature.structure.TofuVillageStructure;
@@ -31,17 +30,23 @@ public class TofuFeatures {
     };
 */
 
-    public static final Feature<NoFeatureConfig> ZUNDAMUSHROOM_SMALL = new ZundaMushroomFeature(NoFeatureConfig::deserialize, 7, 7, new ResourceLocation[]{
+    public static final Feature<NoFeatureConfig> ZUNDAMUSHROOM_SMALL = new TofuTemplateFeature(NoFeatureConfig::deserialize, 7, 7, new ResourceLocation[]{
             new ResourceLocation(TofuCraftCore.MODID, "mushroom/mushroom_zunda_small"),
             new ResourceLocation(TofuCraftCore.MODID, "mushroom/mushroom_zunda_cache_small")
     });
 
-    public static final Feature<NoFeatureConfig> ZUNDAMUSHROOM_BIG = new ZundaMushroomFeature(NoFeatureConfig::deserialize, 9, 9, new ResourceLocation[]{
+    public static final Feature<NoFeatureConfig> ZUNDAMUSHROOM_BIG = new TofuTemplateFeature(NoFeatureConfig::deserialize, 9, 9, new ResourceLocation[]{
             new ResourceLocation(TofuCraftCore.MODID, "mushroom/mushroom_zunda_big"),
             new ResourceLocation(TofuCraftCore.MODID, "mushroom/mushroom_zunda_big2")
     });
 
-    public static final Feature<NoFeatureConfig> TOFU_BUILDING = new TofuBuildingFeature(NoFeatureConfig::deserialize);
+    public static final Feature<NoFeatureConfig> TOFU_BUILDING = new TofuTemplateFeature(NoFeatureConfig::deserialize, 4, 4, new ResourceLocation[]{
+            new ResourceLocation(TofuCraftCore.MODID, "tofu/tofu_1"),
+            new ResourceLocation(TofuCraftCore.MODID, "tofu/tofu_2"),
+            new ResourceLocation(TofuCraftCore.MODID, "tofu/tofu_3"),
+            new ResourceLocation(TofuCraftCore.MODID, "tofu/tofu_4"),
+            new ResourceLocation(TofuCraftCore.MODID, "tofu/tofu_5")
+    });
 
     public static final Feature<TreeFeatureConfig> TOFUTREE = new TreeFeature(TofuFeatures::deserializeTofu);
     public static final Feature<TreeFeatureConfig> ZUNDATOFUTREE = new TreeFeature(TofuFeatures::deserializeZundaTofu);

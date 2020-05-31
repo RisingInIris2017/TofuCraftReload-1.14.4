@@ -46,6 +46,7 @@ public class TofuBiomes {
         tofubiome.add(TOFU_PLAIN);
         tofubiome.add(ZUNDATOFU_PLAIN);
         tofubiome.add(ZUNDATOFU_FUNGIFOREST);
+        tofubiome.add(TOFU_BUILDING);
         tofubiome.add(TOFU_MOUNTAIN);
         tofubiome.add(TOFU_RIVER);
 
@@ -54,6 +55,7 @@ public class TofuBiomes {
         entryTofuBiome.add(new BiomeManager.BiomeEntry(TOFU_PLAIN, 10));
         entryTofuBiome.add(new BiomeManager.BiomeEntry(ZUNDATOFU_PLAIN, 8));
         entryTofuBiome.add(new BiomeManager.BiomeEntry(ZUNDATOFU_FUNGIFOREST, 8));
+        entryTofuBiome.add(new BiomeManager.BiomeEntry(TOFU_BUILDING, 8));
         //entryTofuBiome.add(new BiomeManager.BiomeEntry(TOFU_BUILDING, 12));
         entryTofuBiome.add(new BiomeManager.BiomeEntry(TOFU_MOUNTAIN, 6));
 

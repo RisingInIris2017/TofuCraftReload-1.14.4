@@ -14,8 +14,6 @@ public class BiomeZundaTofuFungiForest extends BiomeTofuBase {
         DefaultTofuBiomeFeature.addTofuFlowers(this);
         DefaultTofuBiomeFeature.addSmallZundaMushroom(this);
 
-        this.addSpawn(EntityClassification.WATER_CREATURE, new SpawnListEntry(TofuEntitys.TOFUFISH, 10, 2, 3));
-
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(TofuEntitys.TOFUCOW, 10, 4, 4));
     }
 

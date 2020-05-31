@@ -40,12 +40,12 @@ import java.util.Random;
 import java.util.Set;
 import java.util.function.Function;
 
-public class ZundaMushroomFeature extends Feature<NoFeatureConfig> {
+public class TofuTemplateFeature extends Feature<NoFeatureConfig> {
     protected final int offsetX;
     protected final int offsetZ;
     protected final ResourceLocation[] templates;
 
-    public ZundaMushroomFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn, int offsetX, int offsetZ, ResourceLocation[] resourceLocations) {
+    public TofuTemplateFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn, int offsetX, int offsetZ, ResourceLocation[] resourceLocations) {
         super(configFactoryIn);
         this.offsetX = offsetX;
         this.offsetZ = offsetZ;

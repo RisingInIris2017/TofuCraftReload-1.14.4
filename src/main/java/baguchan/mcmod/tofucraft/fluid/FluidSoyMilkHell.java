@@ -88,8 +88,8 @@ public abstract class FluidSoyMilkHell extends WaterFluid {
     @Override
     protected net.minecraftforge.fluids.FluidAttributes createAttributes() {
         return net.minecraftforge.fluids.FluidAttributes.builder(
-                new net.minecraft.util.ResourceLocation(TofuCraftCore.MODID, "blocks/soymilk_hell"),
-                new net.minecraft.util.ResourceLocation(TofuCraftCore.MODID, "blocks/soymilk_hell_flow")).build(this);
+                new net.minecraft.util.ResourceLocation(TofuCraftCore.MODID, "block/soymilk_hell"),
+                new net.minecraft.util.ResourceLocation(TofuCraftCore.MODID, "block/soymilk_hell_flow")).build(this);
     }
 
     public static class Flowing extends FluidSoyMilkHell {

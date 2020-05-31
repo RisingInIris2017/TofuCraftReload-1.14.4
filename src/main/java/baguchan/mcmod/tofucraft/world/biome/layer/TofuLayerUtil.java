@@ -73,7 +73,7 @@ public class TofuLayerUtil {
         }
 
         lvt_8_1_ = SmoothLayer.INSTANCE.apply((IExtendedNoiseRandom) contextFactory.apply(1000L), lvt_8_1_);
-        lvt_8_1_ = MixRiverLayer.INSTANCE.apply((IExtendedNoiseRandom) contextFactory.apply(100L), lvt_8_1_, lvt_7_1_);
+        lvt_8_1_ = TofuMixRiverLayer.INSTANCE.apply((IExtendedNoiseRandom) contextFactory.apply(100L), lvt_8_1_, lvt_7_1_);
 
         return lvt_8_1_;
     }
