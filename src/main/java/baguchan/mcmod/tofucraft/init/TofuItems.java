@@ -339,6 +339,10 @@ public class TofuItems {
 
         ComposterBlock.CHANCES.put(SEEDS_SOYBEAN, 0.3F);
         ComposterBlock.CHANCES.put(EDAMAME, 0.35F);
+        ComposterBlock.CHANCES.put(SEEDS_SOYBEAN_NETHER, 0.3F);
+        ComposterBlock.CHANCES.put(SEEDS_RICE, 0.25F);
+        ComposterBlock.CHANCES.put(RICE, 0.35F);
+        ComposterBlock.CHANCES.put(LEEK, 0.25F);
 
         DispenserBlock.registerDispenseBehavior(ZUNDAARROW, new ProjectileDispenseBehavior() {
             @Override

@@ -35,7 +35,7 @@ public class TofuMushroomBlock extends BushBlock implements IGrowable {
     }
 
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (rand.nextInt(30) == 0 && worldIn.canSeeSky(pos)) {
+        if (rand.nextInt(35) == 0 && worldIn.canSeeSky(pos)) {
             if (func_226940_a_(worldIn, pos, state, rand)) {
                 addNewMushroom(state, worldIn, pos, rand);
             }

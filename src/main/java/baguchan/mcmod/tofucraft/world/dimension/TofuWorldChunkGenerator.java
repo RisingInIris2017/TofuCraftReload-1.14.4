@@ -28,7 +28,7 @@ public class TofuWorldChunkGenerator extends NoiseChunkGenerator<TofuWorldChunkG
         }
 
     });
-    public static final int SURFACE_LEVEL = 65;
+    public static final int SURFACE_LEVEL = 63;
 
     public static final int MIN_CAVE_HEIGHT = 20;
     public static final int MAX_CAVE_HEIGHT = 46;
@@ -174,7 +174,7 @@ public class TofuWorldChunkGenerator extends NoiseChunkGenerator<TofuWorldChunkG
 
     @Override
     public int getGroundHeight() {
-        return this.world.getSeaLevel();
+        return this.world.getSeaLevel() + 1;
     }
 
     @Override
