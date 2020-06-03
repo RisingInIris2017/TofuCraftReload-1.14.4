@@ -35,7 +35,7 @@ public class TofuCaveCarver extends CaveWorldCarver {
         if (this.largeCave) {
             return random.nextInt(240) + 8;
         } else {
-            return random.nextInt(random.nextInt(TofuWorldChunkGenerator.SURFACE_LEVEL) + 8);
+            return random.nextInt(random.nextInt(TofuWorldChunkGenerator.SEA_LEVEL) + 8);
         }
     }
 

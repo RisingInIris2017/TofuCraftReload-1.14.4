@@ -28,12 +28,8 @@ public class TofuWorldChunkGenerator extends NoiseChunkGenerator<TofuWorldChunkG
         }
 
     });
-    public static final int SURFACE_LEVEL = 63;
+    public static final int SEA_LEVEL = 63;
 
-    public static final int MIN_CAVE_HEIGHT = 20;
-    public static final int MAX_CAVE_HEIGHT = 46;
-
-    public static final int MIN_SURFACE_LEVEL = MAX_CAVE_HEIGHT + 12;
     private final OctavesNoiseGenerator depthNoise;
     private final World world;
 
@@ -179,7 +175,7 @@ public class TofuWorldChunkGenerator extends NoiseChunkGenerator<TofuWorldChunkG
 
     @Override
     public int getSeaLevel() {
-        return SURFACE_LEVEL;
+        return SEA_LEVEL;
     }
 
 
