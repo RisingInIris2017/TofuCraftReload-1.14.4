@@ -26,6 +26,12 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -103,27 +109,34 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
             Stat stat = this.getStat(state);
 
             if (!state.get(WATERLOGGED)) {
-                if (stat == Stat.EMPTY && itemHeld != null && itemHeld.getItem() == Items.WATER_BUCKET) {
-                    if (!player.isCreative()) {
-                        player.setHeldItem(handIn, new ItemStack(Items.BUCKET));
-                    }
+                IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(itemHeld, 1)).orElse(null);
+                if (stat == Stat.EMPTY && itemHeld != null && handler instanceof FluidBucketWrapper) {
+                    FluidBucketWrapper fluidBucketWrapper = ((FluidBucketWrapper) handler);
 
-                    worldIn.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    if (fluidBucketWrapper.getFluid() != null && fluidBucketWrapper.getFluid().containsFluid(new FluidStack(Fluids.WATER, 1000))) {
+                        fluidBucketWrapper.drain(1000, IFluidHandler.FluidAction.EXECUTE);
 
-                    TileScanner tileScanner = new TileScanner(worldIn, pos);
-                    tileScanner.scan(1, TileScanner.Method.fullSimply, new TileScanner.Impl<Object>() {
-                        @Override
-                        public void apply(World world, BlockPos pos) {
-
-                            if (SaltPanBlock.this.getStat(world.getBlockState(pos)) == Stat.EMPTY) {
-                                world.setBlockState(pos, TofuBlocks.SALTPAN.getDefaultState().with(STAT, Stat.WATER), 3);
-                            }
+                        if (!player.isCreative()) {
+                            player.setHeldItem(handIn, fluidBucketWrapper.getContainer());
                         }
-                    });
 
-                    worldIn.setBlockState(pos, state.with(STAT, Stat.WATER), 3);
+                        worldIn.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
-                    return ActionResultType.SUCCESS;
+                        TileScanner tileScanner = new TileScanner(worldIn, pos);
+                        tileScanner.scan(1, TileScanner.Method.fullSimply, new TileScanner.Impl<Object>() {
+                            @Override
+                            public void apply(World world, BlockPos pos) {
+
+                                if (SaltPanBlock.this.getStat(world.getBlockState(pos)) == Stat.EMPTY) {
+                                    world.setBlockState(pos, TofuBlocks.SALTPAN.getDefaultState().with(STAT, Stat.WATER), 3);
+                                }
+                            }
+                        });
+
+                        worldIn.setBlockState(pos, state.with(STAT, Stat.WATER), 3);
+
+                        return ActionResultType.SUCCESS;
+                    }
                 } else if (stat == Stat.BITTERN && itemHeld != null && itemHeld.getItem() == Items.GLASS_BOTTLE) {
                     ItemStack nigari = new ItemStack(TofuItems.BITTERN);
 

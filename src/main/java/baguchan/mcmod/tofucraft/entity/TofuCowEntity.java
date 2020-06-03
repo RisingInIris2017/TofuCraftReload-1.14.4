@@ -1,9 +1,6 @@
 package baguchan.mcmod.tofucraft.entity;
 
-import baguchan.mcmod.tofucraft.init.TofuBiomes;
-import baguchan.mcmod.tofucraft.init.TofuBlocks;
-import baguchan.mcmod.tofucraft.init.TofuEntitys;
-import baguchan.mcmod.tofucraft.init.TofuItems;
+import baguchan.mcmod.tofucraft.init.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -26,6 +23,12 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nullable;
 
@@ -75,16 +78,40 @@ public class TofuCowEntity extends CowEntity {
 
     public boolean processInteract(PlayerEntity player, Hand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
-        if (itemstack.getItem() == Items.BUCKET && !player.abilities.isCreativeMode && !this.isChild()) {
-            player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-            itemstack.shrink(1);
-            if (itemstack.isEmpty()) {
-                player.setHeldItem(hand, new ItemStack(TofuItems.SOYMILK_BUCKET));
-            } else if (!player.inventory.addItemStackToInventory(new ItemStack(TofuItems.SOYMILK_BUCKET))) {
-                player.dropItem(new ItemStack(TofuItems.SOYMILK_BUCKET), false);
+
+        IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(itemstack, 1)).orElse(null);
+        if (handler instanceof FluidBucketWrapper && !player.isCreative() && !this.isChild()) {
+            FluidBucketWrapper fluidBucketWrapper = ((FluidBucketWrapper) handler);
+
+            if (this.getTofuCowType() == Type.ZUNDA) {
+                FluidStack fluidStack = new FluidStack(TofuFluids.SOYMILK, 1000);
+
+                player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
+                itemstack.shrink(1);
+
+                fluidBucketWrapper.fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
+                if (itemstack.isEmpty()) {
+
+                    player.setHeldItem(hand, fluidBucketWrapper.getContainer());
+                } else if (!player.inventory.addItemStackToInventory(fluidBucketWrapper.getContainer())) {
+                    player.dropItem(fluidBucketWrapper.getContainer(), false);
+                }
+                return true;
+            } else {
+                FluidStack fluidStack = new FluidStack(TofuFluids.SOYMILK, 1000);
+
+                player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
+                itemstack.shrink(1);
+
+                fluidBucketWrapper.fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
+                if (itemstack.isEmpty()) {
+                    player.setHeldItem(hand, fluidBucketWrapper.getContainer());
+                } else if (!player.inventory.addItemStackToInventory(fluidBucketWrapper.getContainer())) {
+                    player.dropItem(fluidBucketWrapper.getContainer(), false);
+                }
+                return true;
             }
 
-            return true;
         } else if (itemstack.getItem() == Items.GLASS_BOTTLE && !player.abilities.isCreativeMode && !this.isChild()) {
             player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
             itemstack.shrink(1);
