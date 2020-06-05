@@ -16,6 +16,7 @@ import java.util.Set;
 @Mod.EventBusSubscriber(modid = TofuCraftCore.MODID)
 public class LootEvents {
     private static final Set<ResourceLocation> RUIN_LOOT = Sets.newHashSet(LootTables.CHESTS_UNDERWATER_RUIN_BIG);
+    private static final Set<ResourceLocation> SHIP_LOOT = Sets.newHashSet(LootTables.CHESTS_SHIPWRECK_SUPPLY);
     private static final Set<ResourceLocation> TEMPLE_LOOT = Sets.newHashSet(LootTables.CHESTS_JUNGLE_TEMPLE);
     private static final Set<ResourceLocation> NETHER_BRIDGE_LOOT = Sets.newHashSet(LootTables.CHESTS_NETHER_BRIDGE);
 
@@ -26,6 +27,11 @@ public class LootEvents {
 
         if (RUIN_LOOT.contains(event.getName())) {
             LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(TofuCraftCore.MODID, "injections/tofustick_ruin"))).name("tofustick_ruin").build();
+            event.getTable().addPool(pool);
+        }
+
+        if (SHIP_LOOT.contains(event.getName())) {
+            LootPool pool = LootPool.builder().addEntry(TableLootEntry.builder(new ResourceLocation(TofuCraftCore.MODID, "injections/tofustick_ship"))).name("tofustick_ship").build();
             event.getTable().addPool(pool);
         }
 
