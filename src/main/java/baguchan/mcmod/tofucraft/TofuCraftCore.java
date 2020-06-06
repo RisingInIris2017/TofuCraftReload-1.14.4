@@ -6,6 +6,7 @@ import baguchan.mcmod.tofucraft.init.TofuEffectRegistry;
 import baguchan.mcmod.tofucraft.init.TofuEntitys;
 import baguchan.mcmod.tofucraft.init.TofuItems;
 import baguchan.mcmod.tofucraft.init.TofuVillagers;
+import baguchan.mcmod.tofucraft.world.gen.DefaultTofuBiomeFeature;
 import net.minecraft.block.TallGrassBlock;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.LivingEntity;
@@ -62,6 +63,7 @@ public class TofuCraftCore {
 
         TofuVillagers.init();
         TofuEntitys.spawnEntity();
+        DefaultTofuBiomeFeature.addNetherSoybean();
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

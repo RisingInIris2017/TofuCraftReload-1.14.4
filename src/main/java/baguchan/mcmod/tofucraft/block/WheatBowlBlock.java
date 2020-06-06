@@ -124,6 +124,11 @@ public class WheatBowlBlock extends Block {
         }
     }
 
+    @Override
+    public int getFireSpreadSpeed(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+        return 100;
+    }
+
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(STAT, LEVEL);
     }

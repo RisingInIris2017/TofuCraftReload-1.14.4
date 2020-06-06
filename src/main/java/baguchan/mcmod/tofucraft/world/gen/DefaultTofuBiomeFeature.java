@@ -1,5 +1,6 @@
 package baguchan.mcmod.tofucraft.world.gen;
 
+import baguchan.mcmod.tofucraft.block.crop.SoyBeanNetherCropsBlock;
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.init.TofuCaver;
 import baguchan.mcmod.tofucraft.init.TofuFeatures;
@@ -13,6 +14,8 @@ import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.placement.*;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class DefaultTofuBiomeFeature {
     public static final TreeFeatureConfig tofutree = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(TofuBlocks.ISHITOFU.getDefaultState()), new SimpleBlockStateProvider(TofuBlocks.TOFULEAVES.getDefaultState()), new BlobFoliagePlacer(2, 0))).baseHeight(6).heightRandA(3).baseHeight(5).heightRandA(2).foliageHeight(3).ignoreVines().setSapling((net.minecraftforge.common.IPlantable) TofuBlocks.TOFUSAPLING).build();
@@ -23,6 +26,7 @@ public class DefaultTofuBiomeFeature {
     public static final BlockClusterFeatureConfig TOFUFLOWER_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(TofuBlocks.TOFUFLOWER.getDefaultState()), new SimpleBlockPlacer())).tries(64).build();
     public static final BlockClusterFeatureConfig LEEK = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(TofuBlocks.LEEK.getDefaultState()), new SimpleBlockPlacer())).tries(64).build();
     public static final BlockClusterFeatureConfig ZUNDATOFU_MUSHROOM = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(TofuBlocks.ZUNDATOFU_MUSHROOM.getDefaultState()), new SimpleBlockPlacer())).tries(64).build();
+    public static final BlockClusterFeatureConfig NETHER_SOYBEAN = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(TofuBlocks.SOYBEAN_NETHER.getDefaultState().with(SoyBeanNetherCropsBlock.AGE, 7)), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
 
 
     public static void addStructure(Biome biome) {
@@ -85,5 +89,13 @@ public class DefaultTofuBiomeFeature {
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(ZUNDATOFU_MUSHROOM).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(2))));
     }
 
+    public static void addNetherSoybean() {
+        for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
+            if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER)) {
+
+                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(NETHER_SOYBEAN).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(0.35F, 0, 0, 60))));
+            }
+        }
+    }
 
 }
