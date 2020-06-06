@@ -2,10 +2,7 @@ package baguchan.mcmod.tofucraft;
 
 import baguchan.mcmod.tofucraft.client.ClientRegistrar;
 import baguchan.mcmod.tofucraft.entity.MorijioEntity;
-import baguchan.mcmod.tofucraft.init.TofuEffectRegistry;
-import baguchan.mcmod.tofucraft.init.TofuEntitys;
-import baguchan.mcmod.tofucraft.init.TofuItems;
-import baguchan.mcmod.tofucraft.init.TofuVillagers;
+import baguchan.mcmod.tofucraft.init.*;
 import baguchan.mcmod.tofucraft.world.gen.DefaultTofuBiomeFeature;
 import net.minecraft.block.TallGrassBlock;
 import net.minecraft.entity.EntityClassification;
@@ -22,6 +19,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -42,12 +40,15 @@ public class TofuCraftCore {
     public static final String MODID = "tofucraft";
 
     public TofuCraftCore() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         // Register the processIMC method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
+
+        TofuPaintings.PAINTINGS.register(modEventBus);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientRegistrar::setup));
 
