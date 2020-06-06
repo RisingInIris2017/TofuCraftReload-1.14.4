@@ -14,7 +14,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.15.2-0.0.0.9.2'
+version = '1.15.2-0.0.0.9.3'
 group = 'baguchan.mcmod.tofucraft' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'TofuCraftReload'
 
@@ -95,8 +95,8 @@ dependencies {
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.15.2-31.2.0'
-    runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.2")
-    compileOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.2:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4")
+    compileOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.4:api")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

@@ -12,7 +12,6 @@ public class TofuPaintings {
     public static final DeferredRegister<PaintingType> PAINTINGS = new DeferredRegister<>(ForgeRegistries.PAINTING_TYPES, TofuCraftCore.MODID);
 
     public static final RegistryObject<PaintingType> TOFUCHINGER = PAINTINGS.register("tofu_chinger", () -> new PaintingType(32, 16));
-
     public static final RegistryObject<PaintingType> TOFUNIAN = PAINTINGS.register("tofunian", () -> new PaintingType(64, 64));
 
 }
