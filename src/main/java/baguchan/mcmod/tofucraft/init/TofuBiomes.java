@@ -17,7 +17,6 @@ import static net.minecraftforge.common.BiomeDictionary.Type.MOUNTAIN;
 
 @Mod.EventBusSubscriber(modid = TofuCraftCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TofuBiomes {
-    public static List<Biome> tofubiome = new ArrayList<Biome>();
     public static List<BiomeManager.BiomeEntry> entryTofuBiome = new ArrayList<BiomeManager.BiomeEntry>();
 
     public static final Biome TOFU_FOREST = new BiomeTofuForest();
@@ -41,15 +40,6 @@ public class TofuBiomes {
         event.getRegistry().register(TOFU_MOUNTAIN.setRegistryName("tofu_mountain"));
         event.getRegistry().register(TOFU_RIVER.setRegistryName("tofu_river"));
 
-        tofubiome.add(TOFU_FOREST);
-        tofubiome.add(TOFUZUNDA_SWAMP);
-        tofubiome.add(TOFU_PLAIN);
-        tofubiome.add(ZUNDATOFU_PLAIN);
-        tofubiome.add(ZUNDATOFU_FUNGIFOREST);
-        tofubiome.add(TOFU_BUILDING);
-        tofubiome.add(TOFU_MOUNTAIN);
-        tofubiome.add(TOFU_RIVER);
-
         entryTofuBiome.add(new BiomeManager.BiomeEntry(TOFU_FOREST, 10));
         entryTofuBiome.add(new BiomeManager.BiomeEntry(TOFUZUNDA_SWAMP, 6));
         entryTofuBiome.add(new BiomeManager.BiomeEntry(TOFU_PLAIN, 10));
@@ -70,7 +60,7 @@ public class TofuBiomes {
         BiomeDictionary.addTypes(TOFU_FOREST, BiomeDictionary.Type.FOREST);
         BiomeDictionary.addTypes(ZUNDATOFU_FUNGIFOREST, BiomeDictionary.Type.FOREST);
         BiomeDictionary.addTypes(TOFUZUNDA_SWAMP, BiomeDictionary.Type.SWAMP);
-        BiomeDictionary.addTypes(TOFU_BUILDING, BiomeDictionary.Type.FOREST);
+        BiomeDictionary.addTypes(TOFU_BUILDING, BiomeDictionary.Type.PLAINS);
         BiomeDictionary.addTypes(TOFU_RIVER, BiomeDictionary.Type.RIVER);
     }
 }

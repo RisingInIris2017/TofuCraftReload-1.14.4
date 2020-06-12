@@ -12,6 +12,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -86,8 +87,8 @@ public class TofuEntitys {
     public static void spawnEntity() {
         for (Biome biome : ForgeRegistries.BIOMES) {
 
-            if (!TofuBiomes.tofubiome.contains(biome)) {
-                biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(TOFUSLIME, 80, 2, 3));
+            if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.OVERWORLD)) {
+                biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(TOFUSLIME, 85, 2, 3));
             }
         }
 
