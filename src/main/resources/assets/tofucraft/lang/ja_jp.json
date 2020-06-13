@@ -256,12 +256,17 @@
   "advancements.tofucraft.tofugandlem.description": "トーフガンドレムを倒す",
   "tofucraft.radar.result.success": "豆腐スライムチャンクが見つかりました",
   "tofucraft.radar.result.failed": "豆腐スライムチャンクが見つかりませんでした",
+  "item.minecraft.potion.effect.tofu_resistance": "豆腐状耐性のポーション",
+  "effect.tofucraft.tofu_resistance": "豆腐状耐性",
+  "item.minecraft.potion.effect.unstable_resistance": "不安定的耐性のポーション",
+  "effect.tofucraft.unstable_resistance": "不安定的耐性",
   "container.tofucraft.tofuchest": "トーフチェスト",
   "container.tofucraft.salt_furnace": "製塩かまど",
   "tooltip.tofucraft.energy": "トーフフォースエネルギー: %d/%d",
   "tooltip.tofucraft.tofuforce.broken": "破損",
   "death.attack.tofucraft.tofuforce": "%1$s は %2$s のトーフフォースにやられた",
   "death.attack.tofucraft.tofuforce.item": "%1$s は %2$s の %3$s　を使ったトーフフォースにやられた",
+
   "item.tofucraft.tofu_gauntlet.mode": "モード",
   "item.tofucraft.tofu_gauntlet.soyshot": "ソイショット",
   "item.tofucraft.tofu_gauntlet.homing_shot": "ホーミングショット"

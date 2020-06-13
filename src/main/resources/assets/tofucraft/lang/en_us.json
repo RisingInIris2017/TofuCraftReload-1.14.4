@@ -259,14 +259,17 @@
   "tofucraft.radar.result.success": "Success to Found TofuSlime Chunk",
   "tofucraft.radar.result.failed": "Not Found TofuSlime Chunk",
   "itemGroup.tofucraft": "TofuCraft",
-  "item.minecraft.potion.tofu_resistance": "Tofu Resistance",
+  "item.minecraft.potion.effect.tofu_resistance": "Potion of Tofu Resistance",
   "effect.tofucraft.tofu_resistance": "Tofu Resistance",
+  "item.minecraft.potion.effect.unstable_resistance": "Potion of Unstable Resistance",
+  "effect.tofucraft.unstable_resistance": "Unstable Resistance",
   "container.tofucraft.tofuchest": "Tofu Chest",
   "container.tofucraft.salt_furnace": "Salt Furnace",
   "tooltip.tofucraft.energy": "TofuForce, Energy: %d/%d",
   "tooltip.tofucraft.tofuforce.broken": "Broken",
   "death.attack.tofucraft.tofuforce": "%1$s was slain by %2$s s TofuForce",
   "death.attack.tofucraft.tofuforce.item": "%1$s was slain by %2$s using TofuForce with %3$s",
+
   "item.tofucraft.tofu_gauntlet.mode": "Mode",
   "item.tofucraft.tofu_gauntlet.soyshot": "Soy Shot",
   "item.tofucraft.tofu_gauntlet.homing_shot": "Homing Shot"
