@@ -100,6 +100,10 @@ public class TofuCraftCore {
                 event.setAmount(event.getAmount() * 0.75F);
             }
         }
+
+        if (livingEntity.getActivePotionEffect(TofuEffectRegistry.UNSTABLE_RESISTANCE) != null) {
+            event.setAmount(event.getAmount() * 1.25F);
+        }
     }
 
 
