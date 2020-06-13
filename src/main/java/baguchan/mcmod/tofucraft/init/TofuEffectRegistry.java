@@ -17,8 +17,8 @@ public class TofuEffectRegistry {
     public static final Effect UNSTABLE_RESISTANCE = new TofuResistanceEffect(EffectType.HARMFUL, 0x00494a);
 
 
-    public static final Potion TOFU_RESISTANCE_POTION = new Potion(new EffectInstance(TofuEffectRegistry.TOFU_RESISTANCE, 1200));
-    public static final Potion UNSTABLE_RESISTANCE_POTION = new Potion(new EffectInstance(TofuEffectRegistry.UNSTABLE_RESISTANCE, 1200));
+    public static final Potion TOFU_RESISTANCE_POTION = new Potion(new EffectInstance(TofuEffectRegistry.TOFU_RESISTANCE, 1600));
+    public static final Potion UNSTABLE_RESISTANCE_POTION = new Potion(new EffectInstance(TofuEffectRegistry.UNSTABLE_RESISTANCE, 1600));
 
     @SubscribeEvent
     public static void onRegisterPotions(RegistryEvent.Register<Potion> event) {

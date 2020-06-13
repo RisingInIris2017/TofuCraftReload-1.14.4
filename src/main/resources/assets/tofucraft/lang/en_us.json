@@ -267,10 +267,12 @@
   "item.minecraft.potion.effect.tofu_resistance": "Potion of Tofu Resistance",
   "item.minecraft.splash_potion.effect.tofu_resistance": "Splash Potion of Tofu Resistance",
   "item.minecraft.lingering_potion.effect.tofu_resistance": "Lingering Potion of Tofu Resistance",
+  "item.minecraft.tipped_arrow.effect.tofu_resistance": "Arrow of Tofu Resistance",
   "effect.tofucraft.tofu_resistance": "Tofu Resistance",
   "item.minecraft.potion.effect.unstable_resistance": "Potion of Unstable Resistance",
   "item.minecraft.splash_potion.effect.unstable_resistance": "Splash Potion of Unstable Resistance",
   "item.minecraft.lingering_potion.effect.unstable_resistance": "Lingering Potion of Unstable Resistance",
+  "item.minecraft.tipped_arrow.effect.unstable_resistance": "Arrow of Unstable Resistance",
   "effect.tofucraft.unstable_resistance": "Unstable Resistance",
 
   "container.tofucraft.tofuchest": "Tofu Chest",

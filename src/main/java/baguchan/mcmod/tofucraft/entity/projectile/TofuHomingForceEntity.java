@@ -1,6 +1,7 @@
 package baguchan.mcmod.tofucraft.entity.projectile;
 
 import baguchan.mcmod.tofucraft.init.TofuDamageSource;
+import baguchan.mcmod.tofucraft.init.TofuEffectRegistry;
 import baguchan.mcmod.tofucraft.init.TofuEntitys;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -228,7 +229,7 @@ public class TofuHomingForceEntity extends Entity {
                 this.applyEnchantments(this.owner, entity);
                 if (entity instanceof LivingEntity) {
                     ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.SLOWNESS, 100 * getCharge((int) damage)));
-                    ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.WEAKNESS, 40 * getCharge((int) damage)));
+                    ((LivingEntity) entity).addPotionEffect(new EffectInstance(TofuEffectRegistry.UNSTABLE_RESISTANCE, 40 * getCharge((int) damage)));
                 }
             }
         } else {

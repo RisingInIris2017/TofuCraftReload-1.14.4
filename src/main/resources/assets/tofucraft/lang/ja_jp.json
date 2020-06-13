@@ -232,7 +232,7 @@
   "entity.minecraft.villager.tofucraft.tofu_craftsman": "豆腐職人",
 
   "subtitles.entity.tofunian.idle": "トーフニアンがつぶやく",
-  
+
   "advancements.tofucraft.root.title": "TofuCraft",
   "advancements.tofucraft.root.description": "豆腐を作りながら新たなる可能性を見つける",
   "advancements.tofucraft.make_saltpan.title": "塩田",
@@ -262,16 +262,20 @@
   "item.minecraft.potion.effect.tofu_resistance": "豆腐状耐性のポーション",
   "item.minecraft.splash_potion.effect.tofu_resistance": "豆腐状耐性のスプラッシュポーション",
   "item.minecraft.lingering_potion.effect.tofu_resistance": "豆腐状耐性の残留ポーション",
+  "item.minecraft.tipped_arrow.effect.tofu_resistance": "不安定的耐性の矢",
   "effect.tofucraft.tofu_resistance": "豆腐状耐性",
   "item.minecraft.potion.effect.unstable_resistance": "不安定的耐性のポーション",
   "item.minecraft.splash_potion.effect.unstable_resistance": "不安定的耐性のスプラッシュポーション",
   "item.minecraft.lingering_potion.effect.unstable_resistance": "不安定的耐性の残留ポーション",
-
+  "item.minecraft.tipped_arrow.effect.unstable_resistance": "不安定的耐性の矢",
   "effect.tofucraft.unstable_resistance": "不安定的耐性",
+
   "container.tofucraft.tofuchest": "トーフチェスト",
   "container.tofucraft.salt_furnace": "製塩かまど",
+
   "tooltip.tofucraft.energy": "トーフフォースエネルギー: %d/%d",
   "tooltip.tofucraft.tofuforce.broken": "破損",
+
   "death.attack.tofucraft.tofuforce": "%1$s は %2$s のトーフフォースにやられた",
   "death.attack.tofucraft.tofuforce.item": "%1$s は %2$s の %3$s　を使ったトーフフォースにやられた",
 
