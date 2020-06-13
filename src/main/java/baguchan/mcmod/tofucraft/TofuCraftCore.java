@@ -11,6 +11,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -100,9 +101,10 @@ public class TofuCraftCore {
                 event.setAmount(event.getAmount() * 0.75F);
             }
         }
-
-        if (livingEntity.getActivePotionEffect(TofuEffectRegistry.UNSTABLE_RESISTANCE) != null) {
-            event.setAmount(event.getAmount() * 1.25F);
+        if (!event.getSource().isMagicDamage() && event.getSource() != DamageSource.STARVE && event.getSource() != DamageSource.WITHER) {
+            if (livingEntity.getActivePotionEffect(TofuEffectRegistry.UNSTABLE_RESISTANCE) != null) {
+                event.setAmount(event.getAmount() * 1.25F);
+            }
         }
     }
 
