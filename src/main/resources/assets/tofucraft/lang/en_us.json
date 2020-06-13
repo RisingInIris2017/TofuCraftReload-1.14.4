@@ -233,7 +233,9 @@
   "entity.tofucraft.fukumame": "Fukumame",
   "entity.tofucraft.tofu_homing_force": "Tofu Homing Force",
   "entity.minecraft.villager.tofucraft.tofu_craftsman": "Tofu Craftsman",
+
   "subtitles.entity.tofunian.idle": "tofunian's murmur",
+
   "advancements.tofucraft.root.title": "TofuCraft",
   "advancements.tofucraft.root.description": "Beginning Tofu Crafter",
   "advancements.tofucraft.make_saltpan.title": "SaltPan",
@@ -256,9 +258,12 @@
   "advancements.tofucraft.tofucastle.description": "Now Find the Tofu Gandlem",
   "advancements.tofucraft.tofugandlem.title": "Ancient Tofu Force Mecha",
   "advancements.tofucraft.tofugandlem.description": "defeat to Tofu Gandlem",
+
   "tofucraft.radar.result.success": "Success to Found TofuSlime Chunk",
   "tofucraft.radar.result.failed": "Not Found TofuSlime Chunk",
+
   "itemGroup.tofucraft": "TofuCraft",
+
   "item.minecraft.potion.effect.tofu_resistance": "Potion of Tofu Resistance",
   "item.minecraft.splash_potion.effect.tofu_resistance": "Splash Potion of Tofu Resistance",
   "item.minecraft.lingering_potion.effect.tofu_resistance": "Lingering Potion of Tofu Resistance",
@@ -267,10 +272,13 @@
   "item.minecraft.splash_potion.effect.unstable_resistance": "Splash Potion of Unstable Resistance",
   "item.minecraft.lingering_potion.effect.unstable_resistance": "Lingering Potion of Unstable Resistance",
   "effect.tofucraft.unstable_resistance": "Unstable Resistance",
+
   "container.tofucraft.tofuchest": "Tofu Chest",
   "container.tofucraft.salt_furnace": "Salt Furnace",
+
   "tooltip.tofucraft.energy": "TofuForce, Energy: %d/%d",
   "tooltip.tofucraft.tofuforce.broken": "Broken",
+
   "death.attack.tofucraft.tofuforce": "%1$s was slain by %2$s s TofuForce",
   "death.attack.tofucraft.tofuforce.item": "%1$s was slain by %2$s using TofuForce with %3$s",
 

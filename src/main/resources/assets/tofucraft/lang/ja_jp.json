@@ -232,6 +232,7 @@
   "entity.minecraft.villager.tofucraft.tofu_craftsman": "豆腐職人",
 
   "subtitles.entity.tofunian.idle": "トーフニアンがつぶやく",
+  
   "advancements.tofucraft.root.title": "TofuCraft",
   "advancements.tofucraft.root.description": "豆腐を作りながら新たなる可能性を見つける",
   "advancements.tofucraft.make_saltpan.title": "塩田",
@@ -254,8 +255,10 @@
   "advancements.tofucraft.tofucastle.description": "トーフガンドレムを探そう",
   "advancements.tofucraft.tofugandlem.title": "古代のトーフフォースメカ",
   "advancements.tofucraft.tofugandlem.description": "トーフガンドレムを倒す",
+
   "tofucraft.radar.result.success": "豆腐スライムチャンクが見つかりました",
   "tofucraft.radar.result.failed": "豆腐スライムチャンクが見つかりませんでした",
+
   "item.minecraft.potion.effect.tofu_resistance": "豆腐状耐性のポーション",
   "item.minecraft.splash_potion.effect.tofu_resistance": "豆腐状耐性のスプラッシュポーション",
   "item.minecraft.lingering_potion.effect.tofu_resistance": "豆腐状耐性の残留ポーション",
@@ -263,6 +266,7 @@
   "item.minecraft.potion.effect.unstable_resistance": "不安定的耐性のポーション",
   "item.minecraft.splash_potion.effect.unstable_resistance": "不安定的耐性のスプラッシュポーション",
   "item.minecraft.lingering_potion.effect.unstable_resistance": "不安定的耐性の残留ポーション",
+
   "effect.tofucraft.unstable_resistance": "不安定的耐性",
   "container.tofucraft.tofuchest": "トーフチェスト",
   "container.tofucraft.salt_furnace": "製塩かまど",
