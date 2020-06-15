@@ -87,6 +87,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     private final GossipManager gossip = new GossipManager();
 
     public static int MAX_HOME_DISTANCE_SQ = 60 * 60;
+    private int homeDimID = 0;
 
 
     public static Predicate<Entity> ENEMY_PREDICATE =
@@ -306,6 +307,8 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         if (this.tofunainHome != null) {
             compound.put("TofunianHome", NBTUtil.writeBlockPos(this.tofunainHome));
         }
+
+        compound.putInt("HomeDimId", homeDimID);
     }
 
     @Override
@@ -329,12 +332,17 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
             this.tofunainHome = NBTUtil.readBlockPos(compound.getCompound("TofunianHome"));
         }
 
+        if (compound.contains("HomeDimId")) {
+            this.homeDimID = compound.getInt("HomeDimId");
+        }
+
         updateUniqueEntityAI();
         this.setCanPickUpLoot(true);
     }
 
     public void setTofunainHome(@Nullable BlockPos pos) {
         this.tofunainHome = pos;
+        this.homeDimID = this.dimension.getId();
     }
 
     @Nullable
@@ -458,25 +466,29 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         if (tofunainHome == null) {
 
             tryFind = true;
-
         } else if (tofunainHome != null) {
 
             BlockState state = world.getBlockState(tofunainHome);
 
-            if (this.getDistanceSq(tofunainHome.getX(), tofunainHome.getY(), tofunainHome.getZ()) > MAX_HOME_DISTANCE_SQ) {
+            if (this.homeDimID != this.dimension.getId()) {
                 tofunainHome = null;
 
                 tryFind = true;
-            } else if (!state.getBlock().isIn(BlockTags.BEDS)) {
-                tofunainHome = null;
+            } else {
+                if (this.getDistanceSq(tofunainHome.getX(), tofunainHome.getY(), tofunainHome.getZ()) > MAX_HOME_DISTANCE_SQ) {
+                    tofunainHome = null;
 
-                tryFind = true;
+                    tryFind = true;
+                } else if (!state.getBlock().isIn(BlockTags.BEDS)) {
+                    tofunainHome = null;
 
+                    tryFind = true;
+                }
             }
         }
 
         if (tryFind) {
-            int range = 16;
+            int range = 15;
 
             for (int x = -range; x <= range; x++) {
                 for (int y = -range / 2; y <= range / 2; y++) {
