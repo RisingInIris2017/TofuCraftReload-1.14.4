@@ -43,7 +43,7 @@ public class TofunianLoveGoal extends Goal {
 
     @Override
     public void startExecuting() {
-        this.tofunianEntity.setInLove(120);
+        this.tofunianEntity.setInLove(160);
         this.world.setEntityState(this.tofunianEntity, (byte) 18);
     }
 
@@ -62,8 +62,12 @@ public class TofunianLoveGoal extends Goal {
         this.tofunianEntity.getLookController().setLookPositionWithEntity(this.field_75391_e, 10.0F, (float) this.tofunianEntity.getVerticalFaceSpeed());
         this.tofunianEntity.getNavigator().tryMoveToEntityLiving(this.field_75391_e, this.moveSpeed);
         ++this.spawnBabyDelay;
-        if (this.spawnBabyDelay >= 120 && this.tofunianEntity.getDistanceSq(this.field_75391_e) < 9.0D) {
+        if (this.spawnBabyDelay >= 160 && this.tofunianEntity.getDistanceSq(this.field_75391_e) < 9.0D) {
             this.spawnBaby();
+        }
+
+        if (this.spawnBabyDelay % 20 == 0) {
+            this.world.setEntityState(this.tofunianEntity, (byte) 18);
         }
 
     }
