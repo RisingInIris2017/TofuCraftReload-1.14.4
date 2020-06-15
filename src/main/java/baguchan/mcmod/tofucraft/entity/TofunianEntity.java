@@ -86,6 +86,8 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     private BlockPos tofunainHome;
     private final GossipManager gossip = new GossipManager();
 
+    public static int MAX_HOME_DISTANCE_SQ = 60 * 60;
+
 
     public static Predicate<Entity> ENEMY_PREDICATE =
             input -> (input instanceof ZombieEntity || input instanceof AbstractIllagerEntity || input instanceof VexEntity || input instanceof TofuChingerEntity);
@@ -461,7 +463,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
             BlockState state = world.getBlockState(tofunainHome);
 
-            if (this.getDistanceSq(tofunainHome.getX(), tofunainHome.getY(), tofunainHome.getZ()) > 2400F) {
+            if (this.getDistanceSq(tofunainHome.getX(), tofunainHome.getY(), tofunainHome.getZ()) > MAX_HOME_DISTANCE_SQ) {
                 tofunainHome = null;
 
                 tryFind = true;
@@ -515,7 +517,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         this.goalSelector.addGoal(2, new EatOffhandFoodGoal<>(this));
         this.goalSelector.addGoal(3, new SleepOnBedGoal(this, 1.1D));
         this.goalSelector.addGoal(4, new TofunianLoveGoal(this, 0.85D));
-        this.goalSelector.addGoal(5, new MoveToHomeGoal(this, 35D, 1.10D));
+        this.goalSelector.addGoal(5, new MoveToHomeGoal(this, 40D, 1.10D));
         this.goalSelector.addGoal(6, new InterestJobBlockGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new RestockTradeGoal(this, 1.05D));
         this.goalSelector.addGoal(7, new CookingTofuGoal(this, 1.0D));
