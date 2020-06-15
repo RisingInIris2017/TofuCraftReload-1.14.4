@@ -44,7 +44,7 @@ public class TofunianLoveGoal extends Goal {
     @Override
     public void startExecuting() {
         this.tofunianEntity.setInLove(120);
-        this.world.setEntityState(this.tofunianEntity, (byte) 13);
+        this.world.setEntityState(this.tofunianEntity, (byte) 18);
     }
 
     /**

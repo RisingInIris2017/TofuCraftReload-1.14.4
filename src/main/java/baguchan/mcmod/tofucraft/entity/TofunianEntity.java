@@ -514,8 +514,8 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         this.goalSelector.addGoal(2, new LookAtCustomerGoal(this));
         this.goalSelector.addGoal(2, new EatOffhandFoodGoal<>(this));
         this.goalSelector.addGoal(3, new SleepOnBedGoal(this, 1.1D));
-        this.goalSelector.addGoal(4, new MoveToHomeGoal(this, 35D, 1.10D));
-        this.goalSelector.addGoal(5, new TofunianLoveGoal(this, 0.85D));
+        this.goalSelector.addGoal(4, new TofunianLoveGoal(this, 0.85D));
+        this.goalSelector.addGoal(5, new MoveToHomeGoal(this, 35D, 1.10D));
         this.goalSelector.addGoal(6, new InterestJobBlockGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new RestockTradeGoal(this, 1.05D));
         this.goalSelector.addGoal(7, new CookingTofuGoal(this, 1.0D));
@@ -855,11 +855,6 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
             this.world.setEntityState(this, (byte) 13);
             return super.attackEntityFrom(source, amount);
         }
-    }
-
-    @Override
-    public boolean canAttack(EntityType<?> typeIn) {
-        return super.canAttack(typeIn) && typeIn != TofuEntitys.TOFUNIAN;
     }
 
     @Override
