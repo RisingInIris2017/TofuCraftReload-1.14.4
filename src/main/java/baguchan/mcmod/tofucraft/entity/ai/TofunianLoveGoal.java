@@ -14,7 +14,9 @@ import java.util.EnumSet;
 import java.util.List;
 
 public class TofunianLoveGoal extends Goal {
-    private static final EntityPredicate field_220689_d = (new EntityPredicate()).setDistance(8.0D).allowInvulnerable().allowFriendlyFire().setLineOfSiteRequired();
+    private static final EntityPredicate field_220689_d = (new EntityPredicate()).setCustomPredicate(entity -> {
+        return !entity.isChild() && entity instanceof TofunianEntity && ((TofunianEntity) entity).getGrowingAge() == 0;
+    }).setDistance(8.0D).allowInvulnerable().allowFriendlyFire().setLineOfSiteRequired();
 
     protected final TofunianEntity tofunianEntity;
     protected final World world;
@@ -30,7 +32,7 @@ public class TofunianLoveGoal extends Goal {
     }
 
     public boolean shouldExecute() {
-        if (!this.tofunianEntity.canAbondonItems() || this.tofunianEntity.isChild() || !WorldUtils.isDaytime(this.tofunianEntity.world)) {
+        if (!this.tofunianEntity.canAbondonItems() || this.tofunianEntity.isChild() || !WorldUtils.isDaytime(this.tofunianEntity.world) || this.tofunianEntity.getGrowingAge() != 0) {
             return false;
         } else {
             this.field_75391_e = this.getNearbyMate();
@@ -65,8 +67,10 @@ public class TofunianLoveGoal extends Goal {
         ++this.spawnBabyDelay;
 
 
-        if (this.spawnBabyDelay >= 120 && this.tofunianEntity.getDistanceSq(this.field_75391_e) < 9.0D) {
-            this.spawnBaby();
+        if (this.field_75391_e.isInLove()) {
+            if (this.spawnBabyDelay >= 120 && this.tofunianEntity.getDistanceSq(this.field_75391_e) < 9.0D) {
+                this.spawnBaby();
+            }
         }
 
         if (this.spawnBabyDelay % 20 == 0) {

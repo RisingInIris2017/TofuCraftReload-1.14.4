@@ -617,6 +617,10 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         }
     }
 
+    public boolean isInLove() {
+        return this.inLove > 0;
+    }
+
     public void tick() {
         super.tick();
         if (this.getShakeHeadTicks() > 0) {
