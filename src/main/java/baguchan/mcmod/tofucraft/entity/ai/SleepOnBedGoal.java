@@ -61,7 +61,7 @@ public class SleepOnBedGoal extends MoveToBlockGoal {
     }
 
     public double getTargetDistanceSq() {
-        return 1.5D;
+        return 1.25D;
     }
 
     /**
