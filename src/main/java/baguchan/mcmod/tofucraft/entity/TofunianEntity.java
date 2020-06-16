@@ -535,7 +535,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         this.goalSelector.addGoal(7, new CookingTofuGoal(this, 1.0D));
         this.goalSelector.addGoal(7, new CropHarvestGoal(this, 0.95D));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.9D));
-        this.goalSelector.addGoal(9, new LookAndPassGoal(this, LivingEntity.class, 3.5F));
+        this.goalSelector.addGoal(9, new LookAndPassGoal(this, LivingEntity.class, 4.0F));
         this.goalSelector.addGoal(10, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
         this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
         this.goalSelector.addGoal(1, new AvoidEntityGoal(this, ZombieEntity.class, 8.0F, 1.2D, 1.25D) {

@@ -21,7 +21,7 @@ public class LookAndPassGoal extends Goal {
     protected final EntityPredicate field_220716_e;
 
     public LookAndPassGoal(TofunianEntity entityIn, Class<? extends LivingEntity> watchTargetClass, float maxDistance) {
-        this(entityIn, watchTargetClass, maxDistance, 0.001F);
+        this(entityIn, watchTargetClass, maxDistance, 0.00125F);
     }
 
     public LookAndPassGoal(TofunianEntity entityIn, Class<? extends LivingEntity> watchTargetClass, float maxDistance, float chanceIn) {

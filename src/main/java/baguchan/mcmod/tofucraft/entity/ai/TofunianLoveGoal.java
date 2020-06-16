@@ -1,6 +1,7 @@
 package baguchan.mcmod.tofucraft.entity.ai;
 
 import baguchan.mcmod.tofucraft.entity.TofunianEntity;
+import baguchan.mcmod.tofucraft.utils.WorldUtils;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.ai.goal.Goal;
@@ -29,11 +30,11 @@ public class TofunianLoveGoal extends Goal {
     }
 
     public boolean shouldExecute() {
-        if (!this.tofunianEntity.canAbondonItems() || this.tofunianEntity.isChild()) {
+        if (!this.tofunianEntity.canAbondonItems() || this.tofunianEntity.isChild() || !WorldUtils.isDaytime(this.tofunianEntity.world)) {
             return false;
         } else {
             this.field_75391_e = this.getNearbyMate();
-            return this.field_75391_e != null;
+            return this.field_75391_e != null && this.tofunianEntity.getRNG().nextInt(80) == 0;
         }
     }
 
@@ -43,7 +44,7 @@ public class TofunianLoveGoal extends Goal {
 
     @Override
     public void startExecuting() {
-        this.tofunianEntity.setInLove(160);
+        this.tofunianEntity.setInLove(360);
         this.world.setEntityState(this.tofunianEntity, (byte) 18);
     }
 
@@ -62,7 +63,9 @@ public class TofunianLoveGoal extends Goal {
         this.tofunianEntity.getLookController().setLookPositionWithEntity(this.field_75391_e, 10.0F, (float) this.tofunianEntity.getVerticalFaceSpeed());
         this.tofunianEntity.getNavigator().tryMoveToEntityLiving(this.field_75391_e, this.moveSpeed);
         ++this.spawnBabyDelay;
-        if (this.spawnBabyDelay >= 160 && this.tofunianEntity.getDistanceSq(this.field_75391_e) < 9.0D) {
+
+
+        if (this.spawnBabyDelay >= 120 && this.tofunianEntity.getDistanceSq(this.field_75391_e) < 9.0D) {
             this.spawnBaby();
         }
 
