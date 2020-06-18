@@ -281,5 +281,14 @@
 
   "item.tofucraft.tofu_gauntlet.mode": "モード",
   "item.tofucraft.tofu_gauntlet.soyshot": "ソイショット",
-  "item.tofucraft.tofu_gauntlet.homing_shot": "ホーミングショット"
+  "item.tofucraft.tofu_gauntlet.homing_shot": "ホーミングショット",
+
+  "biome.tofucraft.tofu_building" : "豆腐の荒野",
+  "biome.tofucraft.tofu_forest" : "豆腐の森",
+  "biome.tofucraft.tofu_mountain" : "豆腐の山",
+  "biome.tofucraft.tofu_plain" : "豆腐草原",
+  "biome.tofucraft.tofu_river" : "豆乳川",
+  "biome.tofucraft.tofuzunda_forest" : "ずんだ豆腐の森",
+  "biome.tofucraft.zundatofu_fungiforest" : "ずんだ豆腐のキノコの森",
+  "biome.tofucraft.zundatofu_plain" : "ずんだ豆腐草原"
 }

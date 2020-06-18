@@ -286,5 +286,14 @@
 
   "item.tofucraft.tofu_gauntlet.mode": "Mode",
   "item.tofucraft.tofu_gauntlet.soyshot": "Soy Shot",
-  "item.tofucraft.tofu_gauntlet.homing_shot": "Homing Shot"
+  "item.tofucraft.tofu_gauntlet.homing_shot": "Homing Shot",
+
+  "biome.tofucraft.tofu_building" : "Tofu Building(Tofu Waste)",
+  "biome.tofucraft.tofu_forest" : "Tofu Forest",
+  "biome.tofucraft.tofu_mountain" : "Tofu Mountain",
+  "biome.tofucraft.tofu_plain" : "Tofu Plain",
+  "biome.tofucraft.tofu_river" : "Tofu River",
+  "biome.tofucraft.tofuzunda_forest" : "Tofu Zunda Forest",
+  "biome.tofucraft.zundatofu_fungiforest" : "Zunda Tofu Fungi Forest",
+  "biome.tofucraft.zundatofu_plain" : "Zunda Tofu Plain"
 }
