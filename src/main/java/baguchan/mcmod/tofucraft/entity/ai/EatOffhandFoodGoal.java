@@ -8,6 +8,7 @@ import net.minecraft.util.Hand;
 
 public class EatOffhandFoodGoal<T extends TofunianEntity> extends Goal {
     private final T entity;
+    private ItemStack usedStack;
 
     public EatOffhandFoodGoal(T p_i50319_1_) {
         this.entity = p_i50319_1_;
@@ -33,6 +34,7 @@ public class EatOffhandFoodGoal<T extends TofunianEntity> extends Goal {
      */
     public void startExecuting() {
         ItemStack itemstack = this.entity.findFoods().split(1);
+        usedStack = itemstack.copy();
         this.entity.setItemStackToSlot(EquipmentSlotType.OFFHAND, itemstack);
         this.entity.setActiveHand(Hand.OFF_HAND);
     }
@@ -42,5 +44,10 @@ public class EatOffhandFoodGoal<T extends TofunianEntity> extends Goal {
      */
     public void resetTask() {
         this.entity.setItemStackToSlot(EquipmentSlotType.OFFHAND, ItemStack.EMPTY);
+
+        if (usedStack.getItem().isFood()) {
+            this.entity.heal(usedStack.getItem().getFood().getHealing());
+        }
+        usedStack = ItemStack.EMPTY;
     }
 }

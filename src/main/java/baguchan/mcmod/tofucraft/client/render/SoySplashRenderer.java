@@ -7,6 +7,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -133,7 +134,7 @@ public class SoySplashRenderer extends EntityRenderer<SoySplashEntity> {
 
     public void pointBuilder(Matrix4f posMatrix, Matrix3f normalMatrix, IVertexBuilder builder, int x, int y, int z, int alpha, float u, float v, int packedLightIn) {
         builder.pos(posMatrix, x, y, z).color(255, 255, 255, alpha).tex(u, v)
-                .overlay(0, 32).lightmap(packedLightIn).normal(normalMatrix, 0, 1, 0).endVertex();
+                .overlay(OverlayTexture.NO_OVERLAY).lightmap(packedLightIn).normal(normalMatrix, 0, 1, 0).endVertex();
     }
 
     @Nullable
