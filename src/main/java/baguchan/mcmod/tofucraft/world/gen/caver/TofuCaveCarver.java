@@ -26,7 +26,7 @@ public class TofuCaveCarver extends CaveWorldCarver {
         super(deserialize, 256);
         this.radiusScale = radiusScale;
         this.largeCave = largeCave;
-        this.carvableBlocks = ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK, TofuBlocks.TOFUTERRAIN, TofuBlocks.MINCEDTOFU, TofuBlocks.TOFUISHI_TERRAIN);
+        this.carvableBlocks = ImmutableSet.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK, TofuBlocks.TOFUTERRAIN, TofuBlocks.MINCEDTOFU, TofuBlocks.ZUNDATOFUTERRAIN);
         this.carvableFluids = ImmutableSet.of(TofuFluids.SOYMILK);
     }
 
