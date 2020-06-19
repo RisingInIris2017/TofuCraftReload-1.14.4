@@ -99,7 +99,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
             offers = func_221238_a(ImmutableMap.of(1,
                     new VillagerTrades.ITrade[]{
                             new TradeForZundaRuby(TofuItems.TOFUKINU, 20, 8, 2),
-                            new TradeForZundaRuby(TofuItems.TOFUMOMEN, 30, 6, 2)
+                            new TradeForZundaRuby(TofuItems.SEEDS_SOYBEAN, 28, 8, 2)
                     }, 2,
                     new VillagerTrades.ITrade[]{
                             new TradeForItem(TofuBlocks.ISHITOFU_BRICK, 12, 4, 12),
@@ -135,10 +135,14 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
                             new TradeForHicostItem(TofuItems.TOFUSTICK, 4, 2, 30)
                     }, 5,
                     new VillagerTrades.ITrade[]{
+                            new TradeForHicostItem(TofuItems.TOFUDIAMONDSWORD, 16, 1, 30),
                             new TradeForHicostItem(TofuItems.TOFUDIAMONDAXE, 18, 1, 30),
                             new TradeForHicostItem(TofuItems.TOFUDIAMONDPICKAXE, 17, 1, 30),
                             new TradeForHicostItem(TofuItems.TOFUDIAMONDSHOVEL, 15, 1, 30),
-                            new TradeForHicostItem(TofuItems.ARMOR_DIAMONDBOOTS, 15, 1, 30)
+                            new TradeForHicostItem(TofuItems.ARMOR_DIAMONDHELMET, 15, 1, 30),
+                            new TradeForHicostItem(TofuItems.ARMOR_DIAMONDBOOTS, 15, 1, 30),
+                            new TradeForHicostItem(TofuItems.ARMOR_DIAMONDCHESTPLATE, 21, 1, 30),
+                            new TradeForHicostItem(TofuItems.ARMOR_DIAMONDLEGGINS, 19, 1, 30)
                     }));
         } else if (getRole() == Roles.SOYWORKER) {
             offers = func_221238_a(ImmutableMap.of(1,
