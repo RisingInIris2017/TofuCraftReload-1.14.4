@@ -32,7 +32,7 @@ public class TofunianLoveGoal extends Goal {
     }
 
     public boolean shouldExecute() {
-        if (!this.tofunianEntity.canAbondonItems() || this.tofunianEntity.isChild() || !WorldUtils.isDaytime(this.tofunianEntity.world) || this.tofunianEntity.getGrowingAge() != 0) {
+        if (!this.tofunianEntity.canAbondonItems() || this.tofunianEntity.isChild() || !WorldUtils.isDaytime(this.tofunianEntity.world) || this.tofunianEntity.getGrowingAge() != 0 || this.tofunianEntity.getTofunainHome() == null) {
             return false;
         } else {
             this.field_75391_e = this.getNearbyMate();
@@ -90,9 +90,11 @@ public class TofunianLoveGoal extends Goal {
         TofunianEntity tofunianEntityentity = null;
 
         for (TofunianEntity tofunianEntityentity1 : list) {
-            if (this.tofunianEntity.canMateWith(tofunianEntityentity1) && this.tofunianEntity.getDistanceSq(tofunianEntityentity1) < d0) {
-                tofunianEntityentity = tofunianEntityentity1;
-                d0 = this.tofunianEntity.getDistanceSq(tofunianEntityentity1);
+            if (tofunianEntityentity1.getTofunainHome() != null) {
+                if (this.tofunianEntity.canMateWith(tofunianEntityentity1) && this.tofunianEntity.getDistanceSq(tofunianEntityentity1) < d0) {
+                    tofunianEntityentity = tofunianEntityentity1;
+                    d0 = this.tofunianEntity.getDistanceSq(tofunianEntityentity1);
+                }
             }
         }
 
