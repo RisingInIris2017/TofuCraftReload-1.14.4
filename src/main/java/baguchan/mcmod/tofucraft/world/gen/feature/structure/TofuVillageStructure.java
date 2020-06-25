@@ -51,7 +51,7 @@ public class TofuVillageStructure extends Structure<NoFeatureConfig> {
     }
 
     @Override
-    public boolean func_225558_a_(BiomeManager p_225558_1_, ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ, Biome p_225558_6_) {
+    public boolean canBeGenerated(BiomeManager p_225558_1_, ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ, Biome p_225558_6_) {
         ChunkPos chunkpos = this.getStartPositionForPosition(chunkGen, rand, chunkPosX, chunkPosZ, 0, 0);
         if (chunkPosX == chunkpos.x && chunkPosZ == chunkpos.z) {
             BlockPos pos = new BlockPos((chunkPosX << 4) + 8, 0, (chunkPosZ << 4) + 8);
@@ -99,7 +99,7 @@ public class TofuVillageStructure extends Structure<NoFeatureConfig> {
         public void init(ChunkGenerator<?> generator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn) {
             BlockPos pos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
             TofuVillagePools.init();
-            JigsawManager.func_214889_a(new ResourceLocation(TofuCraftCore.MODID, "tofu_village/town_centers"), 6, TofuVillage::new, generator, templateManagerIn, pos, this.components, this.rand);
+            JigsawManager.addPieces(new ResourceLocation(TofuCraftCore.MODID, "tofu_village/town_centers"), 6, TofuVillage::new, generator, templateManagerIn, pos, this.components, this.rand);
             this.recalculateStructureSize();
         }
     }

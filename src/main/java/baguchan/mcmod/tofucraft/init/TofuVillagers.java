@@ -65,7 +65,7 @@ public class TofuVillagers {
             newPieces.add(new Pair<>(p, 1));
         }
         newPieces.add(new Pair<>(new SingleJigsawPiece(toAdd.toString()), weight));
-        ResourceLocation something = old.func_214948_a();
+        ResourceLocation something = old.getFallback();
         JigsawManager.REGISTRY.register(new JigsawPattern(pool, something, newPieces, JigsawPattern.PlacementBehaviour.RIGID));
     }
 }

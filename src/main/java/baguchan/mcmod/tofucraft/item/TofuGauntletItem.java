@@ -115,7 +115,7 @@ public class TofuGauntletItem extends ItemTofuEnergyContained {
 
         Mode mode = Mode.byItemStack(itemstack);
 
-        if (!playerIn.isShiftKeyDown()) {
+        if (!playerIn.isSneaking()) {
             if (!isUsable(itemstack)) {
                 return ActionResult.resultFail(itemstack);
             } else {

@@ -886,7 +886,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         if (flag) {
             itemstack.interactWithEntity(player, this, hand);
             return true;
-        } else if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG && this.isAlive() && !this.hasCustomer() && !this.isChild() && !this.isSleeping() && !player.func_226563_dT_()) {
+        } else if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG && this.isAlive() && !this.hasCustomer() && !this.isChild() && !this.isSleeping() && !player.isSecondaryUseActive()) {
 
             if (this.getOffers().isEmpty()) {
                 if (!this.isNitwit() && !this.canGuard()) {
@@ -956,18 +956,18 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     }
 
     public int getPlayerReputation(PlayerEntity player) {
-        return this.gossip.func_220921_a(player.getUniqueID(), (p_223103_0_) -> {
+        return this.gossip.getReputation(player.getUniqueID(), (p_223103_0_) -> {
             return true;
         });
     }
 
     public void updateReputation(IReputationType type, Entity target) {
         if (type == IReputationType.TRADE) {
-            this.gossip.func_220916_a(target.getUniqueID(), GossipType.TRADING, 2);
+            this.gossip.add(target.getUniqueID(), GossipType.TRADING, 2);
         } else if (type == IReputationType.VILLAGER_HURT) {
-            this.gossip.func_220916_a(target.getUniqueID(), GossipType.MINOR_NEGATIVE, 25);
+            this.gossip.add(target.getUniqueID(), GossipType.MINOR_NEGATIVE, 25);
         } else if (type == IReputationType.VILLAGER_KILLED) {
-            this.gossip.func_220916_a(target.getUniqueID(), GossipType.MAJOR_NEGATIVE, 25);
+            this.gossip.add(target.getUniqueID(), GossipType.MAJOR_NEGATIVE, 25);
         }
 
     }
