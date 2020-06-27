@@ -38,6 +38,7 @@ public class TofuFoods {
 
     public static final Food HIYAYAKKO = new Food.Builder().hunger(3).saturation(0.22f).build();
 
+    public static final Food SPROUT = new Food.Builder().hunger(1).saturation(0.06f).build();
     public static final Food SALTYMELON = new Food.Builder().hunger(3).saturation(0.16f).build();
     public static final Food EDAMAME = new Food.Builder().hunger(1).saturation(0.12f).fastToEat().build();
     public static final Food RICEBALL = new Food.Builder().hunger(3).saturation(0.32f).fastToEat().build();

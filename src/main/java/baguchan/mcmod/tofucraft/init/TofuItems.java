@@ -64,10 +64,11 @@ public class TofuItems {
 
     public static final Item SALTYMELON = new Item(new Item.Properties().food(TofuFoods.SALTYMELON).group(TofuItemGroup.TOFUCRAFT));
 
-    public static final Item SEEDS_SOYBEAN = new BlockNamedItem(TofuBlocks.SOYBEAN,new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SEEDS_SOYBEAN = new SoybeansItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item SEEDS_SOYBEAN_NETHER = new BlockNamedItem(TofuBlocks.SOYBEAN_NETHER, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item KINAKO = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item SOYBEAN_PARCHED = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SPROUT = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT).food(TofuFoods.SPROUT));
     public static final Item FUKUMAME = new FukumameItem(new Item.Properties().maxDamage(64).group(TofuItemGroup.TOFUCRAFT));
     public static final Item EDAMAME = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item EDAMAME_BOILD = new Item(new Item.Properties().food(TofuFoods.EDAMAME).group(TofuItemGroup.TOFUCRAFT));
@@ -240,6 +241,7 @@ public class TofuItems {
         register(registry, SEEDS_SOYBEAN, "seeds_soybeans");
         register(registry, SEEDS_SOYBEAN_NETHER, "seeds_soybeans_nether");
         register(registry, SOYBEAN_PARCHED, "soybeans_parched");
+        register(registry, SPROUT, "sprout");
         register(registry, KINAKO, "kinako");
 
         register(registry, EDAMAME, "edamame");
