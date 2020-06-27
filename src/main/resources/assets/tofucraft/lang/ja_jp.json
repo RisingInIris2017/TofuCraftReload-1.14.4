@@ -128,6 +128,10 @@
   "item.tofucraft.tofuforce_core": "トーフフォースコア",
   "item.tofucraft.tofu_gauntlet": "トーフガントレット",
 
+  "block.tofucraft.soybean": "大豆",
+  "block.tofucraft.soybean_nether": "地獄大豆",
+  "block.tofucraft.blockleek_crop": "葱",
+  "block.tofucraft.sprouts": "もやし",
   "block.tofucraft.rice": "米",
   "block.tofucraft.rice_root": "米の根っこ",
   "block.tofucraft.blocktofukinu": "絹豆腐ブロック",
@@ -290,5 +294,8 @@
   "biome.tofucraft.tofu_river" : "豆乳川",
   "biome.tofucraft.tofuzunda_forest" : "ずんだ豆腐の森",
   "biome.tofucraft.zundatofu_fungiforest" : "ずんだ豆腐のキノコの森",
-  "biome.tofucraft.zundatofu_plain" : "ずんだ豆腐草原"
+  "biome.tofucraft.zundatofu_plain" : "ずんだ豆腐草原",
+
+  "fluid.tofucraft.soymilk": "豆乳",
+  "fluid.tofucraft.soymilk_hell": "地獄豆乳"
 }
