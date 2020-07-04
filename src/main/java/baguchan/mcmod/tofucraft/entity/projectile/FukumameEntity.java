@@ -5,13 +5,16 @@ import baguchan.mcmod.tofucraft.init.TofuItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.entity.projectile.ThrowableEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
+import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -65,13 +68,34 @@ public class FukumameEntity extends ThrowableEntity {
         entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.func_234616_v_()), (float) 2);
 
         entity.hurtResistantTime = 5;
+
+        if (!this.world.isRemote) {
+            this.world.setEntityState(this, (byte) 3);
+            this.remove();
+        }
+    }
+
+    @Override
+    protected void func_230299_a_(BlockRayTraceResult rayTraceResult) {
+        super.func_230299_a_(rayTraceResult);
+
+        if (!this.world.isRemote) {
+            this.world.setEntityState(this, (byte) 3);
+            this.remove();
+        }
     }
 
     @Override
     protected void onImpact(RayTraceResult result) {
-        super.onImpact(result);
-        this.world.setEntityState(this, (byte) 3);
-        this.remove();
+        RayTraceResult result2 = ProjectileHelper.func_234618_a_(this, this::func_230298_a_, RayTraceContext.BlockMode.COLLIDER);
+
+        RayTraceResult.Type raytraceresult$type = result2.getType();
+        if (raytraceresult$type == RayTraceResult.Type.ENTITY) {
+            this.onEntityHit((EntityRayTraceResult) result2);
+        } else if (raytraceresult$type == RayTraceResult.Type.BLOCK) {
+            this.func_230299_a_((BlockRayTraceResult) result2);
+        }
+
     }
 
     @OnlyIn(Dist.CLIENT)
