@@ -17,7 +17,6 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -40,7 +39,7 @@ public class SaltFurnaceBlock extends ContainerBlock {
         boolean lit = state.get(LIT);
         if (lit) {
             if (worldIn.getBlockState(pos.up()).getBlock() == Blocks.CAULDRON) {
-                if (worldIn.getBlockState(pos.up()).has(CauldronBlock.LEVEL)) {
+                if (worldIn.getBlockState(pos.up()).func_235901_b_(CauldronBlock.LEVEL)) {
                     int level = worldIn.getBlockState(pos.up()).get(CauldronBlock.LEVEL);
                     if (level > 0) {
                         worldIn.setBlockState(pos.up(), TofuBlocks.SALT_CAULDRON.getDefaultState().with(CauldronBlock.LEVEL, level), 2);
@@ -53,17 +52,8 @@ public class SaltFurnaceBlock extends ContainerBlock {
         }
     }
 
-    @Override
-    public int tickRate(IWorldReader worldIn) {
-        return 5;
-    }
-
     public TileEntity createNewTileEntity(IBlockReader worldIn) {
         return new SaltFurnaceTileEntity();
-    }
-
-    public int getLightValue(BlockState state) {
-        return state.get(LIT) ? super.getLightValue(state) : 0;
     }
 
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
@@ -107,7 +97,7 @@ public class SaltFurnaceBlock extends ContainerBlock {
             if (worldIn.getBlockState(pos.up()).isAir(worldIn, pos.up())) {
                 worldIn.addParticle(ParticleTypes.SMOKE, d0 + d4, d1 + 1.0F, d2 + d4, 0.0D, 0.0D, 0.0D);
                 worldIn.addParticle(ParticleTypes.FLAME, d0 + d4, d1 + 1.0F, d2 + d4, 0.0D, 0.0D, 0.0D);
-            } else if (worldIn.getBlockState(pos.up()).has(CauldronBlock.LEVEL)) {
+            } else if (worldIn.getBlockState(pos.up()).func_235901_b_(CauldronBlock.LEVEL)) {
                 if (worldIn.getBlockState(pos.up()).get(CauldronBlock.LEVEL) > 0) {
                     worldIn.addParticle(ParticleTypes.CLOUD, d0 + d4, d1 + 2.0F, d2 + d4, 0.0D, 0.0D, 0.0D);
                 }

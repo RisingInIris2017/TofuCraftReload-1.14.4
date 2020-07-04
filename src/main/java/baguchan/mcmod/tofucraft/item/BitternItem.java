@@ -8,7 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.fluid.IFluidState;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
@@ -48,11 +48,11 @@ public class BitternItem extends Item {
 
                 BlockState blockstate = worldIn.getBlockState(blockpos);
                 Material material = blockstate.getMaterial();
-                IFluidState ifluidstate = worldIn.getFluidState(blockpos);
+                FluidState ifluidstate = worldIn.getFluidState(blockpos);
                 if ((ifluidstate.getFluid() == TofuFluids.SOYMILK)) {
 
                     // special case for handling block placement with water lilies
-                    net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(worldIn, blockpos);
+                    net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.create(worldIn, blockpos);
                     worldIn.setBlockState(blockpos, TofuBlocks.KINUTOFU.getDefaultState(), 11);
                     if (net.minecraftforge.event.ForgeEventFactory.onBlockPlace(playerIn, blocksnapshot, net.minecraft.util.Direction.UP)) {
                         blocksnapshot.restore(true, false);
@@ -84,7 +84,7 @@ public class BitternItem extends Item {
                 } else if ((ifluidstate.getFluid() == TofuFluids.SOYMILK_HELL)) {
 
                     // special case for handling block placement with water lilies
-                    net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(worldIn, blockpos);
+                    net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.create(worldIn, blockpos);
                     worldIn.setBlockState(blockpos, TofuBlocks.HELLTOFU.getDefaultState(), 11);
                     if (net.minecraftforge.event.ForgeEventFactory.onBlockPlace(playerIn, blocksnapshot, net.minecraft.util.Direction.UP)) {
                         blocksnapshot.restore(true, false);

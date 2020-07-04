@@ -1,12 +1,10 @@
 package baguchan.mcmod.tofucraft.item;
 
 import baguchan.mcmod.tofucraft.entity.projectile.FukumameEntity;
-import baguchan.mcmod.tofucraft.entity.projectile.TofuHomingForceEntity;
-import baguchan.mcmod.tofucraft.item.base.ItemTofuEnergyContained;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
 import net.minecraft.item.UseAction;
@@ -16,7 +14,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -25,7 +22,7 @@ import net.minecraftforge.common.util.Constants;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class TofuGauntletItem extends ItemTofuEnergyContained {
+public class TofuGauntletItem extends Item {
     public TofuGauntletItem(Properties group) {
         super(group);
     }
@@ -48,18 +45,15 @@ public class TofuGauntletItem extends ItemTofuEnergyContained {
 
         int i = this.getUseDuration(stack) - timeLeft;
 
-        if (entityLiving.getLastAttackedEntity() != null) {
+        /*if (entityLiving.getLastAttackedEntity() != null) {
             if (entityLiving instanceof PlayerEntity && !((PlayerEntity) entityLiving).isCreative()) {
-                if (getEnergy(stack) >= 10) {
-                    drain(stack, 10, false);
-                    ((PlayerEntity) entityLiving).getCooldownTracker().setCooldown(stack.getItem(), 50);
-                } else {
-                    stack.damageItem(1, entityLiving, (p_220009_1_) -> {
-                        p_220009_1_.sendBreakAnimation(entityLiving.getActiveHand());
-                    });
 
-                    ((PlayerEntity) entityLiving).getCooldownTracker().setCooldown(stack.getItem(), 60);
-                }
+                stack.damageItem(1, entityLiving, (p_220009_1_) -> {
+                    p_220009_1_.sendBreakAnimation(entityLiving.getActiveHand());
+                });
+
+                ((PlayerEntity) entityLiving).getCooldownTracker().setCooldown(stack.getItem(), 60);
+
             }
 
             entityLiving.playSound(SoundEvents.ENTITY_WITHER_SHOOT, 3.0F, 1.0F / (entityLiving.getRNG().nextFloat() * 0.4F + 0.8F));
@@ -77,16 +71,13 @@ public class TofuGauntletItem extends ItemTofuEnergyContained {
 
             if (!list.isEmpty()) {
                 if (entityLiving instanceof PlayerEntity && !((PlayerEntity) entityLiving).isCreative()) {
-                    if (getEnergy(stack) >= 10) {
-                        drain(stack, 10, false);
-                        ((PlayerEntity) entityLiving).getCooldownTracker().setCooldown(stack.getItem(), 50);
-                    } else {
-                        stack.damageItem(1, entityLiving, (p_220009_1_) -> {
-                            p_220009_1_.sendBreakAnimation(entityLiving.getActiveHand());
-                        });
 
-                        ((PlayerEntity) entityLiving).getCooldownTracker().setCooldown(stack.getItem(), 60);
-                    }
+                    stack.damageItem(1, entityLiving, (p_220009_1_) -> {
+                        p_220009_1_.sendBreakAnimation(entityLiving.getActiveHand());
+                    });
+
+                    ((PlayerEntity) entityLiving).getCooldownTracker().setCooldown(stack.getItem(), 60);
+
                 }
 
                 entityLiving.playSound(SoundEvents.ENTITY_WITHER_SHOOT, 3.0F, 1.0F / (entityLiving.getRNG().nextFloat() * 0.4F + 0.8F));
@@ -98,7 +89,7 @@ public class TofuGauntletItem extends ItemTofuEnergyContained {
                 entityLiving.world.addEntity(forceEntity);
             }
 
-        }
+        }*/
     }
 
     private static float getCharge(int useTime, ItemStack stack) {
@@ -122,13 +113,10 @@ public class TofuGauntletItem extends ItemTofuEnergyContained {
                 if (mode == Mode.SOYSHOT) {
                     if (!playerIn.abilities.isCreativeMode) {
 
-                        if (getEnergy(itemstack) >= 5) {
-                            drain(itemstack, 5, false);
-                        } else {
-                            itemstack.damageItem(1, playerIn, (p_220009_1_) -> {
-                                p_220009_1_.sendBreakAnimation(playerIn.getActiveHand());
-                            });
-                        }
+                        itemstack.damageItem(1, playerIn, (p_220009_1_) -> {
+                            p_220009_1_.sendBreakAnimation(playerIn.getActiveHand());
+                        });
+
                     }
 
                     worldIn.playSound((PlayerEntity) null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
@@ -138,7 +126,7 @@ public class TofuGauntletItem extends ItemTofuEnergyContained {
                             FukumameEntity fukumamelentity = new FukumameEntity(worldIn, playerIn);
                             float d0 = (worldIn.rand.nextFloat() * 18.0F) - 9.0F;
 
-                            fukumamelentity.shoot(playerIn, playerIn.rotationPitch + d0 * 0.25F, playerIn.rotationYaw + d0, 0.0F, 1.5F, 0.8F);
+                            fukumamelentity.func_234612_a_(playerIn, playerIn.rotationPitch + d0 * 0.25F, playerIn.rotationYaw + d0, 0.0F, 1.5F, 0.8F);
                             worldIn.addEntity(fukumamelentity);
                         }
                     }
@@ -178,7 +166,7 @@ public class TofuGauntletItem extends ItemTofuEnergyContained {
         ITextComponent name = new TranslationTextComponent(mode.getUnlocalizedName(stack));
         ITextComponent title = new TranslationTextComponent(stack.getTranslationKey() + ".mode");
 
-        return title.appendText(": ").appendSibling(name);
+        return name;
     }
 
     @Override
@@ -189,11 +177,6 @@ public class TofuGauntletItem extends ItemTofuEnergyContained {
 
     public Rarity getRarity(ItemStack stack) {
         return Rarity.RARE;
-    }
-
-    @Override
-    public int getEnergyMax(ItemStack inst) {
-        return 6000;
     }
 
     public enum Mode {

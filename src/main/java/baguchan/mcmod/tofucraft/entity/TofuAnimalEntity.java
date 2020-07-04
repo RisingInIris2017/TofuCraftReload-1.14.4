@@ -16,6 +16,6 @@ public abstract class TofuAnimalEntity extends AnimalEntity {
     }
 
     public static boolean spawnHandle(EntityType<? extends AnimalEntity> p_223316_0_, IWorld p_223316_1_, SpawnReason reason, BlockPos p_223316_3_, Random p_223316_4_) {
-        return p_223316_1_.getBlockState(p_223316_3_.down()).isIn(TofuTags.Blocks.TOFUTERRAIN) && p_223316_1_.getLightSubtracted(p_223316_3_, 0) > 8;
+        return p_223316_1_.getBlockState(p_223316_3_.down()).func_235714_a_(TofuTags.Blocks.TOFUTERRAIN) && p_223316_1_.getLightSubtracted(p_223316_3_, 0) > 8;
     }
 }

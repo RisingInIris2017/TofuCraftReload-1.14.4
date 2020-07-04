@@ -22,10 +22,12 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
 import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
@@ -111,7 +113,7 @@ public class TofuCastlePieces {
                 TofuMindEntity entitymind = TofuEntitys.TOFUMIND.create(world.getWorld());
                 entitymind.enablePersistence();
                 entitymind.moveToBlockPosAndAngles(pos, 0.0F, 0.0F);
-                entitymind.onInitialSpawn(world, world.getDifficultyForLocation(new BlockPos(entitymind)), SpawnReason.STRUCTURE, (ILivingEntityData) null, (CompoundNBT) null);
+                entitymind.onInitialSpawn(world, world.getDifficultyForLocation(new BlockPos(entitymind.getPositionVec())), SpawnReason.STRUCTURE, (ILivingEntityData) null, (CompoundNBT) null);
                 world.addEntity(entitymind);
                 world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
             } else if (function.equals("Boss")) {
@@ -119,24 +121,25 @@ public class TofuCastlePieces {
                 entitygandlem.enablePersistence();
                 entitygandlem.setSleep(true);
                 entitygandlem.moveToBlockPosAndAngles(pos, 0.0F, 0.0F);
-                entitygandlem.onInitialSpawn(world, world.getDifficultyForLocation(new BlockPos(entitygandlem)), SpawnReason.STRUCTURE, (ILivingEntityData) null, (CompoundNBT) null);
+                entitygandlem.onInitialSpawn(world, world.getDifficultyForLocation(new BlockPos(entitygandlem.getPositionVec())), SpawnReason.STRUCTURE, (ILivingEntityData) null, (CompoundNBT) null);
                 world.addEntity(entitygandlem);
                 world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
             }
         }
 
         @Override
-        public boolean create(IWorld worldIn, ChunkGenerator<?> p_225577_2_, Random randomIn, MutableBoundingBox structureBoundingBoxIn, ChunkPos chunkPos) {
+        public boolean func_230383_a_(ISeedReader worldIn, StructureManager p_230383_2_, ChunkGenerator p_230383_3_, Random p_230383_4_, MutableBoundingBox p_230383_5_, ChunkPos p_230383_6_, BlockPos p_230383_7_) {
             PlacementSettings placementsettings = (new PlacementSettings()).setRotation(this.field_207616_e).setMirror(Mirror.NONE).setCenterOffset(TofuCastlePieces.structurePos.get(this.field_207615_d)).addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK);
             BlockPos blockpos = TofuCastlePieces.structurePos.get(this.field_207615_d);
             BlockPos blockpos1 = this.templatePosition;
             int i = worldIn.getHeight(Heightmap.Type.WORLD_SURFACE_WG, blockpos1.getX(), blockpos1.getZ());
             BlockPos blockpos2 = this.templatePosition;
             this.templatePosition = this.templatePosition.add(0, i - 90 - 1, 0);
-            boolean flag = super.create(worldIn, p_225577_2_, randomIn, structureBoundingBoxIn, chunkPos);
+            boolean flag = super.func_230383_a_(worldIn, p_230383_2_, p_230383_3_, p_230383_4_, p_230383_5_, p_230383_6_, p_230383_7_);
 
 
             this.templatePosition = blockpos2;
+
             return flag;
         }
 

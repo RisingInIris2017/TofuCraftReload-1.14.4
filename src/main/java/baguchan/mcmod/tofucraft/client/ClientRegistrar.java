@@ -46,7 +46,7 @@ public class ClientRegistrar {
         RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.FUKUMAME, FukumameRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.ZUNDAARROW, ZundaArrowRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.BEAM, BeamRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.TOFU_HOMING_FORCE, EmptyRender::new);
+        //RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.TOFU_HOMING_FORCE, EmptyRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.TOFU_FALLING_BLOCK, FallingBlockRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.SOY_SPLASH, SoySplashRenderer::new);
     }

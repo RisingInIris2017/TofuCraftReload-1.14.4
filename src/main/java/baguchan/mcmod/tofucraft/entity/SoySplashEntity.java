@@ -14,7 +14,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -147,7 +147,7 @@ public class SoySplashEntity extends Entity {
         if (!list.isEmpty()) {
             for (Entity entity : list) {
                 if (!(entity instanceof SoySplashEntity) && !entity.noClip) {
-                    entity.onGround = true;
+                    //entity.onGround = true;
                     entity.fallDistance = 0.0F;
                     if (this.getSplashPower() >= 0.3F) {
                         entity.setMotion(entity.getMotion().x, ((double) this.getSplashPower() - entity.getMotion().y) * (double) this.getSplashPower(), entity.getMotion().z);
@@ -161,7 +161,7 @@ public class SoySplashEntity extends Entity {
 
     protected void doSoySplashEffect() {
         float f = 0.9F;
-        Vec3d vec3d = this.getMotion();
+        Vector3d vec3d = this.getMotion();
         float f2 = (float) MathHelper.floor(this.getPosY());
 
 

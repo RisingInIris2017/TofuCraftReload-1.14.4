@@ -47,7 +47,7 @@ public class SummonMinionGoal extends CastingGoal {
         super.castSpell();
 
         for (int i = 0; i < 3; ++i) {
-            BlockPos blockpos = (new BlockPos(this.tofuGandlemEntity)).add(-2 + this.tofuGandlemEntity.world.rand.nextInt(5), 1, -2 + this.tofuGandlemEntity.world.rand.nextInt(5));
+            BlockPos blockpos = (new BlockPos(this.tofuGandlemEntity.getPositionVec())).add(-2 + this.tofuGandlemEntity.world.rand.nextInt(5), 1, -2 + this.tofuGandlemEntity.world.rand.nextInt(5));
             TofuTurretEntity tofuTurretEntity = TofuEntitys.TOFUTURRET.create(this.tofuGandlemEntity.world);
             tofuTurretEntity.moveToBlockPosAndAngles(blockpos, 0.0F, 0.0F);
             tofuTurretEntity.onInitialSpawn(this.tofuGandlemEntity.world, this.tofuGandlemEntity.world.getDifficultyForLocation(blockpos), SpawnReason.MOB_SUMMONED, (ILivingEntityData) null, (CompoundNBT) null);

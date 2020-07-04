@@ -1,58 +1,24 @@
 package baguchan.mcmod.tofucraft.world.gen.feature.structure;
 
-import baguchan.mcmod.tofucraft.init.TofuFeatures;
-import com.mojang.datafixers.Dynamic;
+import baguchan.mcmod.tofucraft.init.TofuStructures;
+import com.mojang.serialization.Codec;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeManager;
+import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
-import java.util.Random;
-import java.util.function.Function;
-
 public class TofuCastleStructure extends Structure<NoFeatureConfig> {
-    public TofuCastleStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> p_i51440_1_) {
+    public TofuCastleStructure(Codec<NoFeatureConfig> p_i51440_1_) {
         super(p_i51440_1_);
-    }
-
-    protected ChunkPos getStartPositionForPosition(ChunkGenerator<?> chunkGenerator, Random random, int x, int z, int spacingOffsetsX, int spacingOffsetsZ) {
-        int i = this.getBiomeFeatureDistance(chunkGenerator);
-        int j = this.getBiomeFeatureSeparation(chunkGenerator);
-        int k = x + i * spacingOffsetsX;
-        int l = z + i * spacingOffsetsZ;
-        int i1 = k < 0 ? k - i + 1 : k;
-        int j1 = l < 0 ? l - i + 1 : l;
-        int k1 = i1 / i;
-        int l1 = j1 / i;
-        ((SharedSeedRandom) random).setLargeFeatureSeedWithSalt(chunkGenerator.getSeed(), k1, l1, this.getSeedModifier());
-        k1 = k1 * i;
-        l1 = l1 * i;
-        k1 = k1 + random.nextInt(i - j);
-        l1 = l1 + random.nextInt(i - j);
-        return new ChunkPos(k1, l1);
-    }
-
-    @Override
-    public boolean canBeGenerated(BiomeManager p_225558_1_, ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ, Biome p_225558_6_) {
-        ChunkPos chunkpos = this.getStartPositionForPosition(chunkGen, rand, chunkPosX, chunkPosZ, 0, 0);
-        if (chunkPosX == chunkpos.x && chunkPosZ == chunkpos.z) {
-            if (chunkGen.hasStructure(p_225558_6_, TofuFeatures.TOFUCASTLE)) {
-
-                return true;
-            }
-        }
-
-
-        return false;
-
     }
 
     public String getStructureName() {
@@ -67,24 +33,33 @@ public class TofuCastleStructure extends Structure<NoFeatureConfig> {
         return TofuCastleStructure.Start::new;
     }
 
-    protected int getSeedModifier() {
-        return 10387313;
-    }
-
-    protected int getBiomeFeatureDistance(ChunkGenerator<?> chunkGenerator) {
-        return 34;
-    }
-
-    protected int getBiomeFeatureSeparation(ChunkGenerator<?> chunkGenerator) {
-        return 6;
-    }
-
-    public static class Start extends StructureStart {
-        public Start(Structure<?> p_i50460_1_, int p_i50460_2_, int p_i50460_3_, MutableBoundingBox p_i50460_5_, int p_i50460_6_, long p_i50460_7_) {
-            super(p_i50460_1_, p_i50460_2_, p_i50460_3_, p_i50460_5_, p_i50460_6_, p_i50460_7_);
+    protected boolean func_230363_a_(ChunkGenerator p_230363_1_, BiomeProvider p_230363_2_, long p_230363_3_, SharedSeedRandom p_230363_5_, int p_230363_6_, int p_230363_7_, Biome p_230363_8_, ChunkPos p_230363_9_, NoFeatureConfig p_230363_10_) {
+        int i = p_230363_6_ >> 4;
+        int j = p_230363_7_ >> 4;
+        p_230363_5_.setSeed((long) (i ^ j << 4) ^ p_230363_3_);
+        p_230363_5_.nextInt();
+        for (int k = p_230363_6_ - 10; k <= p_230363_6_ + 10; ++k) {
+            for (int l = p_230363_7_ - 10; l <= p_230363_7_ + 10; ++l) {
+                ChunkPos chunkpos = TofuStructures.TOFUVILLAGE.func_236392_a_(p_230363_1_.func_235957_b_().func_236197_a_(Structure.field_236381_q_), p_230363_3_, p_230363_5_, k, l);
+                if (k == chunkpos.x && l == chunkpos.z) {
+                    return false;
+                }
+            }
         }
 
-        public void init(ChunkGenerator<?> generator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn) {
+        return true;
+    }
+
+    public GenerationStage.Decoration func_236396_f_() {
+        return GenerationStage.Decoration.SURFACE_STRUCTURES;
+    }
+
+    public static class Start extends StructureStart<NoFeatureConfig> {
+        public Start(Structure<NoFeatureConfig> p_i225806_1_, int p_i225806_2_, int p_i225806_3_, MutableBoundingBox p_i225806_4_, int p_i225806_5_, long p_i225806_6_) {
+            super(p_i225806_1_, p_i225806_2_, p_i225806_3_, p_i225806_4_, p_i225806_5_, p_i225806_6_);
+        }
+
+        public void func_230364_a_(ChunkGenerator generator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, NoFeatureConfig p_230364_6_) {
             BlockPos blockpos = new BlockPos(chunkX * 16, 90, chunkZ * 16);
 
             Rotation rotation = Rotation.values()[this.rand.nextInt(Rotation.values().length)];

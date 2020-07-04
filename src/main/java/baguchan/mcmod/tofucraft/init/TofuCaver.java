@@ -12,9 +12,9 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = TofuCraftCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TofuCaver {
 
-    public static final WorldCarver<ProbabilityConfig> TOFU_CAVE = new TofuCaveCarver(ProbabilityConfig::deserialize, 2.2F, false);
-    public static final WorldCarver<ProbabilityConfig> TOFU_LARGECAVE = new TofuCaveCarver(ProbabilityConfig::deserialize, 2.6F, true);
-    public static final WorldCarver<ProbabilityConfig> TOFU_CANYON = new TofuCanyonCarver(ProbabilityConfig::deserialize);
+    public static final WorldCarver<ProbabilityConfig> TOFU_CAVE = new TofuCaveCarver(ProbabilityConfig.field_236576_b_, 2.2F, false);
+    public static final WorldCarver<ProbabilityConfig> TOFU_LARGECAVE = new TofuCaveCarver(ProbabilityConfig.field_236576_b_, 2.6F, true);
+    public static final WorldCarver<ProbabilityConfig> TOFU_CANYON = new TofuCanyonCarver(ProbabilityConfig.field_236576_b_);
 
     @SubscribeEvent
     public static void registerCarvers(RegistryEvent.Register<WorldCarver<?>> registry) {

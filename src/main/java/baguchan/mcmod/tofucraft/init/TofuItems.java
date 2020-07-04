@@ -2,21 +2,22 @@ package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.client.render.item.TofuShieldItemRender;
-import baguchan.mcmod.tofucraft.entity.projectile.ZundaArrowEntity;
 import baguchan.mcmod.tofucraft.item.*;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.DispenserBlock;
-import net.minecraft.dispenser.*;
-import net.minecraft.entity.IProjectile;
+import net.minecraft.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.dispenser.IBlockSource;
+import net.minecraft.dispenser.IDispenseItemBehavior;
+import net.minecraft.dispenser.IPosition;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.fluid.IFluidState;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
@@ -27,6 +28,14 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = TofuCraftCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TofuItems {
+
+    public static TofuArmorMaterial KINU_ARMOR_MATERIAL = new TofuArmorMaterial("kinu", 0, new int[]{0, 0, 0, 0}, 8, SoundEvents.BLOCK_WOOL_PLACE, 0, 0).setRepairMaterial(Ingredient.fromItems(TofuItems.TOFUKINU));
+    public static TofuArmorMaterial MOMEN_ARMOR_MATERIAL = new TofuArmorMaterial("momen", 1, new int[]{0, 1, 1, 0}, 10, SoundEvents.BLOCK_WOOL_PLACE, 0, 0).setRepairMaterial(Ingredient.fromItems(TofuItems.TOFUMOMEN));
+    public static TofuArmorMaterial ISHI_ARMOR_MATERIAL = new TofuArmorMaterial("ishi", 10, new int[]{2, 3, 4, 2}, 16, SoundEvents.BLOCK_WOOL_PLACE, 0, 0).setRepairMaterial(Ingredient.fromItems(TofuItems.TOFUISHI));
+    public static TofuArmorMaterial METAL_ARMOR_MATERIAL = new TofuArmorMaterial("tofu_metal", 15, new int[]{2, 5, 6, 2}, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, 0).setRepairMaterial(Ingredient.fromItems(TofuItems.TOFUMETAL));
+    public static TofuArmorMaterial DIAMOND_ARMOR_MATERIAL = new TofuArmorMaterial("tofu_diamond", 35, new int[]{3, 6, 8, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F, 0).setRepairMaterial(Ingredient.fromItems(TofuItems.TOFUDIAMOND));
+
+
     public static final Item TOFUKINU = new Item(new Item.Properties().food(TofuFoods.TOFUKINU).group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUMOMEN = new Item(new Item.Properties().food(TofuFoods.TOFUMOMEN).group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUISHI = new Item(new Item.Properties().food(TofuFoods.TOFUISHI).group(TofuItemGroup.TOFUCRAFT));
@@ -115,30 +124,30 @@ public class TofuItems {
     public static final Item TOFUTURRET_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUTURRET, 0xe5e0bd, 0x9cd6f5, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item TOFUMIND_SPAWNEGG = new SpawnEggItem(TofuEntitys.TOFUMIND, 0xe5e0bd, 0x9cd6f5, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
-    public static final Item ARMOR_KINUHELMET = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.HEAD, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item ARMOR_KINUCHESTPLATE = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.CHEST, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item ARMOR_KINULEGGINS = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.LEGS, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item ARMOR_KINUBOOTS = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.FEET, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_KINUHELMET = new ArmorItem(KINU_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_KINUCHESTPLATE = new ArmorItem(KINU_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_KINULEGGINS = new ArmorItem(KINU_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_KINUBOOTS = new ArmorItem(KINU_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
-    public static final Item ARMOR_MOMENHELMET = new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlotType.HEAD, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item ARMOR_MOMENCHESTPLATE = new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlotType.CHEST, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item ARMOR_MOMENLEGGINS = new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlotType.LEGS, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item ARMOR_MOMENBOOTS = new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlotType.FEET, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_MOMENHELMET = new ArmorItem(MOMEN_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_MOMENCHESTPLATE = new ArmorItem(MOMEN_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_MOMENLEGGINS = new ArmorItem(MOMEN_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_MOMENBOOTS = new ArmorItem(MOMEN_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
-    public static final Item ARMOR_SOLIDHELMET = new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlotType.HEAD, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item ARMOR_SOLIDCHESTPLATE = new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlotType.CHEST, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item ARMOR_SOLIDLEGGINS = new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlotType.LEGS, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item ARMOR_SOLIDBOOTS = new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlotType.FEET, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_SOLIDHELMET = new ArmorItem(ISHI_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_SOLIDCHESTPLATE = new ArmorItem(ISHI_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_SOLIDLEGGINS = new ArmorItem(ISHI_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_SOLIDBOOTS = new ArmorItem(ISHI_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
-    public static final Item ARMOR_METALHELMET = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlotType.HEAD, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item ARMOR_METALCHESTPLATE = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlotType.CHEST, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item ARMOR_METALLEGGINS = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlotType.LEGS, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item ARMOR_METALBOOTS = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlotType.FEET, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_METALHELMET = new ArmorItem(METAL_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_METALCHESTPLATE = new ArmorItem(METAL_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_METALLEGGINS = new ArmorItem(METAL_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_METALBOOTS = new ArmorItem(METAL_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
-    public static final Item ARMOR_DIAMONDHELMET = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlotType.HEAD, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item ARMOR_DIAMONDCHESTPLATE = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlotType.CHEST, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item ARMOR_DIAMONDLEGGINS = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlotType.LEGS, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
-    public static final Item ARMOR_DIAMONDBOOTS = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlotType.FEET, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_DIAMONDHELMET = new ArmorItem(DIAMOND_ARMOR_MATERIAL, EquipmentSlotType.HEAD, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_DIAMONDCHESTPLATE = new ArmorItem(DIAMOND_ARMOR_MATERIAL, EquipmentSlotType.CHEST, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_DIAMONDLEGGINS = new ArmorItem(DIAMOND_ARMOR_MATERIAL, EquipmentSlotType.LEGS, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item ARMOR_DIAMONDBOOTS = new ArmorItem(DIAMOND_ARMOR_MATERIAL, EquipmentSlotType.FEET, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
 
 
     public static final Item KINUSWORD = new SwordItem(TofuItemTier.KINU, 0, -2.2F, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -346,14 +355,6 @@ public class TofuItems {
         ComposterBlock.CHANCES.put(RICE, 0.35F);
         ComposterBlock.CHANCES.put(LEEK, 0.25F);
 
-        DispenserBlock.registerDispenseBehavior(ZUNDAARROW, new ProjectileDispenseBehavior() {
-            @Override
-            protected IProjectile getProjectileEntity(World worldIn, IPosition position, ItemStack stackIn) {
-                AbstractArrowEntity abstractarrowentity = new ZundaArrowEntity(worldIn, position.getX(), position.getY(), position.getZ());
-                abstractarrowentity.pickupStatus = AbstractArrowEntity.PickupStatus.ALLOWED;
-                return abstractarrowentity;
-            }
-        });
 
         IDispenseItemBehavior idispenseitembehavior = new DefaultDispenseItemBehavior() {
             private final DefaultDispenseItemBehavior field_218405_b = new DefaultDispenseItemBehavior();
@@ -384,7 +385,7 @@ public class TofuItems {
             public ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
                 BlockPos blockpos = source.getBlockPos().offset(source.getBlockState().get(DispenserBlock.FACING));
                 World world = source.getWorld();
-                IFluidState ifluidstate = world.getFluidState(blockpos);
+                FluidState ifluidstate = world.getFluidState(blockpos);
                 if ((ifluidstate.getFluid() == TofuFluids.SOYMILK)) {
                     world.setBlockState(blockpos, TofuBlocks.KINUTOFU.getDefaultState(), 11);
 

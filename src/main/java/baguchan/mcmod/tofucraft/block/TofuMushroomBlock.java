@@ -1,7 +1,5 @@
 package baguchan.mcmod.tofucraft.block;
 
-import baguchan.mcmod.tofucraft.init.TofuBlocks;
-import baguchan.mcmod.tofucraft.init.TofuFeatures;
 import baguchan.mcmod.tofucraft.init.TofuTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,9 +10,6 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
@@ -31,7 +26,7 @@ public class TofuMushroomBlock extends BushBlock implements IGrowable {
     }
 
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return state.isIn(TofuTags.Blocks.TOFUTERRAIN);
+        return state.func_235714_a_(TofuTags.Blocks.TOFUTERRAIN);
     }
 
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
@@ -75,7 +70,7 @@ public class TofuMushroomBlock extends BushBlock implements IGrowable {
     }
 
     public boolean func_226940_a_(ServerWorld p_226940_1_, BlockPos p_226940_2_, BlockState p_226940_3_, Random p_226940_4_) {
-        p_226940_1_.removeBlock(p_226940_2_, false);
+        /*p_226940_1_.removeBlock(p_226940_2_, false);
         ConfiguredFeature<NoFeatureConfig, ?> configuredfeature;
         if (this == TofuBlocks.ZUNDATOFU_MUSHROOM) {
             if (p_226940_4_.nextFloat() < 0.2F) {
@@ -97,7 +92,8 @@ public class TofuMushroomBlock extends BushBlock implements IGrowable {
         } else {
             p_226940_1_.setBlockState(p_226940_2_, TofuBlocks.ZUNDATOFU_MUSHROOM.getDefaultState(), 2);
             return false;
-        }
+        }*/
+        return false;
     }
 
     @Override

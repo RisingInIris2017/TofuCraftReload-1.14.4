@@ -9,12 +9,13 @@ import baguchan.mcmod.tofucraft.utils.WorldUtils;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Dynamic;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
@@ -42,13 +43,10 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.village.GossipManager;
@@ -87,7 +85,6 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     private final GossipManager gossip = new GossipManager();
 
     public static int MAX_HOME_DISTANCE_SQ = 60 * 60;
-    private int homeDimID = 0;
 
 
     public static Predicate<Entity> ENEMY_PREDICATE =
@@ -306,13 +303,12 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         compound.putInt("Xp", this.xp);
         compound.putString("Role", getRole().name());
 
-        compound.put("Gossips", this.gossip.serialize(NBTDynamicOps.INSTANCE).getValue());
+        compound.put("Gossips", this.gossip.func_234058_a_(NBTDynamicOps.INSTANCE).getValue());
 
         if (this.tofunainHome != null) {
             compound.put("TofunianHome", NBTUtil.writeBlockPos(this.tofunainHome));
         }
 
-        compound.putInt("HomeDimId", homeDimID);
     }
 
     @Override
@@ -330,14 +326,10 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         }
 
         ListNBT listnbt = compound.getList("Gossips", 10);
-        this.gossip.deserialize(new Dynamic<>(NBTDynamicOps.INSTANCE, listnbt));
+        this.gossip.func_234057_a_(new Dynamic<>(NBTDynamicOps.INSTANCE, listnbt));
 
         if (compound.contains("TofunianHome")) {
             this.tofunainHome = NBTUtil.readBlockPos(compound.getCompound("TofunianHome"));
-        }
-
-        if (compound.contains("HomeDimId")) {
-            this.homeDimID = compound.getInt("HomeDimId");
         }
 
         updateUniqueEntityAI();
@@ -346,7 +338,6 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
     public void setTofunainHome(@Nullable BlockPos pos) {
         this.tofunainHome = pos;
-        this.homeDimID = this.dimension.getId();
     }
 
     @Nullable
@@ -385,7 +376,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     public void setRole(Roles role) {
         this.getDataManager().set(ROLE, role.name());
         if (canGuard()) {
-            this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(5.0D);
+            this.getAttribute(Attributes.field_233826_i_).setBaseValue(5.0D);
         }
     }
 
@@ -474,20 +465,15 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
             BlockState state = world.getBlockState(tofunainHome);
 
-            if (this.homeDimID != this.dimension.getId()) {
+
+            if (this.getDistanceSq(tofunainHome.getX(), tofunainHome.getY(), tofunainHome.getZ()) > MAX_HOME_DISTANCE_SQ) {
                 tofunainHome = null;
 
                 tryFind = true;
-            } else {
-                if (this.getDistanceSq(tofunainHome.getX(), tofunainHome.getY(), tofunainHome.getZ()) > MAX_HOME_DISTANCE_SQ) {
-                    tofunainHome = null;
+            } else if (!state.getBlock().isIn(BlockTags.BEDS)) {
+                tofunainHome = null;
 
-                    tryFind = true;
-                } else if (!state.getBlock().isIn(BlockTags.BEDS)) {
-                    tofunainHome = null;
-
-                    tryFind = true;
-                }
+                tryFind = true;
             }
         }
 
@@ -497,7 +483,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
             for (int x = -range; x <= range; x++) {
                 for (int y = -range / 2; y <= range / 2; y++) {
                     for (int z = -range; z <= range; z++) {
-                        BlockPos pos = this.getPosition().add(x, y, z);
+                        BlockPos pos = new BlockPos(this.getPositionVec()).add(x, y, z);
                         BlockState state = world.getBlockState(pos);
 
                         if (state.getBlock().isIn(BlockTags.BEDS)) {
@@ -576,12 +562,8 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
     }
 
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.3F);
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
-
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
+    public static AttributeModifierMap.MutableAttribute getAttributeMap() {
+        return MobEntity.func_233666_p_().func_233815_a_(Attributes.field_233821_d_, (double) 0.3F).func_233815_a_(Attributes.field_233818_a_, 20.0D).func_233815_a_(Attributes.field_233823_f_, 2.0F);
     }
 
     private void updateUniqueEntityAI() {
@@ -824,51 +806,6 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         super.setRevengeTarget(livingBase);
     }
 
-    @Override
-    public boolean attackEntityAsMob(Entity entityIn) {
-        float f = (float) this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue();
-        int i = 0;
-
-        if (entityIn instanceof LivingEntity) {
-            f += EnchantmentHelper.getModifierForCreature(this.getHeldItemMainhand(), ((LivingEntity) entityIn).getCreatureAttribute());
-            i += EnchantmentHelper.getKnockbackModifier(this);
-        }
-
-        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), f);
-
-        if (flag) {
-            if (i > 0 && entityIn instanceof LivingEntity) {
-                ((LivingEntity) entityIn).knockBack(this, (float) i * 0.5F, (double) MathHelper.sin(this.rotationYaw * 0.017453292F), (double) (-MathHelper.cos(this.rotationYaw * 0.017453292F)));
-                this.setMotion(this.getMotion().x * 0.6D, this.getMotion().y, this.getMotion().z * 0.6D);
-            }
-
-            int j = EnchantmentHelper.getFireAspectModifier(this);
-
-            if (j > 0) {
-                entityIn.setFire(j * 4);
-            }
-
-            if (entityIn instanceof PlayerEntity) {
-                PlayerEntity entityplayer = (PlayerEntity) entityIn;
-                ItemStack itemstack = this.getHeldItemMainhand();
-                ItemStack itemstack1 = entityplayer.isHandActive() ? entityplayer.getActiveItemStack() : ItemStack.EMPTY;
-
-                if (!itemstack.isEmpty() && !itemstack1.isEmpty() && itemstack.getItem() instanceof AxeItem && itemstack1.getItem() == Items.SHIELD) {
-                    float f1 = 0.25F + (float) EnchantmentHelper.getEfficiencyModifier(this) * 0.05F;
-
-                    if (this.rand.nextFloat() < f1) {
-                        entityplayer.getCooldownTracker().setCooldown(Items.SHIELD, 100);
-                        this.world.setEntityState(entityplayer, (byte) 30);
-                    }
-                }
-            }
-
-            this.applyEnchantments(this, entityIn);
-        }
-
-        return flag;
-    }
-
     public boolean attackEntityFrom(DamageSource source, float amount) {
         if (this.isInvulnerableTo(source)) {
             return false;
@@ -879,14 +816,11 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         }
     }
 
+
     @Override
-    public boolean processInteract(PlayerEntity player, Hand hand) {
+    public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
-        boolean flag = itemstack.getItem() == Items.NAME_TAG;
-        if (flag) {
-            itemstack.interactWithEntity(player, this, hand);
-            return true;
-        } else if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG && this.isAlive() && !this.hasCustomer() && !this.isChild() && !this.isSleeping() && !player.isSecondaryUseActive()) {
+        if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG && this.isAlive() && !this.hasCustomer() && !this.isChild() && !this.isSleeping() && !player.isSecondaryUseActive()) {
 
             if (this.getOffers().isEmpty()) {
                 if (!this.isNitwit() && !this.canGuard()) {
@@ -897,14 +831,14 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
                         this.setCustomer(player);
                         this.displayMerchantGui(player);
                     }
-                    return true;
+                    return ActionResultType.SUCCESS;
                 } else {
                     if (!this.world.isRemote) {
                         if (hand == Hand.MAIN_HAND) {
                             this.shakeHead();
                         }
                     }
-                    return super.processInteract(player, hand);
+                    return super.func_230254_b_(player, hand);
                 }
             } else {
                 if (!this.world.isRemote) {
@@ -912,10 +846,10 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
                     this.displayMerchantGui(player);
                 }
 
-                return true;
+                return ActionResultType.SUCCESS;
             }
         } else {
-            return super.processInteract(player, hand);
+            return super.func_230254_b_(player, hand);
         }
     }
 
@@ -1032,7 +966,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     public TofunianEntity createChild(AgeableEntity ageable) {
         TofunianEntity entityvillager = TofuEntitys.TOFUNIAN.create(world);
 
-        entityvillager.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entityvillager)), SpawnReason.BREEDING, null, null);
+        entityvillager.onInitialSpawn(this.world, this.world.getDifficultyForLocation(new BlockPos(entityvillager.getPositionVec())), SpawnReason.BREEDING, null, null);
 
         return entityvillager;
     }
@@ -1090,7 +1024,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
         public boolean shouldExecute() {
             BlockPos blockpos = this.tofunian.getTofunainHome();
-            if (!WorldUtils.isDaytime(this.tofunian.world) && this.tofunian.world.getDimension().isSurfaceWorld()) {
+            if (!WorldUtils.isDaytime(this.tofunian.world)) {
                 return blockpos != null && this.func_220846_a(blockpos, this.distance);
             } else {
                 return blockpos != null && this.func_220846_a(blockpos, this.distance);
@@ -1106,7 +1040,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
         private boolean moveHome() {
             BlockPos blockpos = this.tofunian.getTofunainHome();
 
-            if (!WorldUtils.isDaytime(this.tofunian.world) && this.tofunian.world.getDimension().isSurfaceWorld()) {
+            if (!WorldUtils.isDaytime(this.tofunian.world)) {
                 return this.func_220846_a(blockpos, this.distance * 0.2F);
             } else {
                 return this.func_220846_a(blockpos, this.distance * 0.75F);
@@ -1118,8 +1052,8 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
             BlockPos blockpos = this.tofunian.getTofunainHome();
             if (blockpos != null && TofunianEntity.this.navigator.noPath()) {
                 if (this.func_220846_a(blockpos, 6.0D)) {
-                    Vec3d vec3d = (new Vec3d((double) blockpos.getX() - this.tofunian.getPosX(), (double) blockpos.getY() - this.tofunian.getPosY(), (double) blockpos.getZ() - this.tofunian.getPosZ())).normalize();
-                    Vec3d vec3d1 = vec3d.scale(10.0D).add(this.tofunian.getPosX(), this.tofunian.getPosY(), this.tofunian.getPosZ());
+                    Vector3d vec3d = (new Vector3d((double) blockpos.getX() - this.tofunian.getPosX(), (double) blockpos.getY() - this.tofunian.getPosY(), (double) blockpos.getZ() - this.tofunian.getPosZ())).normalize();
+                    Vector3d vec3d1 = vec3d.scale(10.0D).add(this.tofunian.getPosX(), this.tofunian.getPosY(), this.tofunian.getPosZ());
                     TofunianEntity.this.navigator.tryMoveToXYZ(vec3d1.x, vec3d1.y, vec3d1.z, this.speed);
                 } else {
                     TofunianEntity.this.navigator.tryMoveToXYZ((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ(), this.speed);

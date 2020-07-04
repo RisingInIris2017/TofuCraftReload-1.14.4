@@ -1,35 +1,27 @@
 package baguchan.mcmod.tofucraft.block;
 
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
-import baguchan.mcmod.tofucraft.init.TofuDimensions;
 import baguchan.mcmod.tofucraft.init.TofuParticles;
 import baguchan.mcmod.tofucraft.world.dimension.TofuWorldTeleporter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.play.server.*;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.management.PlayerList;
-import net.minecraft.util.Direction;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 public class TofuPortalBlock extends Block {
@@ -84,208 +76,92 @@ public class TofuPortalBlock extends Block {
 
     }
 
+    public RegistryKey<World> getTofuDimension() {
+        ResourceLocation resourcelocation = new ResourceLocation("tofucraft:tofu_world");
+        RegistryKey<World> registrykey = RegistryKey.func_240903_a_(Registry.field_239699_ae_, resourcelocation);
+
+        return registrykey;
+    }
+
     @Override
-    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        super.onEntityCollision(state, worldIn, pos, entityIn);
-        if (!worldIn.isRemote && !entityIn.isPassenger() && !entityIn.isBeingRidden() && entityIn.isNonBoss()) {
-
-
+    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entity) {
+        if (!worldIn.isRemote) {
             MinecraftServer server = worldIn.getServer();
-
-            if (entityIn.dimension == TofuDimensions.tofuWorldDimension) {
-                if (server != null && entityIn.timeUntilPortal <= 0) {
-                    PlayerList playerList = server.getPlayerList();
-                    DimensionType warptype = DimensionType.OVERWORLD;
-
-                    entityIn.timeUntilPortal = entityIn.getPortalCooldown();
-
-
-                    if (entityIn.timeUntilPortal > 0) {
-
-
-                        entityIn.timeUntilPortal = entityIn.getPortalCooldown();
-
-
-                    }
-
-
-                    if (entityIn instanceof ServerPlayerEntity) {
-
-                        this.changePlayerDimension(warptype, (ServerPlayerEntity) entityIn);
-
-                        entityIn.timeUntilPortal = entityIn.getPortalCooldown();
+            if ((!entity.isBeingRidden()) && (entity.getPassengers().isEmpty())) {
+                boolean inOverworld = entity.world.func_234923_W_() != getTofuDimension();
+                if ((entity instanceof ServerPlayerEntity)) {
+                    ServerPlayerEntity thePlayer = (ServerPlayerEntity) entity;
+                    if (thePlayer.timeUntilPortal > 0) {
+                        thePlayer.timeUntilPortal = 10;
+                    } else if (inOverworld) {
+                        thePlayer.timeUntilPortal = 10;
+                        ServerWorld dimWorld = server.getWorld(getTofuDimension());
+                        if (dimWorld != null) {
+                            teleportEntity(thePlayer, dimWorld, pos, true);
+                        }
                     } else {
-                        DimensionType origin = entityIn.dimension;
-
-                        this.changeDimension(warptype, entityIn);
-                        entityIn.timeUntilPortal = entityIn.getPortalCooldown();
+                        thePlayer.timeUntilPortal = 10;
+                        ServerWorld dimWorld = server.getWorld(World.field_234918_g_);
+                        if (dimWorld != null) {
+                            teleportEntity(thePlayer, dimWorld, pos, false);
+                        }
                     }
-
-                } else {
-                    entityIn.timeUntilPortal = Math.max(entityIn.getPortalCooldown(), 100);
                 }
-            } else {
-                if (server != null && entityIn.timeUntilPortal <= 0) {
-
-
-                    PlayerList playerList = server.getPlayerList();
-
-
-                    DimensionType warptype = TofuDimensions.tofuWorldDimension;
-
-                    entityIn.timeUntilPortal = entityIn.getPortalCooldown();
-
-
-                    if (entityIn.timeUntilPortal > 0) {
-
-
-                        entityIn.timeUntilPortal = entityIn.getPortalCooldown();
-
-
-                    }
-
-                    if (entityIn instanceof ServerPlayerEntity) {
-
-                        this.changePlayerDimension(warptype, (ServerPlayerEntity) entityIn);
-
-                        entityIn.timeUntilPortal = entityIn.getPortalCooldown();
+                if (!(entity instanceof PlayerEntity)) {
+                    if (inOverworld) {
+                        entity.timeUntilPortal = 10;
+                        ServerWorld dimWorld = server.getWorld(getTofuDimension());
+                        if (dimWorld != null) {
+                            teleportEntity(entity, dimWorld, pos, true);
+                        }
                     } else {
-                        DimensionType origin = entityIn.dimension;
-
-                        this.changeDimension(warptype, entityIn);
-                        entityIn.timeUntilPortal = entityIn.getPortalCooldown();
+                        ServerWorld dimWorld = server.getWorld(World.field_234918_g_);
+                        entity.timeUntilPortal = 10;
+                        if (dimWorld != null) {
+                            teleportEntity(entity, dimWorld, pos, false);
+                        }
                     }
-
-
-                } else {
-                    entityIn.timeUntilPortal = Math.max(entityIn.getPortalCooldown(), 100);
                 }
             }
         }
     }
 
-    public Entity changePlayerDimension(DimensionType destination, ServerPlayerEntity serverPlayerEntity) {
-        if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(serverPlayerEntity, destination)) return null;
-        serverPlayerEntity.invulnerableDimensionChange = true;
-        DimensionType dimensiontype = serverPlayerEntity.dimension;
 
-        ServerWorld serverworld = serverPlayerEntity.server.getWorld(dimensiontype);
-        serverPlayerEntity.dimension = destination;
-        ServerWorld serverworld1 = serverPlayerEntity.server.getWorld(destination);
-        WorldInfo worldinfo = serverworld1.getWorldInfo();
-        net.minecraftforge.fml.network.NetworkHooks.sendDimensionDataPacket(serverPlayerEntity.connection.netManager, serverPlayerEntity);
-        serverPlayerEntity.connection.sendPacket(new SRespawnPacket(destination, WorldInfo.byHashing(worldinfo.getSeed()), worldinfo.getGenerator(), serverPlayerEntity.interactionManager.getGameType()));
-        serverPlayerEntity.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo.isDifficultyLocked()));
-        PlayerList playerlist = serverPlayerEntity.server.getPlayerList();
-        playerlist.updatePermissionLevel(serverPlayerEntity);
-        serverworld.removeEntity(serverPlayerEntity, true); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no matching invalidate call.
-        serverPlayerEntity.revive();
-        TofuWorldTeleporter tofuteleporter = new TofuWorldTeleporter(serverworld1);
+    private Entity teleportEntity(Entity entity, ServerWorld endpointWorld, BlockPos endpoint, boolean tofuworld) {
+        if (tofuworld) {
+            BlockPos height = entity.world.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, new BlockPos(entity.getPositionVec()));
+            endpoint = height;
+            entity.setLocationAndAngles(height.getX() + 0.5D, height.getY() + 0.5D, height.getZ() + 0.5D, entity.rotationYaw, 0.0F);
 
-        Entity e = tofuteleporter.placeEntity(serverPlayerEntity, serverworld, serverworld1, serverPlayerEntity.rotationYaw, spawnPortal -> {//Forge: Start vanilla logic
-            double d0 = serverPlayerEntity.getPosX();
-            double d1 = serverPlayerEntity.getPosY();
-            double d2 = serverPlayerEntity.getPosZ();
-            float f = serverPlayerEntity.rotationPitch;
-            float f1 = serverPlayerEntity.rotationYaw;
-            double d3 = 8.0D;
-            float f2 = f1;
-            serverworld.getProfiler().startSection("moving");
-            double moveFactor = serverworld.getDimension().getMovementFactor() / serverworld1.getDimension().getMovementFactor();
-            d0 *= moveFactor;
-            d2 *= moveFactor;
-
-            serverPlayerEntity.setLocationAndAngles(d0, d1, d2, f1, f);
-            serverworld.getProfiler().endSection();
-            serverworld.getProfiler().startSection("placing");
-            double d7 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minX() + 16.0D);
-            double d4 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minZ() + 16.0D);
-            double d5 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxX() - 16.0D);
-            double d6 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxZ() - 16.0D);
-            d0 = MathHelper.clamp(d0, d7, d5);
-            d2 = MathHelper.clamp(d2, d4, d6);
-            serverPlayerEntity.setLocationAndAngles(d0, d1, d2, f1, f);
-            if (spawnPortal && !tofuteleporter.placeInPortal(serverPlayerEntity, f2)) {
-                tofuteleporter.makePortal(serverPlayerEntity);
-                tofuteleporter.placeInPortal(serverPlayerEntity, f2);
-            }
-
-            serverworld.getProfiler().endSection();
-            serverPlayerEntity.setWorld(serverworld1);
-            serverworld1.addDuringPortalTeleport(serverPlayerEntity);
-            serverPlayerEntity.connection.setPlayerLocation(serverPlayerEntity.getPosX(), serverPlayerEntity.getPosY(), serverPlayerEntity.getPosZ(), f1, f);
-            return serverPlayerEntity;//forge: this is part of the ITeleporter patch
-        });//Forge: End vanilla logic
-        if (e != serverPlayerEntity)
-            throw new java.lang.IllegalArgumentException(String.format("Teleporter %s returned not the player entity but instead %s, expected PlayerEntity %s", tofuteleporter, e, this));
-        serverPlayerEntity.interactionManager.setWorld(serverworld1);
-        serverPlayerEntity.connection.sendPacket(new SPlayerAbilitiesPacket(serverPlayerEntity.abilities));
-        playerlist.sendWorldInfo(serverPlayerEntity, serverworld1);
-        playerlist.sendInventory(serverPlayerEntity);
-
-        for (EffectInstance effectinstance : serverPlayerEntity.getActivePotionEffects()) {
-            serverPlayerEntity.connection.sendPacket(new SPlayEntityEffectPacket(serverPlayerEntity.getEntityId(), effectinstance));
-        }
-
-        serverPlayerEntity.connection.sendPacket(new SPlaySoundEventPacket(1032, BlockPos.ZERO, 0, false));
-        serverPlayerEntity.lastExperience = -1;
-        serverPlayerEntity.lastHealth = -1.0F;
-        serverPlayerEntity.lastFoodLevel = -1;
-        net.minecraftforge.fml.hooks.BasicEventHooks.firePlayerChangedDimensionEvent(serverPlayerEntity, dimensiontype, destination);
-        return serverPlayerEntity;
-
-    }
-
-    @Nullable
-    public Entity changeDimension(DimensionType destination, Entity entity) {
-        if (!entity.world.isRemote && !entity.removed) {
-            entity.world.getProfiler().startSection("changeDimension");
-            MinecraftServer minecraftserver = entity.getServer();
-            DimensionType dimensiontype = entity.dimension;
-            ServerWorld serverworld = minecraftserver.getWorld(dimensiontype);
-            ServerWorld serverworld1 = minecraftserver.getWorld(destination);
-
-            TofuWorldTeleporter tofuteleporter = new TofuWorldTeleporter(serverworld1);
-            entity.dimension = destination;
-            entity.detach();
-            entity.world.getProfiler().startSection("reposition");
-            Vec3d vec3d = entity.getMotion();
-            float f = 0.0F;
-
-            BlockPos blockpos;
-
-            double movementFactor = serverworld.getDimension().getMovementFactor() / serverworld1.getDimension().getMovementFactor();
-            double d0 = entity.getPosX() * movementFactor;
-            double d1 = entity.getPosZ() * movementFactor;
-
-            double d3 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minX() + 16.0D);
-            double d4 = Math.min(-2.9999872E7D, serverworld1.getWorldBorder().minZ() + 16.0D);
-            double d5 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxX() - 16.0D);
-            double d6 = Math.min(2.9999872E7D, serverworld1.getWorldBorder().maxZ() - 16.0D);
-            d0 = MathHelper.clamp(d0, d3, d5);
-            d1 = MathHelper.clamp(d1, d4, d6);
-            Vec3d vec3d1 = entity.getLastPortalVec();
-            blockpos = new BlockPos(d0, entity.getPosY(), d1);
-
-
-            entity.world.getProfiler().endStartSection("reloading");
-            Entity entity2 = entity.getType().create(serverworld1);
-            if (entity2 != null) {
-                entity2.copyDataFromOld(entity);
-                tofuteleporter.placeInPortal(entity2, entity2.rotationYaw);
-                entity2.setMotion(vec3d);
-                serverworld1.addFromAnotherDimension(entity2);
-                entity.remove();
-            }
-
-            entity2.world.getProfiler().endSection();
-            serverworld.resetUpdateEntityTick();
-            serverworld1.resetUpdateEntityTick();
-            entity2.world.getProfiler().endSection();
-            return entity2;
+            placeInPortal(entity, endpoint, endpointWorld);
         } else {
-            return null;
+            BlockPos height = entity.world.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, new BlockPos(entity.getPositionVec()));
+            endpoint = height;
+            entity.setLocationAndAngles(height.getX() + 0.5D, height.getY() + 0.5D, height.getZ() + 0.5D, entity.rotationYaw, 0.0F);
+
         }
+        if (entity instanceof ServerPlayerEntity) {
+            ServerPlayerEntity player = (ServerPlayerEntity) entity;
+            player.teleport(endpointWorld, endpoint.getX() + 0.5D, endpoint.getY() + 0.5D, endpoint.getZ() + 0.5D, entity.rotationYaw, entity.rotationPitch);
+            return player;
+        }
+
+        entity.detach();
+        entity.func_241206_a_(endpointWorld);
+        Entity teleportedEntity = entity.getType().create(endpointWorld);
+        if (teleportedEntity == null) {
+            return entity;
+        }
+        teleportedEntity.copyDataFromOld(entity);
+        teleportedEntity.setLocationAndAngles(endpoint.getX() + 0.5D, endpoint.getY() + 0.5D, endpoint.getZ() + 0.5D, entity.rotationYaw, entity.rotationPitch);
+        teleportedEntity.setRotationYawHead(entity.rotationYaw);
+        endpointWorld.addFromAnotherDimension(teleportedEntity);
+        return teleportedEntity;
+    }
+
+    public void placeInPortal(Entity entity, BlockPos endPoint, ServerWorld serverWorld) {
+        entity.setMotion(0, 0, 0);
+        TofuWorldTeleporter.createPortal(serverWorld, endPoint, entity);
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {

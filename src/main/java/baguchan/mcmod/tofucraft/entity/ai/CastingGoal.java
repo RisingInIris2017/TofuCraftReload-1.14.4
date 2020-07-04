@@ -46,7 +46,7 @@ public abstract class CastingGoal extends Goal {
 
                 if (this.tofuGandlemEntity.getRNG().nextInt(16) == 0) {
                     for (int k = 0; k <= 2; ++k) {
-                        BlockPos blockpos = this.tofuGandlemEntity.getPosition().add(i, k, j);
+                        BlockPos blockpos = new BlockPos(this.tofuGandlemEntity.getPositionVec()).add(i, k, j);
 
                         //this.tofuGandlemEntity.world.addParticle(TofuParticles.TOFUPORTAL, (double) this.tofuGandlemEntity.getPosition().getX() + 0.5D, (double) this.tofuGandlemEntity.getPosition().getY() + 0.25D, (double) this.tofuGandlemEntity.getPosition().getZ() + 0.5D, (double) ((float) i + this.tofuGandlemEntity.getRNG().nextFloat()) - 0.5D, (double) ((float) k - this.tofuGandlemEntity.getRNG().nextFloat() - 1.0F), (double) ((float) j + this.tofuGandlemEntity.getRNG().nextFloat()) - 0.5D);
 

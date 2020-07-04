@@ -42,7 +42,7 @@ public class SoyBeanNetherCropsBlock extends BushBlock implements IGrowable {
 
     @Override
     public PlantType getPlantType(IBlockReader world, BlockPos pos) {
-        return PlantType.Nether;
+        return PlantType.NETHER;
     }
 
     protected IItemProvider getSeedsItem() {

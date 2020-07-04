@@ -6,13 +6,12 @@ import net.minecraft.block.material.PushReaction;
 
 public class TofuMaterial {
     public static final Material TOFU = (new Material.Builder(MaterialColor.WOOL)).build();
-    public static final Material TOFUORE = (new TofuMaterial.Builder(MaterialColor.WOOL)).requiresTool().build();
+    public static final Material TOFUORE = (new TofuMaterial.Builder(MaterialColor.WOOL)).build();
 
     public static class Builder {
         private PushReaction pushReaction = PushReaction.NORMAL;
         private boolean blocksMovement = true;
         private boolean canBurn;
-        private boolean requiresNoTool = true;
         private boolean isLiquid;
         private boolean isReplaceable;
         private boolean isSolid = true;
@@ -43,11 +42,6 @@ public class TofuMaterial {
             return this;
         }
 
-        protected TofuMaterial.Builder requiresTool() {
-            this.requiresNoTool = false;
-            return this;
-        }
-
         protected TofuMaterial.Builder flammable() {
             this.canBurn = true;
             return this;
@@ -69,7 +63,7 @@ public class TofuMaterial {
         }
 
         public Material build() {
-            return new Material(this.color, this.isLiquid, this.isSolid, this.blocksMovement, this.isOpaque, this.requiresNoTool, this.canBurn, this.isReplaceable, this.pushReaction);
+            return new Material(this.color, this.isLiquid, this.isSolid, this.blocksMovement, this.isOpaque, this.canBurn, this.isReplaceable, this.pushReaction);
         }
     }
 }

@@ -8,7 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.IFluidState;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.WaterFluid;
 import net.minecraft.item.Item;
 import net.minecraft.state.StateContainer;
@@ -38,7 +38,7 @@ public abstract class FluidSoyMilkHell extends WaterFluid {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(World worldIn, BlockPos pos, IFluidState state, Random random) {
+    public void animateTick(World worldIn, BlockPos pos, FluidState state, Random random) {
       /*  if (!state.isSource() && !state.get(FALLING)) {
             if (random.nextInt(64) == 0) {
                 worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, random.nextFloat() * 0.25F + 0.75F, random.nextFloat() + 0.5F, false);
@@ -56,7 +56,7 @@ public abstract class FluidSoyMilkHell extends WaterFluid {
     }*/
 
     protected void beforeReplacingBlock(IWorld worldIn, BlockPos pos, BlockState state) {
-        TileEntity tileentity = state.getBlock().hasTileEntity() ? worldIn.getTileEntity(pos) : null;
+        TileEntity tileentity = state.getBlock().hasTileEntity(state) ? worldIn.getTileEntity(pos) : null;
         Block.spawnDrops(state, worldIn.getWorld(), pos, tileentity);
     }
 
@@ -64,7 +64,7 @@ public abstract class FluidSoyMilkHell extends WaterFluid {
         return 7;
     }
 
-    public BlockState getBlockState(IFluidState state) {
+    public BlockState getBlockState(FluidState state) {
         return TofuBlocks.SOYMILK_HELL.getDefaultState().with(FlowingFluidBlock.LEVEL, Integer.valueOf(getLevelFromState(state)));
     }
 
@@ -93,26 +93,26 @@ public abstract class FluidSoyMilkHell extends WaterFluid {
     }
 
     public static class Flowing extends FluidSoyMilkHell {
-        protected void fillStateContainer(StateContainer.Builder<Fluid, IFluidState> builder) {
+        protected void fillStateContainer(StateContainer.Builder<Fluid, FluidState> builder) {
             super.fillStateContainer(builder);
             builder.add(LEVEL_1_8);
         }
 
-        public int getLevel(IFluidState p_207192_1_) {
+        public int getLevel(FluidState p_207192_1_) {
             return p_207192_1_.get(LEVEL_1_8);
         }
 
-        public boolean isSource(IFluidState state) {
+        public boolean isSource(FluidState state) {
             return false;
         }
     }
 
     public static class Source extends FluidSoyMilkHell {
-        public int getLevel(IFluidState p_207192_1_) {
+        public int getLevel(FluidState p_207192_1_) {
             return 8;
         }
 
-        public boolean isSource(IFluidState state) {
+        public boolean isSource(FluidState state) {
             return true;
         }
     }

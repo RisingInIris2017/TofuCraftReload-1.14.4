@@ -2,7 +2,10 @@ package baguchan.mcmod.tofucraft;
 
 import baguchan.mcmod.tofucraft.client.ClientRegistrar;
 import baguchan.mcmod.tofucraft.entity.MorijioEntity;
-import baguchan.mcmod.tofucraft.init.*;
+import baguchan.mcmod.tofucraft.init.TofuEffectRegistry;
+import baguchan.mcmod.tofucraft.init.TofuEntitys;
+import baguchan.mcmod.tofucraft.init.TofuItems;
+import baguchan.mcmod.tofucraft.init.TofuVillagers;
 import baguchan.mcmod.tofucraft.world.gen.DefaultTofuBiomeFeature;
 import net.minecraft.block.TallGrassBlock;
 import net.minecraft.entity.EntityClassification;
@@ -49,7 +52,7 @@ public class TofuCraftCore {
         // Register the processIMC method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
 
-        TofuPaintings.PAINTINGS.register(modEventBus);
+        //TofuPaintings.PAINTINGS.register(modEventBus);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientRegistrar::setup));
 

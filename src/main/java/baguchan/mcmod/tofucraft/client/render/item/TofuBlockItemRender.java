@@ -14,9 +14,7 @@ public class TofuBlockItemRender extends ItemStackTileEntityRenderer {
     private final TofuBedTileEntity bed = new TofuBedTileEntity();
 
 
-    @Override
     public void render(ItemStack itemStackIn, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        super.render(itemStackIn, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
         TileEntityRendererDispatcher.instance.renderItem(this.bed, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
     }
 

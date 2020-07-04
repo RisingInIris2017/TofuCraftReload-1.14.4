@@ -1,8 +1,8 @@
 package baguchan.mcmod.tofucraft.client.particle;
 
 import net.minecraft.client.particle.*;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.BasicParticleType;
-import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -12,7 +12,7 @@ public class TofuPortalParticle extends SpriteTexturedParticle {
     private final double portalPosY;
     private final double portalPosZ;
 
-    private TofuPortalParticle(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
+    private TofuPortalParticle(ClientWorld worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
         super(worldIn, xCoordIn, yCoordIn, zCoordIn);
         this.motionX = xSpeedIn;
         this.motionY = ySpeedIn;
@@ -87,7 +87,7 @@ public class TofuPortalParticle extends SpriteTexturedParticle {
             this.spriteSet = p_i50607_1_;
         }
 
-        public Particle makeParticle(BasicParticleType typeIn, World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle makeParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             TofuPortalParticle portalparticle = new TofuPortalParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
             portalparticle.selectSpriteRandomly(this.spriteSet);
             return portalparticle;

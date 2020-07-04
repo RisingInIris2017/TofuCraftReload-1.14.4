@@ -73,7 +73,7 @@ public class MorijioEntity extends Entity {
     }
 
     private void dropItem(DamageSource p_213815_1_) {
-        Block.spawnAsEntity(this.world, new BlockPos(this), new ItemStack(TofuItems.MORIJIO));
+        Block.spawnAsEntity(this.world, new BlockPos(this.getPositionVec()), new ItemStack(TofuItems.MORIJIO));
         this.playSound(SoundEvents.ENTITY_ARMOR_STAND_BREAK, 1.0F, 1.0F);
     }
 

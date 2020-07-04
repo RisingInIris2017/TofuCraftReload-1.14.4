@@ -9,21 +9,21 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.Vector3f;
-import net.minecraft.client.renderer.model.Material;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.renderer.model.RenderMaterial;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.state.properties.BedPart;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuBedBlockRenderer extends TileEntityRenderer<TofuBedTileEntity> {
-    private static final Material DEFAULT_TEXTURE = new Material(Atlases.BED_ATLAS, new ResourceLocation(TofuCraftCore.MODID, "entity/tofubed"));
+    private static final RenderMaterial DEFAULT_TEXTURE = new RenderMaterial(Atlases.BED_ATLAS, new ResourceLocation(TofuCraftCore.MODID, "entity/tofubed"));
 
     private final ModelRenderer field_228843_a_;
     private final ModelRenderer field_228844_c_;
@@ -54,7 +54,7 @@ public class TofuBedBlockRenderer extends TileEntityRenderer<TofuBedTileEntity> 
     }
 
     public void render(TofuBedTileEntity tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        Material material = DEFAULT_TEXTURE;
+        RenderMaterial material = DEFAULT_TEXTURE;
         World world = tileEntityIn.getWorld();
         if (world != null) {
             BlockState blockstate = tileEntityIn.getBlockState();
@@ -67,7 +67,7 @@ public class TofuBedBlockRenderer extends TileEntityRenderer<TofuBedTileEntity> 
 
     }
 
-    private void func_228847_a_(MatrixStack p_228847_1_, IRenderTypeBuffer p_228847_2_, boolean p_228847_3_, Direction p_228847_4_, Material p_228847_5_, int p_228847_6_, int p_228847_7_, boolean p_228847_8_) {
+    private void func_228847_a_(MatrixStack p_228847_1_, IRenderTypeBuffer p_228847_2_, boolean p_228847_3_, Direction p_228847_4_, RenderMaterial p_228847_5_, int p_228847_6_, int p_228847_7_, boolean p_228847_8_) {
         this.field_228843_a_.showModel = p_228847_3_;
         this.field_228844_c_.showModel = !p_228847_3_;
         this.field_228845_d_[0].showModel = !p_228847_3_;

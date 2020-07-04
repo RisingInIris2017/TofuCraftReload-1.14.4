@@ -14,6 +14,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -52,12 +53,6 @@ public class TofuCowEntity extends CowEntity {
         this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
     }
 
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.2F);
-    }
-
     protected void registerData() {
         super.registerData();
         this.dataManager.register(TOFUCOW_TYPE, TofuCowEntity.Type.NONE.name);
@@ -76,7 +71,7 @@ public class TofuCowEntity extends CowEntity {
         this.setTofuCowType(TofuCowEntity.Type.getTypeByName(compound.getString("Type")));
     }
 
-    public boolean processInteract(PlayerEntity player, Hand hand) {
+    public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
 
         IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(itemstack, 1)).orElse(null);
@@ -96,7 +91,7 @@ public class TofuCowEntity extends CowEntity {
                 } else if (!player.inventory.addItemStackToInventory(fluidBucketWrapper.getContainer())) {
                     player.dropItem(fluidBucketWrapper.getContainer(), false);
                 }
-                return true;
+                return ActionResultType.SUCCESS;
             } else {
                 FluidStack fluidStack = new FluidStack(TofuFluids.SOYMILK, 1000);
 
@@ -109,7 +104,7 @@ public class TofuCowEntity extends CowEntity {
                 } else if (!player.inventory.addItemStackToInventory(fluidBucketWrapper.getContainer())) {
                     player.dropItem(fluidBucketWrapper.getContainer(), false);
                 }
-                return true;
+                return ActionResultType.SUCCESS;
             }
 
         } else if (itemstack.getItem() == Items.GLASS_BOTTLE && !player.abilities.isCreativeMode && !this.isChild()) {
@@ -122,7 +117,7 @@ public class TofuCowEntity extends CowEntity {
                     player.dropItem(new ItemStack(TofuItems.SOYMILK_ZUNDA_BOTTLE), false);
                 }
 
-                return true;
+                return ActionResultType.SUCCESS;
             } else {
                 player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
                 itemstack.shrink(1);
@@ -132,10 +127,10 @@ public class TofuCowEntity extends CowEntity {
                     player.dropItem(new ItemStack(TofuItems.SOYMILK_BOTTLE), false);
                 }
 
-                return true;
+                return ActionResultType.SUCCESS;
             }
         } else {
-            return super.processInteract(player, hand);
+            return super.func_230254_b_(player, hand);
         }
     }
 
@@ -167,7 +162,7 @@ public class TofuCowEntity extends CowEntity {
     @Nullable
     @Override
     public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        Biome biome = worldIn.getBiome(new BlockPos(this));
+        Biome biome = worldIn.getBiome(new BlockPos(this.getPositionVec()));
 
         if (biome == TofuBiomes.TOFU_PLAIN) {
             if (worldIn.getRandom().nextInt(8) == 0) {

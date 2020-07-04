@@ -108,7 +108,7 @@ public class LookAndPassGoal extends Goal {
         if (this.lookTime == 50) {
             ItemStack stack = this.entity.findFoods();
             if (!stack.isEmpty()) {
-                ItemStackUtil.throwItemAt(this.entity, stack.split(8), this.closestEntity);
+                ItemStackUtil.throwItemAt(this.entity, stack.split(8), this.closestEntity.getPositionVec());
             }
         }
 

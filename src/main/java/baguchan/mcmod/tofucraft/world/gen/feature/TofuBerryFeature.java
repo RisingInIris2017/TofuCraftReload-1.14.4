@@ -1,31 +1,31 @@
 package baguchan.mcmod.tofucraft.world.gen.feature;
 
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.structure.StructureManager;
 
 import java.util.Random;
-import java.util.function.Function;
 
 public class TofuBerryFeature extends Feature<NoFeatureConfig> {
     private static final BlockState BERRYBASE = TofuBlocks.TOFUBERRYSTEM.getDefaultState();
     private static final BlockState BERRY = TofuBlocks.TOFUBERRY.getDefaultState();
 
-    public TofuBerryFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> p_i49919_1_) {
+    public TofuBerryFeature(Codec<NoFeatureConfig> p_i49919_1_) {
         super(p_i49919_1_);
     }
 
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+    @Override
+    public boolean func_230362_a_(ISeedReader worldIn, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random rand, BlockPos pos, NoFeatureConfig p_230362_6_) {
         int i = 0;
-        BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable(pos);
-        BlockPos.Mutable blockpos$mutableblockpos1 = new BlockPos.Mutable(pos);
+        BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable(pos.getX(), pos.getY(), pos.getZ());
+        BlockPos.Mutable blockpos$mutableblockpos1 = new BlockPos.Mutable(pos.getX(), pos.getY(), pos.getZ());
 
         if (worldIn.isAirBlock(blockpos$mutableblockpos)) {
             if (TofuBlocks.TOFUBERRYSTEM.getDefaultState().isValidPosition(worldIn, blockpos$mutableblockpos)) {

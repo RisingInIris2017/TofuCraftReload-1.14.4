@@ -6,7 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.EnumSet;
@@ -68,7 +68,7 @@ public class SoyshotGoal extends Goal {
                 for (int i = 0; i < 3; i++) {
                     FukumameEntity projectile = new FukumameEntity(this.tofuGandlemEntity.world, this.tofuGandlemEntity);
 
-                    Vec3d vec3d = this.tofuGandlemEntity.getLook(1.0F);
+                    Vector3d vec3d = this.tofuGandlemEntity.getLook(1.0F);
 
                     this.tofuGandlemEntity.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 3.0F, 1.0F / (this.tofuGandlemEntity.getRNG().nextFloat() * 0.4F + 0.8F));
 
@@ -76,7 +76,7 @@ public class SoyshotGoal extends Goal {
 
                     float d0 = (this.tofuGandlemEntity.world.rand.nextFloat() * 16.0F) - 8.0F;
 
-                    projectile.shoot(this.tofuGandlemEntity, this.tofuGandlemEntity.rotationPitch, this.tofuGandlemEntity.rotationYaw + d0, 0.0F, 1.5f, 0.8F);
+                    projectile.func_234612_a_(this.tofuGandlemEntity, this.tofuGandlemEntity.rotationPitch, this.tofuGandlemEntity.rotationYaw + d0, 0.0F, 1.5f, 0.8F);
                     this.tofuGandlemEntity.world.addEntity(projectile);
                 }
             }

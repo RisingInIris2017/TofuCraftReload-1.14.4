@@ -5,20 +5,16 @@ import baguchan.mcmod.tofucraft.init.TofuEntitys;
 import baguchan.mcmod.tofucraft.init.TofuItems;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.EndermanEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
-import net.minecraft.network.play.server.SChangeGameStatePacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -26,14 +22,13 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class ZundaArrowEntity extends AbstractArrowEntity {
@@ -100,7 +95,7 @@ public class ZundaArrowEntity extends AbstractArrowEntity {
             i += this.rand.nextInt(i / 2 + 2);
         }
 
-        Entity entity1 = this.getShooter();
+        Entity entity1 = this.func_234616_v_();
         DamageSource damagesource;
         if (entity1 == null) {
             damagesource = DamageSource.causeIndirectMagicDamage(this, this);
@@ -128,7 +123,7 @@ public class ZundaArrowEntity extends AbstractArrowEntity {
                     livingentity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, this.duration / 2, 0));
                 }
 
-                Vec3d vec3d = this.getMotion().mul(1.0D, 0.0D, 1.0D).normalize().scale((double) 1 * 0.6D);
+                Vector3d vec3d = this.getMotion().mul(1.0D, 0.0D, 1.0D).normalize().scale((double) 1 * 0.6D);
                 if (vec3d.lengthSquared() > 0.0D) {
                     livingentity.addVelocity(vec3d.x, 0.1D, vec3d.z);
                 }
@@ -139,21 +134,8 @@ public class ZundaArrowEntity extends AbstractArrowEntity {
                     EnchantmentHelper.applyArthropodEnchantments((LivingEntity) entity1, livingentity);
                 }
 
-                if (entity1 != null && livingentity != entity1 && livingentity instanceof PlayerEntity && entity1 instanceof ServerPlayerEntity) {
-                    ((ServerPlayerEntity) entity1).connection.sendPacket(new SChangeGameStatePacket(6, 0.0F));
-                }
-
                 if (!entity.isAlive() && this.field_213875_aA != null) {
                     this.field_213875_aA.add(livingentity);
-                }
-
-                if (!this.world.isRemote && entity1 instanceof ServerPlayerEntity) {
-                    ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) entity1;
-                    if (this.field_213875_aA != null && this.getShotFromCrossbow()) {
-                        CriteriaTriggers.KILLED_BY_CROSSBOW.trigger(serverplayerentity, this.field_213875_aA, this.field_213875_aA.size());
-                    } else if (!entity.isAlive() && this.getShotFromCrossbow()) {
-                        CriteriaTriggers.KILLED_BY_CROSSBOW.trigger(serverplayerentity, Arrays.asList(entity), 0);
-                    }
                 }
 
 
@@ -162,7 +144,7 @@ public class ZundaArrowEntity extends AbstractArrowEntity {
                     this.remove();
                 }
             } else {
-                entity.setFireTimer(j);
+                entity.setFire(j);
                 this.setMotion(this.getMotion().scale(-0.1D));
                 this.rotationYaw += 180.0F;
                 this.prevRotationYaw += 180.0F;
@@ -179,7 +161,7 @@ public class ZundaArrowEntity extends AbstractArrowEntity {
                 this.arrowHit((LivingEntity) entity);
                 this.remove();
             } else {
-                entity.setFireTimer(j);
+                entity.setFire(j);
                 this.setMotion(this.getMotion().scale(-0.1D));
                 this.rotationYaw += 180.0F;
                 this.prevRotationYaw += 180.0F;

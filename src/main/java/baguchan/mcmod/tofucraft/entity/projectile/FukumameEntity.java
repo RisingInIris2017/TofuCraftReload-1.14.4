@@ -59,11 +59,11 @@ public class FukumameEntity extends ThrowableEntity {
         if (result.getType() == RayTraceResult.Type.ENTITY) {
             Entity entity = ((EntityRayTraceResult) result).getEntity();
 
-            if (this.getThrower() == entity && this.ticksExisted < 4) {
+            if (this.func_234616_v_() == entity && this.ticksExisted < 4) {
                 return;
             }
 
-            entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float) 2);
+            entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.func_234616_v_()), (float) 2);
 
             entity.hurtResistantTime = 5;
         }

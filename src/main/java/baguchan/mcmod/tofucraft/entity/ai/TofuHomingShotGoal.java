@@ -1,7 +1,6 @@
 package baguchan.mcmod.tofucraft.entity.ai;
 
 import baguchan.mcmod.tofucraft.entity.TofuGandlemEntity;
-import baguchan.mcmod.tofucraft.entity.projectile.TofuHomingForceEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.particles.ParticleTypes;
@@ -66,13 +65,13 @@ public class TofuHomingShotGoal extends Goal {
             if (this.tofuGandlemEntity.ticksExisted % 10 == 0) {
                 this.tofuGandlemEntity.playSound(SoundEvents.ENTITY_WITHER_SHOOT, 3.0F, 1.0F / (this.tofuGandlemEntity.getRNG().nextFloat() * 0.4F + 0.8F));
 
-                TofuHomingForceEntity forceEntity = new TofuHomingForceEntity(this.tofuGandlemEntity.world, this.tofuGandlemEntity, this.tofuGandlemEntity.getAttackTarget());
+                /*TofuHomingForceEntity forceEntity = new TofuHomingForceEntity(this.tofuGandlemEntity.world, this.tofuGandlemEntity, this.tofuGandlemEntity.getAttackTarget());
 
                 forceEntity.damage = 5.0F;
 
                 for (int i = 0; i < 1; i++) {
                     this.tofuGandlemEntity.world.addEntity(forceEntity);
-                }
+                }*/
             }
         }
 

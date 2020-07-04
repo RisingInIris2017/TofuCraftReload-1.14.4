@@ -21,9 +21,7 @@ public class TofuShieldItemRender extends ItemStackTileEntityRenderer {
 
     private final ShieldModel modelShield = new ShieldModel();
 
-    @Override
     public void render(ItemStack itemStackIn, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        super.render(itemStackIn, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
         if (itemStackIn.getItem() == TofuItems.TOFUISHI_SHIELD) {
             matrixStackIn.push();
             matrixStackIn.scale(1.0F, -1.0F, -1.0F);

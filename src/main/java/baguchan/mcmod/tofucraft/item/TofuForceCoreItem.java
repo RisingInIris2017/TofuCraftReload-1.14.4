@@ -1,7 +1,6 @@
 package baguchan.mcmod.tofucraft.item;
 
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
-import baguchan.mcmod.tofucraft.item.base.ItemTofuEnergyContained;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -9,7 +8,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -20,12 +18,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class TofuForceCoreItem extends ItemTofuEnergyContained {
+public class TofuForceCoreItem extends Item {
     public TofuForceCoreItem(Properties group) {
         super(group);
-        this.addPropertyOverride(new ResourceLocation("broken"), (p_210312_0_, p_210312_1_, p_210312_2_) -> {
+       /* this.(new ResourceLocation("broken"), (p_210312_0_, p_210312_1_, p_210312_2_) -> {
             return isUsable(p_210312_0_) ? 0.0F : 1.0F;
-        });
+        });*/
     }
 
     public static boolean isUsable(ItemStack stack) {
@@ -41,16 +39,12 @@ public class TofuForceCoreItem extends ItemTofuEnergyContained {
 
             if (entityLivingBase.ticksExisted % 400 == 0 && isUsable(stack)) {
                 if (entityLivingBase.getHealth() < entityLivingBase.getMaxHealth()) {
-                    if (getEnergy(stack) >= 5) {
-                        drain(stack, 5, false);
 
-                    } else {
-                        stack.damageItem(1, (LivingEntity) entityIn, (p_220036_0_) -> {
-                            p_220036_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-                        });
+                    stack.damageItem(1, (LivingEntity) entityIn, (p_220036_0_) -> {
+                        p_220036_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                    });
 
-                        entityLivingBase.heal(1);
-                    }
+                    entityLivingBase.heal(1);
                 }
             }
         }
@@ -70,16 +64,11 @@ public class TofuForceCoreItem extends ItemTofuEnergyContained {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, tooltip, flagIn);
         if (!isUsable(stack)) {
-            tooltip.add(new TranslationTextComponent("tooltip.tofucraft.tofuforce.broken").applyTextStyle(TextFormatting.ITALIC).applyTextStyle(TextFormatting.GRAY));
+            tooltip.add(new TranslationTextComponent("tooltip.tofucraft.tofuforce.broken").func_240701_a_(TextFormatting.ITALIC).func_240701_a_(TextFormatting.GRAY));
         }
     }
 
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
         return repair.getItem() == Item.getItemFromBlock(TofuBlocks.METALTOFU) || super.getIsRepairable(toRepair, repair);
-    }
-
-    @Override
-    public int getEnergyMax(ItemStack inst) {
-        return 10000;
     }
 }

@@ -68,7 +68,7 @@ public class TofuBerryStemBlock extends Block {
 
     public static boolean vaildBerry(IWorldReader worldIn, BlockPos pos, Direction directionIn) {
         BlockState blockstate = worldIn.getBlockState(pos);
-        return blockstate.isIn(BlockTags.LEAVES) || blockstate.getBlock() == TofuBlocks.TOFUTERRAIN || blockstate.getBlock() == TofuBlocks.MOMENTOFU || blockstate.getBlock() == TofuBlocks.TOFUBERRYSTEM;
+        return blockstate.func_235714_a_(BlockTags.LEAVES) || blockstate.getBlock() == TofuBlocks.TOFUTERRAIN || blockstate.getBlock() == TofuBlocks.MOMENTOFU || blockstate.getBlock() == TofuBlocks.TOFUBERRYSTEM;
     }
 
     protected static Direction func_220277_j(BlockState p_220277_0_) {

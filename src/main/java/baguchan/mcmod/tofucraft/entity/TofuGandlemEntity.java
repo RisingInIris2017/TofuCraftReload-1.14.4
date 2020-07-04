@@ -1,12 +1,17 @@
 package baguchan.mcmod.tofucraft.entity;
 
-import baguchan.mcmod.tofucraft.entity.ai.*;
+import baguchan.mcmod.tofucraft.entity.ai.HealSpellGoal;
+import baguchan.mcmod.tofucraft.entity.ai.RangedStrafeAttackGoal;
+import baguchan.mcmod.tofucraft.entity.ai.SoyshotGoal;
+import baguchan.mcmod.tofucraft.entity.ai.SummonMinionGoal;
 import baguchan.mcmod.tofucraft.entity.movement.FlyingStrafeMovementController;
 import baguchan.mcmod.tofucraft.entity.projectile.BeamEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.mcmod.tofucraft.init.TofuCreatureAttribute;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.AbstractIllagerEntity;
@@ -25,7 +30,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.Difficulty;
@@ -97,7 +102,7 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new DoNothingGoal());
         this.goalSelector.addGoal(1, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new TofuHomingShotGoal(this));
+        //this.goalSelector.addGoal(2, new TofuHomingShotGoal(this));
         this.goalSelector.addGoal(3, new SoyshotGoal(this));
         this.goalSelector.addGoal(4, new SummonMinionGoal(this));
         this.goalSelector.addGoal(5, new HealSpellGoal(this));
@@ -111,14 +116,8 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, false));
     }
 
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(400.0D);
-        this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(8.0D);
-        this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40.0D);
-        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.6D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.26F);
+    public static AttributeModifierMap.MutableAttribute getAttributeMap() {
+        return MonsterEntity.func_233666_p_().func_233815_a_(Attributes.field_233821_d_, (double) 0.26F).func_233815_a_(Attributes.field_233822_e_, 0.6D).func_233815_a_(Attributes.field_233818_a_, 400.0D).func_233815_a_(Attributes.field_233819_b_, 40.0D).func_233815_a_(Attributes.field_233826_i_, 8.0D);
     }
 
     @Override
@@ -164,7 +163,7 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
             }
 
             LivingEntity target = getAttackTarget();
-            Vec3d vec3d = this.getMotion();
+            Vector3d vec3d = this.getMotion();
             if (target != null && target.isAlive() && target.getPosY() + (double) target.getEyeHeight() > this.getPosY() + (double) getEyeHeight() + (double) this.heightOffset && this.isAlive()) {
                 this.setMotion(this.getMotion().add(0.0D, ((double) 0.3F - vec3d.y) * (double) 0.3F, 0.0D));
                 this.isAirBorne = true;

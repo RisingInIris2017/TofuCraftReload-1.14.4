@@ -6,6 +6,8 @@ import baguchan.mcmod.tofucraft.entity.projectile.BeamEntity;
 import baguchan.mcmod.tofucraft.init.TofuCreatureAttribute;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.AbstractIllagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -14,7 +16,7 @@ import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
 public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob {
@@ -38,14 +40,8 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, false));
     }
 
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
-        this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(4.0D);
-        this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
-        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.5D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.265F);
+    public static AttributeModifierMap.MutableAttribute getAttributeMap() {
+        return MonsterEntity.func_233666_p_().func_233815_a_(Attributes.field_233821_d_, (double) 0.265F).func_233815_a_(Attributes.field_233822_e_, 0.5D).func_233815_a_(Attributes.field_233818_a_, 12.0D).func_233815_a_(Attributes.field_233819_b_, 20.0D).func_233815_a_(Attributes.field_233826_i_, 4.0D);
     }
 
     @Override
@@ -67,7 +63,7 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
         }
 
         LivingEntity target = getAttackTarget();
-        Vec3d vec3d = this.getMotion();
+        Vector3d vec3d = this.getMotion();
         if (target != null && target.isAlive() && target.getPosY() + (double) target.getEyeHeight() > this.getPosY() + (double) getEyeHeight() + (double) this.heightOffset && this.isAlive()) {
             this.setMotion(this.getMotion().add(0.0D, ((double) 0.3F - vec3d.y) * (double) 0.3F, 0.0D));
             this.isAirBorne = true;

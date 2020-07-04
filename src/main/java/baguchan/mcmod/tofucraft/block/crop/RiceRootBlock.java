@@ -4,8 +4,8 @@ import baguchan.mcmod.tofucraft.init.TofuTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BushBlock;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
@@ -33,11 +33,11 @@ public class RiceRootBlock extends BushBlock implements net.minecraftforge.commo
     }
 
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return state.isIn(BlockTags.SAND) || state.isIn(TofuTags.Blocks.TOFUTERRAIN) || state.getBlock() == Blocks.GRASS_BLOCK || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.GRAVEL;
+        return state.func_235714_a_(BlockTags.SAND) || state.func_235714_a_(TofuTags.Blocks.TOFUTERRAIN) || state.getBlock() == Blocks.GRASS_BLOCK || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.GRAVEL;
     }
 
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        IFluidState ifluidstate = worldIn.getFluidState(pos);
+        FluidState ifluidstate = worldIn.getFluidState(pos);
         return super.isValidPosition(state, worldIn, pos) && ifluidstate.isTagged(FluidTags.WATER) && ifluidstate.getLevel() == 8;
     }
 
@@ -45,7 +45,7 @@ public class RiceRootBlock extends BushBlock implements net.minecraftforge.commo
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         BlockState blockstate = super.getStateForPlacement(context);
         if (blockstate != null) {
-            IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos().up());
+            FluidState ifluidstate = context.getWorld().getFluidState(context.getPos().up());
             if (ifluidstate.isTagged(FluidTags.WATER) && ifluidstate.getLevel() == 8) {
                 return blockstate;
             }
@@ -65,11 +65,11 @@ public class RiceRootBlock extends BushBlock implements net.minecraftforge.commo
 
     @Override
     public PlantType getPlantType(IBlockReader world, BlockPos pos) {
-        return PlantType.Water;
+        return PlantType.WATER;
     }
 
     @Override
-    public IFluidState getFluidState(BlockState state) {
+    public FluidState getFluidState(BlockState state) {
         return Fluids.WATER.getStillFluidState(false);
     }
 }

@@ -68,14 +68,13 @@ public class TofuLeavesBlock extends LeavesBlock {
 
     private static BlockState updateDistance(BlockState state, IWorld worldIn, BlockPos pos) {
         int i = 7;
+        BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
 
-        try (BlockPos.PooledMutable blockpos$pooledmutableblockpos = BlockPos.PooledMutable.retain()) {
-            for (Direction direction : Direction.values()) {
-                blockpos$pooledmutableblockpos.setPos(pos).move(direction);
-                i = Math.min(i, getDistance(worldIn.getBlockState(blockpos$pooledmutableblockpos)) + 1);
-                if (i == 1) {
-                    break;
-                }
+        for (Direction direction : Direction.values()) {
+            blockpos$mutable.func_239622_a_(pos, direction);
+            i = Math.min(i, getDistance(worldIn.getBlockState(blockpos$mutable)) + 1);
+            if (i == 1) {
+                break;
             }
         }
 
@@ -83,7 +82,7 @@ public class TofuLeavesBlock extends LeavesBlock {
     }
 
     private static int getDistance(BlockState neighbor) {
-        if (TofuTags.Blocks.TOFULOG.contains(neighbor.getBlock())) {
+        if (TofuTags.Blocks.TOFULOG.func_230235_a_(neighbor.getBlock())) {
             return 0;
         } else {
             return neighbor.getBlock() instanceof LeavesBlock ? neighbor.get(DISTANCE) : 7;

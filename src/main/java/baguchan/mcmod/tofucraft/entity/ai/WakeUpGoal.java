@@ -13,7 +13,7 @@ public class WakeUpGoal extends Goal {
 
     @Override
     public boolean shouldExecute() {
-        return !this.creature.world.getDimension().isSurfaceWorld() || WorldUtils.isDaytime(this.creature.world) && this.creature.isSleeping() || !this.creature.getBedPosition().isPresent() && this.creature.isSleeping()
+        return WorldUtils.isDaytime(this.creature.world) && this.creature.isSleeping() || !this.creature.getBedPosition().isPresent() && this.creature.isSleeping()
                 || this.creature.getBedPosition().isPresent() && this.creature.isSleeping() && this.creature.getDistanceSq(this.creature.getBedPosition().get().getX(), this.creature.getBedPosition().get().getY(), this.creature.getBedPosition().get().getZ()) > 3.0F;
     }
 

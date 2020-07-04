@@ -45,21 +45,21 @@ public class BeamEntity extends AbstractFireballEntity {
      */
     protected void onImpact(RayTraceResult result) {
         if (!this.world.isRemote) {
-            if (result.getType() == RayTraceResult.Type.ENTITY) {
+            if (result.getType() == RayTraceResult.Type.ENTITY && func_234616_v_() != null && func_234616_v_() instanceof LivingEntity) {
                 Entity entity = ((EntityRayTraceResult) result).getEntity();
 
-                boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this.shootingEntity).setProjectile(), 6.0F);
+                boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage((LivingEntity) this.func_234616_v_()).setProjectile(), 6.0F);
                 if (flag) {
-                    this.applyEnchantments(this.shootingEntity, entity);
+                    this.applyEnchantments((LivingEntity) this.func_234616_v_(), entity);
                 }
 
-                this.world.createExplosion(this.shootingEntity, this.getPosX(), this.getPosY(), this.getPosZ(), 0.4F, this.isCanBreak ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
+                this.world.createExplosion(this.func_234616_v_(), this.getPosX(), this.getPosY(), this.getPosZ(), 0.4F, this.isCanBreak ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
 
-            } else if (this.shootingEntity == null || !(this.shootingEntity instanceof MobEntity) || net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this.shootingEntity)) {
+            } else if (this.func_234616_v_() == null || !(this.func_234616_v_() instanceof MobEntity) || net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this.func_234616_v_())) {
                 BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) result;
                 BlockPos blockpos = blockraytraceresult.getPos().offset(blockraytraceresult.getFace());
 
-                this.world.createExplosion(this.shootingEntity, blockpos.getX(), blockpos.getY(), blockpos.getZ(), this.explosionPower, this.isCanBreak ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
+                this.world.createExplosion(this.func_234616_v_(), blockpos.getX(), blockpos.getY(), blockpos.getZ(), this.explosionPower, this.isCanBreak ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
 
             }
 

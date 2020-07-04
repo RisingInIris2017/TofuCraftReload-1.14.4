@@ -14,7 +14,11 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceContext;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.FMLPlayMessages;
@@ -45,7 +49,7 @@ public class TofuFallingBlockEntity extends FallingBlockEntity {
             this.prevPosZ = this.getPosZ();
             Block block = this.fallTile.getBlock();
             if (this.fallTime++ == 0) {
-                BlockPos blockpos = new BlockPos(this);
+                BlockPos blockpos = new BlockPos(this.getPositionVec());
                 if (this.world.getBlockState(blockpos).getBlock() == block) {
                     this.world.removeBlock(blockpos, false);
                 }
@@ -57,12 +61,12 @@ public class TofuFallingBlockEntity extends FallingBlockEntity {
 
             this.move(MoverType.SELF, this.getMotion());
             if (!this.world.isRemote) {
-                BlockPos blockpos1 = new BlockPos(this);
+                BlockPos blockpos1 = new BlockPos(this.getPositionVec());
                 boolean flag = this.fallTile.getBlock() instanceof ConcretePowderBlock;
                 boolean flag1 = flag && this.world.getFluidState(blockpos1).isTagged(FluidTags.WATER);
                 double d0 = this.getMotion().lengthSquared();
                 if (flag && d0 > 1.0D) {
-                    BlockRayTraceResult blockraytraceresult = this.world.rayTraceBlocks(new RayTraceContext(new Vec3d(this.prevPosX, this.prevPosY, this.prevPosZ), new Vec3d(this.getPosX(), this.getPosY(), this.getPosZ()), RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.SOURCE_ONLY, this));
+                    BlockRayTraceResult blockraytraceresult = this.world.rayTraceBlocks(new RayTraceContext(new Vector3d(this.prevPosX, this.prevPosY, this.prevPosZ), new Vector3d(this.getPosX(), this.getPosY(), this.getPosZ()), RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.SOURCE_ONLY, this));
                     if (blockraytraceresult.getType() != RayTraceResult.Type.MISS && this.world.getFluidState(blockraytraceresult.getPos()).isTagged(FluidTags.WATER)) {
                         blockpos1 = blockraytraceresult.getPos();
                         flag1 = true;
@@ -85,13 +89,13 @@ public class TofuFallingBlockEntity extends FallingBlockEntity {
                         boolean flag2 = blockstate.isReplaceable(new DirectionalPlaceContext(this.world, blockpos1, Direction.DOWN, ItemStack.EMPTY, Direction.UP));
                         boolean flag3 = this.fallTile.isValidPosition(this.world, blockpos1);
                         if (flag2 && flag3) {
-                            if (this.fallTile.has(BlockStateProperties.WATERLOGGED) && this.world.getFluidState(blockpos1).getFluid() == Fluids.WATER) {
+                            if (this.fallTile.func_235901_b_(BlockStateProperties.WATERLOGGED) && this.world.getFluidState(blockpos1).getFluid() == Fluids.WATER) {
                                 this.fallTile = this.fallTile.with(BlockStateProperties.WATERLOGGED, Boolean.valueOf(true));
                             }
 
                             if (this.world.setBlockState(blockpos1, this.fallTile, 3)) {
                                 if (block instanceof FallingBlock) {
-                                    ((FallingBlock) block).onEndFalling(this.world, blockpos1, this.fallTile, blockstate);
+                                    ((FallingBlock) block).onEndFalling(this.world, blockpos1, this.fallTile, blockstate, this);
                                 }
 
                                 if (this.tileEntityData != null && this.fallTile.hasTileEntity()) {
@@ -106,7 +110,7 @@ public class TofuFallingBlockEntity extends FallingBlockEntity {
                                             }
                                         }
 
-                                        tileentity.read(compoundnbt);
+                                        tileentity.func_230337_a_(this.fallTile, compoundnbt);
                                         tileentity.markDirty();
                                     }
                                 }
@@ -114,7 +118,7 @@ public class TofuFallingBlockEntity extends FallingBlockEntity {
                                 this.entityDropItem(block);
                             }
                         } else if (block instanceof FallingBlock) {
-                            ((FallingBlock) block).onBroken(this.world, blockpos1);
+                            ((FallingBlock) block).onBroken(this.world, blockpos1, this);
                         }
                     }
                 }

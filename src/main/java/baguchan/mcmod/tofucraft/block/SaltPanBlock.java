@@ -6,8 +6,8 @@ import baguchan.mcmod.tofucraft.utils.TileScanner;
 import net.minecraft.block.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -244,7 +244,7 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
         builder.add(STAT, NORTH, EAST, SOUTH, WEST, WATERLOGGED);
     }
 
-    public IFluidState getFluidState(BlockState state) {
+    public FluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
     }
 
@@ -275,17 +275,15 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
             return this.meta;
         }
 
-        @Override
-        public String getName() {
-            return this.name;
-        }
-
-
         static {
             for (Stat enumtype : values()) {
                 META_LOOKUP[enumtype.getMeta()] = enumtype;
             }
         }
 
+        @Override
+        public String func_176610_l() {
+            return this.name;
+        }
     }
 }

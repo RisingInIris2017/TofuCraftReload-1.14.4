@@ -1,6 +1,8 @@
 package baguchan.mcmod.tofucraft.entity;
 
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -45,12 +47,8 @@ public class TofuChingerEntity extends MonsterEntity {
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, TofuFishEntity.class, 10, true, true, (Predicate<LivingEntity>) null));
     }
 
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
-        this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-        this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+    public static AttributeModifierMap.MutableAttribute getAttributeMap() {
+        return MonsterEntity.func_233666_p_().func_233815_a_(Attributes.field_233821_d_, (double) 0.28F).func_233815_a_(Attributes.field_233818_a_, 16.0D).func_233815_a_(Attributes.field_233819_b_, 16.0D);
     }
 
     protected void playWarningSound() {
@@ -104,9 +102,9 @@ public class TofuChingerEntity extends MonsterEntity {
         this.dataManager.set(SIZE, size);
         this.setPosition(this.getPosX(), this.getPosY(), this.getPosZ());
         this.recalculateSize();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((double) (12.0D + 2.0F * size));
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) (0.25F + 0.005F * (float) size));
-        this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue((double) (4.0D + 0.5F * (float) size));
+        this.getAttribute(Attributes.field_233818_a_).setBaseValue((double) (12.0D + 2.0F * size));
+        this.getAttribute(Attributes.field_233821_d_).setBaseValue((double) (0.25F + 0.005F * (float) size));
+        this.getAttribute(Attributes.field_233823_f_).setBaseValue((double) (4.0D + 0.5F * (float) size));
 
         if (resetHealth) {
             this.setHealth(this.getMaxHealth());
@@ -193,25 +191,22 @@ public class TofuChingerEntity extends MonsterEntity {
 
         protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
             double d0 = this.getAttackReachSqr(enemy);
-            if (distToEnemySqr <= d0 && this.attackTick <= 0) {
-                this.attackTick = 20;
+            if (distToEnemySqr <= d0 && this.func_234040_h_()) {
+                this.func_234039_g_();
                 this.attacker.attackEntityAsMob(enemy);
                 TofuChingerEntity.this.setEating(false);
             } else if (distToEnemySqr <= d0 * 2.0D) {
-                if (this.attackTick <= 0) {
+                if (this.func_234040_h_()) {
                     TofuChingerEntity.this.setEating(false);
-                    this.attackTick = 20;
+                    this.func_234039_g_();
                 }
 
-                if (this.attackTick <= 10) {
+                if (this.func_234041_j_() <= 5) {
                     TofuChingerEntity.this.setEating(true);
-                }
-
-                if (this.attackTick <= 5) {
                     TofuChingerEntity.this.playWarningSound();
                 }
             } else {
-                this.attackTick = 20;
+                this.func_234039_g_();
                 TofuChingerEntity.this.setEating(false);
             }
 

@@ -163,17 +163,15 @@ public class WheatBowlBlock extends Block {
             return this.meta;
         }
 
-        @Override
-        public String getName() {
-            return this.name;
-        }
-
-
         static {
             for (Stat enumtype : values()) {
                 META_LOOKUP[enumtype.getMeta()] = enumtype;
             }
         }
 
+        @Override
+        public String func_176610_l() {
+            return this.name;
+        }
     }
 }

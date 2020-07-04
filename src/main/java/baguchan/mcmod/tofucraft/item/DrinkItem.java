@@ -1,5 +1,6 @@
 package baguchan.mcmod.tofucraft.item;
 
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,7 +15,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.tuple.Pair;
 
 public class DrinkItem extends Item {
     public DrinkItem(Properties group) {
@@ -55,8 +55,8 @@ public class DrinkItem extends Item {
         Item item = p_213349_1_.getItem();
         if (item.isFood()) {
             for (Pair<EffectInstance, Float> pair : item.getFood().getEffects()) {
-                if (!p_213349_2_.isRemote && pair.getLeft() != null && p_213349_2_.rand.nextFloat() < pair.getRight()) {
-                    p_213349_3_.addPotionEffect(new EffectInstance(pair.getLeft()));
+                if (!p_213349_2_.isRemote && pair.getFirst() != null && p_213349_2_.rand.nextFloat() < pair.getSecond()) {
+                    p_213349_3_.addPotionEffect(new EffectInstance(pair.getFirst()));
                 }
             }
         }

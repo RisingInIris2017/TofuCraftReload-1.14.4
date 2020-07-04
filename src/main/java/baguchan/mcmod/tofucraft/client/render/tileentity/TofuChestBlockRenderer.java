@@ -12,9 +12,8 @@ import net.minecraft.block.ChestBlock;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.Vector3f;
-import net.minecraft.client.renderer.model.Material;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.renderer.model.RenderMaterial;
 import net.minecraft.client.renderer.tileentity.DualBrightnessCallback;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -25,15 +24,16 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMerger;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuChestBlockRenderer extends TileEntityRenderer<TofuChestTileEntity> {
-    public static final Material TEXTURE_NORMALTOFU = getChestMaterial(new ResourceLocation(TofuCraftCore.MODID, "entity/chest/tofuchest"));
-    public static final Material TEXTURE_TOFU_LEFT = getChestMaterial(new ResourceLocation(TofuCraftCore.MODID, "entity/chest/tofuchest_left"));
-    public static final Material TEXTURE_TOFU_RIGHT = getChestMaterial(new ResourceLocation(TofuCraftCore.MODID, "entity/chest/tofuchest_right"));
+    public static final RenderMaterial TEXTURE_NORMALTOFU = getChestRenderMaterial(new ResourceLocation(TofuCraftCore.MODID, "entity/chest/tofuchest"));
+    public static final RenderMaterial TEXTURE_TOFU_LEFT = getChestRenderMaterial(new ResourceLocation(TofuCraftCore.MODID, "entity/chest/tofuchest_left"));
+    public static final RenderMaterial TEXTURE_TOFU_RIGHT = getChestRenderMaterial(new ResourceLocation(TofuCraftCore.MODID, "entity/chest/tofuchest_right"));
 
     private final ModelRenderer field_228862_a_;
     private final ModelRenderer field_228863_c_;
@@ -80,7 +80,7 @@ public class TofuChestBlockRenderer extends TileEntityRenderer<TofuChestTileEnti
         World world = tileEntityIn.getWorld();
         boolean flag = world != null;
         BlockState blockstate = flag ? tileEntityIn.getBlockState() : TofuBlocks.TOFUCHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
-        ChestType chesttype = blockstate.has(ChestBlock.TYPE) ? blockstate.get(ChestBlock.TYPE) : ChestType.SINGLE;
+        ChestType chesttype = blockstate.func_235901_b_(ChestBlock.TYPE) ? blockstate.get(ChestBlock.TYPE) : ChestType.SINGLE;
         Block block = blockstate.getBlock();
         if (block instanceof AbstractChestBlock) {
             AbstractChestBlock<?> abstractchestblock = (AbstractChestBlock) block;
@@ -101,7 +101,7 @@ public class TofuChestBlockRenderer extends TileEntityRenderer<TofuChestTileEnti
             f1 = 1.0F - f1;
             f1 = 1.0F - f1 * f1 * f1;
             int i = icallbackwrapper.apply(new DualBrightnessCallback<>()).applyAsInt(combinedLightIn);
-            Material material = getChestMaterial(tileEntityIn, chesttype);
+            RenderMaterial material = getChestRenderMaterial(tileEntityIn, chesttype);
             IVertexBuilder ivertexbuilder = material.getBuffer(bufferIn, RenderType::getEntityCutout);
             if (flag1) {
                 if (chesttype == ChestType.LEFT) {
@@ -125,15 +125,15 @@ public class TofuChestBlockRenderer extends TileEntityRenderer<TofuChestTileEnti
         p_228871_5_.render(p_228871_1_, p_228871_2_, p_228871_7_, p_228871_8_);
     }
 
-    public static Material getChestMaterial(TileEntity p_228771_0_, ChestType p_228771_1_) {
-        return getChestMaterial(p_228771_1_, TEXTURE_NORMALTOFU, TEXTURE_TOFU_LEFT, TEXTURE_TOFU_RIGHT);
+    public static RenderMaterial getChestRenderMaterial(TileEntity p_228771_0_, ChestType p_228771_1_) {
+        return getChestRenderMaterial(p_228771_1_, TEXTURE_NORMALTOFU, TEXTURE_TOFU_LEFT, TEXTURE_TOFU_RIGHT);
     }
 
-    private static Material getChestMaterial(ResourceLocation p_228774_0_) {
-        return new Material(Atlases.CHEST_ATLAS, p_228774_0_);
+    private static RenderMaterial getChestRenderMaterial(ResourceLocation p_228774_0_) {
+        return new RenderMaterial(Atlases.CHEST_ATLAS, p_228774_0_);
     }
 
-    private static Material getChestMaterial(ChestType p_228772_0_, Material p_228772_1_, Material p_228772_2_, Material p_228772_3_) {
+    private static RenderMaterial getChestRenderMaterial(ChestType p_228772_0_, RenderMaterial p_228772_1_, RenderMaterial p_228772_2_, RenderMaterial p_228772_3_) {
         switch (p_228772_0_) {
             case LEFT:
                 return p_228772_2_;

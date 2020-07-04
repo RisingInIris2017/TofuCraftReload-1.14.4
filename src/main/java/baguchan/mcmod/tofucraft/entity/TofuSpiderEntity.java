@@ -11,7 +11,7 @@ import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
 public class TofuSpiderEntity extends SpiderEntity implements IRangedAttackMob {
@@ -43,7 +43,7 @@ public class TofuSpiderEntity extends SpiderEntity implements IRangedAttackMob {
     public void attackEntityWithRangedAttack(LivingEntity target, float distanceFactor) {
         for (int i = 0; i < 4; i++) {
             FukumameEntity snowballentity = new FukumameEntity(this.world, this);
-            Vec3d vec3d = this.getLook(1.0F);
+            Vector3d vec3d = this.getLook(1.0F);
             double d0 = target.getPosY() + (double) target.getEyeHeight();
             double d1 = target.getPosX() - (this.getPosX() + vec3d.x * 1.2D);
             double d2 = d0 - snowballentity.getPosY();

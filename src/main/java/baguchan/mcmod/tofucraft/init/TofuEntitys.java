@@ -4,12 +4,17 @@ import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.entity.*;
 import baguchan.mcmod.tofucraft.entity.projectile.BeamEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.FukumameEntity;
-import baguchan.mcmod.tofucraft.entity.projectile.TofuHomingForceEntity;
 import baguchan.mcmod.tofucraft.entity.projectile.ZundaArrowEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.monster.SlimeEntity;
+import net.minecraft.entity.monster.SpiderEntity;
+import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.passive.fish.CodEntity;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.BiomeDictionary;
@@ -22,7 +27,7 @@ import static baguchan.mcmod.tofucraft.TofuCraftCore.MODID;
 
 @Mod.EventBusSubscriber(modid = TofuCraftCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TofuEntitys {
-    public static final EntityClassification TOFU_MONSTER = EntityClassification.create("tofu_monster", "tofu_monster", 22, false, false);
+    public static final EntityClassification TOFU_MONSTER = EntityClassification.create("tofu_monster", "tofu_monster", 22, false, false, 128);
 
     public static final EntityType<TofunianEntity> TOFUNIAN = EntityType.Builder.create(TofunianEntity::new, EntityClassification.CREATURE).setShouldReceiveVelocityUpdates(true).size(0.6F, 1.15F).build(prefix("tofunian"));
 
@@ -42,13 +47,27 @@ public class TofuEntitys {
     public static final EntityType<FukumameEntity> FUKUMAME = EntityType.Builder.<FukumameEntity>create(FukumameEntity::new, EntityClassification.MISC).setTrackingRange(4).setCustomClientFactory(FukumameEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(0.4F, 0.4F).build(prefix("fukumame"));
     public static final EntityType<ZundaArrowEntity> ZUNDAARROW = EntityType.Builder.<ZundaArrowEntity>create(ZundaArrowEntity::new, EntityClassification.MISC).setTrackingRange(4).setCustomClientFactory(ZundaArrowEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.5F).build(prefix("zunda_arrow"));
     public static final EntityType<BeamEntity> BEAM = EntityType.Builder.<BeamEntity>create(BeamEntity::new, EntityClassification.MISC).setTrackingRange(4).setCustomClientFactory(BeamEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.5F).build(prefix("beam"));
-    public static final EntityType<TofuHomingForceEntity> TOFU_HOMING_FORCE = EntityType.Builder.<TofuHomingForceEntity>create(TofuHomingForceEntity::new, EntityClassification.MISC).setTrackingRange(40).setCustomClientFactory(TofuHomingForceEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.5F).build(prefix("tofu_homing_force"));
+    //public static final EntityType<TofuHomingForceEntity> TOFU_HOMING_FORCE = EntityType.Builder.<TofuHomingForceEntity>create(TofuHomingForceEntity::new, EntityClassification.MISC).setTrackingRange(40).setCustomClientFactory(TofuHomingForceEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.5F).build(prefix("tofu_homing_force"));
     public static final EntityType<TofuFallingBlockEntity> TOFU_FALLING_BLOCK = EntityType.Builder.<TofuFallingBlockEntity>create(TofuFallingBlockEntity::new, EntityClassification.MISC).setTrackingRange(4).setCustomClientFactory(TofuFallingBlockEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(1.0F, 1.0F).build(prefix("tofu_falling_block"));
     public static final EntityType<SoySplashEntity> SOY_SPLASH = EntityType.Builder.<SoySplashEntity>create(SoySplashEntity::new, EntityClassification.MISC).setTrackingRange(12).setCustomClientFactory(SoySplashEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(1.0F, 1.0F).build(prefix("soy_splash"));
 
 
     @SubscribeEvent
     public static void registerEntity(RegistryEvent.Register<EntityType<?>> event) {
+        GlobalEntityTypeAttributes.put(TOFUCHINGER, TofuChingerEntity.getAttributeMap().func_233813_a_());
+        GlobalEntityTypeAttributes.put(TOFUCOW, CowEntity.func_234188_eI_().func_233813_a_());
+        GlobalEntityTypeAttributes.put(TOFUCREEPER, CreeperEntity.func_234278_m_().func_233813_a_());
+        GlobalEntityTypeAttributes.put(TOFUFISH, CodEntity.func_233639_cI_().func_233813_a_());
+        GlobalEntityTypeAttributes.put(TOFUGANDLEM, TofuGandlemEntity.getAttributeMap().func_233813_a_());
+        GlobalEntityTypeAttributes.put(TOFUMIND, TofuMindEntity.getAttributeMap().func_233813_a_());
+        GlobalEntityTypeAttributes.put(TOFUNIAN, TofunianEntity.getAttributeMap().func_233813_a_());
+        GlobalEntityTypeAttributes.put(TOFUCHINGER, SlimeEntity.func_233639_cI_().func_233813_a_());
+        GlobalEntityTypeAttributes.put(TOFUSPIDER, SpiderEntity.func_234305_eI_().func_233813_a_());
+
+
+        GlobalEntityTypeAttributes.put(TOFUTURRET, TofuTurretEntity.getAttributeMap().func_233813_a_());
+
+
         event.getRegistry().register(TOFUNIAN.setRegistryName("tofunian"));
         event.getRegistry().register(TOFUSLIME.setRegistryName("tofuslime"));
         event.getRegistry().register(TOFUCOW.setRegistryName("tofucow"));
@@ -66,7 +85,7 @@ public class TofuEntitys {
         event.getRegistry().register(FUKUMAME.setRegistryName("fukumame"));
         event.getRegistry().register(ZUNDAARROW.setRegistryName("zunda_arrow"));
         event.getRegistry().register(BEAM.setRegistryName("beam"));
-        event.getRegistry().register(TOFU_HOMING_FORCE.setRegistryName("tofu_homing_force"));
+        //event.getRegistry().register(TOFU_HOMING_FORCE.setRegistryName("tofu_homing_force"));
         event.getRegistry().register(TOFU_FALLING_BLOCK.setRegistryName("tofu_falling_block"));
         event.getRegistry().register(SOY_SPLASH.setRegistryName("soy_splash"));
 

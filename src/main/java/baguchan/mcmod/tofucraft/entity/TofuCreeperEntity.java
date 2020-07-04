@@ -2,7 +2,10 @@ package baguchan.mcmod.tofucraft.entity;
 
 import baguchan.mcmod.tofucraft.entity.ai.TofuCreeperSwellGoal;
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
-import net.minecraft.entity.*;
+import net.minecraft.entity.AreaEffectCloudEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.IChargeableMob;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -16,10 +19,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
@@ -57,11 +57,6 @@ public class TofuCreeperEntity extends MonsterEntity implements IChargeableMob {
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
-    }
-
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
     }
 
     /**
@@ -209,7 +204,7 @@ public class TofuCreeperEntity extends MonsterEntity implements IChargeableMob {
         this.dataManager.set(POWERED, true);
     }
 
-    protected boolean processInteract(PlayerEntity player, Hand hand) {
+    protected ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
         if (itemstack.getItem() == Items.FLINT_AND_STEEL) {
             this.world.playSound(player, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ITEM_FLINTANDSTEEL_USE, this.getSoundCategory(), 1.0F, this.rand.nextFloat() * 0.4F + 0.8F);
@@ -219,11 +214,11 @@ public class TofuCreeperEntity extends MonsterEntity implements IChargeableMob {
                 itemstack.damageItem(1, player, (p_213625_1_) -> {
                     p_213625_1_.sendBreakAnimation(hand);
                 });
-                return true;
+                return ActionResultType.SUCCESS;
             }
         }
 
-        return super.processInteract(player, hand);
+        return super.func_230254_b_(player, hand);
     }
 
     /**

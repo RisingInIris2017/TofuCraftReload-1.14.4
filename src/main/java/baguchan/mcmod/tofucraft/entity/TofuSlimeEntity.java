@@ -1,13 +1,13 @@
 package baguchan.mcmod.tofucraft.entity;
 
 import baguchan.mcmod.tofucraft.init.TofuBiomes;
-import baguchan.mcmod.tofucraft.init.TofuDimensions;
 import baguchan.mcmod.tofucraft.init.TofuItems;
 import baguchan.mcmod.tofucraft.init.TofuLootTables;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootTables;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -21,14 +21,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.storage.loot.LootTables;
 
 import java.util.Random;
 
@@ -46,9 +43,9 @@ public class TofuSlimeEntity extends SlimeEntity {
 
     public void tick() {
         if (!this.world.isRemote && this.isAlive()) {
-            if (!isWeak() && this.world.getBiome(this.getPosition()) == TofuBiomes.ZUNDATOFU_FUNGIFOREST) {
+            if (!isWeak() && this.world.getBiome(new BlockPos(this.getPositionVec())) == TofuBiomes.ZUNDATOFU_FUNGIFOREST) {
                 setWeak(true);
-            } else if (isWeak() && this.world.getBiome(this.getPosition()) != TofuBiomes.ZUNDATOFU_FUNGIFOREST) {
+            } else if (isWeak() && this.world.getBiome(new BlockPos(this.getPositionVec())) != TofuBiomes.ZUNDATOFU_FUNGIFOREST) {
                 setWeak(false);
             }
         }
@@ -91,31 +88,30 @@ public class TofuSlimeEntity extends SlimeEntity {
     }
 
     public static boolean spawnHandle(EntityType<TofuSlimeEntity> p_223366_0_, IWorld p_223366_1_, SpawnReason reason, BlockPos p_223366_3_, Random randomIn) {
-        if (p_223366_1_.getWorldInfo().getGenerator().handleSlimeSpawnReduction(randomIn, p_223366_1_) && randomIn.nextInt(4) != 1) {
-            return false;
-        } else {
-            if (p_223366_1_.getDifficulty() != Difficulty.PEACEFUL) {
-                Biome biome = p_223366_1_.getBiome(p_223366_3_);
-                if (p_223366_1_.getWorld().getDimension().getType().getModType() == TofuDimensions.TOFUWORLD && p_223366_1_.getLightFor(LightType.BLOCK, p_223366_3_) <= randomIn.nextInt(7)) {
-                    return canSpawnOn(p_223366_0_, p_223366_1_, reason, p_223366_3_, randomIn);
-                }
-
-                ChunkPos chunkpos = new ChunkPos(p_223366_3_);
-                boolean flag = SharedSeedRandom.seedSlimeChunk(chunkpos.x, chunkpos.z, p_223366_1_.getSeed(), 987234911L).nextInt(10) == 0;
-                if (p_223366_1_.getWorld().getDimension().getType() == DimensionType.OVERWORLD && randomIn.nextInt(10) == 0 && flag && p_223366_3_.getY() < 50) {
-                    return canSpawnOn(p_223366_0_, p_223366_1_, reason, p_223366_3_, randomIn);
-                }
+        if (p_223366_1_.getDifficulty() != Difficulty.PEACEFUL) {
+            Biome biome = p_223366_1_.getBiome(p_223366_3_);
+            if (biome == TofuBiomes.TOFU_PLAIN && p_223366_3_.getY() > 50 && p_223366_3_.getY() < 70 && randomIn.nextFloat() < 0.5F && randomIn.nextFloat() < p_223366_1_.getCurrentMoonPhaseFactor() && p_223366_1_.getLight(p_223366_3_) <= randomIn.nextInt(8)) {
+                return canSpawnOn(p_223366_0_, p_223366_1_, reason, p_223366_3_, randomIn);
             }
 
-            return false;
+            if (!(p_223366_1_ instanceof ISeedReader)) {
+                return false;
+            }
+
+            ChunkPos chunkpos = new ChunkPos(p_223366_3_);
+            boolean flag = SharedSeedRandom.seedSlimeChunk(chunkpos.x, chunkpos.z, ((ISeedReader) p_223366_1_).getSeed(), 987234911L).nextInt(10) == 0;
+            if (randomIn.nextInt(10) == 0 && flag && p_223366_3_.getY() < 40) {
+                return canSpawnOn(p_223366_0_, p_223366_1_, reason, p_223366_3_, randomIn);
+            }
         }
+        return false;
     }
 
-    public static boolean isSpawnChunk(World world, double x, double z) {
-        BlockPos blockpos = new BlockPos(MathHelper.floor(x), 0, MathHelper.floor(z));
-        ChunkPos chunkpos = new ChunkPos(blockpos);
+    public static boolean isSpawnChunk(World world, BlockPos pos) {
+        ChunkPos chunkpos = new ChunkPos(pos);
 
-        return SharedSeedRandom.seedSlimeChunk(chunkpos.x, chunkpos.z, world.getSeed(), 987234911L).nextInt(10) == 0;
+        boolean flag = SharedSeedRandom.seedSlimeChunk(chunkpos.x, chunkpos.z, ((ISeedReader) world).getSeed(), 987234911L).nextInt(10) == 0;
+        return flag;
     }
 
     protected IParticleData getSquishParticle() {

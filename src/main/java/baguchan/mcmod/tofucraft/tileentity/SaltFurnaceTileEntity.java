@@ -3,6 +3,7 @@ package baguchan.mcmod.tofucraft.tileentity;
 import baguchan.mcmod.tofucraft.block.SaltFurnaceBlock;
 import baguchan.mcmod.tofucraft.container.SaltFurnaceContainer;
 import baguchan.mcmod.tofucraft.init.TofuTileEntitys;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -63,8 +64,8 @@ public class SaltFurnaceTileEntity extends TileEntity implements INamedContainer
         return this.burnTime > 0;
     }
 
-    public void read(CompoundNBT compound) {
-        super.read(compound);
+    public void func_230337_a_(BlockState p_230337_1_, CompoundNBT compound) {
+        super.func_230337_a_(p_230337_1_, compound);
         this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(compound, this.items);
         this.burnTime = compound.getInt("BurnTime");

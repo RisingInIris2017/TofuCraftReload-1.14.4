@@ -1,7 +1,7 @@
 package baguchan.mcmod.tofucraft.entity.movement;
 
 import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.pathfinding.NodeProcessor;
@@ -17,7 +17,7 @@ public class FlyingStrafeMovementController extends FlyingMovementController {
     public void tick() {
         if (this.action == MovementController.Action.STRAFE) {
             this.mob.setNoGravity(false);
-            float f = (float) this.mob.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getValue();
+            float f = (float) this.mob.getAttribute(Attributes.field_233821_d_).getValue();
             float f1 = (float) this.speed * f;
             float f2 = this.moveForward;
             float f3 = this.moveStrafe;

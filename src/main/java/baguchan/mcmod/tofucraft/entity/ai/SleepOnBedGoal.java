@@ -24,7 +24,7 @@ public class SleepOnBedGoal extends MoveToBlockGoal {
      * Returns whether the EntityAIBase should begin execution.
      */
     public boolean shouldExecute() {
-        return !this.creature.isBeingRidden() && !this.creature.isSleeping() && this.creature.world.getDimension().isSurfaceWorld() && !WorldUtils.isDaytime(this.creature.world) && this.creature.getAttackTarget() == null && super.shouldExecute();
+        return !this.creature.isBeingRidden() && !this.creature.isSleeping() && !WorldUtils.isDaytime(this.creature.world) && this.creature.getAttackTarget() == null && super.shouldExecute();
     }
 
     protected int getRunDelay(CreatureEntity creatureIn) {
@@ -51,7 +51,7 @@ public class SleepOnBedGoal extends MoveToBlockGoal {
         super.tick();
 
         if (!this.creature.isSleeping()) {
-            BlockPos pos = this.creature.getPosition();
+            BlockPos pos = new BlockPos(this.creature.getPositionVec());
             BlockState blockstate = this.creature.world.getBlockState(pos);
 
             if (this.getIsAboveDestination()) {

@@ -16,13 +16,10 @@ import net.minecraft.util.math.ColumnPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.function.Supplier;
 
 public class TofuWorldTeleporter extends Teleporter {
     private static final TofuPortalBlock BLOCK_TOFUPORTAL = (TofuPortalBlock) TofuBlocks.TOFUPORTAL;
@@ -36,7 +33,7 @@ public class TofuWorldTeleporter extends Teleporter {
 
 
     public boolean placeInPortal(Entity entity, float rotationYaw) {
-        ColumnPos columnpos = new ColumnPos(entity.getPosition());
+        ColumnPos columnpos = new ColumnPos(new BlockPos(entity.getPositionVec()));
 
         double distance = -1.0D;
         boolean doesPortalExist = true;
@@ -49,13 +46,13 @@ public class TofuWorldTeleporter extends Teleporter {
             portalPosition.lastUpdateTime = this.world.getGameTime();
             doesPortalExist = false;
         } else {
-            final BlockPos entityPos = new BlockPos(entity);
+            final BlockPos entityPos = new BlockPos(entity.getPositionVec());
             for (int offsetX = -128; offsetX <= 128; ++offsetX) {
                 BlockPos positionCache;
 
                 for (int offsetZ = -128; offsetZ <= 128; ++offsetZ) {
 
-                    for (BlockPos currentPos = entityPos.add(offsetX, this.world.getActualHeight() - 1 - entityPos.getY(), offsetZ); currentPos.getY() >= 0; currentPos = positionCache) {
+                    for (BlockPos currentPos = entityPos.add(offsetX, this.world.getHeight() - 1 - entityPos.getY(), offsetZ); currentPos.getY() >= 0; currentPos = positionCache) {
                         positionCache = currentPos.down();
                         if (this.world.getBlockState(currentPos).getBlock() == TofuBlocks.TOFUPORTAL) {
                             while (this.world.getBlockState(positionCache = currentPos.down()).getBlock() == TofuBlocks.TOFUPORTAL) {
@@ -292,7 +289,6 @@ public class TofuWorldTeleporter extends Teleporter {
     public void tick(long worldTime) {
         if (worldTime % 100L == 0L) {
             this.func_222270_b(worldTime);
-            this.func_222269_c(worldTime);
         }
 
     }
@@ -304,28 +300,6 @@ public class TofuWorldTeleporter extends Teleporter {
             long i = longiterator.nextLong();
             if (i <= p_222270_1_) {
                 longiterator.remove();
-            }
-        }
-
-    }
-
-    private void func_222269_c(long p_222269_1_) {
-        long i = p_222269_1_ - 300L;
-        Iterator<Map.Entry<ColumnPos, PortalPosition>> iterator = this.destinationCoordinateCache.entrySet().iterator();
-
-        while (iterator.hasNext()) {
-            Map.Entry<ColumnPos, PortalPosition> entry = iterator.next();
-            TofuWorldTeleporter.PortalPosition teleporter$portalposition = entry.getValue();
-            if (teleporter$portalposition.lastUpdateTime < i) {
-                ColumnPos columnpos = entry.getKey();
-                Supplier[] asupplier = new Supplier[2];
-                Dimension dimension = this.world.getDimension();
-                asupplier[0] = dimension::getType;
-                asupplier[1] = () -> {
-                    return columnpos;
-                };
-                //this.world.getChunkProvider().releaseTicket(TicketType.PORTAL, new ChunkPos(teleporter$portalposition.field_222267_a), 3, Unit.INSTANCE);
-                iterator.remove();
             }
         }
 

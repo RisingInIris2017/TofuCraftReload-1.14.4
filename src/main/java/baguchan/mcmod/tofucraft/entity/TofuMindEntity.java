@@ -4,6 +4,8 @@ import baguchan.mcmod.tofucraft.init.TofuCreatureAttribute;
 import baguchan.mcmod.tofucraft.init.TofuItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.AbstractIllagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -12,7 +14,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -35,13 +37,9 @@ public class TofuMindEntity extends MonsterEntity {
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, false));
     }
 
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.28F);
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
-        this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(4.0D);
-        this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(24.0D);
-        this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
+
+    public static AttributeModifierMap.MutableAttribute getAttributeMap() {
+        return MonsterEntity.func_233666_p_().func_233815_a_(Attributes.field_233821_d_, (double) 0.28F).func_233815_a_(Attributes.field_233818_a_, 20.0D).func_233815_a_(Attributes.field_233819_b_, 24.0D).func_233815_a_(Attributes.field_233826_i_, 4.0D).func_233815_a_(Attributes.field_233823_f_, 2.0D);
     }
 
     @Override
@@ -53,7 +51,7 @@ public class TofuMindEntity extends MonsterEntity {
     @Override
     protected void updateAITasks() {
 
-        Vec3d vec3d = this.getMotion();
+        Vector3d vec3d = this.getMotion();
         if (!this.onGround && vec3d.y < 0.0D) {
             this.setMotion(vec3d.mul(1.0D, 0.6D, 1.0D));
         }

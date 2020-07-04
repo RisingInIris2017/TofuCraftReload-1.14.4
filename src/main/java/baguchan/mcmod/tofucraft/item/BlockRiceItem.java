@@ -7,8 +7,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -60,11 +60,11 @@ public class BlockRiceItem extends BlockItem {
                 BlockPos blockpos1 = blockpos.up();
                 BlockState blockstate = worldIn.getBlockState(blockpos);
                 Material material = blockstate.getMaterial();
-                IFluidState ifluidstate = worldIn.getFluidState(blockpos);
+                FluidState ifluidstate = worldIn.getFluidState(blockpos);
                 if ((ifluidstate.getFluid() == Fluids.WATER || material == Material.ICE) && worldIn.isAirBlock(blockpos1) && worldIn.getFluidState(blockpos.down()).isEmpty()) {
 
                     // special case for handling block placement with water lilies
-                    net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(worldIn, blockpos1);
+                    net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.create(worldIn, blockpos1);
                     worldIn.setBlockState(blockpos1.down(), TofuBlocks.RICE_ROOT.getDefaultState(), 11);
                     worldIn.setBlockState(blockpos1, TofuBlocks.RICE.getDefaultState(), 11);
                     if (net.minecraftforge.event.ForgeEventFactory.onBlockPlace(playerIn, blocksnapshot, net.minecraft.util.Direction.UP)) {
