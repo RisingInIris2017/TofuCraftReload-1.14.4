@@ -7,6 +7,7 @@ import baguchan.mcmod.tofucraft.init.TofuFeatures;
 import com.google.common.collect.Lists;
 import net.minecraft.block.pattern.BlockMatcher;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
@@ -89,7 +90,9 @@ public class DefaultTofuBiomeFeature {
         for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
             if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER)) {
 
-                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(NETHER_SOYBEAN).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(0.35F, 0, 0, 60))));
+                if (biome != Biomes.field_235252_ay_ && biome != Biomes.field_235250_aA_ && biome != Biomes.field_235251_aB_) {
+                    biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(NETHER_SOYBEAN).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(0.45F, 0, 0, 80))));
+                }
             }
         }
     }
