@@ -54,19 +54,22 @@ public class FukumameEntity extends ThrowableEntity {
 
 
     @Override
-    protected void onImpact(RayTraceResult result) {
+    protected void onEntityHit(EntityRayTraceResult result) {
+        super.onEntityHit(result);
+        Entity entity = result.getEntity();
 
-        if (result.getType() == RayTraceResult.Type.ENTITY) {
-            Entity entity = ((EntityRayTraceResult) result).getEntity();
-
-            if (this.func_234616_v_() == entity && this.ticksExisted < 4) {
-                return;
-            }
-
-            entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.func_234616_v_()), (float) 2);
-
-            entity.hurtResistantTime = 5;
+        if (this.func_234616_v_() == entity && this.ticksExisted < 4) {
+            return;
         }
+
+        entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.func_234616_v_()), (float) 2);
+
+        entity.hurtResistantTime = 5;
+    }
+
+    @Override
+    protected void onImpact(RayTraceResult result) {
+        super.onImpact(result);
         this.world.setEntityState(this, (byte) 3);
         this.remove();
     }
