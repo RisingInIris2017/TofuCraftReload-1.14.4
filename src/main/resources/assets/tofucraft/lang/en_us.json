@@ -40,6 +40,7 @@
   "item.tofucraft.sprouts": "Sprouts",
   "item.tofucraft.kinako": "Kinako",
   "item.tofucraft.fukumame": "Fukumame",
+  "item.tofucraft.nether_fukumame": "Nether Fukumame",
   "item.tofucraft.edamame": "Edamame",
   "item.tofucraft.edamame_boild": "Boild Edamame",
   "item.tofucraft.rice": "Rice",
@@ -233,13 +234,11 @@
   "entity.tofucraft.tofugandlem": "Tofu Gandlem",
   "entity.tofucraft.zunsy": "Zunsy",
   "entity.tofucraft.zundama": "Zundama",
-
   "entity.tofucraft.fukumame": "Fukumame",
+  "entity.tofucraft.nether_fukumame": "Nether Fukumame",
   "entity.tofucraft.tofu_homing_force": "Tofu Homing Force",
   "entity.minecraft.villager.tofucraft.tofu_craftsman": "Tofu Craftsman",
-
   "subtitles.entity.tofunian.idle": "tofunian's murmur",
-
   "advancements.tofucraft.root.title": "TofuCraft",
   "advancements.tofucraft.root.description": "Beginning Tofu Crafter",
   "advancements.tofucraft.make_saltpan.title": "SaltPan",

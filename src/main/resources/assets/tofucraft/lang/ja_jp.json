@@ -40,6 +40,7 @@
   "item.tofucraft.sprouts": "もやし",
   "item.tofucraft.kinako": "きなこ",
   "item.tofucraft.fukumame": "福豆",
+  "item.tofucraft.nether_fukumame": "地獄豆",
   "item.tofucraft.edamame": "枝豆",
   "item.tofucraft.edamame_boild": "茹でた枝豆",
   "item.tofucraft.rice": "米",
@@ -230,13 +231,11 @@
   "entity.tofucraft.tofugandlem": "トーフガンドレム",
   "entity.tofucraft.zunsy": "ズンシィ",
   "entity.tofucraft.zundama": "ずんだま",
-
   "entity.tofucraft.fukumame": "福豆",
+  "entity.tofucraft.nether_fukumame": "地獄豆",
   "entity.tofucraft.tofu_homing_force": "トーフホーミングフォース",
   "entity.minecraft.villager.tofucraft.tofu_craftsman": "豆腐職人",
-
   "subtitles.entity.tofunian.idle": "トーフニアンがつぶやく",
-
   "advancements.tofucraft.root.title": "TofuCraft",
   "advancements.tofucraft.root.description": "豆腐を作りながら新たなる可能性を見つける",
   "advancements.tofucraft.make_saltpan.title": "塩田",

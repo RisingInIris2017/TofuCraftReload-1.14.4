@@ -31,9 +31,9 @@ public class TofuItems {
 
     public static TofuArmorMaterial KINU_ARMOR_MATERIAL = new TofuArmorMaterial("kinu", 0, new int[]{0, 0, 0, 0}, 8, SoundEvents.BLOCK_WOOL_PLACE, 0, 0).setRepairMaterial(Ingredient.fromItems(TofuItems.TOFUKINU));
     public static TofuArmorMaterial MOMEN_ARMOR_MATERIAL = new TofuArmorMaterial("momen", 1, new int[]{0, 1, 1, 0}, 10, SoundEvents.BLOCK_WOOL_PLACE, 0, 0).setRepairMaterial(Ingredient.fromItems(TofuItems.TOFUMOMEN));
-    public static TofuArmorMaterial ISHI_ARMOR_MATERIAL = new TofuArmorMaterial("ishi", 10, new int[]{2, 3, 4, 2}, 16, SoundEvents.BLOCK_WOOL_PLACE, 0, 0).setRepairMaterial(Ingredient.fromItems(TofuItems.TOFUISHI));
-    public static TofuArmorMaterial METAL_ARMOR_MATERIAL = new TofuArmorMaterial("tofu_metal", 15, new int[]{2, 5, 6, 2}, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, 0).setRepairMaterial(Ingredient.fromItems(TofuItems.TOFUMETAL));
-    public static TofuArmorMaterial DIAMOND_ARMOR_MATERIAL = new TofuArmorMaterial("tofu_diamond", 35, new int[]{3, 6, 8, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F, 0).setRepairMaterial(Ingredient.fromItems(TofuItems.TOFUDIAMOND));
+    public static TofuArmorMaterial ISHI_ARMOR_MATERIAL = new TofuArmorMaterial("solid", 10, new int[]{2, 3, 4, 2}, 16, SoundEvents.BLOCK_WOOL_PLACE, 0, 0).setRepairMaterial(Ingredient.fromItems(TofuItems.TOFUISHI));
+    public static TofuArmorMaterial METAL_ARMOR_MATERIAL = new TofuArmorMaterial("metal", 15, new int[]{2, 5, 6, 2}, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, 0).setRepairMaterial(Ingredient.fromItems(TofuItems.TOFUMETAL));
+    public static TofuArmorMaterial DIAMOND_ARMOR_MATERIAL = new TofuArmorMaterial("diamond", 35, new int[]{3, 6, 8, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F, 0).setRepairMaterial(Ingredient.fromItems(TofuItems.TOFUDIAMOND));
 
 
     public static final Item TOFUKINU = new Item(new Item.Properties().food(TofuFoods.TOFUKINU).group(TofuItemGroup.TOFUCRAFT));
@@ -79,6 +79,7 @@ public class TofuItems {
     public static final Item SOYBEAN_PARCHED = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item SPROUTS = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT).food(TofuFoods.SPROUT));
     public static final Item FUKUMAME = new FukumameItem(new Item.Properties().maxDamage(32).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item NETHER_FUKUMAME = new NetherFukumameItem(new Item.Properties().maxDamage(32).group(TofuItemGroup.TOFUCRAFT));
     public static final Item EDAMAME = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item EDAMAME_BOILD = new Item(new Item.Properties().food(TofuFoods.EDAMAME).group(TofuItemGroup.TOFUCRAFT));
     public static final Item RICE = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
@@ -256,6 +257,7 @@ public class TofuItems {
         register(registry, EDAMAME, "edamame");
         register(registry, EDAMAME_BOILD, "edamame_boild");
         register(registry, FUKUMAME, "fukumame");
+        register(registry, NETHER_FUKUMAME, "nether_fukumame");
 
         register(registry, RICE, "rice");
         register(registry, SEEDS_RICE, "seeds_rice");

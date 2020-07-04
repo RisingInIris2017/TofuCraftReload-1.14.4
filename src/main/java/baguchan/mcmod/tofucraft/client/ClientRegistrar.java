@@ -44,6 +44,7 @@ public class ClientRegistrar {
 
         RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.MORIJIO, MorijioRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.FUKUMAME, FukumameRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.NETHER_FUKUMAME, NetherFukumameRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.ZUNDAARROW, ZundaArrowRender::new);
         RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.BEAM, BeamRender::new);
         //RenderingRegistry.registerEntityRenderingHandler(TofuEntitys.TOFU_HOMING_FORCE, EmptyRender::new);
