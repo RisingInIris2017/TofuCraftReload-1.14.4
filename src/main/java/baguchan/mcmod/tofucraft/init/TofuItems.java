@@ -78,7 +78,7 @@ public class TofuItems {
     public static final Item KINAKO = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item SOYBEAN_PARCHED = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item SPROUTS = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT).food(TofuFoods.SPROUT));
-    public static final Item FUKUMAME = new FukumameItem(new Item.Properties().maxDamage(64).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item FUKUMAME = new FukumameItem(new Item.Properties().maxDamage(32).group(TofuItemGroup.TOFUCRAFT));
     public static final Item EDAMAME = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item EDAMAME_BOILD = new Item(new Item.Properties().food(TofuFoods.EDAMAME).group(TofuItemGroup.TOFUCRAFT));
     public static final Item RICE = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
