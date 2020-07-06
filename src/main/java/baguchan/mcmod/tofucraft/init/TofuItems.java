@@ -363,11 +363,9 @@ public class TofuItems {
         ItemModelsProperties.func_239418_a_(TOFUMETAL_SHIELD, new ResourceLocation("blocking"), (p_239419_0_, p_239419_1_, p_239419_2_) -> {
             return p_239419_2_ != null && p_239419_2_.isHandActive() && p_239419_2_.getActiveItemStack() == p_239419_0_ ? 1.0F : 0.0F;
         });
-
         ItemModelsProperties.func_239418_a_(TOFUFORCE_CORE, new ResourceLocation("broken"), (p_239419_0_, p_239419_1_, p_239419_2_) -> {
-            return TofuForceCoreItem.isUsable(p_239419_0_) ? 1.0F : 0.0F;
+            return TofuForceCoreItem.isUsable(p_239419_0_) ? 0.0F : 1.0F;
         });
-
         ItemModelsProperties.func_239418_a_(ZUNDABOW, new ResourceLocation("pull"), (p_239429_0_, p_239429_1_, p_239429_2_) -> {
             if (p_239429_2_ == null) {
                 return 0.0F;
