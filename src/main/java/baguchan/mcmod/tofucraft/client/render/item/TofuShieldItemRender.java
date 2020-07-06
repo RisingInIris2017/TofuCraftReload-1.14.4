@@ -7,6 +7,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.entity.model.ShieldModel;
+import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -21,25 +22,26 @@ public class TofuShieldItemRender extends ItemStackTileEntityRenderer {
 
     private final ShieldModel modelShield = new ShieldModel();
 
-    public void render(ItemStack itemStackIn, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+    public void func_239207_a_(ItemStack itemStackIn, ItemCameraTransforms.TransformType p_239207_2_, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
         if (itemStackIn.getItem() == TofuItems.TOFUISHI_SHIELD) {
             matrixStackIn.push();
             matrixStackIn.scale(1.0F, -1.0F, -1.0F);
-            IVertexBuilder ivertexbuilder = ItemRenderer.getBuffer(bufferIn, this.modelShield.getRenderType(ISHI_TEXTURE), false, itemStackIn.hasEffect());
+
+            IVertexBuilder ivertexbuilder = ItemRenderer.func_239391_c_(bufferIn, this.modelShield.getRenderType(ISHI_TEXTURE), false, itemStackIn.hasEffect());
             this.modelShield.func_228294_b_().render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
 
             this.modelShield.func_228293_a_().render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
 
-
             matrixStackIn.pop();
+
         } else if (itemStackIn.getItem() == TofuItems.TOFUMETAL_SHIELD) {
             matrixStackIn.push();
             matrixStackIn.scale(1.0F, -1.0F, -1.0F);
-            IVertexBuilder ivertexbuilder = ItemRenderer.getBuffer(bufferIn, this.modelShield.getRenderType(METAL_TEXTURE), false, itemStackIn.hasEffect());
+
+            IVertexBuilder ivertexbuilder = ItemRenderer.func_239391_c_(bufferIn, this.modelShield.getRenderType(METAL_TEXTURE), false, itemStackIn.hasEffect());
             this.modelShield.func_228294_b_().render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
 
             this.modelShield.func_228293_a_().render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
-
 
             matrixStackIn.pop();
         }

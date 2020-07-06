@@ -2,9 +2,10 @@ package baguchan.mcmod.tofucraft.client.render.tileentity;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
-import baguchan.mcmod.tofucraft.tileentity.TofuChestTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
+import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.block.AbstractChestBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -30,53 +31,55 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class TofuChestBlockRenderer extends TileEntityRenderer<TofuChestTileEntity> {
+public class TofuChestBlockRenderer<T extends TileEntity & IChestLid> extends TileEntityRenderer<T> {
     public static final RenderMaterial TEXTURE_NORMALTOFU = getChestRenderMaterial(new ResourceLocation(TofuCraftCore.MODID, "entity/chest/tofuchest"));
     public static final RenderMaterial TEXTURE_TOFU_LEFT = getChestRenderMaterial(new ResourceLocation(TofuCraftCore.MODID, "entity/chest/tofuchest_left"));
     public static final RenderMaterial TEXTURE_TOFU_RIGHT = getChestRenderMaterial(new ResourceLocation(TofuCraftCore.MODID, "entity/chest/tofuchest_right"));
 
-    private final ModelRenderer field_228862_a_;
-    private final ModelRenderer field_228863_c_;
-    private final ModelRenderer field_228864_d_;
-    private final ModelRenderer field_228865_e_;
-    private final ModelRenderer field_228866_f_;
-    private final ModelRenderer field_228867_g_;
-    private final ModelRenderer field_228868_h_;
-    private final ModelRenderer field_228869_i_;
-    private final ModelRenderer field_228870_j_;
+    private final ModelRenderer singleLid;
+    private final ModelRenderer singleBottom;
+    private final ModelRenderer singleLatch;
+    private final ModelRenderer rightLid;
+    private final ModelRenderer rightBottom;
+    private final ModelRenderer rightLatch;
+    private final ModelRenderer leftLid;
+    private final ModelRenderer leftBottom;
+    private final ModelRenderer leftLatch;
 
-    public TofuChestBlockRenderer(TileEntityRendererDispatcher p_i226008_1_) {
-        super(p_i226008_1_);
-        this.field_228863_c_ = new ModelRenderer(64, 64, 0, 19);
-        this.field_228863_c_.addBox(1.0F, 0.0F, 1.0F, 14.0F, 10.0F, 14.0F, 0.0F);
-        this.field_228862_a_ = new ModelRenderer(64, 64, 0, 0);
-        this.field_228862_a_.addBox(1.0F, 0.0F, 0.0F, 14.0F, 5.0F, 14.0F, 0.0F);
-        this.field_228862_a_.rotationPointY = 9.0F;
-        this.field_228862_a_.rotationPointZ = 1.0F;
-        this.field_228864_d_ = new ModelRenderer(64, 64, 0, 0);
-        this.field_228864_d_.addBox(7.0F, -1.0F, 15.0F, 2.0F, 4.0F, 1.0F, 0.0F);
-        this.field_228864_d_.rotationPointY = 8.0F;
-        this.field_228866_f_ = new ModelRenderer(64, 64, 0, 19);
-        this.field_228866_f_.addBox(1.0F, 0.0F, 1.0F, 15.0F, 10.0F, 14.0F, 0.0F);
-        this.field_228865_e_ = new ModelRenderer(64, 64, 0, 0);
-        this.field_228865_e_.addBox(1.0F, 0.0F, 0.0F, 15.0F, 5.0F, 14.0F, 0.0F);
-        this.field_228865_e_.rotationPointY = 9.0F;
-        this.field_228865_e_.rotationPointZ = 1.0F;
-        this.field_228867_g_ = new ModelRenderer(64, 64, 0, 0);
-        this.field_228867_g_.addBox(15.0F, -1.0F, 15.0F, 1.0F, 4.0F, 1.0F, 0.0F);
-        this.field_228867_g_.rotationPointY = 8.0F;
-        this.field_228869_i_ = new ModelRenderer(64, 64, 0, 19);
-        this.field_228869_i_.addBox(0.0F, 0.0F, 1.0F, 15.0F, 10.0F, 14.0F, 0.0F);
-        this.field_228868_h_ = new ModelRenderer(64, 64, 0, 0);
-        this.field_228868_h_.addBox(0.0F, 0.0F, 0.0F, 15.0F, 5.0F, 14.0F, 0.0F);
-        this.field_228868_h_.rotationPointY = 9.0F;
-        this.field_228868_h_.rotationPointZ = 1.0F;
-        this.field_228870_j_ = new ModelRenderer(64, 64, 0, 0);
-        this.field_228870_j_.addBox(0.0F, -1.0F, 15.0F, 1.0F, 4.0F, 1.0F, 0.0F);
-        this.field_228870_j_.rotationPointY = 8.0F;
+    public TofuChestBlockRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
+        super(rendererDispatcherIn);
+
+
+        this.singleBottom = new ModelRenderer(64, 64, 0, 19);
+        this.singleBottom.addBox(1.0F, 0.0F, 1.0F, 14.0F, 10.0F, 14.0F, 0.0F);
+        this.singleLid = new ModelRenderer(64, 64, 0, 0);
+        this.singleLid.addBox(1.0F, 0.0F, 0.0F, 14.0F, 5.0F, 14.0F, 0.0F);
+        this.singleLid.rotationPointY = 9.0F;
+        this.singleLid.rotationPointZ = 1.0F;
+        this.singleLatch = new ModelRenderer(64, 64, 0, 0);
+        this.singleLatch.addBox(7.0F, -1.0F, 15.0F, 2.0F, 4.0F, 1.0F, 0.0F);
+        this.singleLatch.rotationPointY = 8.0F;
+        this.rightBottom = new ModelRenderer(64, 64, 0, 19);
+        this.rightBottom.addBox(1.0F, 0.0F, 1.0F, 15.0F, 10.0F, 14.0F, 0.0F);
+        this.rightLid = new ModelRenderer(64, 64, 0, 0);
+        this.rightLid.addBox(1.0F, 0.0F, 0.0F, 15.0F, 5.0F, 14.0F, 0.0F);
+        this.rightLid.rotationPointY = 9.0F;
+        this.rightLid.rotationPointZ = 1.0F;
+        this.rightLatch = new ModelRenderer(64, 64, 0, 0);
+        this.rightLatch.addBox(15.0F, -1.0F, 15.0F, 1.0F, 4.0F, 1.0F, 0.0F);
+        this.rightLatch.rotationPointY = 8.0F;
+        this.leftBottom = new ModelRenderer(64, 64, 0, 19);
+        this.leftBottom.addBox(0.0F, 0.0F, 1.0F, 15.0F, 10.0F, 14.0F, 0.0F);
+        this.leftLid = new ModelRenderer(64, 64, 0, 0);
+        this.leftLid.addBox(0.0F, 0.0F, 0.0F, 15.0F, 5.0F, 14.0F, 0.0F);
+        this.leftLid.rotationPointY = 9.0F;
+        this.leftLid.rotationPointZ = 1.0F;
+        this.leftLatch = new ModelRenderer(64, 64, 0, 0);
+        this.leftLatch.addBox(0.0F, -1.0F, 15.0F, 1.0F, 4.0F, 1.0F, 0.0F);
+        this.leftLatch.rotationPointY = 8.0F;
     }
 
-    public void render(TofuChestTileEntity tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+    public void render(T tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
         World world = tileEntityIn.getWorld();
         boolean flag = world != null;
         BlockState blockstate = flag ? tileEntityIn.getBlockState() : TofuBlocks.TOFUCHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
@@ -97,27 +100,27 @@ public class TofuChestBlockRenderer extends TileEntityRenderer<TofuChestTileEnti
                 icallbackwrapper = TileEntityMerger.ICallback::func_225537_b_;
             }
 
-            float f1 = icallbackwrapper.apply(ChestBlock.func_226917_a_((IChestLid) tileEntityIn)).get(partialTicks);
+            float f1 = icallbackwrapper.<Float2FloatFunction>apply(ChestBlock.func_226917_a_(tileEntityIn)).get(partialTicks);
             f1 = 1.0F - f1;
             f1 = 1.0F - f1 * f1 * f1;
-            int i = icallbackwrapper.apply(new DualBrightnessCallback<>()).applyAsInt(combinedLightIn);
-            RenderMaterial material = getChestRenderMaterial(tileEntityIn, chesttype);
-            IVertexBuilder ivertexbuilder = material.getBuffer(bufferIn, RenderType::getEntityCutout);
+            int i = icallbackwrapper.<Int2IntFunction>apply(new DualBrightnessCallback<>()).applyAsInt(combinedLightIn);
+            RenderMaterial rendermaterial = getChestRenderMaterial(tileEntityIn, chesttype);
+            IVertexBuilder ivertexbuilder = rendermaterial.getBuffer(bufferIn, RenderType::getEntityCutout);
             if (flag1) {
                 if (chesttype == ChestType.LEFT) {
-                    this.func_228871_a_(matrixStackIn, ivertexbuilder, this.field_228868_h_, this.field_228870_j_, this.field_228869_i_, f1, i, combinedOverlayIn);
+                    this.renderModels(matrixStackIn, ivertexbuilder, this.leftLid, this.leftLatch, this.leftBottom, f1, i, combinedOverlayIn);
                 } else {
-                    this.func_228871_a_(matrixStackIn, ivertexbuilder, this.field_228865_e_, this.field_228867_g_, this.field_228866_f_, f1, i, combinedOverlayIn);
+                    this.renderModels(matrixStackIn, ivertexbuilder, this.rightLid, this.rightLatch, this.rightBottom, f1, i, combinedOverlayIn);
                 }
             } else {
-                this.func_228871_a_(matrixStackIn, ivertexbuilder, this.field_228862_a_, this.field_228864_d_, this.field_228863_c_, f1, i, combinedOverlayIn);
+                this.renderModels(matrixStackIn, ivertexbuilder, this.singleLid, this.singleLatch, this.singleBottom, f1, i, combinedOverlayIn);
             }
 
             matrixStackIn.pop();
         }
     }
 
-    private void func_228871_a_(MatrixStack p_228871_1_, IVertexBuilder p_228871_2_, ModelRenderer p_228871_3_, ModelRenderer p_228871_4_, ModelRenderer p_228871_5_, float p_228871_6_, int p_228871_7_, int p_228871_8_) {
+    private void renderModels(MatrixStack p_228871_1_, IVertexBuilder p_228871_2_, ModelRenderer p_228871_3_, ModelRenderer p_228871_4_, ModelRenderer p_228871_5_, float p_228871_6_, int p_228871_7_, int p_228871_8_) {
         p_228871_3_.rotateAngleX = -(p_228871_6_ * ((float) Math.PI / 2F));
         p_228871_4_.rotateAngleX = p_228871_3_.rotateAngleX;
         p_228871_3_.render(p_228871_1_, p_228871_2_, p_228871_7_, p_228871_8_);
