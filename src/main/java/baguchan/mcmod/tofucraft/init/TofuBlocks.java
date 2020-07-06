@@ -103,7 +103,6 @@ public class TofuBlocks {
     public static final Block TOFUSTEM_CACHE = new TofuStemCache(Block.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 5.0F).tickRandomly().sound(SoundType.WOOD));
     public static final Block TOFUSTEM_PLANK = new Block(Block.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 5.0F).sound(SoundType.WOOD));
     public static final Block TOFUTERRAIN = new TofuTerrainBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F, 0.9F).sound(SoundType.SNOW));
-    public static final Block TOFUISHI_TERRAIN = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
     public static final Block ZUNDATOFUTERRAIN = new TofuGrassBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).tickRandomly().hardnessAndResistance(0.5F, 0.9F).sound(SoundType.SNOW));
     public static final Block ORE_TOFUDIAMOND = new Block(Block.Properties.create(TofuMaterial.TOFUORE).harvestTool(ToolType.SHOVEL).func_235861_h_().harvestLevel(2).hardnessAndResistance(1.0F, 2.0F).sound(SoundType.SNOW));
     public static final Block TOFUBEDROCK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).func_235861_h_().hardnessAndResistance(-1.0F, 2000000.0F).sound(SoundType.STONE));
@@ -217,7 +216,6 @@ public class TofuBlocks {
         registry.getRegistry().register(TOFUSTEM_CACHE.setRegistryName("tofustem_cache"));
         registry.getRegistry().register(TOFUSTEM_PLANK.setRegistryName("tofustem_planks"));
         registry.getRegistry().register(TOFUTERRAIN.setRegistryName("tofu_terrain"));
-        registry.getRegistry().register(TOFUISHI_TERRAIN.setRegistryName("tofuishi_terrain"));
         registry.getRegistry().register(ZUNDATOFUTERRAIN.setRegistryName("zundatofu_terrain"));
         registry.getRegistry().register(ORE_TOFUDIAMOND.setRegistryName("ore_tofudiamond"));
         registry.getRegistry().register(TOFUBEDROCK.setRegistryName("tofubedrock"));
@@ -317,7 +315,6 @@ public class TofuBlocks {
         TofuItems.register(registry, new BlockItem(TOFUSTEM, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFUSTEM_PLANK, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFUTERRAIN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
-        TofuItems.register(registry, new BlockItem(TOFUISHI_TERRAIN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(ZUNDATOFUTERRAIN, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(ORE_TOFUDIAMOND, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
         TofuItems.register(registry, new BlockItem(TOFUBEDROCK, (new Item.Properties()).group(TofuItemGroup.TOFUCRAFT)));
