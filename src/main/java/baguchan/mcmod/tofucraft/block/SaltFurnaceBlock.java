@@ -12,6 +12,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -26,7 +27,7 @@ import java.util.Random;
 
 public class SaltFurnaceBlock extends ContainerBlock {
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-    public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     public SaltFurnaceBlock(Properties properties) {
         super(properties);
