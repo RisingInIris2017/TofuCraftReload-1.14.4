@@ -3,6 +3,7 @@ package baguchan.mcmod.tofucraft.client.screen;
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.container.SaltFurnaceContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -15,32 +16,16 @@ public class SaltFurnaceScreen extends ContainerScreen<SaltFurnaceContainer> {
         super(screenContainer, inv, titleIn);
     }
 
-    @Override
     protected void func_230450_a_(MatrixStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
-        //TODO STILL WORKING
-        /*RenderHelper.setupGuiFlatDiffuseLighting();
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bindTexture(TEXTURE);
-        int i2 = (this. - this.xSize) / 2;
-        int j2 = (this.height - this.ySize) / 2;
-        this.blit(i2, j2, 0, 0, this.xSize, this.ySize);
-
+        this.field_230706_i_.getTextureManager().bindTexture(TEXTURE);
         int i = this.guiLeft;
         int j = this.guiTop;
-        this.blit(i, j, 0, 0, this.xSize, this.ySize);
-        if (((SaltFurnaceContainer) this.container).isBurning()) {
-            int k = ((SaltFurnaceContainer) this.container).getBurnLeftScaled();
-            this.blit(i + 23, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
-        }*/
-    }
-
-    public void render(int p_render_1_, int p_render_2_, float p_render_3_) {
-        //TODO STILL WORKING
-        /*p_render_3_ = this.minecraft.getRenderPartialTicks();
-        this.renderBackground();
-        super.render(p_render_1_, p_render_2_, p_render_3_);
-        this.renderHoveredToolTip(p_render_1_, p_render_2_);
-*/
+        this.func_238474_b_(p_230450_1_, i, j, 0, 0, this.xSize, this.ySize);
+        if (this.container.isBurning()) {
+            int k = this.container.getBurnLeftScaled();
+            this.func_238474_b_(p_230450_1_, i + 23, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
+        }
     }
 
 }
