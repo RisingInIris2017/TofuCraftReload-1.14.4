@@ -2,8 +2,11 @@ package baguchan.mcmod.tofucraft.tileentity;
 
 import baguchan.mcmod.tofucraft.block.SaltFurnaceBlock;
 import baguchan.mcmod.tofucraft.container.SaltFurnaceContainer;
+import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.init.TofuTileEntitys;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.CauldronBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -26,6 +29,8 @@ import javax.annotation.Nullable;
 public class SaltFurnaceTileEntity extends TileEntity implements INamedContainerProvider, IInventory, ITickableTileEntity {
     private int burnTime;
     private int recipesUsed;
+    private int ticksExisted;
+
     protected NonNullList<ItemStack> items = NonNullList.withSize(1, ItemStack.EMPTY);
     protected final IIntArray furnaceData = new IIntArray() {
         public int get(int index) {
@@ -68,12 +73,14 @@ public class SaltFurnaceTileEntity extends TileEntity implements INamedContainer
         super.read(p_230337_1_, compound);
         this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(compound, this.items);
+        this.ticksExisted = compound.getInt("TicksExisted");
         this.burnTime = compound.getInt("BurnTime");
         this.recipesUsed = this.getBurnTime(this.items.get(0));
     }
 
     public CompoundNBT write(CompoundNBT compound) {
         super.write(compound);
+        compound.putInt("TicksExisted", this.ticksExisted);
         compound.putInt("BurnTime", this.burnTime);
         ItemStackHelper.saveAllItems(compound, this.items);
 
@@ -98,6 +105,24 @@ public class SaltFurnaceTileEntity extends TileEntity implements INamedContainer
             if (flag != this.isBurning()) {
                 flag1 = true;
                 this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(SaltFurnaceBlock.LIT, Boolean.valueOf(this.isBurning())), 3);
+            }
+
+            if (this.isBurning()) {
+                if (world.getBlockState(pos.up()).getBlock() == Blocks.CAULDRON) {
+                    ticksExisted++;
+                    if (ticksExisted >= 300) {
+                        if (world.getBlockState(pos.up()).func_235901_b_(CauldronBlock.LEVEL)) {
+                            int level = world.getBlockState(pos.up()).get(CauldronBlock.LEVEL);
+                            if (level > 0) {
+                                world.setBlockState(pos.up(), TofuBlocks.SALT_CAULDRON.getDefaultState().with(CauldronBlock.LEVEL, level), 2);
+                            }
+                        }
+                    }
+                } else {
+                    ticksExisted = 0;
+                }
+            } else {
+                ticksExisted = 0;
             }
         }
 
