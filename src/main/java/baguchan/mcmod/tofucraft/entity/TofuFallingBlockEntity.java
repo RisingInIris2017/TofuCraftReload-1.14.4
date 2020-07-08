@@ -110,7 +110,7 @@ public class TofuFallingBlockEntity extends FallingBlockEntity {
                                             }
                                         }
 
-                                        tileentity.func_230337_a_(this.fallTile, compoundnbt);
+                                        tileentity.handleUpdateTag(this.fallTile, compoundnbt);
                                         tileentity.markDirty();
                                     }
                                 }

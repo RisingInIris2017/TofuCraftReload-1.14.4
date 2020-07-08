@@ -17,7 +17,7 @@ public class FlyingStrafeMovementController extends FlyingMovementController {
     public void tick() {
         if (this.action == MovementController.Action.STRAFE) {
             this.mob.setNoGravity(false);
-            float f = (float) this.mob.getAttribute(Attributes.field_233821_d_).getValue();
+            float f = (float) this.mob.getAttribute(Attributes.MOVEMENT_SPEED).getValue();
             float f1 = (float) this.speed * f;
             float f2 = this.moveForward;
             float f3 = this.moveStrafe;

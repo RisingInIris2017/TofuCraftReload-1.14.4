@@ -13,7 +13,7 @@ public class TofuBushBlock extends BushBlock {
     }
 
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return state.func_235714_a_(TofuTags.Blocks.TOFUTERRAIN);
+        return state.isIn(TofuTags.Blocks.TOFUTERRAIN);
     }
 
     @Override

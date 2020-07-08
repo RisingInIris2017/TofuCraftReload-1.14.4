@@ -32,7 +32,7 @@ public class SoyBeanNetherCropsBlock extends BushBlock implements IGrowable {
     
 
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return state.getBlock() == Blocks.SOUL_SAND || state.getBlock() == Blocks.field_235381_mu_;
+        return state.getBlock() == Blocks.SOUL_SAND || state.getBlock() == Blocks.CRIMSON_NYLIUM;
     }
 
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {

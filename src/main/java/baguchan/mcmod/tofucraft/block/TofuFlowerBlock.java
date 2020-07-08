@@ -16,6 +16,6 @@ public class TofuFlowerBlock extends FlowerBlock {
 
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
         Block block = state.getBlock();
-        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || state.func_235714_a_(TofuTags.Blocks.TOFUTERRAIN);
+        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || state.isIn(TofuTags.Blocks.TOFUTERRAIN);
     }
 }

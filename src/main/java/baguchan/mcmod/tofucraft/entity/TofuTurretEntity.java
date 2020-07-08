@@ -41,7 +41,7 @@ public class TofuTurretEntity extends MonsterEntity implements IRangedAttackMob 
     }
 
     public static AttributeModifierMap.MutableAttribute getAttributeMap() {
-        return MonsterEntity.func_233666_p_().func_233815_a_(Attributes.field_233821_d_, (double) 0.265F).func_233815_a_(Attributes.field_233822_e_, 0.5D).func_233815_a_(Attributes.field_233818_a_, 12.0D).func_233815_a_(Attributes.field_233819_b_, 20.0D).func_233815_a_(Attributes.field_233826_i_, 4.0D);
+        return MonsterEntity.func_233666_p_().func_233815_a_(Attributes.MOVEMENT_SPEED, (double) 0.265F).func_233815_a_(Attributes.FLYING_SPEED, 0.5D).func_233815_a_(Attributes.MAX_HEALTH, 12.0D).func_233815_a_(Attributes.MAX_HEALTH, 20.0D).func_233815_a_(Attributes.ARMOR, 4.0D);
     }
 
     @Override

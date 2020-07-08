@@ -6,14 +6,14 @@ import baguchan.mcmod.tofucraft.world.dimension.TofuWorldTeleporter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.*;
+import net.minecraft.util.Direction;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -76,51 +76,35 @@ public class TofuPortalBlock extends Block {
 
     }
 
-    public RegistryKey<World> getTofuDimension() {
-        ResourceLocation resourcelocation = new ResourceLocation("tofucraft:tofu_world");
-        RegistryKey<World> registrykey = RegistryKey.func_240903_a_(Registry.field_239699_ae_, resourcelocation);
-
-        return registrykey;
-    }
-
     @Override
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entity) {
         if (!worldIn.isRemote) {
             MinecraftServer server = worldIn.getServer();
+
+            //TODO Make Go to TofuWorld
+            boolean inOverworld = entity.world.func_234923_W_() != World.field_234918_g_;
             if ((!entity.isBeingRidden()) && (entity.getPassengers().isEmpty())) {
-                boolean inOverworld = entity.world.func_234923_W_() != getTofuDimension();
-                if ((entity instanceof ServerPlayerEntity)) {
-                    ServerPlayerEntity thePlayer = (ServerPlayerEntity) entity;
-                    if (thePlayer.timeUntilPortal > 0) {
-                        thePlayer.timeUntilPortal = 10;
-                    } else if (inOverworld) {
-                        thePlayer.timeUntilPortal = 10;
-                        ServerWorld dimWorld = server.getWorld(getTofuDimension());
-                        if (dimWorld != null) {
-                            teleportEntity(thePlayer, dimWorld, pos, true);
-                        }
-                    } else {
-                        thePlayer.timeUntilPortal = 10;
-                        ServerWorld dimWorld = server.getWorld(World.field_234918_g_);
-                        if (dimWorld != null) {
-                            teleportEntity(thePlayer, dimWorld, pos, false);
-                        }
-                    }
-                }
-                if (!(entity instanceof PlayerEntity)) {
+                if (entity.timeUntilPortal < 0) {
+                    entity.timeUntilPortal = entity.getPortalCooldown();
+
+
                     if (inOverworld) {
-                        entity.timeUntilPortal = 10;
-                        ServerWorld dimWorld = server.getWorld(getTofuDimension());
+                        ServerWorld dimWorld = server.getWorld(World.field_234918_g_);
+                        TofuWorldTeleporter tofuTeleporter = new TofuWorldTeleporter(dimWorld);
                         if (dimWorld != null) {
-                            teleportEntity(entity, dimWorld, pos, true);
+                            tofuTeleporter.placeInPortal(entity, entity.rotationYaw);
+                            entity.changeDimension(dimWorld, tofuTeleporter);
                         }
                     } else {
                         ServerWorld dimWorld = server.getWorld(World.field_234918_g_);
-                        entity.timeUntilPortal = 10;
+                        TofuWorldTeleporter tofuTeleporter = new TofuWorldTeleporter(dimWorld);
                         if (dimWorld != null) {
-                            teleportEntity(entity, dimWorld, pos, false);
+                            tofuTeleporter.placeInPortal(entity, entity.rotationYaw);
+                            entity.changeDimension(dimWorld, tofuTeleporter);
                         }
                     }
+                } else {
+                    entity.timeUntilPortal = entity.getPortalCooldown();
                 }
             }
         }
@@ -224,50 +208,13 @@ public class TofuPortalBlock extends Block {
                 for (int x = 0; x < wallWidth; x++) {
                     for (int z = 0; z < wallLength; z++) {
                         if (y == 0 || x == 0 || z == 0 || x == wallWidth - 1 || z == wallLength - 1) {
-                            if (!isSnowBlock(world.getBlockState(nwCorner.down().add(x, y, z)))) {
+                            if (!isTofuBlock(world.getBlockState(nwCorner.down().add(x, y, z)))) {
                                 return;
                             }
                         }
                     }
                 }
             }
-
-            /*for (int y = 0; y < 2; y++) {
-                if (!isSnowBlock(world.getBlockState(eastPos.add(0, y + 1, 0)))) {
-
-                    return;
-                }
-                if (!isSnowBlock(world.getBlockState(westPos.add(0, y + 1, 0)))) {
-
-                    return;
-                }
-                if (!isSnowBlock(world.getBlockState(southPos.add(0, y + 1, 0)))) {
-
-                    return;
-                }
-                if (!isSnowBlock(world.getBlockState(northPos.add(0, y + 1, 0)))) {
-
-                    return;
-                }
-            }
-
-            if (!isSnowBlock(world.getBlockState(eastPos2.add(0, 3, 0)))) {
-
-                return;
-            }
-            if (!isSnowBlock(world.getBlockState(westPos2.add(0, 3, 0)))) {
-
-                return;
-            }
-            if (!isSnowBlock(world.getBlockState(southPos2.add(0, 3, 0)))) {
-
-                return;
-            }
-            if (!isSnowBlock(world.getBlockState(northPos2.add(0, 3, 0)))) {
-
-                return;
-            }*/
-
             this.valid = true;
         }
 
@@ -277,20 +224,20 @@ public class TofuPortalBlock extends Block {
             for (i = 0; i < 9; ++i) {
                 BlockPos blockpos = pos.offset(facing, i);
 
-                if (!this.isEmptyBlock(this.world.getBlockState(blockpos)) || !isSnowBlock(this.world.getBlockState(blockpos.down()))) {
+                if (!this.isEmptyBlock(this.world.getBlockState(blockpos)) || !isTofuBlock(this.world.getBlockState(blockpos.down()))) {
                     break;
                 }
             }
 
             BlockState state = this.world.getBlockState(pos.offset(facing, i));
-            return isSnowBlock(state) ? i : 0;
+            return isTofuBlock(state) ? i : 0;
         }
 
         boolean isEmptyBlock(BlockState state) {
             return state.getBlock() == TofuBlocks.SOYMILK;
         }
 
-        boolean isSnowBlock(BlockState state) {
+        boolean isTofuBlock(BlockState state) {
             return state.getBlock() == TofuBlocks.GRILLEDTOFU;
         }
 

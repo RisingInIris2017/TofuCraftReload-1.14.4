@@ -82,7 +82,7 @@ public class TofuLeavesBlock extends LeavesBlock {
     }
 
     private static int getDistance(BlockState neighbor) {
-        if (TofuTags.Blocks.TOFULOG.func_230235_a_(neighbor.getBlock())) {
+        if (TofuTags.Blocks.TOFULOG.contains(neighbor.getBlock())) {
             return 0;
         } else {
             return neighbor.getBlock() instanceof LeavesBlock ? neighbor.get(DISTANCE) : 7;

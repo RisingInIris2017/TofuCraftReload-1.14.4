@@ -38,8 +38,8 @@ public class TofuMindEntity extends MonsterEntity {
     }
 
 
-    public static AttributeModifierMap.MutableAttribute getAttributeMap() {
-        return MonsterEntity.func_233666_p_().func_233815_a_(Attributes.field_233821_d_, (double) 0.28F).func_233815_a_(Attributes.field_233818_a_, 20.0D).func_233815_a_(Attributes.field_233819_b_, 24.0D).func_233815_a_(Attributes.field_233826_i_, 4.0D).func_233815_a_(Attributes.field_233823_f_, 2.0D);
+    public static AttributeModifierMap.MutableAttribute registerAttributes() {
+        return MonsterEntity.func_233666_p_().func_233815_a_(Attributes.MOVEMENT_SPEED, (double) 0.28F).func_233815_a_(Attributes.MAX_HEALTH, 20.0D).func_233815_a_(Attributes.MAX_HEALTH, 24.0D).func_233815_a_(Attributes.ARMOR, 4.0D).func_233815_a_(Attributes.ATTACK_DAMAGE, 2.0D);
     }
 
     @Override

@@ -113,7 +113,7 @@ public class SaltCauldronBlock extends CauldronBlock {
         }
 
         @Override
-        public String func_176610_l() {
+        public String getString() {
             return this.name;
         }
 

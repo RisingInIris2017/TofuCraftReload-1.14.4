@@ -34,7 +34,7 @@ public class SoybeansItem extends BlockItem {
 
     @Override
     protected boolean placeBlock(BlockItemUseContext context, BlockState state) {
-        if (context.getWorld().getBlockState(context.getPos().down()).func_235714_a_(BlockTags.WOOL)) {
+        if (context.getWorld().getBlockState(context.getPos().down()).isIn(BlockTags.WOOL)) {
             return context.getWorld().setBlockState(context.getPos(), TofuBlocks.SPROUTS.getDefaultState(), 11);
         } else {
             return super.placeBlock(context, state);

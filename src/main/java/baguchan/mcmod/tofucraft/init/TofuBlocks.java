@@ -36,21 +36,21 @@ public class TofuBlocks {
 
     public static final Block KINUTOFU = new TofuBlock(Block.Properties.create(TofuMaterial.TOFU).tickRandomly().harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.1F, 0.2F).sound(SoundType.SNOW));
     public static final Block MOMENTOFU = new TofuBlock(Block.Properties.create(TofuMaterial.TOFU).tickRandomly().harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.35F, 0.5F).sound(SoundType.SNOW));
-    public static final Block ISHITOFU = new TofuBlock(Block.Properties.create(Material.ROCK).tickRandomly().harvestTool(ToolType.PICKAXE).func_235861_h_().hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
-    public static final Block METALTOFU = new Block(Block.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).func_235861_h_().harvestLevel(1).hardnessAndResistance(4.0F, 7.5F).sound(SoundType.METAL));
-    public static final Block DIAMONDTOFU = new Block(Block.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).func_235861_h_().harvestLevel(2).hardnessAndResistance(5.0F, 8.0F).sound(SoundType.METAL));
+    public static final Block ISHITOFU = new TofuBlock(Block.Properties.create(Material.ROCK).tickRandomly().harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
+    public static final Block METALTOFU = new Block(Block.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).setRequiresTool().harvestLevel(1).hardnessAndResistance(4.0F, 7.5F).sound(SoundType.METAL));
+    public static final Block DIAMONDTOFU = new Block(Block.Properties.create(Material.IRON).harvestTool(ToolType.PICKAXE).setRequiresTool().harvestLevel(2).hardnessAndResistance(5.0F, 8.0F).sound(SoundType.METAL));
     public static final Block GRILLEDTOFU = new Block(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.25F, 0.5F).sound(SoundType.SNOW));
     public static final Block HELLTOFU = new Block(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.25F, 0.5F).sound(SoundType.SNOW));
     public static final Block ZUNDATOFU = new TofuBlock(Block.Properties.create(TofuMaterial.TOFU).tickRandomly().harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.25F, 0.5F).sound(SoundType.SNOW));
     public static final Block ZUNDAISHITOFU = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
     public static final Block MINCEDTOFU = new FallingBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F, 0.9F).sound(SoundType.GROUND));
     //Building
-    public static final Block ISHITOFU_BRICK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).func_235861_h_().hardnessAndResistance(1.6F, 6.5F).sound(SoundType.STONE));
-    public static final Block ISHITOFU_SMOOTH_BRICK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).func_235861_h_().hardnessAndResistance(1.6F, 6.5F).sound(SoundType.STONE));
-    public static final Block ISHITOFU_CHISELED_BRICK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).func_235861_h_().hardnessAndResistance(1.6F, 6.5F).sound(SoundType.STONE));
-    public static final Block ZUNDATOFU_BRICK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).func_235861_h_().hardnessAndResistance(1.6F, 6.5F).sound(SoundType.STONE));
-    public static final Block ZUNDATOFU_SMOOTH_BRICK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).func_235861_h_().hardnessAndResistance(1.6F, 6.5F).sound(SoundType.STONE));
-    public static final Block CONCRETE_TOFU = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).func_235861_h_().hardnessAndResistance(1.4F, 6.0F).sound(SoundType.STONE));
+    public static final Block ISHITOFU_BRICK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(1.6F, 6.5F).sound(SoundType.STONE));
+    public static final Block ISHITOFU_SMOOTH_BRICK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(1.6F, 6.5F).sound(SoundType.STONE));
+    public static final Block ISHITOFU_CHISELED_BRICK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(1.6F, 6.5F).sound(SoundType.STONE));
+    public static final Block ZUNDATOFU_BRICK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(1.6F, 6.5F).sound(SoundType.STONE));
+    public static final Block ZUNDATOFU_SMOOTH_BRICK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(1.6F, 6.5F).sound(SoundType.STONE));
+    public static final Block CONCRETE_TOFU = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(1.4F, 6.0F).sound(SoundType.STONE));
     public static final Block CONCRETE_POWDER_TOFU = new ConcretePowderBlock(CONCRETE_TOFU, Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F, 0.9F).sound(SoundType.SAND));
     public static final Block MOMEN_TOFUNAMAKO_WALL = new TofuNamakoWallBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F, 0.9F).doesNotBlockMovement().sound(SoundType.STONE));
     //Stair
@@ -70,14 +70,14 @@ public class TofuBlocks {
     public static final SlabBlock TOFUSLAB_ZUNDABRICK = new SlabBlock(Block.Properties.from(ZUNDATOFU_BRICK).notSolid());
     public static final SlabBlock TOFUSLAB_ISHIBRICK = new SlabBlock(Block.Properties.from(ISHITOFU_BRICK).notSolid());
     //torch
-    public static final Block TOFUTORCH_KINU = new TofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 0.5F).doesNotBlockMovement().notSolid().func_235838_a_((block) -> 14).sound(SoundType.SNOW));
-    public static final Block TOFUTORCH_MOMEN = new TofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 0.5F).doesNotBlockMovement().notSolid().func_235838_a_((block) -> 14).sound(SoundType.SNOW));
-    public static final Block TOFUTORCH_ISHI = new TofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 6.0F).doesNotBlockMovement().notSolid().func_235838_a_((block) -> 14).sound(SoundType.STONE));
-    public static final Block TOFUTORCH_METAL = new TofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 7.5F).doesNotBlockMovement().notSolid().func_235838_a_((block) -> 14).sound(SoundType.METAL));
-    public static final Block WALLTOFUTORCH_KINU = new WallTofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 0.5F).doesNotBlockMovement().notSolid().func_235838_a_((block) -> 14).sound(SoundType.SNOW).lootFrom(TOFUTORCH_KINU));
-    public static final Block WALLTOFUTORCH_MOMEN = new WallTofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 0.5F).doesNotBlockMovement().notSolid().func_235838_a_((block) -> 14).sound(SoundType.SNOW).lootFrom(TOFUTORCH_MOMEN));
-    public static final Block WALLTOFUTORCH_ISHI = new WallTofuTorchBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F, 6.0F).doesNotBlockMovement().notSolid().func_235838_a_((block) -> 14).sound(SoundType.STONE).lootFrom(TOFUTORCH_ISHI));
-    public static final Block WALLTOFUTORCH_METAL = new WallTofuTorchBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F, 7.5F).doesNotBlockMovement().notSolid().func_235838_a_((block) -> 14).sound(SoundType.METAL).lootFrom(TOFUTORCH_METAL));
+    public static final Block TOFUTORCH_KINU = new TofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 0.5F).doesNotBlockMovement().notSolid().setLightLevel((block) -> 14).sound(SoundType.SNOW));
+    public static final Block TOFUTORCH_MOMEN = new TofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 0.5F).doesNotBlockMovement().notSolid().setLightLevel((block) -> 14).sound(SoundType.SNOW));
+    public static final Block TOFUTORCH_ISHI = new TofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 6.0F).doesNotBlockMovement().notSolid().setLightLevel((block) -> 14).sound(SoundType.STONE));
+    public static final Block TOFUTORCH_METAL = new TofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 7.5F).doesNotBlockMovement().notSolid().setLightLevel((block) -> 14).sound(SoundType.METAL));
+    public static final Block WALLTOFUTORCH_KINU = new WallTofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 0.5F).doesNotBlockMovement().notSolid().setLightLevel((block) -> 14).sound(SoundType.SNOW).lootFrom(TOFUTORCH_KINU));
+    public static final Block WALLTOFUTORCH_MOMEN = new WallTofuTorchBlock(Block.Properties.create(TofuMaterial.TOFU).hardnessAndResistance(0.0F, 0.5F).doesNotBlockMovement().notSolid().setLightLevel((block) -> 14).sound(SoundType.SNOW).lootFrom(TOFUTORCH_MOMEN));
+    public static final Block WALLTOFUTORCH_ISHI = new WallTofuTorchBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F, 6.0F).doesNotBlockMovement().notSolid().setLightLevel((block) -> 14).sound(SoundType.STONE).lootFrom(TOFUTORCH_ISHI));
+    public static final Block WALLTOFUTORCH_METAL = new WallTofuTorchBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(0.0F, 7.5F).doesNotBlockMovement().notSolid().setLightLevel((block) -> 14).sound(SoundType.METAL).lootFrom(TOFUTORCH_METAL));
     //Ladder
     public static final Block TOFULADDER_KINU = new TofuLadderBlock(Block.Properties.from(KINUTOFU).notSolid());
     public static final Block TOFULADDER_MOMEN = new TofuLadderBlock(Block.Properties.from(MOMENTOFU).notSolid());
@@ -88,7 +88,7 @@ public class TofuBlocks {
     //FENCE
     public static final Block TOFUFENCE_KINU = new WallBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.1F, 0.2F).notSolid().sound(SoundType.SNOW));
     public static final Block TOFUFENCE_MOMEN = new WallBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.35F, 0.5F).notSolid().sound(SoundType.SNOW));
-    public static final Block TOFUFENCE_ISHI = new WallBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).func_235861_h_().hardnessAndResistance(1.5F, 6.0F).notSolid().sound(SoundType.STONE));
+    public static final Block TOFUFENCE_ISHI = new WallBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(1.5F, 6.0F).notSolid().sound(SoundType.STONE));
     public static final Block TOFUFENCE_METAL = new WallBlock(Block.Properties.from(METALTOFU).notSolid());
 
     //DOOR
@@ -104,8 +104,8 @@ public class TofuBlocks {
     public static final Block TOFUSTEM_PLANK = new Block(Block.Properties.create(Material.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 5.0F).sound(SoundType.WOOD));
     public static final Block TOFUTERRAIN = new TofuTerrainBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F, 0.9F).sound(SoundType.SNOW));
     public static final Block ZUNDATOFUTERRAIN = new TofuGrassBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).tickRandomly().hardnessAndResistance(0.5F, 0.9F).sound(SoundType.SNOW));
-    public static final Block ORE_TOFUDIAMOND = new Block(Block.Properties.create(TofuMaterial.TOFUORE).harvestTool(ToolType.SHOVEL).func_235861_h_().harvestLevel(2).hardnessAndResistance(1.0F, 2.0F).sound(SoundType.SNOW));
-    public static final Block TOFUBEDROCK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).func_235861_h_().hardnessAndResistance(-1.0F, 2000000.0F).sound(SoundType.STONE));
+    public static final Block ORE_TOFUDIAMOND = new Block(Block.Properties.create(TofuMaterial.TOFUORE).harvestTool(ToolType.SHOVEL).setRequiresTool().harvestLevel(2).hardnessAndResistance(1.0F, 2.0F).sound(SoundType.SNOW));
+    public static final Block TOFUBEDROCK = new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(-1.0F, 2000000.0F).sound(SoundType.STONE));
     public static final Block TOFUFLOWER = new TofuFlowerBlock(Effects.ABSORPTION, 20, Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT));
     public static final Block LEEK = new TofuBushBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F, 0.3F).sound(SoundType.PLANT));
     //Tree Stuff
@@ -115,17 +115,17 @@ public class TofuBlocks {
     public static final Block ZUNDATOFUSAPLING = new TofuSaplingBlock(new ZundaTofuTree(), Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.0F).tickRandomly().doesNotBlockMovement().sound(SoundType.PLANT).notSolid());
 
     public static final Block TOFUBERRYSTEM = new TofuBerryStemBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(1.0F).tickRandomly().sound(SoundType.CLOTH).notSolid());
-    public static final Block TOFUBERRY = new TofuBerryBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.65F).tickRandomly().func_235838_a_((block) -> 11).sound(SoundType.CLOTH).notSolid());
+    public static final Block TOFUBERRY = new TofuBerryBlock(Block.Properties.create(Material.PLANTS).hardnessAndResistance(0.65F).tickRandomly().setLightLevel((block) -> 11).sound(SoundType.CLOTH).notSolid());
 
     //Util block
-    public static final TofuPortalBlock TOFUPORTAL = new TofuPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().harvestTool(ToolType.PICKAXE).hardnessAndResistance(-1.0F, 3000000.0F).func_235838_a_((block) -> 12).sound(SoundType.GLASS));
+    public static final TofuPortalBlock TOFUPORTAL = new TofuPortalBlock(Block.Properties.create(Material.PORTAL).doesNotBlockMovement().harvestTool(ToolType.PICKAXE).hardnessAndResistance(-1.0F, 3000000.0F).setLightLevel((block) -> 12).sound(SoundType.GLASS));
     public static final Block SALTPAN = new SaltPanBlock(Block.Properties.create(Material.WOOD).tickRandomly().harvestTool(ToolType.AXE).hardnessAndResistance(1.0F).sound(SoundType.WOOD).notSolid());
-    public static final Block SALT_FURNACE = new SaltFurnaceBlock(Block.Properties.create(Material.ROCK).tickRandomly().harvestTool(ToolType.PICKAXE).func_235861_h_().hardnessAndResistance(3.5F).func_235838_a_((block) -> block.get(SaltFurnaceBlock.LIT) ? 13 : 0).sound(SoundType.STONE));
-    public static final Block SALT_CAULDRON = new SaltCauldronBlock(Block.Properties.create(Material.IRON).tickRandomly().harvestTool(ToolType.PICKAXE).func_235861_h_().hardnessAndResistance(5.0F).sound(SoundType.METAL).notSolid());
+    public static final Block SALT_FURNACE = new SaltFurnaceBlock(Block.Properties.create(Material.ROCK).tickRandomly().harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(3.5F).setLightLevel((block) -> block.get(SaltFurnaceBlock.LIT) ? 13 : 0).sound(SoundType.STONE));
+    public static final Block SALT_CAULDRON = new SaltCauldronBlock(Block.Properties.create(Material.IRON).tickRandomly().harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(5.0F).sound(SoundType.METAL).notSolid());
     public static final Block POTTED_TOFUFLOWER = new FlowerPotBlock(TOFUFLOWER, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F).notSolid());
     public static final Block POTTED_TOFUSAPLING = new FlowerPotBlock(TOFUSAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F).notSolid());
     public static final Block POTTED_ZUNDATOFUSAPLING = new FlowerPotBlock(ZUNDATOFUSAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0F).notSolid());
-    public static final Block TOFUCHEST = new TofuChestBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).func_235861_h_().hardnessAndResistance(1.6F, 6.0F).sound(SoundType.STONE).notSolid());
+    public static final Block TOFUCHEST = new TofuChestBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(1.6F, 6.0F).sound(SoundType.STONE).notSolid());
     public static final Block TOFUBED = new TofuBedBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F, 1.0F).sound(SoundType.CLOTH).notSolid());
     public static final Block WHEAT_BOWL = new WheatBowlBlock(Block.Properties.create(Material.ORGANIC).hardnessAndResistance(0.5F, 1.0F).tickRandomly().notSolid().sound(SoundType.PLANT));
     public static final Block TOFUFARMLAND = new TofuFarmlandBlock(Block.Properties.create(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.45F, 0.85F).tickRandomly().notSolid().sound(SoundType.CLOTH));

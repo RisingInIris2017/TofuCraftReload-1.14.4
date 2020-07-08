@@ -33,7 +33,7 @@ public class RiceRootBlock extends BushBlock implements net.minecraftforge.commo
     }
 
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return state.func_235714_a_(BlockTags.SAND) || state.func_235714_a_(TofuTags.Blocks.TOFUTERRAIN) || state.getBlock() == Blocks.GRASS_BLOCK || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.GRAVEL;
+        return state.isIn(BlockTags.SAND) || state.isIn(TofuTags.Blocks.TOFUTERRAIN) || state.getBlock() == Blocks.GRASS_BLOCK || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.GRAVEL;
     }
 
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {

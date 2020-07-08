@@ -18,13 +18,13 @@ public class SaltFurnaceScreen extends ContainerScreen<SaltFurnaceContainer> {
 
     protected void func_230450_a_(MatrixStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.field_230706_i_.getTextureManager().bindTexture(TEXTURE);
+        this.minecraft.getTextureManager().bindTexture(TEXTURE);
         int i = this.guiLeft;
         int j = this.guiTop;
-        this.func_238474_b_(p_230450_1_, i, j, 0, 0, this.xSize, this.ySize);
+        this.blit(p_230450_1_, i, j, 0, 0, this.xSize, this.ySize);
         if (this.container.isBurning()) {
             int k = this.container.getBurnLeftScaled();
-            this.func_238474_b_(p_230450_1_, i + 23, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
+            this.blit(p_230450_1_, i + 23, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
         }
     }
 

@@ -47,8 +47,8 @@ public class TofuChingerEntity extends MonsterEntity {
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, TofuFishEntity.class, 10, true, true, (Predicate<LivingEntity>) null));
     }
 
-    public static AttributeModifierMap.MutableAttribute getAttributeMap() {
-        return MonsterEntity.func_233666_p_().func_233815_a_(Attributes.field_233821_d_, (double) 0.28F).func_233815_a_(Attributes.field_233818_a_, 16.0D).func_233815_a_(Attributes.field_233819_b_, 16.0D);
+    public static AttributeModifierMap.MutableAttribute registerAttributes() {
+        return MonsterEntity.func_233666_p_().func_233815_a_(Attributes.MOVEMENT_SPEED, (double) 0.28F).func_233815_a_(Attributes.FOLLOW_RANGE, 16.0D).func_233815_a_(Attributes.MAX_HEALTH, 16.0D);
     }
 
     protected void playWarningSound() {
@@ -102,9 +102,9 @@ public class TofuChingerEntity extends MonsterEntity {
         this.dataManager.set(SIZE, size);
         this.setPosition(this.getPosX(), this.getPosY(), this.getPosZ());
         this.recalculateSize();
-        this.getAttribute(Attributes.field_233818_a_).setBaseValue((double) (12.0D + 2.0F * size));
-        this.getAttribute(Attributes.field_233821_d_).setBaseValue((double) (0.25F + 0.005F * (float) size));
-        this.getAttribute(Attributes.field_233823_f_).setBaseValue((double) (4.0D + 0.5F * (float) size));
+        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue((double) (12.0D + 2.0F * size));
+        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double) (0.25F + 0.005F * (float) size));
+        this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue((double) (4.0D + 0.5F * (float) size));
 
         if (resetHealth) {
             this.setHealth(this.getMaxHealth());

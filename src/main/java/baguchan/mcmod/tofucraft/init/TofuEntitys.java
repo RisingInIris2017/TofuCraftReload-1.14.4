@@ -56,14 +56,14 @@ public class TofuEntitys {
 
     @SubscribeEvent
     public static void registerEntity(RegistryEvent.Register<EntityType<?>> event) {
-        GlobalEntityTypeAttributes.put(TOFUCHINGER, TofuChingerEntity.getAttributeMap().func_233813_a_());
+        GlobalEntityTypeAttributes.put(TOFUCHINGER, TofuChingerEntity.registerAttributes().func_233813_a_());
         GlobalEntityTypeAttributes.put(TOFUCOW, CowEntity.func_234188_eI_().func_233813_a_());
         GlobalEntityTypeAttributes.put(TOFUCREEPER, CreeperEntity.func_234278_m_().func_233813_a_());
-        GlobalEntityTypeAttributes.put(TOFUFISH, CodEntity.func_233639_cI_().func_233813_a_());
-        GlobalEntityTypeAttributes.put(TOFUGANDLEM, TofuGandlemEntity.getAttributeMap().func_233813_a_());
-        GlobalEntityTypeAttributes.put(TOFUMIND, TofuMindEntity.getAttributeMap().func_233813_a_());
-        GlobalEntityTypeAttributes.put(TOFUNIAN, TofunianEntity.getAttributeMap().func_233813_a_());
-        GlobalEntityTypeAttributes.put(TOFUCHINGER, SlimeEntity.func_233639_cI_().func_233813_a_());
+        GlobalEntityTypeAttributes.put(TOFUFISH, CodEntity.registerAttributes().func_233813_a_());
+        GlobalEntityTypeAttributes.put(TOFUGANDLEM, TofuGandlemEntity.registerAttributes().func_233813_a_());
+        GlobalEntityTypeAttributes.put(TOFUMIND, TofuMindEntity.registerAttributes().func_233813_a_());
+        GlobalEntityTypeAttributes.put(TOFUNIAN, TofunianEntity.registerAttributes().func_233813_a_());
+        GlobalEntityTypeAttributes.put(TOFUCHINGER, SlimeEntity.registerAttributes().func_233813_a_());
         GlobalEntityTypeAttributes.put(TOFUSPIDER, SpiderEntity.func_234305_eI_().func_233813_a_());
 
 

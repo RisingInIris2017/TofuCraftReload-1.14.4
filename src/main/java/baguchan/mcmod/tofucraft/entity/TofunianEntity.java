@@ -376,7 +376,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     public void setRole(Roles role) {
         this.getDataManager().set(ROLE, role.name());
         if (canGuard()) {
-            this.getAttribute(Attributes.field_233826_i_).setBaseValue(5.0D);
+            this.getAttribute(Attributes.ARMOR).setBaseValue(5.0D);
         }
     }
 
@@ -562,8 +562,8 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
 
     }
 
-    public static AttributeModifierMap.MutableAttribute getAttributeMap() {
-        return MobEntity.func_233666_p_().func_233815_a_(Attributes.field_233821_d_, (double) 0.3F).func_233815_a_(Attributes.field_233818_a_, 20.0D).func_233815_a_(Attributes.field_233823_f_, 2.0F);
+    public static AttributeModifierMap.MutableAttribute registerAttributes() {
+        return MobEntity.func_233666_p_().func_233815_a_(Attributes.MOVEMENT_SPEED, (double) 0.3F).func_233815_a_(Attributes.MAX_HEALTH, 20.0D).func_233815_a_(Attributes.ATTACK_DAMAGE, 2.0F);
     }
 
     private void updateUniqueEntityAI() {

@@ -116,8 +116,8 @@ public class TofuGandlemEntity extends MonsterEntity implements IRangedAttackMob
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, false));
     }
 
-    public static AttributeModifierMap.MutableAttribute getAttributeMap() {
-        return MonsterEntity.func_233666_p_().func_233815_a_(Attributes.field_233821_d_, (double) 0.26F).func_233815_a_(Attributes.field_233822_e_, 0.6D).func_233815_a_(Attributes.field_233818_a_, 400.0D).func_233815_a_(Attributes.field_233819_b_, 40.0D).func_233815_a_(Attributes.field_233826_i_, 8.0D);
+    public static AttributeModifierMap.MutableAttribute registerAttributes() {
+        return MonsterEntity.func_233666_p_().func_233815_a_(Attributes.MOVEMENT_SPEED, (double) 0.26F).func_233815_a_(Attributes.FLYING_SPEED, 0.6D).func_233815_a_(Attributes.MAX_HEALTH, 400.0D).func_233815_a_(Attributes.MAX_HEALTH, 40.0D).func_233815_a_(Attributes.ARMOR, 8.0D);
     }
 
     @Override

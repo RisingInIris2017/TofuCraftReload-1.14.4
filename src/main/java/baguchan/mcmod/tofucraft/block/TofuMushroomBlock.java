@@ -26,7 +26,7 @@ public class TofuMushroomBlock extends BushBlock implements IGrowable {
     }
 
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return state.func_235714_a_(TofuTags.Blocks.TOFUTERRAIN);
+        return state.isIn(TofuTags.Blocks.TOFUTERRAIN);
     }
 
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
