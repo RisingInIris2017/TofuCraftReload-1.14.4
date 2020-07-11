@@ -75,6 +75,7 @@ public class TofuItems {
 
     public static final Item SEEDS_SOYBEAN = new SoybeansItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item SEEDS_SOYBEAN_NETHER = new BlockNamedItem(TofuBlocks.SOYBEAN_NETHER, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SEEDS_SOYBEAN_SOUL = new BlockNamedItem(TofuBlocks.SOYBEAN_SOUL, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item KINAKO = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item SOYBEAN_PARCHED = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item SPROUTS = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT).food(TofuFoods.SPROUT));
@@ -250,6 +251,7 @@ public class TofuItems {
         register(registry, SALTYMELON, "saltymelon");
         register(registry, SEEDS_SOYBEAN, "seeds_soybeans");
         register(registry, SEEDS_SOYBEAN_NETHER, "seeds_soybeans_nether");
+        register(registry, SEEDS_SOYBEAN_SOUL, "seeds_soybeans_soul");
         register(registry, SOYBEAN_PARCHED, "soybeans_parched");
         register(registry, SPROUTS, "sprouts");
         register(registry, KINAKO, "kinako");
@@ -353,6 +355,7 @@ public class TofuItems {
         ComposterBlock.CHANCES.put(SEEDS_SOYBEAN, 0.3F);
         ComposterBlock.CHANCES.put(EDAMAME, 0.35F);
         ComposterBlock.CHANCES.put(SEEDS_SOYBEAN_NETHER, 0.3F);
+        ComposterBlock.CHANCES.put(SEEDS_SOYBEAN_SOUL, 0.3F);
         ComposterBlock.CHANCES.put(SEEDS_RICE, 0.25F);
         ComposterBlock.CHANCES.put(RICE, 0.35F);
         ComposterBlock.CHANCES.put(LEEK, 0.25F);

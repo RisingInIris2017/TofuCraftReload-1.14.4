@@ -5,6 +5,7 @@ import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.RavagerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -17,21 +18,37 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.PlantType;
 
 import java.util.Random;
 
-public class SoyBeanNetherCropsBlock extends BushBlock implements IGrowable {
+public class SoyBeanSoulCropsBlock extends BushBlock implements IGrowable {
     private static final VoxelShape[] SHAPES = new VoxelShape[]{Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 3.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D)};
     public static final IntegerProperty AGE = BlockStateProperties.AGE_0_7;
 
-    public SoyBeanNetherCropsBlock(Block.Properties builder) {
+    public SoyBeanSoulCropsBlock(Properties builder) {
         super(builder);
         this.setDefaultState(this.stateContainer.getBaseState().with(this.getAgeProperty(), Integer.valueOf(0)));
     }
 
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+        super.animateTick(stateIn, worldIn, pos, rand);
+
+        if (isMaxAge(stateIn) && rand.nextInt(10) == 0) {
+            double d4 = rand.nextBoolean() ? 0.6 : -0.6;
+            double d0 = ((float) pos.getX() + 0.5 + (rand.nextFloat() * d4));
+            double d1 = (double) ((float) pos.getY() + 0.4F + rand.nextFloat() * 0.6F);
+            double d2 = ((float) pos.getZ() + 0.5 + rand.nextFloat() * d4);
+            worldIn.addParticle(ParticleTypes.SOUL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+        }
+    }
+
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return state.getBlock() == Blocks.SOUL_SAND || state.getBlock() == Blocks.CRIMSON_NYLIUM || state.getBlock() == Blocks.NETHERRACK;
+        return state.getBlock() == Blocks.SOUL_SAND || state.getBlock() == Blocks.WARPED_NYLIUM || state.getBlock() == Blocks.SOUL_SOIL;
     }
 
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
@@ -45,7 +62,7 @@ public class SoyBeanNetherCropsBlock extends BushBlock implements IGrowable {
     }
 
     protected IItemProvider getSeedsItem() {
-        return TofuItems.SEEDS_SOYBEAN_NETHER;
+        return TofuItems.SEEDS_SOYBEAN_SOUL;
     }
 
     public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {

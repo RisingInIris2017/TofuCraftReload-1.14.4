@@ -36,6 +36,7 @@
   "item.tofucraft.bucketsoymilk_hell": "Hell Soymilk Bucket",
   "item.tofucraft.seeds_soybeans": "Seeds Soybeans",
   "item.tofucraft.seeds_soybeans_nether": "Seeds Nether Soybeans",
+  "item.tofucraft.seeds_soybeans_soul": "Seeds Soul Soybeans",
   "item.tofucraft.soybeans_parched": "Soybeans Parched",
   "item.tofucraft.sprouts": "Sprouts",
   "item.tofucraft.kinako": "Kinako",
@@ -128,9 +129,9 @@
   "item.tofucraft.tofumetal_shield": "TofuMetal Shield",
   "item.tofucraft.tofuforce_core": "TofuForce Core",
   "item.tofucraft.tofu_gauntlet": "Tofu Gauntlet",
-
   "block.tofucraft.soybean": "Soybeans",
   "block.tofucraft.soybean_nether": "Nether Soybeans",
+  "block.tofucraft.soybean_soul": "Soul Soybeans",
   "block.tofucraft.blockleek_crop": "Leek",
   "block.tofucraft.sprouts": "Sprouts",
   "block.tofucraft.rice": "Rice",

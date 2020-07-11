@@ -36,6 +36,7 @@
   "item.tofucraft.bucketsoymilk_hell": "地獄豆乳バケツ",
   "item.tofucraft.seeds_soybeans": "大豆",
   "item.tofucraft.seeds_soybeans_nether": "地獄大豆",
+  "item.tofucraft.seeds_soybeans_soul": "魂が宿った大豆",
   "item.tofucraft.soybeans_parched": "乾いた大豆",
   "item.tofucraft.sprouts": "もやし",
   "item.tofucraft.kinako": "きなこ",
@@ -128,9 +129,9 @@
   "item.tofucraft.tofumetal_shield": "鋼豆腐のシールド",
   "item.tofucraft.tofuforce_core": "トーフフォースコア",
   "item.tofucraft.tofu_gauntlet": "トーフガントレット",
-
   "block.tofucraft.soybean": "大豆",
   "block.tofucraft.soybean_nether": "地獄大豆",
+  "block.tofucraft.soybean_soul": "魂の宿った大豆",
   "block.tofucraft.blockleek_crop": "葱",
   "block.tofucraft.sprouts": "もやし",
   "block.tofucraft.rice": "米",

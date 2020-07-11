@@ -22,18 +22,20 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = TofuCraftCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TofuBlocks {
-
+    //soybeans
     public static final Block SOYMILK = new TofuFluidBlock(TofuFluids.SOYMILK, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops());
     public static final Block SOYMILK_HELL = new TofuFluidBlock(TofuFluids.SOYMILK_HELL, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops());
     public static final Block SOYBEAN = new SoyBeanCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
     public static final Block SOYBEAN_NETHER = new SoyBeanNetherCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
+    public static final Block SOYBEAN_SOUL = new SoyBeanSoulCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
     public static final Block LEEKCROP = new LeekCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
     public static final Block SPROUTS = new SproutCropBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
 
-
+    //rice
     public static final Block RICE = new RiceCropsBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
     public static final Block RICE_ROOT = new RiceRootBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.0F).sound(SoundType.CROP));
 
+    //tofu
     public static final Block KINUTOFU = new TofuBlock(Block.Properties.create(TofuMaterial.TOFU).tickRandomly().harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.1F, 0.2F).sound(SoundType.SNOW));
     public static final Block MOMENTOFU = new TofuBlock(Block.Properties.create(TofuMaterial.TOFU).tickRandomly().harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.35F, 0.5F).sound(SoundType.SNOW));
     public static final Block ISHITOFU = new TofuBlock(Block.Properties.create(Material.ROCK).tickRandomly().harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
@@ -146,6 +148,7 @@ public class TofuBlocks {
         registry.getRegistry().register(SOYMILK_HELL.setRegistryName("soymilk_hell"));
         registry.getRegistry().register(SOYBEAN.setRegistryName("soybean"));
         registry.getRegistry().register(SOYBEAN_NETHER.setRegistryName("soybean_nether"));
+        registry.getRegistry().register(SOYBEAN_SOUL.setRegistryName("soybean_soul"));
         registry.getRegistry().register(LEEKCROP.setRegistryName("blockleek_crop"));
         registry.getRegistry().register(SPROUTS.setRegistryName("sprouts"));
         registry.getRegistry().register(RICE.setRegistryName("rice"));

@@ -75,6 +75,7 @@ public class ClientRegistrar {
 
         RenderTypeLookup.setRenderLayer(TofuBlocks.SOYBEAN, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(TofuBlocks.SOYBEAN_NETHER, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(TofuBlocks.SOYBEAN_SOUL, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(TofuBlocks.RICE, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(TofuBlocks.RICE_ROOT, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(TofuBlocks.LEEK, RenderType.getCutout());

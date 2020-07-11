@@ -1,6 +1,7 @@
 package baguchan.mcmod.tofucraft.world.gen;
 
 import baguchan.mcmod.tofucraft.block.crop.SoyBeanNetherCropsBlock;
+import baguchan.mcmod.tofucraft.block.crop.SoyBeanSoulCropsBlock;
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.init.TofuCaver;
 import baguchan.mcmod.tofucraft.init.TofuFeatures;
@@ -28,7 +29,7 @@ public class DefaultTofuBiomeFeature {
     public static final BlockClusterFeatureConfig LEEK = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(TofuBlocks.LEEK.getDefaultState()), new SimpleBlockPlacer())).tries(64).build();
     public static final BlockClusterFeatureConfig ZUNDATOFU_MUSHROOM = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(TofuBlocks.ZUNDATOFU_MUSHROOM.getDefaultState()), new SimpleBlockPlacer())).tries(64).build();
     public static final BlockClusterFeatureConfig NETHER_SOYBEAN = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(TofuBlocks.SOYBEAN_NETHER.getDefaultState().with(SoyBeanNetherCropsBlock.AGE, 7)), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
-
+    public static final BlockClusterFeatureConfig SOUL_SOYBEAN = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(TofuBlocks.SOYBEAN_SOUL.getDefaultState().with(SoyBeanSoulCropsBlock.AGE, 7)), new SimpleBlockPlacer())).tries(64).func_227317_b_().build();
 
 
     public static void addCarvers(Biome biomeIn) {
@@ -90,8 +91,14 @@ public class DefaultTofuBiomeFeature {
         for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
             if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER)) {
 
-                if (biome != Biomes.field_235252_ay_ && biome != Biomes.field_235250_aA_ && biome != Biomes.field_235251_aB_) {
-                    biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(NETHER_SOYBEAN).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(0.45F, 0, 0, 80))));
+                if (biome == Biomes.field_235253_az_) {
+                    biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(NETHER_SOYBEAN).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(0.6F, 0, 0, 80))));
+                } else if (biome != Biomes.field_235252_ay_ && biome != Biomes.field_235250_aA_ && biome != Biomes.field_235251_aB_) {
+                    biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(NETHER_SOYBEAN).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(0.35F, 0, 0, 80))));
+                }
+
+                if (biome == Biomes.field_235252_ay_ || biome == Biomes.field_235250_aA_) {
+                    biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION, Feature.RANDOM_PATCH.withConfiguration(SOUL_SOYBEAN).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(0.55F, 0, 0, 80))));
                 }
             }
         }
