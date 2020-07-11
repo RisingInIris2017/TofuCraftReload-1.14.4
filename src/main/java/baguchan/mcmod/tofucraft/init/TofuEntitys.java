@@ -2,10 +2,7 @@ package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.entity.*;
-import baguchan.mcmod.tofucraft.entity.projectile.BeamEntity;
-import baguchan.mcmod.tofucraft.entity.projectile.FukumameEntity;
-import baguchan.mcmod.tofucraft.entity.projectile.NetherFukumameEntity;
-import baguchan.mcmod.tofucraft.entity.projectile.ZundaArrowEntity;
+import baguchan.mcmod.tofucraft.entity.projectile.*;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
@@ -47,6 +44,7 @@ public class TofuEntitys {
 
     public static final EntityType<FukumameEntity> FUKUMAME = EntityType.Builder.<FukumameEntity>create(FukumameEntity::new, EntityClassification.MISC).setTrackingRange(4).setCustomClientFactory(FukumameEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(0.4F, 0.4F).build(prefix("fukumame"));
     public static final EntityType<NetherFukumameEntity> NETHER_FUKUMAME = EntityType.Builder.<NetherFukumameEntity>create(NetherFukumameEntity::new, EntityClassification.MISC).setTrackingRange(4).setCustomClientFactory(NetherFukumameEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(0.4F, 0.4F).build(prefix("nether_fukumame"));
+    public static final EntityType<SoulFukumameEntity> SOUL_FUKUMAME = EntityType.Builder.<SoulFukumameEntity>create(SoulFukumameEntity::new, EntityClassification.MISC).setTrackingRange(4).setCustomClientFactory(SoulFukumameEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(0.4F, 0.4F).build(prefix("soul_fukumame"));
     public static final EntityType<ZundaArrowEntity> ZUNDAARROW = EntityType.Builder.<ZundaArrowEntity>create(ZundaArrowEntity::new, EntityClassification.MISC).setTrackingRange(4).setCustomClientFactory(ZundaArrowEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.5F).build(prefix("zunda_arrow"));
     public static final EntityType<BeamEntity> BEAM = EntityType.Builder.<BeamEntity>create(BeamEntity::new, EntityClassification.MISC).setTrackingRange(4).setCustomClientFactory(BeamEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.5F).build(prefix("beam"));
     //public static final EntityType<TofuHomingForceEntity> TOFU_HOMING_FORCE = EntityType.Builder.<TofuHomingForceEntity>create(TofuHomingForceEntity::new, EntityClassification.MISC).setTrackingRange(40).setCustomClientFactory(TofuHomingForceEntity::new).setUpdateInterval(4).setShouldReceiveVelocityUpdates(true).size(0.5F, 0.5F).build(prefix("tofu_homing_force"));
@@ -86,6 +84,7 @@ public class TofuEntitys {
 
         event.getRegistry().register(FUKUMAME.setRegistryName("fukumame"));
         event.getRegistry().register(NETHER_FUKUMAME.setRegistryName("nether_fukumame"));
+        event.getRegistry().register(SOUL_FUKUMAME.setRegistryName("soul_fukumame"));
         event.getRegistry().register(ZUNDAARROW.setRegistryName("zunda_arrow"));
         event.getRegistry().register(BEAM.setRegistryName("beam"));
         //event.getRegistry().register(TOFU_HOMING_FORCE.setRegistryName("tofu_homing_force"));

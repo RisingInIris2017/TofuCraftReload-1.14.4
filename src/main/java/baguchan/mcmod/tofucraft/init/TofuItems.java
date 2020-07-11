@@ -3,6 +3,9 @@ package baguchan.mcmod.tofucraft.init;
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.client.render.item.TofuShieldItemRender;
 import baguchan.mcmod.tofucraft.item.*;
+import baguchan.mcmod.tofucraft.item.fukumame.FukumameItem;
+import baguchan.mcmod.tofucraft.item.fukumame.NetherFukumameItem;
+import baguchan.mcmod.tofucraft.item.fukumame.SoulFukumameItem;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
@@ -72,17 +75,21 @@ public class TofuItems {
     public static final Item HIYAYAKKO = new StackableBowlItem(new Item.Properties().food(TofuFoods.HIYAYAKKO).containerItem(Items.BOWL).maxStackSize(6).group(TofuItemGroup.TOFUCRAFT));
 
     public static final Item SALTYMELON = new Item(new Item.Properties().food(TofuFoods.SALTYMELON).group(TofuItemGroup.TOFUCRAFT));
-
+    //soybean
     public static final Item SEEDS_SOYBEAN = new SoybeansItem(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item SEEDS_SOYBEAN_NETHER = new BlockNamedItem(TofuBlocks.SOYBEAN_NETHER, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item SEEDS_SOYBEAN_SOUL = new BlockNamedItem(TofuBlocks.SOYBEAN_SOUL, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item KINAKO = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item SOYBEAN_PARCHED = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item SPROUTS = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT).food(TofuFoods.SPROUT));
-    public static final Item FUKUMAME = new FukumameItem(new Item.Properties().maxDamage(32).group(TofuItemGroup.TOFUCRAFT));
-    public static final Item NETHER_FUKUMAME = new NetherFukumameItem(new Item.Properties().maxDamage(32).group(TofuItemGroup.TOFUCRAFT));
+    //edamame
     public static final Item EDAMAME = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item EDAMAME_BOILD = new Item(new Item.Properties().food(TofuFoods.EDAMAME).group(TofuItemGroup.TOFUCRAFT));
+    //fukumame
+    public static final Item FUKUMAME = new FukumameItem(new Item.Properties().maxDamage(32).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item NETHER_FUKUMAME = new NetherFukumameItem(new Item.Properties().maxDamage(32).group(TofuItemGroup.TOFUCRAFT));
+    public static final Item SOUL_FUKUMAME = new SoulFukumameItem(new Item.Properties().maxDamage(32).group(TofuItemGroup.TOFUCRAFT));
+
     public static final Item RICE = new Item(new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item SEEDS_RICE = new BlockRiceItem(TofuBlocks.RICE, new Item.Properties().group(TofuItemGroup.TOFUCRAFT));
     public static final Item ONIGIRI = new Item(new Item.Properties().food(TofuFoods.RICEBALL).group(TofuItemGroup.TOFUCRAFT));
@@ -249,6 +256,7 @@ public class TofuItems {
 
         register(registry, HIYAYAKKO, "hiyayakko");
         register(registry, SALTYMELON, "saltymelon");
+
         register(registry, SEEDS_SOYBEAN, "seeds_soybeans");
         register(registry, SEEDS_SOYBEAN_NETHER, "seeds_soybeans_nether");
         register(registry, SEEDS_SOYBEAN_SOUL, "seeds_soybeans_soul");
@@ -258,8 +266,10 @@ public class TofuItems {
 
         register(registry, EDAMAME, "edamame");
         register(registry, EDAMAME_BOILD, "edamame_boild");
+
         register(registry, FUKUMAME, "fukumame");
         register(registry, NETHER_FUKUMAME, "nether_fukumame");
+        register(registry, SOUL_FUKUMAME, "soul_fukumame");
 
         register(registry, RICE, "rice");
         register(registry, SEEDS_RICE, "seeds_rice");
