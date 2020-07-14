@@ -1,14 +1,10 @@
 package baguchan.mcmod.tofucraft.world.gen.feature.structure;
 
-import baguchan.mcmod.tofucraft.init.TofuStructures;
 import com.mojang.serialization.Codec;
 import net.minecraft.util.Rotation;
-import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -29,25 +25,9 @@ public class TofuCastleStructure extends Structure<NoFeatureConfig> {
         return 3;
     }
 
-    public Structure.IStartFactory getStartFactory() {
-        return TofuCastleStructure.Start::new;
-    }
-
-    protected boolean func_230363_a_(ChunkGenerator p_230363_1_, BiomeProvider p_230363_2_, long p_230363_3_, SharedSeedRandom p_230363_5_, int p_230363_6_, int p_230363_7_, Biome p_230363_8_, ChunkPos p_230363_9_, NoFeatureConfig p_230363_10_) {
-        int i = p_230363_6_ >> 4;
-        int j = p_230363_7_ >> 4;
-        p_230363_5_.setSeed((long) (i ^ j << 4) ^ p_230363_3_);
-        p_230363_5_.nextInt();
-        for (int k = p_230363_6_ - 10; k <= p_230363_6_ + 10; ++k) {
-            for (int l = p_230363_7_ - 10; l <= p_230363_7_ + 10; ++l) {
-                ChunkPos chunkpos = TofuStructures.TOFUVILLAGE.func_236392_a_(p_230363_1_.func_235957_b_().func_236197_a_(Structure.field_236381_q_), p_230363_3_, p_230363_5_, k, l);
-                if (k == chunkpos.x && l == chunkpos.z) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
+    @Override
+    public IStartFactory getStartFactory() {
+        return Start::new;
     }
 
     public GenerationStage.Decoration func_236396_f_() {

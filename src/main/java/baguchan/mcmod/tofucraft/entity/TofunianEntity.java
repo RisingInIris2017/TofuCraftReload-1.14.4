@@ -563,7 +563,7 @@ public class TofunianEntity extends AbstractVillagerEntity implements IReputatio
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_().func_233815_a_(Attributes.MOVEMENT_SPEED, (double) 0.3F).func_233815_a_(Attributes.MAX_HEALTH, 20.0D).func_233815_a_(Attributes.ATTACK_DAMAGE, 2.0F);
+        return MobEntity.func_233666_p_().func_233814_a_(Attributes.ATTACK_DAMAGE).func_233815_a_(Attributes.MOVEMENT_SPEED, (double) 0.3F).func_233815_a_(Attributes.MAX_HEALTH, 20.0D).func_233815_a_(Attributes.ATTACK_DAMAGE, 2.0F);
     }
 
     private void updateUniqueEntityAI() {

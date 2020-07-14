@@ -48,7 +48,7 @@ public class TofuChingerEntity extends MonsterEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_233666_p_().func_233815_a_(Attributes.MOVEMENT_SPEED, (double) 0.28F).func_233815_a_(Attributes.FOLLOW_RANGE, 16.0D).func_233815_a_(Attributes.MAX_HEALTH, 16.0D);
+        return MonsterEntity.func_234295_eP_().func_233815_a_(Attributes.MOVEMENT_SPEED, (double) 0.28F).func_233815_a_(Attributes.FOLLOW_RANGE, 16.0D).func_233815_a_(Attributes.MAX_HEALTH, 16.0D);
     }
 
     protected void playWarningSound() {

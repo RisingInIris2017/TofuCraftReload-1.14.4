@@ -1,5 +1,7 @@
 package baguchan.mcmod.tofucraft.block;
 
+import baguchan.mcmod.tofucraft.init.TofuBlocks;
+import baguchan.mcmod.tofucraft.init.TofuFeatures;
 import baguchan.mcmod.tofucraft.init.TofuTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -10,6 +12,9 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
@@ -31,7 +36,7 @@ public class TofuMushroomBlock extends BushBlock implements IGrowable {
 
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (rand.nextInt(35) == 0 && worldIn.canSeeSky(pos)) {
-            if (func_226940_a_(worldIn, pos, state, rand)) {
+            if (growToBigMushroom(worldIn, pos, state, rand)) {
                 addNewMushroom(state, worldIn, pos, rand);
             }
         }
@@ -69,8 +74,7 @@ public class TofuMushroomBlock extends BushBlock implements IGrowable {
         }
     }
 
-    public boolean func_226940_a_(ServerWorld p_226940_1_, BlockPos p_226940_2_, BlockState p_226940_3_, Random p_226940_4_) {
-        /*p_226940_1_.removeBlock(p_226940_2_, false);
+    public boolean growToBigMushroom(ServerWorld worldIn, BlockPos pos, BlockState p_226940_3_, Random p_226940_4_) {
         ConfiguredFeature<NoFeatureConfig, ?> configuredfeature;
         if (this == TofuBlocks.ZUNDATOFU_MUSHROOM) {
             if (p_226940_4_.nextFloat() < 0.2F) {
@@ -82,18 +86,17 @@ public class TofuMushroomBlock extends BushBlock implements IGrowable {
             configuredfeature = TofuFeatures.ZUNDAMUSHROOM_SMALL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG);
         }
 
-        if (configuredfeature.place(p_226940_1_, p_226940_1_.getChunkProvider().getChunkGenerator(), p_226940_4_, p_226940_2_)) {
-            if (p_226940_1_.getBlockState(p_226940_2_).isAir()) {
-                p_226940_1_.setBlockState(p_226940_2_, TofuBlocks.ZUNDATOFU_MUSHROOM.getDefaultState(), 2);
+        if (configuredfeature.func_236265_a_(worldIn, worldIn.func_241112_a_(), worldIn.getChunkProvider().getChunkGenerator(), p_226940_4_, pos)) {
+            if (worldIn.getBlockState(pos).isAir()) {
+                worldIn.setBlockState(pos, TofuBlocks.ZUNDATOFU_MUSHROOM.getDefaultState(), 2);
                 return false;
             } else {
                 return true;
             }
         } else {
-            p_226940_1_.setBlockState(p_226940_2_, TofuBlocks.ZUNDATOFU_MUSHROOM.getDefaultState(), 2);
+            worldIn.setBlockState(pos, TofuBlocks.ZUNDATOFU_MUSHROOM.getDefaultState(), 2);
             return false;
-        }*/
-        return false;
+        }
     }
 
     @Override
@@ -108,7 +111,7 @@ public class TofuMushroomBlock extends BushBlock implements IGrowable {
 
     @Override
     public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-        if (func_226940_a_(worldIn, pos, state, rand)) {
+        if (growToBigMushroom(worldIn, pos, state, rand)) {
             addNewMushroom(state, worldIn, pos, rand);
         }
         //addNewMushroom(state,worldIn,pos,rand);

@@ -2,6 +2,7 @@ package baguchan.mcmod.tofucraft.init;
 
 import baguchan.mcmod.tofucraft.TofuCraftCore;
 import baguchan.mcmod.tofucraft.world.biome.*;
+import baguchan.mcmod.tofucraft.world.gen.feature.structure.TofuStructurePieceType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
@@ -30,6 +31,7 @@ public class TofuBiomes {
 
     @SubscribeEvent
     public static void onRegisterBiomes(RegistryEvent.Register<Biome> event) {
+        TofuStructurePieceType.init();
 
         event.getRegistry().register(TOFU_FOREST.setRegistryName("tofu_forest"));
         event.getRegistry().register(TOFUZUNDA_SWAMP.setRegistryName("tofuzunda_forest"));

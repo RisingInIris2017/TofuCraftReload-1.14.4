@@ -5,6 +5,7 @@ import baguchan.mcmod.tofucraft.block.crop.SoyBeanSoulCropsBlock;
 import baguchan.mcmod.tofucraft.init.TofuBlocks;
 import baguchan.mcmod.tofucraft.init.TofuCaver;
 import baguchan.mcmod.tofucraft.init.TofuFeatures;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import net.minecraft.block.pattern.BlockMatcher;
 import net.minecraft.world.biome.Biome;
@@ -46,7 +47,7 @@ public class DefaultTofuBiomeFeature {
     }
 
     public static void addTofuNormalTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_236291_c_.withConfiguration(DefaultTofuBiomeFeature.TOFU_TREE_CONFIG).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.02F, 1))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TofuFeatures.TOFUTREE.withConfiguration(DefaultTofuBiomeFeature.TOFU_TREE_CONFIG).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.02F, 1))));
     }
 
 
@@ -55,20 +56,20 @@ public class DefaultTofuBiomeFeature {
     }
 
     public static void addTofuForestTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_236291_c_.withConfiguration(DefaultTofuBiomeFeature.TOFU_TREE_CONFIG).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(10, 0.1F, 1))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TofuFeatures.TOFUTREE.withConfiguration(DefaultTofuBiomeFeature.TOFU_TREE_CONFIG).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(10, 0.1F, 1))));
 
     }
 
     public static void addTofuSwampZundaTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_236291_c_.withConfiguration(DefaultTofuBiomeFeature.ZUNDATOFU_TREE_CONFIG).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(4, 0.1F, 1))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TofuFeatures.TOFUTREE.withConfiguration(DefaultTofuBiomeFeature.ZUNDATOFU_TREE_CONFIG).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(4, 0.1F, 1))));
     }
 
     public static void addZundaTofuFungi(Biome biomeIn) {
-        //biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(TofuFeatures.ZUNDAMUSHROOM_BIG.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withChance(0.33333334F)), TofuFeatures.ZUNDAMUSHROOM_SMALL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 1))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(TofuFeatures.ZUNDAMUSHROOM_BIG.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withChance(0.33333334F)), TofuFeatures.ZUNDAMUSHROOM_SMALL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 1))));
     }
 
     public static void addTofuBuilding(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_236291_c_.withConfiguration(DefaultTofuBiomeFeature.ZUNDATOFU_TREE_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(1))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TofuFeatures.TOFU_BUILDING.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(1))));
     }
 
     public static void addTofuBerry(Biome biomeIn) {

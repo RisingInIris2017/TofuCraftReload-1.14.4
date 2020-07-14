@@ -64,11 +64,11 @@ public class TofuVillageStructure extends Structure<NoFeatureConfig> {
     public static class TofuVillage extends AbstractVillagePiece {
 
         public TofuVillage(TemplateManager p_i50890_1_, JigsawPiece p_i50890_2_, BlockPos p_i50890_3_, int p_i50890_4_, Rotation p_i50890_5_, MutableBoundingBox p_i50890_6_) {
-            super(ITofuStructurePieceType.TOFUVI_PIECE, p_i50890_1_, p_i50890_2_, p_i50890_3_, p_i50890_4_, p_i50890_5_, p_i50890_6_);
+            super(TofuStructurePieceType.TOFUVI_PIECE, p_i50890_1_, p_i50890_2_, p_i50890_3_, p_i50890_4_, p_i50890_5_, p_i50890_6_);
         }
 
         public TofuVillage(TemplateManager p_i50891_1_, CompoundNBT p_i50891_2_) {
-            super(p_i50891_1_, p_i50891_2_, ITofuStructurePieceType.TOFUVI_PIECE);
+            super(p_i50891_1_, p_i50891_2_, TofuStructurePieceType.TOFUVI_PIECE);
         }
     }
 }

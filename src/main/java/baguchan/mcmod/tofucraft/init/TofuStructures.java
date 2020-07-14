@@ -13,6 +13,8 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.Locale;
+
 @Mod.EventBusSubscriber(modid = TofuCraftCore.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TofuStructures {
     public static final Structure<NoFeatureConfig> TOFUVILLAGE = new TofuVillageStructure(NoFeatureConfig.field_236558_a_);
@@ -24,10 +26,15 @@ public class TofuStructures {
 
     @SubscribeEvent
     public static void registerStructure(RegistryEvent.Register<Structure<?>> registry) {
-        registry.getRegistry().register(TOFUVILLAGE.setRegistryName("tofu_village"));
-        Structure.field_236365_a_.put(prefix("tofu_village"), TOFUVILLAGE);
-        registry.getRegistry().register(TOFUCASTLE.setRegistryName("tofu_castle"));
-        Structure.field_236365_a_.put(prefix("tofu_castle"), TOFUCASTLE);
+        registry.getRegistry().register(TOFUVILLAGE.setRegistryName("tofucraft:tofu_village"));
+        registry.getRegistry().register(TOFUCASTLE.setRegistryName("tofucraft:tofu_castle"));
+
+        putStructureOnAList("tofucraft:tofu_village", TOFUVILLAGE);
+        putStructureOnAList("tofucraft:tofu_castle", TOFUCASTLE);
+    }
+
+    public static <F extends Structure<?>> void putStructureOnAList(String nameForList, F structure) {
+        Structure.field_236365_a_.put(nameForList.toLowerCase(Locale.ROOT), structure);
     }
 
     private static String prefix(String path) {

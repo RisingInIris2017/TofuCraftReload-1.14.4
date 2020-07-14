@@ -2,10 +2,7 @@ package baguchan.mcmod.tofucraft;
 
 import baguchan.mcmod.tofucraft.client.ClientRegistrar;
 import baguchan.mcmod.tofucraft.entity.MorijioEntity;
-import baguchan.mcmod.tofucraft.init.TofuEffectRegistry;
-import baguchan.mcmod.tofucraft.init.TofuEntitys;
-import baguchan.mcmod.tofucraft.init.TofuItems;
-import baguchan.mcmod.tofucraft.init.TofuVillagers;
+import baguchan.mcmod.tofucraft.init.*;
 import baguchan.mcmod.tofucraft.world.gen.DefaultTofuBiomeFeature;
 import net.minecraft.block.TallGrassBlock;
 import net.minecraft.entity.EntityClassification;
@@ -65,7 +62,7 @@ public class TofuCraftCore {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-
+        TofuDimensions.init();
         TofuVillagers.init();
         TofuEntitys.spawnEntity();
         DefaultTofuBiomeFeature.addNetherSoybean();

@@ -9,7 +9,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.fish.CodEntity;
@@ -57,11 +56,11 @@ public class TofuEntitys {
         GlobalEntityTypeAttributes.put(TOFUCHINGER, TofuChingerEntity.registerAttributes().func_233813_a_());
         GlobalEntityTypeAttributes.put(TOFUCOW, CowEntity.func_234188_eI_().func_233813_a_());
         GlobalEntityTypeAttributes.put(TOFUCREEPER, CreeperEntity.func_234278_m_().func_233813_a_());
-        GlobalEntityTypeAttributes.put(TOFUFISH, CodEntity.registerAttributes().func_233813_a_());
+        GlobalEntityTypeAttributes.put(TOFUFISH, CodEntity.func_234176_m_().func_233813_a_());
         GlobalEntityTypeAttributes.put(TOFUGANDLEM, TofuGandlemEntity.registerAttributes().func_233813_a_());
         GlobalEntityTypeAttributes.put(TOFUMIND, TofuMindEntity.registerAttributes().func_233813_a_());
         GlobalEntityTypeAttributes.put(TOFUNIAN, TofunianEntity.registerAttributes().func_233813_a_());
-        GlobalEntityTypeAttributes.put(TOFUCHINGER, SlimeEntity.registerAttributes().func_233813_a_());
+        GlobalEntityTypeAttributes.put(TOFUSLIME, MonsterEntity.func_234295_eP_().func_233813_a_());
         GlobalEntityTypeAttributes.put(TOFUSPIDER, SpiderEntity.func_234305_eI_().func_233813_a_());
 
 
