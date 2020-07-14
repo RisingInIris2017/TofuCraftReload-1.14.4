@@ -261,7 +261,7 @@
   "tooltip.tofucraft.energy": "豆腐Force, Energy: %d/%d",
   "tooltip.tofucraft.tofuforce.broken": "损坏",
   "death.attack.tofucraft.tofuforce": "%1$s被%2$s的豆腐能所轰杀",
-  "death.attack.tofucraft.tofuforce.item": "%2$s借助%3$s的豆腐能击杀了%1$s"
+  "death.attack.tofucraft.tofuforce.item": "%2$s借助%3$s的豆腐能击杀了%1$s",
   "item.tofucraft.tofu_gauntlet.mode": "模式",
   "item.tofucraft.tofu_gauntlet.soyshot": "发射大豆",
   "item.tofucraft.tofu_gauntlet.homing_shot": "制导发射"
